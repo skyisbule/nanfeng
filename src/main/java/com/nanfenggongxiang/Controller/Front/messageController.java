@@ -32,7 +32,7 @@ public class messageController {
                       Message message){
         //message.setReleaser(uid);
         message.setIsReaded(0);
-        return dao.insert(message)==1?"success":"false";
+        return dao.insert(message)==1?"success":"error";
     }
 
     /**

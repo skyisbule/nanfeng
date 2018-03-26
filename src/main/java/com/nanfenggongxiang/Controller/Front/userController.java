@@ -59,7 +59,7 @@ public class userController {
         if (dao.insert(info)==1){
             return "success";
         }else {
-            return "false";
+            return "error";
         }
     }
 
