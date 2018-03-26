@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.nanfenggongxiang.Dao.MessageMapper">
-  <resultMap id="BaseResultMap" type="com.nanfenggongxiang.Domain.Message">
+<mapper namespace="com.nanfenggongxiang.Domiacom.nanfenggongxiang.Dao.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.nanfenggongxiang.Domian.Message">
     <id column="mid" jdbcType="INTEGER" property="mid" />
     <result column="releaser" jdbcType="INTEGER" property="releaser" />
     <result column="receiver" jdbcType="INTEGER" property="receiver" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="is_readed" jdbcType="INTEGER" property="isReaded" />
+    <result column="gid" jdbcType="INTEGER" property="gid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,9 +68,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    mid, releaser, receiver, content, is_readed
+    mid, releaser, receiver, content, is_readed, gid
   </sql>
-  <select id="selectByExample" parameterType="com.nanfenggongxiang.Domain.MessageExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.nanfenggongxiang.Domian.MessageExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -101,19 +102,21 @@
     delete from message
     where mid = #{mid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.nanfenggongxiang.Domain.MessageExample">
+  <delete id="deleteByExample" parameterType="com.nanfenggongxiang.Domian.MessageExample">
     delete from message
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.nanfenggongxiang.Domain.Message">
+  <insert id="insert" parameterType="com.nanfenggongxiang.Domian.Message">
     insert into message (mid, releaser, receiver, 
-      content, is_readed)
+      content, is_readed, gid
+      )
     values (#{mid,jdbcType=INTEGER}, #{releaser,jdbcType=INTEGER}, #{receiver,jdbcType=INTEGER}, 
-      #{content,jdbcType=VARCHAR}, #{isReaded,jdbcType=INTEGER})
+      #{content,jdbcType=VARCHAR}, #{isReaded,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.nanfenggongxiang.Domain.Message">
+  <insert id="insertSelective" parameterType="com.nanfenggongxiang.Domian.Message">
     insert into message
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="mid != null">
@@ -130,6 +133,9 @@
       </if>
       <if test="isReaded != null">
         is_readed,
+      </if>
+      <if test="gid != null">
+        gid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -148,9 +154,12 @@
       <if test="isReaded != null">
         #{isReaded,jdbcType=INTEGER},
       </if>
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.nanfenggongxiang.Domain.MessageExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.nanfenggongxiang.Domian.MessageExample" resultType="java.lang.Long">
     select count(*) from message
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -174,6 +183,9 @@
       <if test="record.isReaded != null">
         is_readed = #{record.isReaded,jdbcType=INTEGER},
       </if>
+      <if test="record.gid != null">
+        gid = #{record.gid,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -185,12 +197,13 @@
       releaser = #{record.releaser,jdbcType=INTEGER},
       receiver = #{record.receiver,jdbcType=INTEGER},
       content = #{record.content,jdbcType=VARCHAR},
-      is_readed = #{record.isReaded,jdbcType=INTEGER}
+      is_readed = #{record.isReaded,jdbcType=INTEGER},
+      gid = #{record.gid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.nanfenggongxiang.Domain.Message">
+  <update id="updateByPrimaryKeySelective" parameterType="com.nanfenggongxiang.Domian.Message">
     update message
     <set>
       <if test="releaser != null">
@@ -205,15 +218,19 @@
       <if test="isReaded != null">
         is_readed = #{isReaded,jdbcType=INTEGER},
       </if>
+      <if test="gid != null">
+        gid = #{gid,jdbcType=INTEGER},
+      </if>
     </set>
     where mid = #{mid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.nanfenggongxiang.Domain.Message">
+  <update id="updateByPrimaryKey" parameterType="com.nanfenggongxiang.Domian.Message">
     update message
     set releaser = #{releaser,jdbcType=INTEGER},
       receiver = #{receiver,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},
-      is_readed = #{isReaded,jdbcType=INTEGER}
+      is_readed = #{isReaded,jdbcType=INTEGER},
+      gid = #{gid,jdbcType=INTEGER}
     where mid = #{mid,jdbcType=INTEGER}
   </update>
 </mapper>

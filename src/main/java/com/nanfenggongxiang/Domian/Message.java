@@ -1,4 +1,4 @@
-package com.nanfenggongxiang.Domain;
+package com.nanfenggongxiang.Domian;
 
 import java.io.Serializable;
 
@@ -30,6 +30,11 @@ public class Message implements Serializable {
      * 是否已读
      */
     private Integer isReaded;
+
+    /**
+     * 商品id
+     */
+    private Integer gid;
 
     private static final long serialVersionUID = 1L;
 
@@ -73,6 +78,14 @@ public class Message implements Serializable {
         this.isReaded = isReaded;
     }
 
+    public Integer getGid() {
+        return gid;
+    }
+
+    public void setGid(Integer gid) {
+        this.gid = gid;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -89,7 +102,8 @@ public class Message implements Serializable {
             && (this.getReleaser() == null ? other.getReleaser() == null : this.getReleaser().equals(other.getReleaser()))
             && (this.getReceiver() == null ? other.getReceiver() == null : this.getReceiver().equals(other.getReceiver()))
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
-            && (this.getIsReaded() == null ? other.getIsReaded() == null : this.getIsReaded().equals(other.getIsReaded()));
+            && (this.getIsReaded() == null ? other.getIsReaded() == null : this.getIsReaded().equals(other.getIsReaded()))
+            && (this.getGid() == null ? other.getGid() == null : this.getGid().equals(other.getGid()));
     }
 
     @Override
@@ -101,6 +115,7 @@ public class Message implements Serializable {
         result = prime * result + ((getReceiver() == null) ? 0 : getReceiver().hashCode());
         result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
         result = prime * result + ((getIsReaded() == null) ? 0 : getIsReaded().hashCode());
+        result = prime * result + ((getGid() == null) ? 0 : getGid().hashCode());
         return result;
     }
 
@@ -115,6 +130,7 @@ public class Message implements Serializable {
         sb.append(", receiver=").append(receiver);
         sb.append(", content=").append(content);
         sb.append(", isReaded=").append(isReaded);
+        sb.append(", gid=").append(gid);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

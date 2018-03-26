@@ -1,7 +1,7 @@
-package com.nanfenggongxiang.Dao;
+package com.nanfenggongxiang.Domiacom.nanfenggongxiang.Dao;
 
-import com.nanfenggongxiang.Domain.Message;
-import com.nanfenggongxiang.Domain.MessageExample;
+import com.nanfenggongxiang.Domian.Message;
+import com.nanfenggongxiang.Domian.MessageExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

@@ -30,7 +30,8 @@ public class shopController {
      */
     @RequestMapping("/private/commodity/add")
     public String addCommodity(
-            @CookieValue("id")Integer uid
+            Integer uid
+            //@CookieValue("id")Integer uid
             ,Commodity commodity){
         //初始化
         init(commodity,uid);
