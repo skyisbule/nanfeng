@@ -51,6 +51,12 @@ public class Info implements Serializable {
      */
     private String contact;
 
+    public void registInit(){
+        this.setUid(null);
+        this.setReleaseNum(0);
+    }
+
+
     private static final long serialVersionUID = 1L;
 
     public Integer getUid() {
