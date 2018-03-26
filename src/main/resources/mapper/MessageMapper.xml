@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nanfenggongxiang.Domiacom.nanfenggongxiang.Dao.MessageMapper">
-  <resultMap id="BaseResultMap" type="com.nanfenggongxiang.Domian.Message">
+  <resultMap id="BaseResultMap" type="com.nanfenggongxiang.Domain.Message">
     <id column="mid" jdbcType="INTEGER" property="mid" />
     <result column="releaser" jdbcType="INTEGER" property="releaser" />
     <result column="receiver" jdbcType="INTEGER" property="receiver" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     mid, releaser, receiver, content, is_readed, gid
   </sql>
-  <select id="selectByExample" parameterType="com.nanfenggongxiang.Domian.MessageExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.nanfenggongxiang.Domain.MessageExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,13 +102,13 @@
     delete from message
     where mid = #{mid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.nanfenggongxiang.Domian.MessageExample">
+  <delete id="deleteByExample" parameterType="com.nanfenggongxiang.Domain.MessageExample">
     delete from message
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.nanfenggongxiang.Domian.Message">
+  <insert id="insert" parameterType="com.nanfenggongxiang.Domain.Message">
     insert into message (mid, releaser, receiver, 
       content, is_readed, gid
       )
@@ -116,7 +116,7 @@
       #{content,jdbcType=VARCHAR}, #{isReaded,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.nanfenggongxiang.Domian.Message">
+  <insert id="insertSelective" parameterType="com.nanfenggongxiang.Domain.Message">
     insert into message
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="mid != null">
@@ -159,7 +159,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.nanfenggongxiang.Domian.MessageExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.nanfenggongxiang.Domain.MessageExample" resultType="java.lang.Long">
     select count(*) from message
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -203,7 +203,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.nanfenggongxiang.Domian.Message">
+  <update id="updateByPrimaryKeySelective" parameterType="com.nanfenggongxiang.Domain.Message">
     update message
     <set>
       <if test="releaser != null">
@@ -224,7 +224,7 @@
     </set>
     where mid = #{mid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.nanfenggongxiang.Domian.Message">
+  <update id="updateByPrimaryKey" parameterType="com.nanfenggongxiang.Domain.Message">
     update message
     set releaser = #{releaser,jdbcType=INTEGER},
       receiver = #{receiver,jdbcType=INTEGER},

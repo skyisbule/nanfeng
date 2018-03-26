@@ -1,15 +1,13 @@
 package com.nanfenggongxiang.Controller.Front;
 
 import com.nanfenggongxiang.Dao.MessageDao;
-import com.nanfenggongxiang.Domiacom.nanfenggongxiang.Dao.MessageMapper;
-import com.nanfenggongxiang.Domian.Message;
-import com.nanfenggongxiang.Domian.MessageExample;
+import com.nanfenggongxiang.Domain.Message;
+import com.nanfenggongxiang.Domain.MessageExample;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.nanfenggongxiang.Dao.MessageMapper;
 
-import java.security.MessageDigest;
 import java.util.List;
 
 /**

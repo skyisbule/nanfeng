@@ -1,4 +1,4 @@
-package com.nanfenggongxiang.Domian;
+package com.nanfenggongxiang.Domain;
 
 import java.io.Serializable;
 
