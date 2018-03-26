@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nanfenggongxiang.Dao.PlateMapper">
+  <resultMap id="BaseResultMap" type="com.nanfenggongxiang.Domain.Plate">
+    <id column="plate_id" jdbcType="INTEGER" property="plateId" />
+    <result column="plate_name" jdbcType="VARCHAR" property="plateName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    plate_id, plate_name
+  </sql>
+  <select id="selectByExample" parameterType="com.nanfenggongxiang.Domain.PlateExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from plate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from plate
+    where plate_id = #{plateId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from plate
+    where plate_id = #{plateId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.nanfenggongxiang.Domain.PlateExample">
+    delete from plate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.nanfenggongxiang.Domain.Plate">
+    insert into plate (plate_id, plate_name)
+    values (#{plateId,jdbcType=INTEGER}, #{plateName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nanfenggongxiang.Domain.Plate">
+    insert into plate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="plateId != null">
+        plate_id,
+      </if>
+      <if test="plateName != null">
+        plate_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="plateId != null">
+        #{plateId,jdbcType=INTEGER},
+      </if>
+      <if test="plateName != null">
+        #{plateName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.nanfenggongxiang.Domain.PlateExample" resultType="java.lang.Long">
+    select count(*) from plate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update plate
+    <set>
+      <if test="record.plateId != null">
+        plate_id = #{record.plateId,jdbcType=INTEGER},
+      </if>
+      <if test="record.plateName != null">
+        plate_name = #{record.plateName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update plate
+    set plate_id = #{record.plateId,jdbcType=INTEGER},
+      plate_name = #{record.plateName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nanfenggongxiang.Domain.Plate">
+    update plate
+    <set>
+      <if test="plateName != null">
+        plate_name = #{plateName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where plate_id = #{plateId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nanfenggongxiang.Domain.Plate">
+    update plate
+    set plate_name = #{plateName,jdbcType=VARCHAR}
+    where plate_id = #{plateId,jdbcType=INTEGER}
+  </update>
+</mapper>
