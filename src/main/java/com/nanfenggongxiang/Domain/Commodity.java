@@ -30,7 +30,7 @@ public class Commodity implements Serializable {
     /**
      * 成色
      */
-    private Integer condition;
+    private Integer conditions;
 
     /**
      * 详细描述
@@ -101,12 +101,12 @@ public class Commodity implements Serializable {
         this.price = price;
     }
 
-    public Integer getCondition() {
-        return condition;
+    public Integer getConditions() {
+        return conditions;
     }
 
-    public void setCondition(Integer condition) {
-        this.condition = condition;
+    public void setConditions(Integer conditions) {
+        this.conditions = conditions;
     }
 
     public String getContent() {
@@ -181,7 +181,7 @@ public class Commodity implements Serializable {
             && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
             && (this.getGoodsName() == null ? other.getGoodsName() == null : this.getGoodsName().equals(other.getGoodsName()))
             && (this.getPrice() == null ? other.getPrice() == null : this.getPrice().equals(other.getPrice()))
-            && (this.getCondition() == null ? other.getCondition() == null : this.getCondition().equals(other.getCondition()))
+            && (this.getConditions() == null ? other.getConditions() == null : this.getConditions().equals(other.getConditions()))
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
             && (this.getPicture() == null ? other.getPicture() == null : this.getPicture().equals(other.getPicture()))
             && (this.getGoodsType() == null ? other.getGoodsType() == null : this.getGoodsType().equals(other.getGoodsType()))
@@ -199,7 +199,7 @@ public class Commodity implements Serializable {
         result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
         result = prime * result + ((getGoodsName() == null) ? 0 : getGoodsName().hashCode());
         result = prime * result + ((getPrice() == null) ? 0 : getPrice().hashCode());
-        result = prime * result + ((getCondition() == null) ? 0 : getCondition().hashCode());
+        result = prime * result + ((getConditions() == null) ? 0 : getConditions().hashCode());
         result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
         result = prime * result + ((getPicture() == null) ? 0 : getPicture().hashCode());
         result = prime * result + ((getGoodsType() == null) ? 0 : getGoodsType().hashCode());
@@ -220,7 +220,7 @@ public class Commodity implements Serializable {
         sb.append(", uid=").append(uid);
         sb.append(", goodsName=").append(goodsName);
         sb.append(", price=").append(price);
-        sb.append(", condition=").append(condition);
+        sb.append(", conditions=").append(conditions);
         sb.append(", content=").append(content);
         sb.append(", picture=").append(picture);
         sb.append(", goodsType=").append(goodsType);

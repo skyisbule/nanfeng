@@ -5,7 +5,6 @@ import com.nanfenggongxiang.Dao.CommodityMapper;
 import com.nanfenggongxiang.Domain.Commodity;
 import com.nanfenggongxiang.Domain.CommodityExample;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,12 +32,11 @@ public class shopController {
      * @return 成功或失败
      */
     @RequestMapping("/private/commodity/add")
-    public String addCommodity(
-            Integer uid
-            //@CookieValue("id")Integer uid
-            ,Commodity commodity){
+    public String addCommodity(Commodity commodity){
         //初始化
-        init(commodity,uid);
+        //init(commodity,commodity.getUid());
+        Date date = new Date();
+        commodity.setReleaseTime(date);
         return dao.insert(commodity)==1?"success":"false";
     }
 

@@ -375,63 +375,63 @@ public class CommodityExample {
             return (Criteria) this;
         }
 
-        public Criteria andConditionIsNull() {
-            addCriterion("condition is null");
+        public Criteria andConditionsIsNull() {
+            addCriterion("conditions is null");
             return (Criteria) this;
         }
 
-        public Criteria andConditionIsNotNull() {
-            addCriterion("condition is not null");
+        public Criteria andConditionsIsNotNull() {
+            addCriterion("conditions is not null");
             return (Criteria) this;
         }
 
-        public Criteria andConditionEqualTo(Integer value) {
-            addCriterion("condition =", value, "condition");
+        public Criteria andConditionsEqualTo(Integer value) {
+            addCriterion("conditions =", value, "conditions");
             return (Criteria) this;
         }
 
-        public Criteria andConditionNotEqualTo(Integer value) {
-            addCriterion("condition <>", value, "condition");
+        public Criteria andConditionsNotEqualTo(Integer value) {
+            addCriterion("conditions <>", value, "conditions");
             return (Criteria) this;
         }
 
-        public Criteria andConditionGreaterThan(Integer value) {
-            addCriterion("condition >", value, "condition");
+        public Criteria andConditionsGreaterThan(Integer value) {
+            addCriterion("conditions >", value, "conditions");
             return (Criteria) this;
         }
 
-        public Criteria andConditionGreaterThanOrEqualTo(Integer value) {
-            addCriterion("condition >=", value, "condition");
+        public Criteria andConditionsGreaterThanOrEqualTo(Integer value) {
+            addCriterion("conditions >=", value, "conditions");
             return (Criteria) this;
         }
 
-        public Criteria andConditionLessThan(Integer value) {
-            addCriterion("condition <", value, "condition");
+        public Criteria andConditionsLessThan(Integer value) {
+            addCriterion("conditions <", value, "conditions");
             return (Criteria) this;
         }
 
-        public Criteria andConditionLessThanOrEqualTo(Integer value) {
-            addCriterion("condition <=", value, "condition");
+        public Criteria andConditionsLessThanOrEqualTo(Integer value) {
+            addCriterion("conditions <=", value, "conditions");
             return (Criteria) this;
         }
 
-        public Criteria andConditionIn(List<Integer> values) {
-            addCriterion("condition in", values, "condition");
+        public Criteria andConditionsIn(List<Integer> values) {
+            addCriterion("conditions in", values, "conditions");
             return (Criteria) this;
         }
 
-        public Criteria andConditionNotIn(List<Integer> values) {
-            addCriterion("condition not in", values, "condition");
+        public Criteria andConditionsNotIn(List<Integer> values) {
+            addCriterion("conditions not in", values, "conditions");
             return (Criteria) this;
         }
 
-        public Criteria andConditionBetween(Integer value1, Integer value2) {
-            addCriterion("condition between", value1, value2, "condition");
+        public Criteria andConditionsBetween(Integer value1, Integer value2) {
+            addCriterion("conditions between", value1, value2, "conditions");
             return (Criteria) this;
         }
 
-        public Criteria andConditionNotBetween(Integer value1, Integer value2) {
-            addCriterion("condition not between", value1, value2, "condition");
+        public Criteria andConditionsNotBetween(Integer value1, Integer value2) {
+            addCriterion("conditions not between", value1, value2, "conditions");
             return (Criteria) this;
         }
 

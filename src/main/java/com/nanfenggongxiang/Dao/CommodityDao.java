@@ -15,9 +15,9 @@ public interface CommodityDao {
 
     @Select("select commodity.*,info.nick_name,info.release_num" +
             "       from commodity join info on " +
-            "commodity.uid = info.uid where" +
-            "commodity.is_sell_out = #{isSellOut} and commodity.is_want_by = #{isWantBuy}" +
-            "order by gid desc" +
+            "commodity.uid = info.uid where " +
+            "commodity.is_sell_out = #{isSellOut} and commodity.is_want_by = #{isWantBuy} " +
+            "order by gid desc " +
             "limit #{page},10;")
     public List<Map<String,Object>> getCommodityAndUserInfoByPage(@Param("page")int page,
                                                                   @Param("isSellOut")int isSellOut,
