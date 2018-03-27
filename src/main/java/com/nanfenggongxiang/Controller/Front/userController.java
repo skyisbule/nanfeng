@@ -29,7 +29,7 @@ public class userController {
      * @param passwd     密码
      * @return      无该用户、登陆成功、密码错误。
      */
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login")
     public String login(String user,
                         String passwd,
                         HttpServletResponse response){
