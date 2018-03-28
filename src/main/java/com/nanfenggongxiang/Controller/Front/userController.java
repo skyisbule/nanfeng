@@ -1,6 +1,9 @@
 package com.nanfenggongxiang.Controller.Front;
 
 import cn.hutool.core.util.HashUtil;
+import com.nanfenggongxiang.Dao.InfoMapper;
+import com.nanfenggongxiang.Domain.Info;
+import com.nanfenggongxiang.Domain.InfoExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,12 +55,51 @@ public class userController {
     @RequestMapping(value = "/regist",method = RequestMethod.POST)
     public String regist(Info info){
         //初始化注册信息
-        info.registInit();
+        registInit(info);
         if (dao.insert(info)==1){
             return "success";
         }else {
             return "error";
         }
+    }
+
+    /**
+     * 获取当前用户名是否可以注册
+     * @param nickName  昵称  也就是注册登录用的名字
+     * @return
+     */
+    @RequestMapping("/public/hasNickName")
+    public String isRegisted(String nickName){
+        InfoExample e = new InfoExample();
+        e.createCriteria()
+                .andNickNameEqualTo(nickName);
+        List<Info> users = dao.selectByExample(e);
+        if (users.isEmpty())
+            return "not exist";
+        else
+            return "hasExist";
+    }
+
+    /**
+     * 获取手机号是否被使用
+     * @param tel  手机号
+     * @return
+     */
+    @RequestMapping("/public/hasTelNum")
+    public String hasTel(String tel){
+        InfoExample e = new InfoExample();
+        e.createCriteria()
+                .andNickNameEqualTo(tel);
+        List<Info> users = dao.selectByExample(e);
+        if (users.isEmpty())
+            return "not exist";
+        else
+            return "hasExist";
+    }
+
+
+    private void registInit(Info info){
+        info.setReleaseNum(0);
     }
 
 
