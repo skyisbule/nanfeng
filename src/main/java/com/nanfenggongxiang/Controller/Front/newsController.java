@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Created by skyisbule on 2018/3/27.
+ * 资讯板块
  */
 @RestController
 public class newsController {
@@ -39,6 +40,18 @@ public class newsController {
                     .andClassificationEqualTo(type);
             return dao.selectByExample(e);
         }
+    }
+
+    @RequestMapping("/admin/news/add")
+    public String add(News news){
+        dao.insert(news);
+        return "success";
+    }
+
+    @RequestMapping("/admin/news/update")
+    public String update(News news){
+        dao.updateByPrimaryKey(news);
+        return "success";
     }
 
 }
