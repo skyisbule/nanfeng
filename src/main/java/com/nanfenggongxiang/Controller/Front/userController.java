@@ -1,9 +1,6 @@
 package com.nanfenggongxiang.Controller.Front;
 
 import cn.hutool.core.util.HashUtil;
-import com.nanfenggongxiang.Dao.InfoMapper;
-import com.nanfenggongxiang.Domain.Info;
-import com.nanfenggongxiang.Domain.InfoExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -51,11 +51,10 @@ public class Info implements Serializable {
      */
     private String contact;
 
-    public void registInit(){
-        this.setUid(null);
-        this.setReleaseNum(0);
-    }
-
+    /**
+     * 头像
+     */
+    private String headPic;
 
     private static final long serialVersionUID = 1L;
 
@@ -131,6 +130,14 @@ public class Info implements Serializable {
         this.contact = contact;
     }
 
+    public String getHeadPic() {
+        return headPic;
+    }
+
+    public void setHeadPic(String headPic) {
+        this.headPic = headPic;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -151,7 +158,8 @@ public class Info implements Serializable {
             && (this.getPasswd() == null ? other.getPasswd() == null : this.getPasswd().equals(other.getPasswd()))
             && (this.getReleaseNum() == null ? other.getReleaseNum() == null : this.getReleaseNum().equals(other.getReleaseNum()))
             && (this.getSignature() == null ? other.getSignature() == null : this.getSignature().equals(other.getSignature()))
-            && (this.getContact() == null ? other.getContact() == null : this.getContact().equals(other.getContact()));
+            && (this.getContact() == null ? other.getContact() == null : this.getContact().equals(other.getContact()))
+            && (this.getHeadPic() == null ? other.getHeadPic() == null : this.getHeadPic().equals(other.getHeadPic()));
     }
 
     @Override
@@ -167,6 +175,7 @@ public class Info implements Serializable {
         result = prime * result + ((getReleaseNum() == null) ? 0 : getReleaseNum().hashCode());
         result = prime * result + ((getSignature() == null) ? 0 : getSignature().hashCode());
         result = prime * result + ((getContact() == null) ? 0 : getContact().hashCode());
+        result = prime * result + ((getHeadPic() == null) ? 0 : getHeadPic().hashCode());
         return result;
     }
 
@@ -185,6 +194,7 @@ public class Info implements Serializable {
         sb.append(", releaseNum=").append(releaseNum);
         sb.append(", signature=").append(signature);
         sb.append(", contact=").append(contact);
+        sb.append(", headPic=").append(headPic);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

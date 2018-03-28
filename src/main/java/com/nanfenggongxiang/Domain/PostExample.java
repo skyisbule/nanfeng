@@ -504,6 +504,126 @@ public class PostExample {
             addCriterion("release_time not between", value1, value2, "releaseTime");
             return (Criteria) this;
         }
+
+        public Criteria andIsTopIsNull() {
+            addCriterion("is_top is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopIsNotNull() {
+            addCriterion("is_top is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopEqualTo(Integer value) {
+            addCriterion("is_top =", value, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopNotEqualTo(Integer value) {
+            addCriterion("is_top <>", value, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopGreaterThan(Integer value) {
+            addCriterion("is_top >", value, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_top >=", value, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopLessThan(Integer value) {
+            addCriterion("is_top <", value, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopLessThanOrEqualTo(Integer value) {
+            addCriterion("is_top <=", value, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopIn(List<Integer> values) {
+            addCriterion("is_top in", values, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopNotIn(List<Integer> values) {
+            addCriterion("is_top not in", values, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopBetween(Integer value1, Integer value2) {
+            addCriterion("is_top between", value1, value2, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_top not between", value1, value2, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateIdIsNull() {
+            addCriterion("plate_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateIdIsNotNull() {
+            addCriterion("plate_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateIdEqualTo(Integer value) {
+            addCriterion("plate_id =", value, "plateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateIdNotEqualTo(Integer value) {
+            addCriterion("plate_id <>", value, "plateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateIdGreaterThan(Integer value) {
+            addCriterion("plate_id >", value, "plateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("plate_id >=", value, "plateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateIdLessThan(Integer value) {
+            addCriterion("plate_id <", value, "plateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateIdLessThanOrEqualTo(Integer value) {
+            addCriterion("plate_id <=", value, "plateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateIdIn(List<Integer> values) {
+            addCriterion("plate_id in", values, "plateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateIdNotIn(List<Integer> values) {
+            addCriterion("plate_id not in", values, "plateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateIdBetween(Integer value1, Integer value2) {
+            addCriterion("plate_id between", value1, value2, "plateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("plate_id not between", value1, value2, "plateId");
+            return (Criteria) this;
+        }
     }
 
     /**

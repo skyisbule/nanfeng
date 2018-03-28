@@ -11,6 +11,7 @@
     <result column="release_num" jdbcType="INTEGER" property="releaseNum" />
     <result column="signature" jdbcType="VARCHAR" property="signature" />
     <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="head_pic" jdbcType="VARCHAR" property="headPic" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    uid, nick_name, real_name, tel_num, email, passwd, release_num, signature, contact
+    uid, nick_name, real_name, tel_num, email, passwd, release_num, signature, contact, 
+    head_pic
   </sql>
   <select id="selectByExample" parameterType="com.nanfenggongxiang.Domain.InfoExample" resultMap="BaseResultMap">
     select
@@ -114,12 +116,12 @@
   <insert id="insert" parameterType="com.nanfenggongxiang.Domain.Info">
     insert into info (uid, nick_name, real_name, 
       tel_num, email, passwd, 
-      release_num, signature, contact
-      )
+      release_num, signature, contact, 
+      head_pic)
     values (#{uid,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
       #{telNum,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, 
-      #{releaseNum,jdbcType=INTEGER}, #{signature,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}
-      )
+      #{releaseNum,jdbcType=INTEGER}, #{signature,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
+      #{headPic,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.nanfenggongxiang.Domain.Info">
     insert into info
@@ -151,6 +153,9 @@
       <if test="contact != null">
         contact,
       </if>
+      <if test="headPic != null">
+        head_pic,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uid != null">
@@ -179,6 +184,9 @@
       </if>
       <if test="contact != null">
         #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="headPic != null">
+        #{headPic,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -218,6 +226,9 @@
       <if test="record.contact != null">
         contact = #{record.contact,jdbcType=VARCHAR},
       </if>
+      <if test="record.headPic != null">
+        head_pic = #{record.headPic,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -233,7 +244,8 @@
       passwd = #{record.passwd,jdbcType=VARCHAR},
       release_num = #{record.releaseNum,jdbcType=INTEGER},
       signature = #{record.signature,jdbcType=VARCHAR},
-      contact = #{record.contact,jdbcType=VARCHAR}
+      contact = #{record.contact,jdbcType=VARCHAR},
+      head_pic = #{record.headPic,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -265,6 +277,9 @@
       <if test="contact != null">
         contact = #{contact,jdbcType=VARCHAR},
       </if>
+      <if test="headPic != null">
+        head_pic = #{headPic,jdbcType=VARCHAR},
+      </if>
     </set>
     where uid = #{uid,jdbcType=INTEGER}
   </update>
@@ -277,7 +292,8 @@
       passwd = #{passwd,jdbcType=VARCHAR},
       release_num = #{releaseNum,jdbcType=INTEGER},
       signature = #{signature,jdbcType=VARCHAR},
-      contact = #{contact,jdbcType=VARCHAR}
+      contact = #{contact,jdbcType=VARCHAR},
+      head_pic = #{headPic,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
 </mapper>

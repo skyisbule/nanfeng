@@ -34,6 +34,16 @@ public class Post implements Serializable {
      */
     private Date releaseTime;
 
+    /**
+     * 是否是置顶
+     */
+    private Integer isTop;
+
+    /**
+     * 板块id
+     */
+    private Integer plateId;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getPid() {
@@ -84,6 +94,22 @@ public class Post implements Serializable {
         this.releaseTime = releaseTime;
     }
 
+    public Integer getIsTop() {
+        return isTop;
+    }
+
+    public void setIsTop(Integer isTop) {
+        this.isTop = isTop;
+    }
+
+    public Integer getPlateId() {
+        return plateId;
+    }
+
+    public void setPlateId(Integer plateId) {
+        this.plateId = plateId;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -101,7 +127,9 @@ public class Post implements Serializable {
             && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
             && (this.getReplyNum() == null ? other.getReplyNum() == null : this.getReplyNum().equals(other.getReplyNum()))
-            && (this.getReleaseTime() == null ? other.getReleaseTime() == null : this.getReleaseTime().equals(other.getReleaseTime()));
+            && (this.getReleaseTime() == null ? other.getReleaseTime() == null : this.getReleaseTime().equals(other.getReleaseTime()))
+            && (this.getIsTop() == null ? other.getIsTop() == null : this.getIsTop().equals(other.getIsTop()))
+            && (this.getPlateId() == null ? other.getPlateId() == null : this.getPlateId().equals(other.getPlateId()));
     }
 
     @Override
@@ -114,6 +142,8 @@ public class Post implements Serializable {
         result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
         result = prime * result + ((getReplyNum() == null) ? 0 : getReplyNum().hashCode());
         result = prime * result + ((getReleaseTime() == null) ? 0 : getReleaseTime().hashCode());
+        result = prime * result + ((getIsTop() == null) ? 0 : getIsTop().hashCode());
+        result = prime * result + ((getPlateId() == null) ? 0 : getPlateId().hashCode());
         return result;
     }
 
@@ -129,6 +159,8 @@ public class Post implements Serializable {
         sb.append(", content=").append(content);
         sb.append(", replyNum=").append(replyNum);
         sb.append(", releaseTime=").append(releaseTime);
+        sb.append(", isTop=").append(isTop);
+        sb.append(", plateId=").append(plateId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

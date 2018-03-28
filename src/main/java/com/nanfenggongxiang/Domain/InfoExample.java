@@ -733,6 +733,76 @@ public class InfoExample {
             addCriterion("contact not between", value1, value2, "contact");
             return (Criteria) this;
         }
+
+        public Criteria andHeadPicIsNull() {
+            addCriterion("head_pic is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicIsNotNull() {
+            addCriterion("head_pic is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicEqualTo(String value) {
+            addCriterion("head_pic =", value, "headPic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicNotEqualTo(String value) {
+            addCriterion("head_pic <>", value, "headPic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicGreaterThan(String value) {
+            addCriterion("head_pic >", value, "headPic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicGreaterThanOrEqualTo(String value) {
+            addCriterion("head_pic >=", value, "headPic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicLessThan(String value) {
+            addCriterion("head_pic <", value, "headPic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicLessThanOrEqualTo(String value) {
+            addCriterion("head_pic <=", value, "headPic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicLike(String value) {
+            addCriterion("head_pic like", value, "headPic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicNotLike(String value) {
+            addCriterion("head_pic not like", value, "headPic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicIn(List<String> values) {
+            addCriterion("head_pic in", values, "headPic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicNotIn(List<String> values) {
+            addCriterion("head_pic not in", values, "headPic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicBetween(String value1, String value2) {
+            addCriterion("head_pic between", value1, value2, "headPic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadPicNotBetween(String value1, String value2) {
+            addCriterion("head_pic not between", value1, value2, "headPic");
+            return (Criteria) this;
+        }
     }
 
     /**
