@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by skyisbule on 2018/3/28.
@@ -19,6 +20,6 @@ public interface PostReplyDao {
             "where post_reply.post_id = #{postId} " +
             "order by post_reply.rid ASC " +
             "limit #{page},10;")
-    public List<PostReply> getPostReplyByPage(@Param("page")int page, @Param("postId")int postId);
+    public List<Map<String,Object>> getPostReplyByPage(@Param("page")int page, @Param("postId")int postId);
 
 }
