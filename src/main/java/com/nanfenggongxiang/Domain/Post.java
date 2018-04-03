@@ -1,47 +1,55 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author 
- */
+@ApiModel("帖子相关的信息")
 public class Post implements Serializable {
     private Integer pid;
 
     /**
      * 作者的id
      */
+    @ApiModelProperty("非必填(开发时要填)：作者的id")
     private Integer uid;
 
     /**
      * 标题
      */
+    @ApiModelProperty("标题")
     private String title;
 
     /**
      * 一楼的内容
      */
+    @ApiModelProperty("一楼的内容")
     private String content;
 
     /**
      * 回复数量
      */
+    @ApiModelProperty("非必填：回复数量")
     private Integer replyNum;
 
     /**
      * 发布时间
      */
+    @ApiModelProperty("非必填：发布时间")
     private Date releaseTime;
 
     /**
      * 是否是置顶
      */
+    @ApiModelProperty("是否是置顶")
     private Integer isTop;
 
     /**
      * 板块id
      */
+    @ApiModelProperty("板块id")
     private Integer plateId;
 
     private static final long serialVersionUID = 1L;
