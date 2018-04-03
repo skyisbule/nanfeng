@@ -65,6 +65,12 @@ public class shopController {
         return complexDao.getCommodityAndUserInfoByPage(page*10,isSellOut,isWantBy);
     }
 
+    @ApiOperation("通过商品id获取商品详情")
+    @RequestMapping(value = "/public/commodity/get-with-info-by-gid",method = RequestMethod.GET)
+    public List<Map<String,Object>> getCommodityAndUserInfoByGid(@ApiParam("商品id")int gid){
+        return complexDao.getCommodityAndUserByGid(gid);
+    }
+
     private void init(Commodity commodity){
         commodity.setGid(null);
         //commodity.setUid(uid);

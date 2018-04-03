@@ -22,4 +22,11 @@ public interface CommodityDao {
     public List<Map<String,Object>> getCommodityAndUserInfoByPage(@Param("page")int page,
                                                                   @Param("isSellOut")int isSellOut,
                                                                   @Param("isWantBuy")int isWantBuy);
+
+    @Select("select commodity.*,info.nick_name,info.release_num" +
+            "       from commodity join info on " +
+            "commodity.uid = info.uid where " +
+            "commodity.gid = #{gid}" )
+    public List<Map<String,Object>> getCommodityAndUserByGid(@Param("gid") int gid);
+
 }
