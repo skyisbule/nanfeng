@@ -1,24 +1,29 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
-/**
- * @author 
- */
+@ApiModel("首页公告的信息")
 public class Notice implements Serializable {
     /**
      * 公告id
      */
+    @ApiModelProperty("公告id，不要传已拥有的值")
     private Integer nid;
 
     /**
      * 图片的url
      */
+    @ApiModelProperty("公告图片的url")
     private String picUrl;
 
     /**
      * 是否展示
      */
+    @ApiModelProperty("是否展示，传0或者1")
     private Integer isShow;
 
     private static final long serialVersionUID = 1L;

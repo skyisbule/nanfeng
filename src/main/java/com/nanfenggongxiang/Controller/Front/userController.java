@@ -4,6 +4,7 @@ import cn.hutool.core.util.HashUtil;
 import com.nanfenggongxiang.Dao.InfoMapper;
 import com.nanfenggongxiang.Domain.Info;
 import com.nanfenggongxiang.Domain.InfoExample;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,25 +14,21 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-/**
- * Created by skyisbule on 2018/3/26.
- * 控制用户相关的crud
- */
+@Api(value = "user",description = "用户相关的接口")
 @RestController
 public class userController {
 
     @Autowired
     InfoMapper dao;
 
-    /**
-     *
-     * @param user       账号
-     * @param passwd     密码
-     * @return      无该用户、登陆成功、密码错误。
-     */
+    @ApiOperation("登录接口")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200,message = "返回 success 或者 noThisUser 、wrongPasswd"),
+            @ApiResponse(code = 400,message = "前端输入了非法参数")
+    })
     @RequestMapping(value = "/login")
-    public String login(String user,
-                        String passwd,
+    public String login(@ApiParam("用户名") String user,
+                        @ApiParam("密码")   String passwd,
                         HttpServletResponse response){
         InfoExample e = new InfoExample();
         e.createCriteria().
