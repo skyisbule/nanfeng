@@ -1,70 +1,84 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author 
- */
+
+@ApiModel("商品记录")
 public class Commodity implements Serializable {
     /**
      * 商品id
      */
+    @ApiModelProperty("非必填：商品id")
     private Integer gid;
 
     /**
      * 发布者id
      */
+    @ApiModelProperty("非必填（测试时需要填）：发布者id")
     private Integer uid;
 
     /**
      * 商品名字
      */
+    @ApiModelProperty("商品名字")
     private String goodsName;
 
     /**
      * 价格
      */
+    @ApiModelProperty("价格")
     private Integer price;
 
     /**
      * 成色
      */
+    @ApiModelProperty("成色")
     private Integer conditions;
 
     /**
      * 详细描述
      */
+    @ApiModelProperty("详细描述")
     private String content;
 
     /**
      * 存图片的url
      */
+    @ApiModelProperty("存图片的url")
     private String picture;
 
     /**
      * 商品的类型
      */
+    @ApiModelProperty("商品的类型，是个整数，代表什么自己定")
     private Integer goodsType;
 
     /**
      * 浏览量
      */
+    @ApiModelProperty("非必填：浏览量")
     private Integer pageViews;
 
     /**
      * 发布时间
      */
+    @ApiModelProperty("非必填：发布时间")
     private Date releaseTime;
 
     /**
      * 是否卖出
      */
+    @ApiModelProperty("非必填：是否卖出")
     private Integer isSellOut;
 
     /**
      * 是否是想买
      */
+    @ApiModelProperty("是否是想买")
     private Integer isWantBy;
 
     private static final long serialVersionUID = 1L;
