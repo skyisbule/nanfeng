@@ -1,6 +1,7 @@
 package com.nanfenggongxiang.Controller.Front;
 
 import com.nanfenggongxiang.Dao.MessageDao;
+import com.nanfenggongxiang.Dao.MessageMapper;
 import com.nanfenggongxiang.Domain.Message;
 import com.nanfenggongxiang.Domain.MessageExample;
 import io.swagger.annotations.Api;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.nanfenggongxiang.Dao.MessageMapper;
 
 import java.util.List;
 

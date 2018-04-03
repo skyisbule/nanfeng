@@ -7,6 +7,7 @@ import com.nanfenggongxiang.Domain.CommodityExample;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -69,6 +70,13 @@ public class shopController {
     @RequestMapping(value = "/public/commodity/get-with-info-by-gid",method = RequestMethod.GET)
     public List<Map<String,Object>> getCommodityAndUserInfoByGid(@ApiParam("商品id")int gid){
         return complexDao.getCommodityAndUserByGid(gid);
+    }
+
+    @ApiOperation("获取某用户有多少宝贝在售")
+    @RequestMapping(value = "/public/commodity/get-selling-count",method = RequestMethod.GET)
+    public Integer getSellingCount(@ApiParam("用户id") int uid,
+                                   @ApiParam("是否卖出") int isSellOut){
+        return complexDao.getCommoditySellOutCount(uid,isSellOut);
     }
 
     private void init(Commodity commodity){

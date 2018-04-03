@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.nanfenggongxiang.Domiacom.nanfenggongxiang.Dao.MessageMapper">
+<mapper namespace="com.nanfenggongxiang.Dao.MessageMapper">
   <resultMap id="BaseResultMap" type="com.nanfenggongxiang.Domain.Message">
     <id column="mid" jdbcType="INTEGER" property="mid" />
     <result column="releaser" jdbcType="INTEGER" property="releaser" />
@@ -109,14 +109,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.nanfenggongxiang.Domain.Message">
+    <selectKey keyProperty="gid" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into message (mid, releaser, receiver, 
-      content, is_readed, gid
-      )
+      content, is_readed)
     values (#{mid,jdbcType=INTEGER}, #{releaser,jdbcType=INTEGER}, #{receiver,jdbcType=INTEGER}, 
-      #{content,jdbcType=VARCHAR}, #{isReaded,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}
-      )
+      #{content,jdbcType=VARCHAR}, #{isReaded,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.nanfenggongxiang.Domain.Message">
+    <selectKey keyProperty="gid" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into message
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="mid != null">
@@ -134,9 +138,6 @@
       <if test="isReaded != null">
         is_readed,
       </if>
-      <if test="gid != null">
-        gid,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="mid != null">
@@ -153,9 +154,6 @@
       </if>
       <if test="isReaded != null">
         #{isReaded,jdbcType=INTEGER},
-      </if>
-      <if test="gid != null">
-        #{gid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
