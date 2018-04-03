@@ -16,6 +16,7 @@ import java.util.List;
 
 @Api(value = "user",description = "用户相关的接口")
 @RestController
+@RequestMapping(value = "",method = RequestMethod.POST)
 public class userController {
 
     @Autowired
@@ -27,12 +28,12 @@ public class userController {
             @ApiResponse(code = 400,message = "前端输入了非法参数")
     })
     @RequestMapping(value = "/login")
-    public String login(@ApiParam("用户名") String user,
+    public String login(@ApiParam("用户手机号") String tel,
                         @ApiParam("密码")   String passwd,
                         HttpServletResponse response){
         InfoExample e = new InfoExample();
         e.createCriteria().
-                andNickNameEqualTo(user);
+                andTelNumEqualTo(tel);
         List<Info> users = dao.selectByExample(e);
         //没有该用户
         if (users.size()==0)
@@ -49,7 +50,7 @@ public class userController {
         return "wrongPassword";
     }
 
-    @RequestMapping(value = "/regist",method = RequestMethod.POST)
+    @RequestMapping(value = "/regist")
     public String regist(Info info){
         //初始化注册信息
         registInit(info);
@@ -60,11 +61,18 @@ public class userController {
         }
     }
 
+    @ApiOperation("修改用户信息的接口")
+    @RequestMapping(value = "/private/user/update")
+    public String update(Info info){
+        return dao.updateByPrimaryKey(info)==1?"success":"error";
+    }
+
     /**
      * 获取当前用户名是否可以注册
      * @param nickName  昵称  也就是注册登录用的名字
      * @return
      */
+    @ApiOperation("判断该昵称是否被人注册过")
     @RequestMapping("/public/hasNickName")
     public String isRegisted(String nickName){
         InfoExample e = new InfoExample();
@@ -82,6 +90,7 @@ public class userController {
      * @param tel  手机号
      * @return
      */
+    @ApiOperation("判断该手机号有没有被注册")
     @RequestMapping("/public/hasTelNum")
     public String hasTel(String tel){
         InfoExample e = new InfoExample();
