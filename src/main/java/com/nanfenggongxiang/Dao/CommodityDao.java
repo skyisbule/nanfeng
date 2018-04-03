@@ -29,7 +29,7 @@ public interface CommodityDao {
             "commodity.gid = #{gid}" )
     public List<Map<String,Object>> getCommodityAndUserByGid(@Param("gid") int gid);
 
-    @Select("select count(*) from commondity where uid = #{uid} and is_sell_out=#{isSellOut}")
+    @Select("select count(*) from commodity where uid = #{uid} and is_sell_out=#{isSellOut}")
     public Integer getCommoditySellOutCount(@Param("uid")int uid,@Param("isSellOut")int isSellOut);
 
 }
