@@ -4,6 +4,7 @@ import com.nanfenggongxiang.Dao.CommodityDao;
 import com.nanfenggongxiang.Dao.CommodityMapper;
 import com.nanfenggongxiang.Domain.Commodity;
 import com.nanfenggongxiang.Domain.CommodityExample;
+import groovy.util.MapEntry;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -68,8 +69,14 @@ public class shopController {
 
     @ApiOperation("通过商品id获取商品详情")
     @RequestMapping(value = "/public/commodity/get-with-info-by-gid",method = RequestMethod.GET)
-    public List<Map<String,Object>> getCommodityAndUserInfoByGid(@ApiParam("商品id")int gid){
-        return complexDao.getCommodityAndUserByGid(gid);
+    public Map<String,Object> getCommodityAndUserInfoByGid(@ApiParam("商品id")int gid){
+        Map<String,Object> map = complexDao.getCommodityAndUserByGid(gid);
+        Integer uid = Integer.parseInt(map.get("uid").toString());
+        Integer isSellOut = Integer.parseInt(map.get("is_sell_out").toString());
+        //拿到在售的宝贝有多少件
+        Object count = complexDao.getCommoditySellOutCount(uid,isSellOut);
+        map.put("selling",count);
+        return map;
     }
 
     @ApiOperation("获取某用户有多少宝贝在售")

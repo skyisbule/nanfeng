@@ -23,11 +23,11 @@ public interface CommodityDao {
                                                                   @Param("isSellOut")int isSellOut,
                                                                   @Param("isWantBuy")int isWantBuy);
 
-    @Select("select commodity.*,info.nick_name,info.release_num,info.head_pic" +
+    @Select("select commodity.*,info.nick_name,info.release_num,info.head_pic,info.contact" +
             "       from commodity join info on " +
             "commodity.uid = info.uid where " +
             "commodity.gid = #{gid}" )
-    public List<Map<String,Object>> getCommodityAndUserByGid(@Param("gid") int gid);
+    public Map<String,Object> getCommodityAndUserByGid(@Param("gid") int gid);
 
     @Select("select count(*) from commodity where uid = #{uid} and is_sell_out=#{isSellOut}")
     public Integer getCommoditySellOutCount(@Param("uid")int uid,@Param("isSellOut")int isSellOut);
