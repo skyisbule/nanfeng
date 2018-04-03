@@ -1,10 +1,12 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-/**
- * @author 
- */
+@ApiModel("商品的留言信息")
 public class Message implements Serializable {
     /**
      * 留言id
@@ -14,16 +16,20 @@ public class Message implements Serializable {
     /**
      * 写这条留言的用户id
      */
+    @ApiModelProperty("写这条留言的用户id")
     private Integer releaser;
 
     /**
      * 接收留言者的id
      */
+    @ApiModelProperty("接收留言者的id")
     private Integer receiver;
 
     /**
      * 留言内容
      */
+    @ApiModelProperty("留言内容")
+    @Size(max = 600)
     private String content;
 
     /**
@@ -34,6 +40,7 @@ public class Message implements Serializable {
     /**
      * 商品id
      */
+    @ApiModelProperty("商品id")
     private Integer gid;
 
     private static final long serialVersionUID = 1L;
