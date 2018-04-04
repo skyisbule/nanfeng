@@ -33,9 +33,10 @@ public class messageController {
      * @return         成功与否
      */
     @ApiOperation("添加一条商品的留言")
-    @RequestMapping(value = "/private/message/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/private/message/add",method = {RequestMethod.POST,RequestMethod.GET})
     public String add(//@CookieValue("id")int uid,
                       Message message){
+        System.out.print(message.getGid());
         //message.setReleaser(uid);
         message.setIsReaded(0);
         return dao.insert(message)==1?"success":"error";

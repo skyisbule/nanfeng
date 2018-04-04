@@ -108,6 +108,12 @@ public class userController {
         info.setReleaseNum(0);
     }
 
+    @ApiOperation("通过用户id获取用户的信息")
+    @RequestMapping("/public/user/get-info-by-id")
+    public Info getInfoById(int uid){
+        return dao.selectByPrimaryKey(uid);
+    }
+
 
     private String getHash(String str){
         if (str != null && str.length() != 0){
