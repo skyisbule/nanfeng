@@ -40,10 +40,20 @@ public class userController {
             return "noThisUser";
         //核对一下密码
         if (users.get(0).getPasswd().equals(passwd)){
-            Cookie idCookie = new Cookie("id",users.get(0).getUid().toString());
-            Cookie passwdCookie = new Cookie("session",getHash(users.get(0).getPasswd()));
+            Info user  = users.get(0);
+            int maxAge = 60*60*24 * 30 * 12;//30*12天过期
+            Cookie idCookie     = new Cookie("uid",user.getUid().toString());
+            Cookie passwdCookie = new Cookie("session",getHash(user.getPasswd()));
+            Cookie headCookie   = new Cookie("headPic",user.getHeadPic());
+            Cookie nickCookie   = new Cookie("nickName",user.getNickName());
+            idCookie.setMaxAge(maxAge);
+            passwdCookie.setMaxAge(maxAge);
+            headCookie.setMaxAge(maxAge);
+            nickCookie.setMaxAge(maxAge);
             response.addCookie(idCookie);
             response.addCookie(passwdCookie);
+            response.addCookie(headCookie);
+            response.addCookie(nickCookie);
             return "success";
 
         }
