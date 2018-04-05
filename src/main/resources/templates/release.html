@@ -5,8 +5,10 @@
 <meta charset="utf-8">
 <title>发布&nbsp;-&nbsp;南风共享</title>
 	<style>
+		input{-webkit-appearance:none;margin: 0;}
+
 		*{tap-highlight-color:rgba(0, 0, 0,0);-webkit-tap-highlight-color:transparent;outline:none}
-		body {position:absolute;background-color:rgb(240,240,240);width:100%;height:100%;margin: 0; overflow-x:hidden}
+		body {position:absolute;background-color:rgb(240,240,240);width:100%;margin: 0; overflow-x:hidden}
 #choose{position: absolute;width: 100vw;top: -5vw;left: 0;height: 17vw;background-color: #fff;z-index: 100;border-bottom: 0.3vw solid #888;text-align: center;line-height: 8vw;font-size: 4vw;box-shadow:-2vw -4vw 1vw -4vw #555 inset;}
 #choose span{position: absolute;width: 40vw;height: 8.3vw;background-color: rgb(240,240,240);border: 0.2vw solid #888;border-bottom:0;bottom: -0.3vw;z-index: 101;border-top-left-radius:5vw;border-top-right-radius:5vw;}
 #choose .un{background-color: rgba(0,0,0,0.2);bottom: 0;height: 8vw;}
@@ -76,12 +78,12 @@
 	<span>元</span>
 </div>
 	<input id="post"  class="card" type="button" value="发&nbsp;&nbsp;&nbsp;布">
-	<p class="card" style="top: 50vw;"></p>
+	<p class="card" style="margin-top: 50vw"></p>
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
 <script type="text/javascript" src="/js/img_upload.js"></script>
 <script>
 "use strict";
-var doname="http://fuzuh5.natappfree.cc",
+var doname="http://8v8cc9.natappfree.cc",
 pic_len=0,doc=document,dom_arr=[doc.getElementById("title").getElementsByTagName("input")[0],doc.getElementById("content").getElementsByTagName("textarea")[0],doc.getElementById("add_pic"),doc.getElementById("goods_type").getElementsByTagName("select")[0],doc.getElementById("condition").getElementsByTagName("select")[0],doc.getElementById("price").getElementsByTagName("input")[0]];  
 
 doc.getElementById("upload").onchange=function(){if(!this.files||!this.files[0]||pic_len>9){return};pic_len++;var b=doc.createElement("img"),z=doc.createElement("a");z.dataset.id=pic_len;b.style.left=(pic_len*25+4)+"vw";z.style.left=(pic_len*25+4)+"vw";b.src="images/loading.gif";dom_arr[2].appendChild(b);dom_arr[2].appendChild(z);var a=new FileReader();a.onload=function(c){var e=c.target.result,d=new Image();d.src=e;d.onload=function(){var n=this,g=1280,m=g*n.height/n.width;var k=doc.createElement("canvas"),o=doc.createAttribute("width");o.nodeValue=g;var i=doc.createAttribute("height");i.nodeValue=m;k.setAttributeNode(o);k.setAttributeNode(i);k.getContext("2d").drawImage(n,0,0,g,m);var f=k.toDataURL("image/jpg",0.3);b.src=((f.length>e.length)?e:f)}};a.readAsDataURL(this.files[0])}; 
@@ -90,15 +92,15 @@ dom_arr[2].onclick=function(b){var d=b.target.dataset.id;if(d!==undefined){d=par
 	
 doc.getElementById("post").onclick=function(){
 	
-	var e="",c=doname+"/private/commodity/add";if(dom_arr[0].value===""){f(dom_arr[0]);return}else{e="goodsName="+pengge.html_encode(dom_arr[0].value)}if(dom_arr[1].value===""){f(dom_arr[1]);return}else{e+="&contents="+pengge.html_encode(dom_arr[1].value)}if(dom_arr[3].selectedIndex===0){f(dom_arr[3]);return}else{e+="&goodsTpye="+dom_arr[3].selectedIndex}
+	var e="",c=doname+"/private/commodity/add";if(dom_arr[0].value===""){f(dom_arr[0]);return}else{e="goodsName="+pengge.html_encode(dom_arr[0].value)}if(dom_arr[1].value===""){f(dom_arr[1]);return}else{e+="&content="+pengge.html_encode(dom_arr[1].value)}if(dom_arr[3].selectedIndex===0){f(dom_arr[3]);return}else{e+="&goodsType="+dom_arr[3].selectedIndex}
 if(dom_arr[5].value===""){f(dom_arr[5]);return}else{e+="&price="+dom_arr[5].value*100}
 	e+="&uid="+pengge.cookie.get("uid");								  
-if(dom_arr[4].style.display!=="none"){if(dom_arr[4].selectedIndex===0){f(dom_arr[4]);return}else{e+="&condition="+dom_arr[4].selectedIndex}
+if(dom_arr[4].style.display!=="none"){if(dom_arr[4].selectedIndex===0){f(dom_arr[4]);return}else{e+="&conditions="+dom_arr[4].selectedIndex}
 									  parent.show_load();e+="&isWantBy=1";
 var b=dom_arr[2].getElementsByTagName("img"),a;if(b.length>0){pengge.post(doname+"/public/pic/token?fileName="+Math.random(),"",function(g){img_upload(b,g,function(h){
 e+="&picture="+JSON.stringify(h);
 post();	
-})})}else{e+="&picture=";
+})})}else{e+="&picture="+JSON.stringify([]);
 post();}	
 }else{
 parent.show_load();e+="&isWantBy=0";	
@@ -138,6 +140,5 @@ obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');
 
 
 </script>
-	
 </body>
 </html>

@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <title>我的&nbsp;-&nbsp;南风共享</title>
 <style type="text/css">
+input{-webkit-appearance:none;margin: 0;}
 * {
 	tap-highlight-color:rgba(0,0,0,0);
 	-webkit-tap-highlight-color:transparent;
@@ -15,8 +16,7 @@
 body {
 	position:absolute;
 	background-color:rgb(240,240,240);
-	width:100%;
-	height:100%;
+	width:100vw;
 	margin:0;
 	overflow-x:hidden
 }
@@ -39,7 +39,7 @@ body {
 	color:#222
 }
 h1,h2,h3,h4,h5,h6{-webkit-margin-before: 0!important;-webkit-margin-after: 0!important;-webkit-margin-start: 0!important;-webkit-margin-end: 0!important;}
-#layer{position: absolute;background-color: rgba(255,255,200,1.00);height: 500vw;width: 500vw;left: 50%;margin-left: -250vw; top: -430vw;border-radius: 300vw;z-index: 100}
+#layer{position: absolute;background-color: rgba(255,255,200,1.00);height: 70vw;width: 100vw;left: 0; top: 0vw;margin: 0;border-radius: 5vw; z-index: 100}
 	#main {position: absolute;z-index: 102;width: 100%;}
 #main span{position: absolute;width: 26vw;height: 26vw;border-radius: 26vw;left: 50%;margin-left: -13vw;top: 20vw;box-shadow:0 0 2vw 0 rgba(100,100,100,1);background-size:100% 100%;background-repeat:no-repeat}	
 #main h1{position: absolute;width: 100%;text-align: center;top: 48vw;font-size: 7vw; font-weight:800;color: #333;}
@@ -55,15 +55,15 @@ h1,h2,h3,h4,h5,h6{-webkit-margin-before: 0!important;-webkit-margin-after: 0!imp
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
 <script type="text/javascript">
 "use strict";
-var doc=document;
+var doc=document,headPic=pengge.cookie.get("headPic"),nickName=pengge.cookie.get("nickName"),uid=pengge.cookie.get("uid");
 /*测试用*/
-//uid=1;nick_name="小姐姐";	
+//uid=1;nickName="小姐姐";headPic="Fo68xdhE-LcKvE_l9c2Gs1hhpbos";	
 	
 	
-if (pengge.cookie.get("uid") === null) {
+if (uid === null) {
     location.href = "/user_guest";
 } else {
-    doc.getElementById("main").innerHTML = '<span style="background-image:url(http://pic.zdnfbbs.cn/' + pengge.cookie.get("headPic") + ')"></span><h1>' + (pengge.cookie.get("nickName") || "南风共享用户") + '</h1><h2>' + (pengge.cookie.get("school") || "中山大学南方学院") + '</h2>'
+    doc.getElementById("main").innerHTML = '<span style="background-image:url(http://pic.zdnfbbs.cn/' + headPic + ')"></span><h1>' + (nickName || "南风共享用户") + '</h1><h2>' + (pengge.cookie.get("school") || "中山大学南方学院") + '</h2>'
 
     pengge.post("/images/user_ui", "",
     function(data) {

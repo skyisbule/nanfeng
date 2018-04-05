@@ -10,7 +10,7 @@ get:function(b)
 	var e_list={num:/\D/g,"ch":/[^\u4E00-\u9FA5]/g},d=e_list[b];
 	 a.onkeydown=do_this;
 	a.onkeyup=do_this;
-	function do_this(){a.value=a.value.replace(d,'');}	
+	var do_this=function(){a.value=a.value.replace(d,'');}	
 	}},test:function(b,a){
 	
 	var e_list={phone:/^1[345678]\d{9}$/};

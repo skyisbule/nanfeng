@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <title>个人设置&nbsp;-&nbsp;南风共享</title>
 <style type="text/css">
+input{-webkit-appearance:none;margin: 0;}
 
 * {
 	tap-highlight-color:rgba(0,0,0,0);
@@ -74,7 +75,7 @@ body {
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
 <script type="text/javascript">
 "use strict";
-var doname="http://fuzuh5.natappfree.cc",
+var doname="http://8v8cc9.natappfree.cc",
 doc=document,list=["nickName","realName","telNum","email","contact"];	
 doc.getElementById("upload").onchange=function(){if(!this.files||!this.files[0]){return};var b=doc.getElementById("showHeadPic");b.src="/images/loading.gif";var a=new FileReader();a.onload=function(c){var e=c.target.result,d=new Image();d.src=e;d.onload=function(gg){var n=this,g=600,m=g*n.height/n.width;var k=doc.createElement("canvas"),o=doc.createAttribute("width");o.nodeValue=g;var i=doc.createAttribute("height");i.nodeValue=m;k.setAttributeNode(o);k.setAttributeNode(i);k.getContext("2d").drawImage(n,0,0,g,m);var f=k.toDataURL("image/jpg",0.3);b.src=((f.length>e.length)?e:f)}};a.readAsDataURL(this.files[0])}; 
 pengge.post(doname+"/public/user/get-info-by-id","uid="+pengge.cookie.get("uid"),function(data){

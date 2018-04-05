@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by skyisbule on 2018/3/26.
@@ -25,7 +27,7 @@ public class messageController {
     @Autowired
     MessageMapper dao;
     @Autowired
-    MessageDao messageDao;
+    MessageDao complexDao;
 
     /**
      *
@@ -36,7 +38,8 @@ public class messageController {
     @RequestMapping(value = "/private/message/add",method = {RequestMethod.POST,RequestMethod.GET})
     public String add(//@CookieValue("uid")int uid,
                       Message message){
-        System.out.print(message.getGid());
+        Date date = new Date();
+        message.setReleaseTime(date);
         //message.setReleaser(uid);
         message.setIsReaded(0);
         return dao.insert(message)==1?"success":"error";
@@ -50,20 +53,16 @@ public class messageController {
      */
     @ApiOperation("拿到某商品的留言信息，每次最多返回10条")
     @RequestMapping(value = "/public/message/get-by-gid",method = RequestMethod.GET)
-    public List<Message> getByGoodsId(@ApiParam("你想查询的商品的id") int gid,
-                                      @ApiParam("第几页，从0开始。") int page){
-        MessageExample e = new MessageExample();
-        e.setOffset(page*10);
-        e.setLimit(10);
-        e.createCriteria()
-                .andGidEqualTo(gid);
-        return dao.selectByExample(e);
+    public List<Map<String,Object>> getByGoodsId(@ApiParam("你想查询的商品的id") int gid,
+                                                 @ApiParam("第几页，从0开始。") int page){
+
+        return complexDao.getMessageByPageWithInfo(page*10,gid);
     }
 
     @ApiOperation("拿到某商品有多少条留言")
     @RequestMapping(value = "/public/message/count-by-gid",method = RequestMethod.GET)
     public Integer getCount(@ApiParam("商品id") int gid){
-        return messageDao.getCount(gid);
+        return complexDao.getCount(gid);
     }
 
 }

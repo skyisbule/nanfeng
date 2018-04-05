@@ -1,6 +1,7 @@
 package com.nanfenggongxiang.Domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author 
@@ -35,6 +36,8 @@ public class Message implements Serializable {
      * 商品id
      */
     private Integer gid;
+
+    private Date releaseTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -86,6 +89,14 @@ public class Message implements Serializable {
         this.gid = gid;
     }
 
+    public Date getReleaseTime() {
+        return releaseTime;
+    }
+
+    public void setReleaseTime(Date releaseTime) {
+        this.releaseTime = releaseTime;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -103,7 +114,8 @@ public class Message implements Serializable {
             && (this.getReceiver() == null ? other.getReceiver() == null : this.getReceiver().equals(other.getReceiver()))
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
             && (this.getIsReaded() == null ? other.getIsReaded() == null : this.getIsReaded().equals(other.getIsReaded()))
-            && (this.getGid() == null ? other.getGid() == null : this.getGid().equals(other.getGid()));
+            && (this.getGid() == null ? other.getGid() == null : this.getGid().equals(other.getGid()))
+            && (this.getReleaseTime() == null ? other.getReleaseTime() == null : this.getReleaseTime().equals(other.getReleaseTime()));
     }
 
     @Override
@@ -116,6 +128,7 @@ public class Message implements Serializable {
         result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
         result = prime * result + ((getIsReaded() == null) ? 0 : getIsReaded().hashCode());
         result = prime * result + ((getGid() == null) ? 0 : getGid().hashCode());
+        result = prime * result + ((getReleaseTime() == null) ? 0 : getReleaseTime().hashCode());
         return result;
     }
 
@@ -131,6 +144,7 @@ public class Message implements Serializable {
         sb.append(", content=").append(content);
         sb.append(", isReaded=").append(isReaded);
         sb.append(", gid=").append(gid);
+        sb.append(", releaseTime=").append(releaseTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

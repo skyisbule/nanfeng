@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <title>商品详情&nbsp;-&nbsp;南风共享</title>
 <style type="text/css">
+input{-webkit-appearance:none;margin: 0;}
 
 * {
 	tap-highlight-color:rgba(0,0,0,0);
@@ -73,10 +74,12 @@ body {
 	#bottom{position: fixed;bottom: 0; height: 13vw;line-height: 13vw;background-color: #fff;width: 100%;font-size: 5vw;text-indent: 12vw;}
 	#bottom svg{position: absolute;left: 0; width: 6vw;height: 6vw;margin: 3.5vw;}
 	#bottom input{position: absolute;right: 0; width: 40vw;height: 100%;background-color: rgb(200,0,0);border: none;color: #fff;font-size: 5vw;}
+	#layer{position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.7);z-index: 1000;color: #fff;text-align: center;display: none}
+	#layer span{position: absolute;margin: -30vw;height: 60vw;width: 60vw;left: 50%;top: 50%;display: block}
 </style>
 </head>
 <body>
-<div id="top" class="main"><svg viewBox="0 0 1000 1000"><path d="M439.312 227.986l-257.492 257.492c-20.11 20.11-20.11 52.709 0 72.819l257.492 257.492c20.11 20.11 52.709 20.11 72.819 0s20.11-52.709 0-72.819l-169.585-169.585h493.664c28.453 0 51.499-23.046 51.499-51.499s-23.046-51.499-51.499-51.499h-493.664l169.585-169.585c10.043-10.042 15.089-23.226 15.089-36.41s-5.021-26.367-15.089-36.41c-20.11-20.11-52.709-20.11-72.819 0z" p-id="7705"></path></svg>
+<div id="top" class="main"><svg onclick="close()" viewBox="0 0 1000 1000"><path d="M439.312 227.986l-257.492 257.492c-20.11 20.11-20.11 52.709 0 72.819l257.492 257.492c20.11 20.11 52.709 20.11 72.819 0s20.11-52.709 0-72.819l-169.585-169.585h493.664c28.453 0 51.499-23.046 51.499-51.499s-23.046-51.499-51.499-51.499h-493.664l169.585-169.585c10.043-10.042 15.089-23.226 15.089-36.41s-5.021-26.367-15.089-36.41c-20.11-20.11-52.709-20.11-72.819 0z" p-id="7705"></path></svg>
 	商品详情
 </div>
 <div id="title" class="main"></div>
@@ -104,7 +107,7 @@ body {
 	<span id="my_portrait" class="portrait"></span>
 	<div class="layer">
 		<div class="triangle"></div>
-		<input id="write_message" data-uid="" type="text" placeholder="想说点什么">
+		<input id="write_message" data-uid="" data-name="" type="text" placeholder="想说点什么">
 		<input id="send_message" type="button" value="发送">
 	</div>
 	<div id="message">
@@ -112,14 +115,15 @@ body {
 	</div>
 </div>	
 <div id="bottom">
-	<svg viewBox="0 0 1024 1024" onclick="history.go(-1);window.opener = null;window.open(\'\', \'_self\', \'\');window.close();"><path fill="#333" d="M902.211 410.358a31.766 31.766 0 0 0-25.644-21.62L644.34 354.994 540.485 144.561a31.765 31.765 0 0 0-56.971 0L379.659 354.995l-232.227 33.744a31.768 31.768 0 0 0-17.606 54.183l168.042 163.8-39.669 231.288a31.765 31.765 0 0 0 46.091 33.487L512 762.298l207.71 109.199c6.915 3.65 22.854 4.496 33.454-2.418 10.086-6.579 14.681-19.151 12.637-31.069l-39.669-231.288 168.041-163.8a31.765 31.765 0 0 0 8.038-32.564zM669.827 572.885a31.766 31.766 0 0 0-9.136 28.117l31.611 184.31-165.521-87.02a31.746 31.746 0 0 0-14.782-3.648 31.755 31.755 0 0 0-14.782 3.648l-165.521 87.02 31.611-184.31a31.766 31.766 0 0 0-9.135-28.117l-133.91-130.53 185.058-26.89a31.765 31.765 0 0 0 23.918-17.377L512 230.396l82.761 167.691a31.765 31.765 0 0 0 23.917 17.377l185.059 26.89-133.91 130.531z" /></svg>收藏
+	<svg viewBox="0 0 1024 1024"><path fill="#333" d="M902.211 410.358a31.766 31.766 0 0 0-25.644-21.62L644.34 354.994 540.485 144.561a31.765 31.765 0 0 0-56.971 0L379.659 354.995l-232.227 33.744a31.768 31.768 0 0 0-17.606 54.183l168.042 163.8-39.669 231.288a31.765 31.765 0 0 0 46.091 33.487L512 762.298l207.71 109.199c6.915 3.65 22.854 4.496 33.454-2.418 10.086-6.579 14.681-19.151 12.637-31.069l-39.669-231.288 168.041-163.8a31.765 31.765 0 0 0 8.038-32.564zM669.827 572.885a31.766 31.766 0 0 0-9.136 28.117l31.611 184.31-165.521-87.02a31.746 31.746 0 0 0-14.782-3.648 31.755 31.755 0 0 0-14.782 3.648l-165.521 87.02 31.611-184.31a31.766 31.766 0 0 0-9.135-28.117l-133.91-130.53 185.058-26.89a31.765 31.765 0 0 0 23.918-17.377L512 230.396l82.761 167.691a31.765 31.765 0 0 0 23.917 17.377l185.059 26.89-133.91 130.531z" /></svg>收藏
 	<input id="buy" type="button" value="立刻购买">
-</div>	
+</div>
+	<div id="layer" onClick="this.style.display='none'"></div>
 </body>
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
 <script type="text/javascript">
 "use strict";
-var doname="http://fuzuh5.natappfree.cc",gid=pengge.url.data("gid"),
+var doname="http://8v8cc9.natappfree.cc",gid=pengge.url.data("gid"),
 doc=document,page_num=0,hmessage=doc.getElementById("message"),message_finish=false;
  pengge.post(doname+"/public/commodity/get-with-info-by-gid","gid=" + gid,function(data){
 var data_arr = JSON.parse(data);
@@ -132,9 +136,10 @@ for(var i=0;i<data_arr["picture"].length;i++){
 doc.getElementById("picture").innerHTML+='<img src="http://pic.zdnfbbs.cn/'+data_arr["picture"][i]+'">';
 }
 doc.getElementById("content").innerHTML=data_arr["contents"];
+doc.getElementById("layer").innerHTML="<span>请自行联系卖家：<br>"+data_arr["contact"]+"</span>";
 doc.getElementById("my_portrait").style.backgroundImage='url(http://pic.zdnfbbs.cn/'+pengge.cookie.get("headPic")+')';
 doc.getElementById("promulgator_info").innerHTML='<span class="portrait" style="background-image: url(http://pic.zdnfbbs.cn/'+data_arr["head_pic"]+')"></span><b>'+data_arr["nick_name"]+'</b><p>'+(data_arr["school"]||"中山大学南方学院")+'</p>';
-	 
+doc.getElementById("write_message").dataset.uid=data_arr["uid"];
 doc.getElementById("transaction").innerHTML='<th>'+data_arr["selling"]+'</th><th>'+data_arr["release_num"]+'</th>';		 
 
 get_message_num();
@@ -146,14 +151,18 @@ dom.value="已下架";
 		 
 	 }
  });
-	function get_message_num(){
+	doc.getElementById("buy").onclick=function(){doc.getElementById("layer").style.display="block"}
+	function close(){history.go(-1);window.opener=null;
+window.open('','_self');
+window.close();}
+function get_message_num(){
 		pengge.post(doname+"/public/message/count-by-gid?gid=" + gid,"",function(dat){
 		doc.getElementById("messages").innerHTML=dat;	
 		},true);
 	}
 function get_message() {
-
-	    function get_time(time) {
+        
+	    var get_time=function(time) {
         time = (Date.parse(new Date()) / 1000) - time;
         if (time < 60) {
             return time + "秒";
@@ -171,9 +180,11 @@ function get_message() {
         var out = "",
         data_arr = JSON.parse(data);
         for (var j = 0; j < data_arr.length; j++) {
-            out +='<div><span class="portrait" style="background-image: url(http://pic.zdnfbbs.cn/'+data_arr[j]["headPic"]+')></span><b>' + data_arr[j]["nick_name"] + '</b><h6>' + get_time(data_arr[j]["release_time"]/1000) + '前</h6><br><h5 onClick="reply('+ data_arr[j]["uid"]+',\''+data_arr[j]["nick_name"] +'\')">'+data_arr[j]["contents"]+'<br>&nbsp;</h5></div>';
+            out +='<div><span class="portrait" style="background-image: url(http://pic.zdnfbbs.cn/'+data_arr[j]["head_pic"]+')"></span><b>' + data_arr[j]["nick_name"] + '</b><h6>' + get_time(data_arr[j]["release_time"]/1000) + '前</h6><br><h5 onClick="reply('+ data_arr[j]["uid"]+',\''+data_arr[j]["nick_name"] +'\')">'+data_arr[j]["content"]+'<br>&nbsp;</h5></div>';
         }
-		 hmessage.innerHTML += out;
+		 if (!message_finish) {
+           hmessage.innerHTML += out;
+        }
 		if(j<10){
 		doc.getElementById("load_message").innerHTML="没有更多留言了";
 		message_finish=true;
@@ -189,7 +200,7 @@ function get_message() {
 window.onload=function(){get_message()};
 window.addEventListener('scroll',
 function() {
-    function check() {
+var check=function () {
         if (((doc.body.scrollHeight) - (doc.documentElement.scrollTop || doc.body.scrollTop) - doc.body.clientHeight) <= doc.body.clientWidth * 0.7) {
             get_message();
         }
@@ -216,8 +227,9 @@ function reply(uid,nick_name){
 	dom.placeholder="回复 "+nick_name;
 	dom.focus();
 	dom.dataset.uid=uid;
-function toTop (target, parent) {
-  let top = 0;
+	dom.dataset.name=nick_name;
+var toTop =function(target, parent) {
+  var top = 0;
   
   while (target && target != parent) {
       top += target.offsetTop;
@@ -232,13 +244,13 @@ window.scrollTo(0,toTop(dom,doc)-doc.body.clientWidth*0.17)
 doc.getElementById("send_message").onclick=function(){
 	var dom=doc.getElementById("write_message");
 	if(dom.value===""){return;}
-pengge.post(doname+"/private/message/add","contents="+pengge.html_encode(dom.value)+"&receiver="+dom.dataset.uid+"&gid="+gid,function(d){
+pengge.post(doname+"/private/message/add","content="+((dom.dataset.name==="")?"":("回复@"+pengge.html_encode(dom.dataset.name)+"<br>"))+pengge.html_encode(dom.value)+"&receiver="+dom.dataset.uid+"&gid="+gid+"&releaser="+pengge.cookie.get("uid"),function(d){
 		if(d==="success"){
 			dom.value="";
 			hmessage.innerHTML='<div id="load_message">正在加载……</div>';
 			message_finish=false;
 			page_num=0;
-		get_message();	
+		get_message();
 		get_message_num();
 		}else{alert("发送失败")}
 	})

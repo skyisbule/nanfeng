@@ -1,6 +1,7 @@
 package com.nanfenggongxiang.Domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MessageExample {
@@ -491,6 +492,66 @@ public class MessageExample {
 
         public Criteria andGidNotBetween(Integer value1, Integer value2) {
             addCriterion("gid not between", value1, value2, "gid");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeIsNull() {
+            addCriterion("release_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeIsNotNull() {
+            addCriterion("release_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeEqualTo(Date value) {
+            addCriterion("release_time =", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeNotEqualTo(Date value) {
+            addCriterion("release_time <>", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeGreaterThan(Date value) {
+            addCriterion("release_time >", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("release_time >=", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeLessThan(Date value) {
+            addCriterion("release_time <", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeLessThanOrEqualTo(Date value) {
+            addCriterion("release_time <=", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeIn(List<Date> values) {
+            addCriterion("release_time in", values, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeNotIn(List<Date> values) {
+            addCriterion("release_time not in", values, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeBetween(Date value1, Date value2) {
+            addCriterion("release_time between", value1, value2, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeNotBetween(Date value1, Date value2) {
+            addCriterion("release_time not between", value1, value2, "releaseTime");
             return (Criteria) this;
         }
     }

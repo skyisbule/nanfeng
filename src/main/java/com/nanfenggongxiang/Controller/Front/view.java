@@ -64,4 +64,15 @@ public class view {
         return "user_guest";
     }
 
+
+
+    @RequestMapping("/information.html")
+    public String infomation(){
+        return "zx";
+    }
+
+    @RequestMapping("/community.html")
+    public String bbs(){
+        return "tb";
+    }
 }

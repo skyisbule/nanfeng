@@ -8,6 +8,7 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="is_readed" jdbcType="INTEGER" property="isReaded" />
     <result column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    mid, releaser, receiver, content, is_readed, gid
+    mid, releaser, receiver, content, is_readed, gid, release_time
   </sql>
   <select id="selectByExample" parameterType="com.nanfenggongxiang.Domain.MessageExample" resultMap="BaseResultMap">
     select
@@ -109,20 +110,25 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.nanfenggongxiang.Domain.Message">
-    <selectKey keyProperty="mid" order="AFTER" resultType="java.lang.Integer">
+    <selectKey keyProperty="gid" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into message (releaser, receiver, content, 
-      is_readed, gid)
-    values (#{releaser,jdbcType=INTEGER}, #{receiver,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
-      #{isReaded,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER})
+    insert into message (mid, releaser, receiver, 
+      content, is_readed, release_time
+      )
+    values (#{mid,jdbcType=INTEGER}, #{releaser,jdbcType=INTEGER}, #{receiver,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{isReaded,jdbcType=INTEGER}, #{releaseTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.nanfenggongxiang.Domain.Message">
-    <selectKey keyProperty="mid" order="AFTER" resultType="java.lang.Integer">
+    <selectKey keyProperty="gid" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into message
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        mid,
+      </if>
       <if test="releaser != null">
         releaser,
       </if>
@@ -135,11 +141,14 @@
       <if test="isReaded != null">
         is_readed,
       </if>
-      <if test="gid != null">
-        gid,
+      <if test="releaseTime != null">
+        release_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        #{mid,jdbcType=INTEGER},
+      </if>
       <if test="releaser != null">
         #{releaser,jdbcType=INTEGER},
       </if>
@@ -152,8 +161,8 @@
       <if test="isReaded != null">
         #{isReaded,jdbcType=INTEGER},
       </if>
-      <if test="gid != null">
-        #{gid,jdbcType=INTEGER},
+      <if test="releaseTime != null">
+        #{releaseTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -184,6 +193,9 @@
       <if test="record.gid != null">
         gid = #{record.gid,jdbcType=INTEGER},
       </if>
+      <if test="record.releaseTime != null">
+        release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -196,7 +208,8 @@
       receiver = #{record.receiver,jdbcType=INTEGER},
       content = #{record.content,jdbcType=VARCHAR},
       is_readed = #{record.isReaded,jdbcType=INTEGER},
-      gid = #{record.gid,jdbcType=INTEGER}
+      gid = #{record.gid,jdbcType=INTEGER},
+      release_time = #{record.releaseTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -219,6 +232,9 @@
       <if test="gid != null">
         gid = #{gid,jdbcType=INTEGER},
       </if>
+      <if test="releaseTime != null">
+        release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where mid = #{mid,jdbcType=INTEGER}
   </update>
@@ -228,7 +244,8 @@
       receiver = #{receiver,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},
       is_readed = #{isReaded,jdbcType=INTEGER},
-      gid = #{gid,jdbcType=INTEGER}
+      gid = #{gid,jdbcType=INTEGER},
+      release_time = #{releaseTime,jdbcType=TIMESTAMP}
     where mid = #{mid,jdbcType=INTEGER}
   </update>
 </mapper>
