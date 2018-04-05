@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta charset="utf-8">
+<title>注册&nbsp;-&nbsp;南风共享</title>
+<style type="text/css">
+* {
+	tap-highlight-color:rgba(0,0,0,0);
+	-webkit-tap-highlight-color:transparent;
+	outline:none;
+	font-family: Arial, Helvetica, sans-serif;
+}
+	
+body {
+	position:absolute;
+	background-color:rgb(240,240,240);
+	width:100%;
+	height:100%;
+	margin:0;
+	overflow-x:hidden
+}
+	
+.card {
+	position:relative;
+	width:94vw;
+	margin:3vw;
+	border-radius:3vw;
+	background-color:#fff;
+	overflow:hidden;
+	box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);
+}
+
+#post {
+	height:15vw;
+	background-color:rgba(200,0,0,1.00);
+	color:#fff;
+	border:0;
+	font-size:6vw;
+}
+
+.card input {
+	width:90vw;
+	height:8vw;
+	line-height:8vw;
+	margin:2vw;
+	border:0;
+	font-size:5.3vw
+}
+
+.active{
+	box-shadow:0 0 1vw 0 rgba(255,0,0,1);
+}
+	.sign{position: relative;margin: 4vw;color: blue;font-size: 4vw;}
+	#tip{color: red!important}
+</style>
+</head>
+
+
+<body>
+	
+	<div class="card" style="margin-top: 16vw">
+		<input id="user" type="text" onFocus="pengge.input.check('num',this)" placeholder="请输入手机号" maxlength="11">
+	</div>
+	<div class="card">
+		<input id="pwd" type="password" placeholder="请输入密码" maxlength="60">
+	</div>
+	<div class="sign" onClick='window.open("/sign_in","_blank");'>已有账号？</div>
+	<div class="sign" id="tip" style="display: none">用户已存在</div>
+	<input id="post"  class="card" type="button" value="注&nbsp;&nbsp;&nbsp;册">
+</body>
+<script type="text/javascript" src="/js/pengge_tools.js"></script>
+<script type="text/javascript" src="/js/sign.js"></script>
+<script type="text/javascript">
+"use strict";
+sign("注册");
+var doname="http://fuzuh5.natappfree.cc",
+doc=document;	
+doc.getElementById("post").onclick = function() {
+    var dom1,post_data="";
+	
+	dom1=doc.getElementById("user");if(!(pengge.input.test("phone",dom1.value))){active(dom1);return;}else{post_data+="telNum="+dom1.value+"&contact=手机号："+dom1.value+"&nickName="+dom1.value.substr(0,3)+"****"+dom1.value.substr(7,4);}
+	dom1=doc.getElementById("pwd");if(dom1.value===""){active(dom1);return;}else{post_data+="&passwd="+pengge.html_encode(dom1.value);}
+pengge.post(doname+"/regist",post_data+"&signature=我爱南风、我爱分享&headPic=Fo68xdhE-LcKvE_l9c2Gs1hhpbos",function(data){
+if(data==="success"){
+	location.href="/";
+}else{document.getElementById("tip").style.display="";doc.getElementById("post").disabled=false;}
+	
+});
+    function active(dom) {
+        dom.focus();                    
+        dom.parentNode.className = "card active";
+        dom.onkeydown = noactive;         
+        dom.onafterpaste = noactive;
+        dom.onchange = noactive;
+    }
+    function noactive() {
+        this.parentNode.className = "card";
+		this.onkeydown = null;          
+        this.onafterpaste = null;
+        this.onchange = null;
+    }
+}
+
+</script>
+</html>

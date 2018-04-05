@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,7 +42,10 @@ public class shopController {
      */
     @ApiOperation("添加一条商品")
     @RequestMapping("/private/commodity/add")
-    public String addCommodity(Commodity commodity){
+    public String addCommodity(
+            @CookieValue("uid")int uid,
+            Commodity commodity){
+        commodity.setUid(uid);
         //初始化
         init(commodity);
         Date date = new Date();
@@ -61,10 +65,16 @@ public class shopController {
      */
     @ApiOperation("按页码数返回商品信息和发布者信息")
     @RequestMapping(value = "/public/commodity/get-with-info-by-page",method = RequestMethod.GET)
-    public List<Map<String,Object>> getCommodityAndUserInfoByPage(@ApiParam("页码数，从0开始") int page,
+    public List<Map<String,Object>> getCommodityAndUserInfoByPage(
+                                                                  @ApiParam("是否被卖出去了，传1和0")int isSellOut,
                                                                   @ApiParam("是想买还是想卖")int isWantBy,
-                                                                  @ApiParam("是否被卖出去了，传1和0")int isSellOut){
-        return complexDao.getCommodityAndUserInfoByPage(page*10,isSellOut,isWantBy);
+                                                                  @ApiParam("页码数，从0开始") int page,
+                                                                  @ApiParam("分类")int goodsType
+                                                                  ){
+        if (goodsType==0)
+            return complexDao.getCommodityAndUserInfoByPage(isSellOut,isWantBy,page*10);
+        else
+            return complexDao.getCommodityAndUserInfoByPageAndType(isSellOut,isWantBy,page*10,goodsType);
     }
 
     @ApiOperation("通过商品id获取商品详情")

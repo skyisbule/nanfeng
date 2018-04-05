@@ -1,0 +1,143 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta charset="utf-8">
+<title>发布&nbsp;-&nbsp;南风共享</title>
+	<style>
+		*{tap-highlight-color:rgba(0, 0, 0,0);-webkit-tap-highlight-color:transparent;outline:none}
+		body {position:absolute;background-color:rgb(240,240,240);width:100%;height:100%;margin: 0; overflow-x:hidden}
+#choose{position: absolute;width: 100vw;top: -5vw;left: 0;height: 17vw;background-color: #fff;z-index: 100;border-bottom: 0.3vw solid #888;text-align: center;line-height: 8vw;font-size: 4vw;box-shadow:-2vw -4vw 1vw -4vw #555 inset;}
+#choose span{position: absolute;width: 40vw;height: 8.3vw;background-color: rgb(240,240,240);border: 0.2vw solid #888;border-bottom:0;bottom: -0.3vw;z-index: 101;border-top-left-radius:5vw;border-top-right-radius:5vw;}
+#choose .un{background-color: rgba(0,0,0,0.2);bottom: 0;height: 8vw;}
+		.card{position: relative; width: 94vw;margin: 3vw;border-radius: 3vw;background-color: #fff;overflow: hidden;box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);}
+		.card input{width: 90vw;height: 8vw;line-height: 8vw; margin: 2vw; border:0;font-size: 5.3vw}
+		#title{height: 12vw;}
+		#content{height: 80vw;}
+		#content textarea{width: 90vw;height: 45vw;margin: 2vw; border:0;font-size: 4.6vw}
+		#add_pic{position: absolute;bottom: 0;width: 90vw;height: 30vw;left: 2vw; overflow-x:auto}
+		#add_pic img{position: absolute;width: 23vw;height: 23vw;margin: 1vw;bottom: 3vw;border-radius: 3vw;box-shadow:0 0 2vw 0 rgba(100,100,100,0.6);}
+		#add_pic span{position: absolute;font-size: 4vw;width: 31vw;bottom: 6vw;text-align: center;z-index: 10}
+		#add_pic svg{position: absolute;width: 10vw;height: 10vw; bottom: 14vw;left: 10.5vw; z-index: 10}
+		#add_pic div{position: absolute;bottom: 0; width: 23vw;height: 23vw;margin: 4vw;overflow: hidden;background-color: rgba(204,204,252,0.2);border-radius: 3vw;box-shadow:0 0 2vw 0 rgba(100,100,100,0.6);z-index: 12}
+		#add_pic input{ font-size: 100vmax; font-size: 100px;opacity: 0;}
+		#add_pic a{position: absolute;width: 5vw;height: 5vw;top: 1vw;background-size:100% 100%;background-repeat:no-repeat;background-image:url(images/cross.png)}
+		#goods_type{height: 12vw;}
+		select{width: 90vw;border: 0;font-size: 5vw;margin: 2vw; height: 8vw;line-height: 8vw;background-color: transparent}
+		#price input{font-size: 4.5vw;}
+		#price span{position: absolute;right: 3.5vw; top: 0;height: 12vw;line-height: 12vw; font-size: 5vw;}
+		#post{top: 10vw;height: 15vw;background-color: rgba(200,0,0,1.00);color: #fff;border: 0;font-size: 6vw;}
+		.active{box-shadow:0 0 1vw 0 rgba(255,0,0,1);}
+		
+	</style>
+</head>
+<body>
+<div id="choose">
+	<span style="left: 5vw" onClick="choose(true,this) ">发布闲置</span>
+	<span style="right:5vw" onClick="choose(false,this)" class="un">发布需求</span>
+</div>
+<p class="card" style="margin-top: 15vw"></p>
+<div id="title" class="card">
+	<input type="text" placeholder="请输入标题" maxlength="60">
+</div>
+<div id="content" class="card">
+	<textarea placeholder="请输入物品描述"  maxlength="600"></textarea>
+	<div id="add_pic">
+		<div><input id="upload" type="file"  accept="image/*"/></div>
+		<span>添加图片</span>
+		<svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path fill="#ddd" d="M512 0.001287c-282.769282 0-511.998713 229.229431-511.998713 511.998713 0 282.769282 229.229431 511.998713 511.998713 511.998713 282.767995 0 511.998713-229.228144 511.998713-511.998713C1023.998713 229.230718 794.767995 0.001287 512 0.001287zM748.560448 544.492778 542.994656 544.492778l0 205.560645c0 17.279887-13.946437 31.226324-31.221176 31.226324-17.279887 0-31.226324-13.946437-31.226324-31.226324L480.547156 544.492778l-205.559357 0c-17.279887 0-31.226324-13.946437-31.226324-31.226324s13.946437-31.226324 31.226324-31.226324l205.666182 0 0-205.559357c0-17.279887 13.94515-31.226324 31.219889-31.226324 17.279887 0 31.226324 13.946437 31.226324 31.226324L543.100194 482.041417l205.560645 0c17.17435 0 31.120786 13.946437 31.120786 31.226324S765.835188 544.492778 748.560448 544.492778z" /></svg>
+	</div>
+</div>
+<div id="goods_type" class="card">
+	<select>
+		<option style="display: none">请选择物品类型</option>
+		<option>图书</option>
+		<option>数码</option>
+		<option>日用</option>
+		<option>服饰</option>
+		<option>妆品</option>
+		<option>零食</option>
+		<option>运动</option>
+	</select>
+</div>
+<div id="condition" class="card">
+	<select>
+		<option style="display: none">请选择物品成色</option>
+		<option>全新</option>
+		<option>轻微磨损</option>
+		<option>九成新</option>
+		<option>八成新</option>
+		<option>七成新</option>
+		<option>六成新</option>
+	</select>
+</div>
+<div id="price" class="card">
+	<input type="text" maxlength="10" placeholder="请输入期待卖出的价格" onkeyup="num(this)" onafterpaste="num(this)">
+	<span>元</span>
+</div>
+	<input id="post"  class="card" type="button" value="发&nbsp;&nbsp;&nbsp;布">
+	<p class="card" style="top: 50vw;"></p>
+<script type="text/javascript" src="/js/pengge_tools.js"></script>
+<script type="text/javascript" src="/js/img_upload.js"></script>
+<script>
+"use strict";
+var doname="http://fuzuh5.natappfree.cc",
+pic_len=0,doc=document,dom_arr=[doc.getElementById("title").getElementsByTagName("input")[0],doc.getElementById("content").getElementsByTagName("textarea")[0],doc.getElementById("add_pic"),doc.getElementById("goods_type").getElementsByTagName("select")[0],doc.getElementById("condition").getElementsByTagName("select")[0],doc.getElementById("price").getElementsByTagName("input")[0]];  
+
+doc.getElementById("upload").onchange=function(){if(!this.files||!this.files[0]||pic_len>9){return};pic_len++;var b=doc.createElement("img"),z=doc.createElement("a");z.dataset.id=pic_len;b.style.left=(pic_len*25+4)+"vw";z.style.left=(pic_len*25+4)+"vw";b.src="images/loading.gif";dom_arr[2].appendChild(b);dom_arr[2].appendChild(z);var a=new FileReader();a.onload=function(c){var e=c.target.result,d=new Image();d.src=e;d.onload=function(){var n=this,g=1280,m=g*n.height/n.width;var k=doc.createElement("canvas"),o=doc.createAttribute("width");o.nodeValue=g;var i=doc.createAttribute("height");i.nodeValue=m;k.setAttributeNode(o);k.setAttributeNode(i);k.getContext("2d").drawImage(n,0,0,g,m);var f=k.toDataURL("image/jpg",0.3);b.src=((f.length>e.length)?e:f)}};a.readAsDataURL(this.files[0])}; 
+	
+dom_arr[2].onclick=function(b){var d=b.target.dataset.id;if(d!==undefined){d=parseInt(d)-1;var a=dom_arr[2].getElementsByTagName("img"),c=dom_arr[2].getElementsByTagName("a");this.removeChild(b.target);this.removeChild(a[d]);pic_len--;for(;d<pic_len;d++){a[d].style.left=((d+1)*25+4)+"vw";c[d].style.left=((d+1)*25+4)+"vw";c[d].dataset.id=(d+1)}}}; 
+	
+doc.getElementById("post").onclick=function(){
+	
+	var e="",c=doname+"/private/commodity/add";if(dom_arr[0].value===""){f(dom_arr[0]);return}else{e="goodsName="+pengge.html_encode(dom_arr[0].value)}if(dom_arr[1].value===""){f(dom_arr[1]);return}else{e+="&contents="+pengge.html_encode(dom_arr[1].value)}if(dom_arr[3].selectedIndex===0){f(dom_arr[3]);return}else{e+="&goodsTpye="+dom_arr[3].selectedIndex}
+if(dom_arr[5].value===""){f(dom_arr[5]);return}else{e+="&price="+dom_arr[5].value*100}
+	e+="&uid="+pengge.cookie.get("uid");								  
+if(dom_arr[4].style.display!=="none"){if(dom_arr[4].selectedIndex===0){f(dom_arr[4]);return}else{e+="&condition="+dom_arr[4].selectedIndex}
+									  parent.show_load();e+="&isWantBy=1";
+var b=dom_arr[2].getElementsByTagName("img"),a;if(b.length>0){pengge.post(doname+"/public/pic/token?fileName="+Math.random(),"",function(g){img_upload(b,g,function(h){
+e+="&picture="+JSON.stringify(h);
+post();	
+})})}else{e+="&picture=";
+post();}	
+}else{
+parent.show_load();e+="&isWantBy=0";	
+post();
+}
+
+function post(){
+	pengge.post(c,e,function(da){
+if(da==="success"){
+parent.bottom_click("home");
+
+}
+
+})
+}
+function f(g){g.focus();g.parentNode.className="card active";g.onkeydown=d;g.onafterpaste=d;g.onchange=d}function d(){this.parentNode.className="card"}};
+
+function choose(a,dom){
+	if(dom.className===""){return;}
+	dom.className="";
+	dom.parentNode.getElementsByTagName("span")[(a)?1:0].className="un";
+	dom_arr[1].parentNode.style.height=(a)?"":"50vw";
+	dom_arr[1].placeholder=(a)?"请输入物品描述":"请输入需求描述";
+	dom_arr[2].style.display=(a)?"":"none";
+	dom_arr[4].style.display=(a)?"":"none";
+	dom_arr[5].placeholder=(a)?"请输入期待卖出的价格":"请输入期待买入的价格";
+	
+}
+	
+	function num(obj){
+obj.value = obj.value.replace(/[^\d.]/g,"");
+obj.value = obj.value.replace(/^\./g,"");
+obj.value = obj.value.replace(/\.{2,}/g,"."); 
+obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');
+}
+
+
+</script>
+	
+</body>
+</html>

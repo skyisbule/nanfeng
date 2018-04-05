@@ -34,7 +34,7 @@ public class messageController {
      */
     @ApiOperation("添加一条商品的留言")
     @RequestMapping(value = "/private/message/add",method = {RequestMethod.POST,RequestMethod.GET})
-    public String add(//@CookieValue("id")int uid,
+    public String add(//@CookieValue("uid")int uid,
                       Message message){
         System.out.print(message.getGid());
         //message.setReleaser(uid);

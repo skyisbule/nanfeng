@@ -13,15 +13,32 @@ import java.util.Map;
 @Mapper
 public interface CommodityDao {
 
-    @Select("select commodity.*,info.nick_name,info.release_num" +
-            "       from commodity join info on " +
+    @Select("select commodity.*,info.nick_name,info.release_num,info.head_pic " +
+            "from commodity join info on " +
             "commodity.uid = info.uid where " +
-            "commodity.is_sell_out = #{isSellOut} and commodity.is_want_by = #{isWantBuy} " +
+            "commodity.is_sell_out = ${sell} and commodity.is_want_by = ${buy} " +
             "order by gid desc " +
-            "limit #{page},10;")
-    public List<Map<String,Object>> getCommodityAndUserInfoByPage(@Param("page")int page,
-                                                                  @Param("isSellOut")int isSellOut,
-                                                                  @Param("isWantBuy")int isWantBuy);
+            "limit #{page},10")
+    public List<Map<String,Object>> getCommodityAndUserInfoByPage(
+                                                                  @Param("sell")int isSellOut,
+                                                                  @Param("buy")int isWantBuy,
+                                                                  @Param("page")int page
+                                                                  );
+
+    @Select("select commodity.*,info.nick_name,info.release_num,info.head_pic " +
+            "from commodity join info on " +
+            "commodity.uid = info.uid where " +
+            "commodity.is_sell_out = ${sell} and commodity.is_want_by = ${buy} " +
+            "and commodity.goods_type = ${type}"+
+            "order by gid desc " +
+            "limit #{page},10")
+    public List<Map<String,Object>> getCommodityAndUserInfoByPageAndType(
+            @Param("sell")int isSellOut,
+            @Param("buy") int isWantBuy,
+            @Param("page")int page,
+            @Param("type")int type
+    );
+
 
     @Select("select commodity.*,info.nick_name,info.release_num,info.head_pic,info.contact" +
             "       from commodity join info on " +

@@ -1,5 +1,7 @@
 package com.nanfenggongxiang.Controller.Front;
 
+import com.nanfenggongxiang.Dao.countDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "/",method = RequestMethod.GET)
 public class view {
+
+    @Autowired
+    countDao commodity;
 
     @RequestMapping("/")
     public String index(){
@@ -22,7 +27,10 @@ public class view {
     }
 
     @RequestMapping("/goods")
-    public String goods(){
+    public String goods(String gid){
+        if(gid!=null){
+            commodity.commodityPageViewsAdd(Integer.parseInt(gid));
+        }
         return "goods";
     }
 

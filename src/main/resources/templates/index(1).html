@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta charset="utf-8">
+<title>南风共享</title>
+	<style>
+body {position:absolute;background-color:rgb(240,240,240);width:100%;height:100%;margin: 0; overflow-x:hidden}
+#bottom {position:fixed;background-color:rgb(250,250,250);bottom:0;left:0;width:100vw;height:15vw;box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);}
+#bottom p {position:absolute;width:100%;bottom:-6.6vw;font-size:3.5vw;line-height:0;text-align:center;}
+#bottom span {position:absolute;top:2vw;width:7vw;height:7vw;background-size:100% 100%;background-repeat:no-repeat;}
+#release {position:absolute;background-color:rgb(255,250,180);bottom:0;left:38vw;width:24vw;height:18vw;-webkit-clip-path:polygon(0 18vw,4vw 3vw,12vw 0,20vw 3vw,24vw 18vw);clip-path:polygon(0 18vw,4vw 3vw,12vw 0,20vw 3vw,24vw 18vw);}
+#release p {font-size:4.2vw;bottom:-1vw;letter-spacing:2vw;text-indent:2vw;}
+#release svg{width:10vw;height:10vw;left: 7vw;top: 2vw}
+#home {left:5vw;}
+#information {left:23vw;}
+#community {right:23vw;}
+#user {right:5vw;}
+iframe{position: fixed;width: 100vw!important;height: 100vh!important;}
+svg{position:absolute;width:100%;height:100%;}
+#layer{position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.8);z-index: 10000;display: none}
+#layer img{position: absolute;left:50%;top: 50%;width:40vw;height: 40vw;margin: -20vw}
+	</style>
+</head>
+
+<body>
+	<div id="layer"><img src="images/loading.gif" alt=""/></div>
+<iframe frameborder="0" data-id="" src="data:text/html;charset=utf8,"></iframe>
+	<div id="bottom">
+		<span id="home"><svg viewBox="0 0 1024 1024"></svg><p>主页</p></span>
+		<span id="information"><svg viewBox="0 0 1024 1024"></svg><p>资讯</p></span>
+		<div  id="release"><svg viewBox="0 0 16 16"></svg><p>发布</p></div>
+		<span id="community"><svg viewBox="0 0 1061 1024"></svg><p>社区</p></span>
+		<span id="user"><svg viewBox="0 0 1024 1024"></svg><p>我的</p></span>
+	</div>
+<script type="text/javascript" src="/js/pengge_tools.js"></script>
+<script>
+"use strict";
+var doc=document;
+doc.getElementById("home").onclick=bottom_click;
+doc.getElementById("information").onclick=bottom_click;
+doc.getElementById("release").onclick=bottom_click;
+doc.getElementById("community").onclick=bottom_click;
+doc.getElementById("user").onclick=bottom_click;
+
+function bottom_click(a){
+	a=this||doc.getElementById(a);
+	var ifr=doc.getElementsByTagName("iframe")[0];
+	if(ifr.dataset.id===a.id){return;}
+	if(ifr.dataset.id!==""){
+	   var last_dom=doc.getElementById(ifr.dataset.id)
+	   last_dom.style.color="#333";
+	last_dom.firstChild.firstChild.style.fill="#333";
+	   }
+	
+	a.style.color="#f00";
+	a.firstChild.firstChild.style.fill="#f00";
+	ifr.src="/"+a.id;
+	ifr.dataset.id=a.id;
+	window.history.pushState({},0,location.pathname+"?u=0&page="+a.id+"&dl=0");
+	doc.title=a.getElementsByTagName("p")[0].innerHTML+" - 南风共享";
+}
+function show_load(){
+	doc.getElementById("layer").style.display="block";
+}
+
+	window.onload=function(){
+	
+pengge.post("/images/index_ui","",function(data){
+var svg_arr=data.split("|"),svg_dom=doc.getElementsByTagName("svg");
+	for(var i=0;i<5;i++){
+		svg_dom[i].innerHTML='<path style="fill:#333" d="'+svg_arr[i]+'" />';
+	}
+	
+ bottom_click((location.search.split("&")[1]||"page=home").substr(5));
+},true);
+}
+
+
+</script>
+</body>
+</html>
