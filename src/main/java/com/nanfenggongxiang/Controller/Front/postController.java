@@ -1,5 +1,6 @@
 package com.nanfenggongxiang.Controller.Front;
 
+import com.nanfenggongxiang.Dao.PostDao;
 import com.nanfenggongxiang.Dao.PostMapper;
 import com.nanfenggongxiang.Domain.Post;
 import com.nanfenggongxiang.Domain.PostExample;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by skyisbule on 2018/3/28.
@@ -25,6 +27,8 @@ public class postController {
 
     @Autowired
     PostMapper dao;
+    @Autowired
+    PostDao   complexDao;
 
     @ApiOperation("添加一条帖子，时间、回复数不用填")
     @RequestMapping("/private/post/add")
@@ -37,16 +41,10 @@ public class postController {
 
     @ApiOperation("根据页码拿到帖子信息")
     @RequestMapping(value = "/public/post/get-by-page",method = RequestMethod.GET)
-    public List<Post> getByPage(@ApiParam("开始页码") int page,
-                                @ApiParam("是否置顶") int isTop,
-                                @ApiParam("哪个版块") int plate){
-        PostExample e = new PostExample();
-        e.setOffset(page*10);
-        e.setLimit(10);
-        e.createCriteria()
-                .andIsTopEqualTo(isTop)
-                .andPlateIdEqualTo(plate);
-        return dao.selectByExample(e);
+    public List<Map<String,Object>> getByPage(@ApiParam("开始页码") int page,
+                               @ApiParam("是否置顶") int isTop,
+                               @ApiParam("哪个版块") int plate){
+        return complexDao.getPostInfoByPage(plate,page,isTop);
     }
 
     @RequestMapping("/private/post/update")
