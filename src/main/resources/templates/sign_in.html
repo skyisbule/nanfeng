@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <title>登录&nbsp;-&nbsp;南风共享</title>
 <style type="text/css">
-input{-webkit-appearance:none;margin: 0;}
+input{-webkit-appearance:none;margin: 0;padding: 0}
 
 * {
 	tap-highlight-color:rgba(0,0,0,0);
@@ -13,7 +13,7 @@ input{-webkit-appearance:none;margin: 0;}
 	outline:none;
 	font-family: Arial, Helvetica, sans-serif;
 }
-	
+		
 body {
 	position:absolute;
 	background-color:rgb(240,240,240);
@@ -53,7 +53,7 @@ body {
 .active{
 	box-shadow:0 0 1vw 0 rgba(255,0,0,1);
 }
-	.sign{position: relative;margin: 4vw;color: blue;font-size: 4vw;}
+	.sign{position: relative;margin: 4vw;font-size: 4vw;display: block;}
 	#tip{color: red!important}
 </style>
 </head>
@@ -65,7 +65,7 @@ body {
 	<div class="card">
 		<input id="pwd" type="password" placeholder="请输入密码" maxlength="60">
 	</div>
-	<div class="sign" onClick='window.open("/sign_up","_blank");'>还没有账号？</div>
+	<a class="sign" target="new" href="/sign_up">还没有账号？</a>
 	<div class="sign" id="tip" style="display: none">账号或密码错误</div>
 	<input id="post"  class="card" type="button" value="登&nbsp;&nbsp;&nbsp;录">
 </body>
@@ -73,34 +73,38 @@ body {
 <script type="text/javascript" src="/js/sign.js"></script>
 <script type="text/javascript">
 "use strict";
-	sign("登录");
-var doname="http://nanfeng.s1.natapp.link",
-doc=document;	
+sign("登录");
+var doname = "http://nanfeng.s1.natapp.link",
+doc = document;
 doc.getElementById("post").onclick = function() {
-    var dom1,post_data="";
-	dom1=doc.getElementById("user");if(dom1.value===""){active(dom1);return;}else{post_data+="tel="+pengge.html_encode(dom1.value);}
-	dom1=doc.getElementById("pwd");if(dom1.value===""){active(dom1);return;}else{post_data+="&passwd="+pengge.html_encode(dom1.value);}
-	this.disabled="disabled";
-pengge.post(doname+"/login",post_data,function(data){
-	if(data==="success"){
-		var referrer=document.referrer;
-		location.href=(referrer==""||referrer.indexOf("/sign_in")>=0)?"/":referrer+((referrer.indexOf("?")>=0)?"&":"?")+Math.random();
-	}else{document.getElementById("tip").style.display="";doc.getElementById("post").disabled=false;}
-	
-});
-    function active(dom) {
-        dom.focus();                      
-        dom.parentNode.className = "card active";
-        dom.onkeydown = noactive;         
-        dom.onafterpaste = noactive;
-        dom.onchange = noactive;
+    var dom1, post_data = "";
+    dom1 = doc.getElementById("user");
+    if (dom1.value === "") {
+        pengge.nanfenggx.active(dom1);
+        return;
+    } else {
+        post_data += "tel=" + pengge.html_encode(dom1.value);
     }
-    function noactive() {
-        this.parentNode.className = "card";
-		this.onkeydown = null;         
-        this.onafterpaste = null;
-        this.onchange = null;
+    dom1 = doc.getElementById("pwd");
+    if (dom1.value === "") {
+        pengge.nanfenggx.active(dom1);
+        return;
+    } else {
+        post_data += "&passwd=" + pengge.html_encode(dom1.value);
     }
+    this.disabled = true;
+    pengge.post(doname + "/login", post_data,
+    function(data) {
+        if (data === "success") {
+            var referrer = document.referrer;
+            location.href = (referrer == "" || referrer.indexOf("/sign_in") >= 0) ? "/": referrer + ((referrer.indexOf("?") >= 0) ? "&": "?") + Math.random();
+        } else {
+            document.getElementById("tip").style.display = "";
+            doc.getElementById("post").disabled = false;
+        }
+
+    });
+
 }
 
 </script>

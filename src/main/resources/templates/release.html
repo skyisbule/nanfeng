@@ -5,10 +5,14 @@
 <meta charset="utf-8">
 <title>发布&nbsp;-&nbsp;南风共享</title>
 	<style>
-		input{-webkit-appearance:none;margin: 0;}
+input{-webkit-appearance:none;margin: 0;padding: 0}
 
-		*{tap-highlight-color:rgba(0, 0, 0,0);-webkit-tap-highlight-color:transparent;outline:none}
-		body {position:absolute;background-color:rgb(240,240,240);width:100%;margin: 0; overflow-x:hidden}
+* {
+	tap-highlight-color:rgba(0,0,0,0);
+	-webkit-tap-highlight-color:transparent;
+	outline:none;
+	font-family: Arial, Helvetica, sans-serif;
+}		body {position:absolute;background-color:rgb(240,240,240);width:100%;margin: 0; overflow-x:hidden}
 #choose{position: absolute;width: 100vw;top: -5vw;left: 0;height: 17vw;background-color: #fff;z-index: 300;border-bottom: 0.3vw solid #888;text-align: center;line-height: 8vw;font-size: 4vw;box-shadow:-2vw -4vw 1vw -4vw #555 inset;}
 #choose span{position: absolute;width: 40vw;height: 8.3vw;background-color: rgb(240,240,240);border: 0.2vw solid #888;border-bottom:0;bottom: -0.3vw;z-index: 101;border-top-left-radius:5vw;border-top-right-radius:5vw;}
 #choose .un{background-color: rgba(0,0,0,0.2);bottom: 0;height: 8vw;}
@@ -93,22 +97,25 @@ dom_arr[2].onclick=function(b){var d=b.target.dataset.id;if(d!==undefined){d=par
 	
 doc.getElementById("post").onclick=function(){
 	
-	var e="",c=doname+"/private/commodity/add";if(dom_arr[0].value===""){f(dom_arr[0]);return}else{e="goodsName="+pengge.html_encode(dom_arr[0].value)}if(dom_arr[1].value===""){f(dom_arr[1]);return}else{e+="&content="+pengge.html_encode(dom_arr[1].value)}if(dom_arr[3].selectedIndex===0){f(dom_arr[3]);return}else{e+="&goodsType="+dom_arr[3].selectedIndex}
-if(dom_arr[5].value===""){f(dom_arr[5]);return}else{e+="&price="+dom_arr[5].value*100}
+	var e="",c=doname+"/private/commodity/add";if(dom_arr[0].value===""){pengge.nanfenggx.active(dom_arr[0]);return}else{e="goodsName="+pengge.html_encode(dom_arr[0].value)}if(dom_arr[1].value===""){pengge.nanfenggx.active(dom_arr[1]);return}else{e+="&content="+pengge.html_encode(dom_arr[1].value)}if(dom_arr[3].selectedIndex===0){pengge.nanfenggx.active(dom_arr[3]);return}else{e+="&goodsType="+dom_arr[3].selectedIndex}
+if(dom_arr[5].value===""){pengge.nanfenggx.active(dom_arr[5]);return}else{e+="&price="+dom_arr[5].value*100}
 	e+="&uid="+pengge.cookie.get("uid");								  
-if(dom_arr[4].style.display!=="none"){if(dom_arr[4].selectedIndex===0){f(dom_arr[4]);return}else{e+="&conditions="+dom_arr[4].selectedIndex}
+if(dom_arr[4].style.display!=="none"){if(dom_arr[4].selectedIndex===0){pengge.nanfenggx.active(dom_arr[4]);return}else{e+="&conditions="+dom_arr[4].selectedIndex}
 									  parent.show_load();e+="&isWantBy=1";
 var b=dom_arr[2].getElementsByTagName("img"),a;if(b.length>0){pengge.post(doname+"/public/pic/token?fileName="+Math.random(),"",function(g){img_upload(b,g,function(h){
 e+="&picture="+JSON.stringify(h);
-post();	
+post(c,e);	
 })})}else{e+="&picture="+JSON.stringify([]);
-post();}	
+post(c,e);}	
 }else{
-parent.show_load();e+="&isWantBy=0";	
-post();
+parent.show_load();
+	e+="&isWantBy=0";	
+post(c,e);
 }
 
-function post(){
+
+}
+function post(c,e){
 	pengge.post(c,e,function(da){
 if(da==="success"){
 parent.bottom_click("home");
@@ -117,7 +124,6 @@ parent.bottom_click("home");
 
 })
 }
-function f(g){g.focus();g.parentNode.className="card active";g.onkeydown=d;g.onafterpaste=d;g.onchange=d}function d(){this.parentNode.className="card"}};
 
 function choose(a,dom){
 	if(dom.className===""){return;}
