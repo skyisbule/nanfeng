@@ -189,7 +189,9 @@ function post() {
     pengge.post(doname + "/private/user/update", data,
     function(d) {
         if (d === "success") {
-            pengge.back_close();
+			pengge.cookie.set("nickName",old_user_arr["nickName"],31104000,"/");
+			pengge.cookie.set("headPic",old_user_arr["headPic"],31104000,"/");
+			location.href="/?u=0&page=user&dl=0";
         }
     })
 }

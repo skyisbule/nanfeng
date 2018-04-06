@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -81,7 +82,11 @@ public class shopController {
     @RequestMapping(value = "/public/commodity/get-with-info-by-gid",method = RequestMethod.GET)
     public Map<String,Object> getCommodityAndUserInfoByGid(@ApiParam("商品id")int gid){
         Map<String,Object> map = complexDao.getCommodityAndUserByGid(gid);
-        Integer uid = Integer.parseInt(map.get("uid").toString());
+        if (map == null){
+            return new HashMap<String,Object>();
+        }
+        String GoodsUid = map.get("uid").toString();
+        Integer uid = Integer.parseInt(GoodsUid);
         Integer isSellOut = Integer.parseInt(map.get("is_sell_out").toString());
         //拿到在售的宝贝有多少件
         Object count = complexDao.getCommoditySellOutCount(uid,isSellOut);

@@ -107,23 +107,25 @@ and open the template in the editor.
                
             <transition-group name="fade" tag="p" v-on:duration="300">
                 
-                <li style="width: 100%;height: 170px;background-color: #ffffff;margin-top: 10px;"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li"   v-on:click="another(li,{page:0,postId:li.pid},'public/postReply/get-by-page')" >
-                <ul style="width: 100%;height: 170px;">
-                    <li style="width:100%;height: 60px;"><img style="border-radius: 25px;border: none;height: 50px;width: 50px;float: left;margin-top: 5px;" v-bind:src="li.head_pic" alt="头"><div style="width:220px;height:50px;display: inline-block;"><p style="margin-top:14px;margin-left: 10px;font-size:12px">{{li[showDataW[0]]}}</p><p style="margin-top:7px;font-size:10px;margin-left: 10px;color:#bababa;">{{myDate(li[showDataW[1]])}}</p></div></li>
-                    <li style="width:100%;height: 90px;overflow: hidden;font-size: 13px;text-indent:0.5em;font-weight: 600">{{li[showDataW[2]]}}<p style="font-weight: 400;font-size:12px;margin-right: 5px;margin-top: 4px;text-indent:2.5em;color:#999999">{{li[showDataW[3]]}}</p></li>
-   <li style="width:100%;height: 30px;"><img style="width: 16px;height: 16px;float: right;margin-right: 10px;" src="static/images/询问.png" alt="xw" /><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{li[showDataW[4]]}}</span></li>
+                <li style="width: 100%;height: 135px;background-color: #ffffff;margin-top: 5px;text-overflow: ellipsis"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li"   v-on:click="another(li,{page:0,postId:li.pid},'public/postReply/get-by-page')" >
+                <ul style="width: 100%;height: 135px;">
+                    <li style="width:100%;height: 45px;"><img style="border-radius: 20px;border: none;height: 40px;width: 40px;float: left;margin-top: 5px;" v-bind:src="li.head_pic" alt="头"><div style="width:220px;height:40px;display: inline-block;"><p style="margin-top:4px;margin-left: 10px;font-size:12px">{{li[showDataW[0]]}}</p><p style="margin-top:7px;font-size:10px;margin-left: 10px;color:#bababa;">{{myDate(li[showDataW[1]])}}</p></div></li>
+                    <li style="width:100%;height: 70px;overflow: hidden;font-size: 13px;text-indent:0.5em;font-weight: 600"><p style="white-space: nowrap;text-overflow: ellipsis;width:400px;overflow: hidden">{{li[showDataW[2]]}}</p><p style="font-weight: 400;font-size:12px;margin-right: 5px;margin-top: 4px;text-indent:2.5em;color:#999999">{{li[showDataW[3]]}}</p></li>
+   <li style="width:100%;height: 20px;"><img style="width: 16px;height: 16px;float: right;margin-right: 10px;" src="static/images/询问.png" alt="xw" /><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{li[showDataW[4]]}}</span></li>
   </ul>
                 
             </li>
             </transition-group>
 
             <li style="width: 100%;height: 30px;margin-top: 10px;"></li>
-            <li v-if='!ifshow' class='tli'  style="width: 410px;background-color: #ffffff;position: fixed;bottom:0%;hieght:60px;overflow: hidden;min-height:35px;" onclick = ' '>
+            <li v-if='!ifshow' class='tli colorchange'  style="width: 100%;position: fixed;bottom:0%;hieght:60px;overflow: hidden;min-height:35px;" onclick = ' '>
+                <div class=' mypost'  onclick="$(this).parent().animate({top:'0%'});$(this).hide() ;$(this).parent().find('.postcontent').show();$('.postpng').hide();$('.postspan').hide();$('.colorchange').css('background-color','#ffffff')  "  style='width: 100%;float: left;height: 50px;'>
+                    <div style="width: 70px;height:38px;font-size: 12px;color:#ffffff;border: #ffffff 1px none;border-radius: 10px;float:right;background-color: rgba(255,102,51,0.8);text-align: center;line-height: 38px;margin-right: 10px"  class="postspan" >发帖</div>
+                </div>
                 
-                
-                <input class='mypost'  onclick="$(this).parent().animate({top:'0%'});$(this).hide() ;$(this).parent().find('.postcontent').show();$('.postpng').hide();$('.postspan').hide()  "  class='postinput' style='width: 340px;border: #ffffff  solid 1px;float: left;height: 20px' placeholder='你有什么想法？说出来吧' /><img class='postpng' style='float: right;width: 28px;height: 22px' src='static/images/发帖_icon.png' alt='提交' /><span class="postspan" style="font-size: 12px;color:#ff6633">发帖~</span>
+                   
       
-                <div  class='postcontent' style='display:none;text-align: center;font-family: Microsoft JhengHei;font-size: 14px;font-weight: 700; '> <img onclick="    $('.tli').css('top','');$('.mypost').show() ;$('.postcontent').hide();$('.postpng').show(); $('.postspan').show()   "  src='static/images/关闭3.png' alt='关闭' style='float:left;width: 22px;height: 22px' /> 编辑帖子 <img v-on:click="post('private/post/add')" style='float: right;width: 22px;height: 22px' src='static/images/发帖_icon.png' alt='提交' /><br/>
+                <div  class='postcontent' style='background-color: #ffffff;display:none;text-align: center;font-family: Microsoft JhengHei;font-size: 14px;font-weight: 700; '> <img onclick="    $('.tli').css('top','');$('.mypost').show() ;$('.postcontent').hide();$('.postpng').show(); $('.postspan').show();$('.colorchange').css('background-color','')   "  src='static/images/关闭3.png' alt='关闭' style='float:left;width: 22px;height: 22px' /> 编辑帖子 <img v-on:click="post('private/post/add')" style='float: right;width: 22px;height: 22px' src='static/images/发帖_icon.png' alt='提交' /><br/>
                     <br/><input placeholder="写上你的标题吧" v-model="qo" style="width: 380px;border: #ffffff  solid 1px;float: left;height: 30px" ><br/><br/>
                     
                     <textarea placeholder="这是帖子的内容哦" v-model="qt"  style="width: 380px;border: #ffffff  solid 1px;float: left;height: 120px" cols="5"></textarea>
@@ -139,10 +141,10 @@ and open the template in the editor.
              
              <li style="width: 100%;background-color: #ffffff;margin-top: 10px;margin-bottom: 10px;">
                 <ul style="width: 100%;">
-                    <li style="width:100%;overflow: hidden;font-size: 14px;text-align: center;font-weight: 600px;border-bottom:  #bababa 1px solid">{{nowc.title}}</li>
+                    <li style="margin-bottom: 10px;text-indent:1em;width:100%;overflow: hidden;font-size: 13px;text-align: center;white-space: nowrap;text-overflow: ellipsis;width:400px;overflow: hidden"><p style="font-size:14px;font-weight: 600;white-space: nowrap;text-overflow: ellipsis;width:400px;overflow: hidden">{{nowc.title}}</p></li>
                     <li style="width:100%;height: 60px"><img style="border-radius: 25px;border: none;height: 50px;width: 50px;float: left;margin-top: 5px;" v-bind:src="nowc.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:14px;margin-left: 10px;font-size:12px">{{nowc.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">楼主</p></div></li>
    
-   <li style="width:100%;"><p style="font-size:14px;margin-right: 5px;text-indent:2em;min-height: 50px;">{{nowc.content}}</p></li>
+   <li style="width:100%;"><p style="font-size:12px;margin-right: 5px;text-indent:2em;min-height: 80px;margin-top: 10px">{{nowc.content}}</p></li>
       <li style="width:100%;height: 20px"><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{myDate(nowc.release_time)}}</span></li>
 
   </ul>
@@ -165,9 +167,9 @@ and open the template in the editor.
             </transition-group>
                  </div>
             
-            <li style="width: 100%;height: 30px;margin-top: 10px;min-height:35px;"></li>
-            <li v-if='ifshow' style="width: 410px;background-color: #ffffff;position: fixed;bottom:0%;hieght:60px;overflow: hidden">
-                <input v-model="replycont" style='width: 380px;border: #ffffff  solid 1px;float: left;height: 20px' placeholder='要不留个言再走~' /><img v-on:click="Reply('private/postReply/add')" style='float: right;width: 24px;height: 24px' src='static/images/留言.png' alt='提交' />
+            <li style="width: 100%;height: 30px;margin-top: 10px;min-height:38px;"></li>
+            <li v-if='ifshow' style="width: 100%;background-color: #ffffff;position: fixed;bottom:0%;hieght:60px;overflow: hidden">
+                <input v-model="replycont" style='width: 85%;border: #ffffff  solid 1px;float: left;height: 30px' placeholder='要不留个言再走~' /><img v-on:click="Reply('private/postReply/add')" style='float: right;width: 24px;height: 24px' src='static/images/留言.png' alt='提交' />
             </li>
             
             
@@ -408,6 +410,7 @@ a.ve.postdatasave = {uid:null,title:null,content:null,postId:null};
             });
             
 var allurl = '';
+
         </script>
         
     </body>

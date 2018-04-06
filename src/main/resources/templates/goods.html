@@ -138,6 +138,12 @@ if (uid !== null) {
 }
 pengge.post(doname + "/public/commodity/get-with-info-by-gid", "gid=" + gid,
 function(data) {
+			if(data.length<6){
+			alert("商品不存在！");
+			location.href="/?"+Math.random();
+			return;
+		}
+
     var data_arr = JSON.parse(data),hpic= doc.getElementById("picture");
 	is_want_by=(data_arr['is_want_by']!==0)?true:false;
     doc.title = data_arr["goods_name"].substr(0, 20) + ((data_arr["goods_name"][20] === "") ? "": "…") + " - 南风共享";

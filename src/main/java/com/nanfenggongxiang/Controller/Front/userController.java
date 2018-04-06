@@ -73,7 +73,12 @@ public class userController {
 
     @ApiOperation("修改用户信息的接口")
     @RequestMapping(value = "/private/user/update")
-    public String update(Info info){
+    public String update(Info info,HttpServletResponse response){
+        int maxAge = 60*60*24 * 30 * 12;//30*12天过期
+        Cookie headCookie   = new Cookie("headPic",info.getHeadPic());
+        headCookie.setMaxAge(maxAge);
+        headCookie.setPath("/");
+        response.addCookie(headCookie);
         return dao.updateByPrimaryKey(info)==1?"success":"error";
     }
 
