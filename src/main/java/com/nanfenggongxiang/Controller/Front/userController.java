@@ -45,15 +45,15 @@ public class userController {
             Cookie idCookie     = new Cookie("uid",user.getUid().toString());
             Cookie passwdCookie = new Cookie("session",getHash(user.getPasswd()));
             Cookie headCookie   = new Cookie("headPic",user.getHeadPic());
-            Cookie nickCookie   = new Cookie("nickName",user.getNickName());
+            //Cookie nickCookie   = new Cookie("nickName",user.getNickName());
             idCookie.setMaxAge(maxAge);
             passwdCookie.setMaxAge(maxAge);
             headCookie.setMaxAge(maxAge);
-            nickCookie.setMaxAge(maxAge);
+            //nickCookie.setMaxAge(maxAge);
             response.addCookie(idCookie);
             response.addCookie(passwdCookie);
             response.addCookie(headCookie);
-            response.addCookie(nickCookie);
+            //response.addCookie(nickCookie);
             return "success";
 
         }

@@ -105,7 +105,7 @@ and open the template in the editor.
         <ul style="margin-top: 55px;"  v-show='!ifshow'>
             <div v-if="lis[0] === undefined" style="width:100%;margin: 0 auto;font-size: 10px;text-align: center">偷偷告诉你这里什么都没有..</div>
                
-            <transition-group name="fade" tag="p" v-on:duration="300">
+            <transition-group style="margin-bottom:15vw" name="fade" tag="p" v-on:duration="300">
                 
                 <li style="width: 100%;height: 135px;background-color: #ffffff;margin-top: 5px;text-overflow: ellipsis"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li"   v-on:click="another(li,{page:0,postId:li.pid},'public/postReply/get-by-page')" >
                 <ul style="width: 100%;height: 135px;">
@@ -118,7 +118,7 @@ and open the template in the editor.
             </transition-group>
 
             <li style="width: 100%;height: 30px;margin-top: 10px;"></li>
-            <li v-if='!ifshow' class='tli colorchange'  style="width: 100%;position: fixed;bottom:0%;hieght:60px;overflow: hidden;min-height:35px;" onclick = ' '>
+            <li v-if='!ifshow' class='tli colorchange'  style="width: 100%;position: fixed;bottom:15vw;hieght:60px;overflow: hidden;min-height:35px;" onclick = ' '>
                 <div class=' mypost'  onclick="$(this).parent().animate({top:'0%'});$(this).hide() ;$(this).parent().find('.postcontent').show();$('.postpng').hide();$('.postspan').hide();$('.colorchange').css('background-color','#ffffff')  "  style='width: 100%;float: left;height: 50px;'>
                     <div style="width: 70px;height:38px;font-size: 12px;color:#ffffff;border: #ffffff 1px none;border-radius: 10px;float:right;background-color: rgba(255,102,51,0.8);text-align: center;line-height: 38px;margin-right: 10px"  class="postspan" >发帖</div>
                 </div>

@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,9 @@ public class postController {
 
     @ApiOperation("添加一条帖子，时间、回复数不用填")
     @RequestMapping("/private/post/add")
-    public String add(Post post){
+    public String add(Post post,
+                      @CookieValue("uid")int uid){
+        post.setUid(uid);
         Date date = new Date();
         post.setReleaseTime(date);
         post.setReplyNum(1);
