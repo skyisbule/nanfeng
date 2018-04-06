@@ -4,6 +4,7 @@ import com.nanfenggongxiang.Domain.PostReply;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -21,5 +22,8 @@ public interface PostReplyDao {
             "order by post_reply.rid ASC " +
             "limit #{page},10;")
     public List<Map<String,Object>> getPostReplyByPage(@Param("page")int page, @Param("postId")int postId);
+
+    @Update("update post set reply_num = reply_num + 1 where post.pid =#{pid};")
+    public void addReplyNum(@Param("pid")int pid);
 
 }

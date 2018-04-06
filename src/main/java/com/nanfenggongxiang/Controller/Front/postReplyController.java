@@ -25,6 +25,9 @@ public class postReplyController {
 
     @RequestMapping("/private/postReply/add")
     public String add(PostReply reply){
+        //给帖子的回复数加一
+        complexDao.addReplyNum(reply.getPostId());
+        
         Date date = new Date();
         reply.setReleaseTime(date);
         reply.setIsDelete(0);
