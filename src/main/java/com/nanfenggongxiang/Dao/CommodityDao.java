@@ -29,9 +29,9 @@ public interface CommodityDao {
             "from commodity join info on " +
             "commodity.uid = info.uid where " +
             "commodity.is_sell_out = ${sell} and commodity.is_want_by = ${buy} " +
-            "and commodity.goods_type = ${type}"+
+            "and commodity.goods_type = ${type} "+
             "order by gid desc " +
-            "limit #{page},10")
+            "limit ${page},10")
     public List<Map<String,Object>> getCommodityAndUserInfoByPageAndType(
             @Param("sell")int isSellOut,
             @Param("buy") int isWantBuy,
