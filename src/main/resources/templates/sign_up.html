@@ -98,8 +98,12 @@ doc.getElementById("post").onclick = function() {
     function(data) {
         if (data === "success") {
  pengge.post(doname + "/login", "tel=" + pengge.html_encode(dom1.value)+"&passwd=" + pengge.html_encode(dom2.value),
-    function(data) {
-            location.href = "/?" + Math.random();
+    function(data) {if(data[0]==="{"){
+	 		var arr=JSON.parse(data);
+			pengge.cookie.set("nickName",arr["nickName"],31104000,"/");
+			pengge.cookie.set("headPic",arr["headPic"],31104000,"/");
+			pengge.cookie.set("uid",arr["uid"],31104000,"/");
+            location.href = "/?" + Math.random();}else{alert("登录失败")}
     });
         } else {
             document.getElementById("tip").style.display = "";

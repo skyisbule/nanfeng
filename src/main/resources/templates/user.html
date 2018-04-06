@@ -56,14 +56,11 @@ h1,h2,h3,h4,h5,h6{-webkit-margin-before: 0!important;-webkit-margin-after: 0!imp
 <script type="text/javascript">
 "use strict";
 var doc=document,headPic=pengge.cookie.get("headPic"),nickName=pengge.cookie.get("nickName"),uid=pengge.cookie.get("uid");
-/*测试用*/
-//uid=1;nickName="小姐姐";headPic="Fo68xdhE-LcKvE_l9c2Gs1hhpbos";	
-	
 	
 if (uid === null) {
     location.href = "/user_guest";
 } else {
-    doc.getElementById("main").innerHTML = '<span style="background-image:url(http://pic.zdnfbbs.cn/' + headPic + ')"></span><h1>' + (nickName || "南风共享用户") + '</h1><h2>' + (pengge.cookie.get("school") || "中山大学南方学院") + '</h2>'
+    doc.getElementById("main").innerHTML = '<span style="background-image:url(http://pic.zdnfbbs.cn/' + headPic + ')"></span><h1>' + pengge.nanfenggx.font_len((nickName || "南风共享用户"),20) + '</h1><h2>' + (pengge.cookie.get("school") || "中山大学南方学院") + '</h2>'
 
     pengge.post("/images/user_ui", "",
     function(data) {

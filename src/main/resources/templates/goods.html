@@ -146,7 +146,7 @@ function(data) {
 
     var data_arr = JSON.parse(data),hpic= doc.getElementById("picture");
 	is_want_by=(data_arr['is_want_by']!==0)?true:false;
-    doc.title = data_arr["goods_name"].substr(0, 20) + ((data_arr["goods_name"][20] === "") ? "": "…") + " - 南风共享";
+    doc.title = pengge.nanfenggx.font_len(data_arr["goods_name"], 30) + " - 南风共享";
 	    if (uid !== null) {
         doc.getElementById("layer").style.display = "block";
         doc.getElementById("message_login").style.display = "none";
@@ -160,13 +160,12 @@ function(data) {
 	}else{
 		hpic.style.height="0";
 	}
-
     doc.getElementById("title").innerHTML = data_arr["goods_name"];
     doc.getElementById("price").innerHTML = data_arr["price"] / 100;
     doc.getElementById("page_views").innerHTML += data_arr["page_views"];
     doc.getElementById("content").innerHTML = data_arr["content"];
     doc.getElementById("buy_now").innerHTML = ((uid === null) ? "<span><a href='/sign_in'>登录</a>后才能"+(is_want_by?"购买":"发布")+"商品哦！</span>": ("<span>请自行联系"+(is_want_by?"卖":"买")+"家：<br>" + data_arr["contact"] + "</span>"));
-    doc.getElementById("promulgator_info").innerHTML = '<span class="portrait" style="background-image: url(http://pic.zdnfbbs.cn/' + data_arr["head_pic"] + ')"></span><b>' + data_arr["nick_name"] + '</b><p>' + (data_arr["school"] || "中山大学南方学院") + '</p>';
+    doc.getElementById("promulgator_info").innerHTML = '<span class="portrait" style="background-image: url(http://pic.zdnfbbs.cn/' + data_arr["head_pic"] + ')"></span><b>' + pengge.nanfenggx.font_len(data_arr["nick_name"],20)+ '</b><p>' + (data_arr["school"] || "中山大学南方学院") + '</p>';
     doc.getElementById("write_message").dataset.uid = data_arr["uid"];
     doc.getElementById("transaction").innerHTML = '<th>' + data_arr["selling"] + '</th><th>' + data_arr["release_num"] + '</th>';
     get_message_num();
@@ -195,29 +194,12 @@ function get_message_num() {
 }
 function get_message() {
 
-    var get_time = function(time) {
-        time = (Date.parse(new Date()) / 1000) - time;
-        if (time <= 0) {
-            return "刚刚";
-        }
-        if (time < 60) {
-            return time + "秒前";
-        }
-        if (time < 3600) {
-            return Math.floor(time / 60) + "分钟前";
-        }
-        if (time < 86400) {
-            return Math.floor(time / 3600) + "小时前";
-        }
-
-        return Math.floor(time / 86400) + "天前";
-    }
     pengge.post(doname + "/public/message/get-by-gid?gid=" + gid + "&page=" + page_num * 10, "",
     function(data) {
         var out = "",
         data_arr = JSON.parse(data);
         for (var j = 0; j < data_arr.length; j++) {
-            out += '<div><span class="portrait" style="background-image: url(http://pic.zdnfbbs.cn/' + data_arr[j]["head_pic"] + ')"></span><b>' + data_arr[j]["nick_name"] + '</b><h6>' + get_time(data_arr[j]["release_time"] / 1000) + '</h6><br><h5 onClick="reply(' + data_arr[j]["uid"] + ',\'' + data_arr[j]["nick_name"] + '\')">' + data_arr[j]["content"] + '<br>&nbsp;</h5></div>';
+            out += '<div><span class="portrait" style="background-image: url(http://pic.zdnfbbs.cn/' + data_arr[j]["head_pic"] + ')"></span><b>' + pengge.nanfenggx.font_len(data_arr[j]["nick_name"],16) + '</b><h6>' + pengge.get_time(data_arr[j]["release_time"] / 1000) + '</h6><br><h5 onClick="reply(' + data_arr[j]["uid"] + ',\'' + pengge.nanfenggx.font_len(data_arr[j]["nick_name"],16) + '\')">' + data_arr[j]["content"] + '<br>&nbsp;</h5></div>';
         }
         if (!message_finish) {
             hmessage.innerHTML += out;

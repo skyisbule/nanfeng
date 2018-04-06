@@ -1,6 +1,7 @@
 package com.nanfenggongxiang.Controller.Front;
 
 import cn.hutool.core.util.HashUtil;
+import com.google.gson.Gson;
 import com.nanfenggongxiang.Dao.InfoMapper;
 import com.nanfenggongxiang.Domain.Info;
 import com.nanfenggongxiang.Domain.InfoExample;
@@ -54,7 +55,9 @@ public class userController {
             response.addCookie(passwdCookie);
             response.addCookie(headCookie);
             //response.addCookie(nickCookie);
-            return "success";
+            user.setPasswd(null);
+            Gson gson = new Gson();
+            return gson.toJson(user);
 
         }
         return "wrongPassword";
@@ -106,13 +109,13 @@ public class userController {
      * @return
      */
     @ApiOperation("判断该手机号有没有被注册")
-    @RequestMapping("/public/hasTelNum")
+    @RequestMapping(value = "/public/hasTelNum",method = RequestMethod.GET)
     public String hasTel(String tel){
         InfoExample e = new InfoExample();
         e.createCriteria()
-                .andNickNameEqualTo(tel);
+                .andTelNumEqualTo(tel);
         List<Info> users = dao.selectByExample(e);
-        if (users.isEmpty())
+        if (users.size()==0)
             return "not exist";
         else
             return "hasExist";

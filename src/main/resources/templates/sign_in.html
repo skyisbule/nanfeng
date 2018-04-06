@@ -95,14 +95,17 @@ doc.getElementById("post").onclick = function() {
     this.disabled = true;
     pengge.post(doname + "/login", post_data,
     function(data) {
-        if (data === "success") {
-            var referrer = document.referrer;
-            location.href = (referrer == "" || referrer.indexOf("/sign_in") >= 0) ? "/": referrer + ((referrer.indexOf("?") >= 0) ? "&": "?") + Math.random();
-        } else {
-            document.getElementById("tip").style.display = "";
-            doc.getElementById("post").disabled = false;
-        }
-
+		if(data[0]==="{"){
+		var arr=JSON.parse(data),referrer = document.referrer;
+			pengge.cookie.set("nickName",arr["nickName"],31104000,"/");
+			pengge.cookie.set("headPic",arr["headPic"],31104000,"/");
+			pengge.cookie.set("uid",arr["uid"],31104000,"/");
+        location.href = (referrer == "" || referrer.indexOf("/sign_in") >= 0) ? "/": referrer + ((referrer.indexOf("?") >= 0) ? "&": "?") + Math.random();	
+		}else{
+			
+		 document.getElementById("tip").style.display = "";
+            doc.getElementById("post").disabled = false;	
+		}
     });
 
 }
