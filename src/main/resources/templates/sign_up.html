@@ -76,7 +76,7 @@ body {
 <script type="text/javascript">
 "use strict";
 sign("注册");
-var doname="http://8v8cc9.natappfree.cc",
+var doname="http://nanfeng.s1.natapp.link",
 doc=document;	
 doc.getElementById("post").onclick = function() {
     var dom1,post_data="";
@@ -85,7 +85,7 @@ doc.getElementById("post").onclick = function() {
 	dom1=doc.getElementById("pwd");if(dom1.value===""){active(dom1);return;}else{post_data+="&passwd="+pengge.html_encode(dom1.value);}
 pengge.post(doname+"/regist",post_data+"&signature=我爱南风、我爱分享&headPic=Fo68xdhE-LcKvE_l9c2Gs1hhpbos",function(data){
 if(data==="success"){
-	location.href="/";
+	location.href="/sign_in?"+Math.random();
 }else{document.getElementById("tip").style.display="";doc.getElementById("post").disabled=false;}
 	
 });

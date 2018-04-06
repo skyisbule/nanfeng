@@ -74,7 +74,7 @@ body {
 <script type="text/javascript">
 "use strict";
 	sign("登录");
-var doname="http://8v8cc9.natappfree.cc",
+var doname="http://nanfeng.s1.natapp.link",
 doc=document;	
 doc.getElementById("post").onclick = function() {
     var dom1,post_data="";
@@ -83,7 +83,8 @@ doc.getElementById("post").onclick = function() {
 	this.disabled="disabled";
 pengge.post(doname+"/login",post_data,function(data){
 	if(data==="success"){
-		location.href="/";
+		var referrer=document.referrer;
+		location.href=(referrer==""||referrer.indexOf("/sign_in")>=0)?"/":referrer+((referrer.indexOf("?")>=0)?"&":"?")+Math.random();
 	}else{document.getElementById("tip").style.display="";doc.getElementById("post").disabled=false;}
 	
 });

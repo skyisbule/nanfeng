@@ -20,10 +20,10 @@ body {position:absolute;background-color:rgb(240,240,240);width: 100vw!important
 #choose span{position: absolute;width: 40vw;height: 8.3vw;background-color: rgb(240,240,240);border: 0.2vw solid #888;border-bottom:0;bottom: -0.3vw;z-index: 101;border-top-left-radius:5vw;border-top-right-radius:5vw;}
 #choose .un{background-color: rgba(0,0,0,0.2);bottom: 0;height: 8vw;}
 #goods{position: absolute;top:140vw;}
-.card{display:block;position: relative; width: 94vw;margin: 3vw;margin-top: 10vw; border-radius: 3vw;background-color: #fff;overflow: hidden;box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);text-decoration:none;color:#222}
-.card div{position: absolute;height: 30vw;top: 15vw;margin: 2vw;box-shadow:0 0 1vw 0 #555}
+.card{display:block;position: relative; width: 94vw;margin: 3vw;margin-top: 5vw; border-radius: 3vw;background-color: #fff;overflow: hidden;box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);text-decoration:none;color:#222}
+.card div{height: 30vw;top: 15vw;margin: 2vw;text-align: center;margin-top: 20vw; white-space: nowrap;}
 .card p{position: absolute;width: 78vw;height: 30vw; top: 15vw;left: 8vw;color: #555;overflow: hidden;font-size: 4.5vw;}
-.card img{height: 30vw;margin: 0;display:block; float:left}
+.card img{height: 28vw;margin: 0;margin-right: 1vw;margin-left: 1vw; display:block; float:left;box-shadow:0 0 1vw 0 #555;opacity: 0;-webkit-transition: .5s;transition: .5s;}
 h1,h2,h3,h4,h5,h6{-webkit-margin-before: 0!important;-webkit-margin-after: 0!important;-webkit-margin-start: 0!important;-webkit-margin-end: 0!important;}
 .card h1{position: absolute;left:  5vw;top:    5.0vw;font-size: 5.1vw;font-weight:800;color: #333;}
 .card h2{position: absolute;right: 4vw;top:    5.8vw;font-size: 4.1vw;font-weight:300;color: #bbb;}
@@ -76,7 +76,7 @@ h1,h2,h3,h4,h5,h6{-webkit-margin-before: 0!important;-webkit-margin-after: 0!imp
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
 <script type="text/javascript">
 	"use strict";
-var doname="http://8v8cc9.natappfree.cc",
+var doname="http://nanfeng.s1.natapp.link",
 doc = document,
 page_num = 0,
 goods_type = 2,
@@ -131,16 +131,17 @@ function get_goods() {
 
    var get_time=function(time) {
         time = (Date.parse(new Date()) / 1000) - time;
-        if (time < 60) {
-            return time + "秒";
+       	   if(time<=0){ return "刚刚";}
+ if (time < 60) {
+            return time + "秒前";
         }
         if (time < 3600) {
-            return Math.floor(time / 60) + "分钟";
+            return Math.floor(time / 60) + "分钟前";
         }
         if (time < 86400) {
-            return Math.floor(time / 3600) + "小时";
+            return Math.floor(time / 3600) + "小时前";
         }
-        return Math.floor(time / 86400) + "天";
+        return Math.floor(time / 86400) + "天前";
     }
     pengge.post(doname+"/public/commodity/get-with-info-by-page", "isWantBy=" + isWantBy/*((isWantBy+3)%2)*/ + "&goodsType=" + goods_type + "&page=" + page_num*10+"&isSellOut=0",
     function(data) {
@@ -150,14 +151,15 @@ function get_goods() {
 		
         for (var j = 0; j < data_arr.length; j++) {
 			
-            out += '<a name="card" class="card goods" target="view_window" href="goods?gid='+data_arr[j]["gid"]+'"><h1>' + data_arr[j]["goods_name"].substr(0,12)+((data_arr[j]["goods_name"][12])?"…":"")+ '</h1><h2>' + get_time(data_arr[j]["release_time"]/1000) + '前</h2><div>';
+            out += '<a name="card" class="card goods" target="view_window" href="goods?gid='+data_arr[j]["gid"]+'"><h1>' + data_arr[j]["goods_name"].substr(0,12)+((data_arr[j]["goods_name"][12])?"…":"")+ '</h1><h2>' + get_time(data_arr[j]["release_time"]/1000) + '</h2><div>';
 			data_arr[j]["picture"]=JSON.parse(data_arr[j]["picture"]);
-			pic_len=(data_arr[j]["picture"].length.length>=3)?3:data_arr[j]["picture"].length;
+			pic_len=(data_arr[j]["picture"].length>=3)?3:data_arr[j]["picture"].length;
             for (var i = 0; i < pic_len; i++) {
-                out += '<img style="width:'+100/pic_len+'%" src="http://pic.zdnfbbs.cn/' + data_arr[j]["picture"][i] + '"alt=""/>';
+                out += '<img onload="img_onload(this)" src="http://pic.zdnfbbs.cn/' + data_arr[j]["picture"][i] + '"alt=""/>';
+                //out += '<img style="width:'+100/pic_len+'%" src="http://pic.zdnfbbs.cn/' + data_arr[j]["picture"][i] + '"alt=""/>';
             }
             out += '</div>';
-			if(i===0){out +='<p>'+data_arr[j]["contents"]+'</p>'}
+			if(i===0){out +='<p>'+data_arr[j]["content"]+'</p>'}
 			out += '<span style="background-image:url(http://pic.zdnfbbs.cn/' + data_arr[j]["head_pic"] + ')"></span><h3>' + data_arr[j]["nick_name"] + '</h3><h4>' +( data_arr[j]["school"]||"中山大学南方学院") + '</h4><h5>' + ((data_arr[j]["is_sell_out"]===0)?"正在销售":"已下架") + '</h5><h6><svg viewBox="0 0 1024 1024"><path d="M512.3072 788.7872c-127.6928 0-251.2896-33.28-347.8528-93.7984C70.2464 635.904 16.2816 559.4112 16.2816 484.9664c0-74.4448 54.0672-150.9376 148.2752-210.0224 96.5632-60.5184 220.16-93.7984 347.8528-93.7984s251.2896 33.28 347.8528 93.7984c94.208 58.9824 148.2752 135.5776 148.2752 210.0224 0 74.4448-54.0672 150.9376-148.2752 210.0224C763.5968 755.5072 640.1024 788.7872 512.3072 788.7872zM512.3072 214.528c-121.5488 0-238.7968 31.5392-330.1376 88.7808C99.2256 355.328 49.664 423.2192 49.664 484.9664c0 61.7472 49.5616 129.6384 132.608 181.6576 91.3408 57.2416 208.5888 88.7808 330.1376 88.7808s238.7968-31.5392 330.1376-88.7808c83.0464-52.0192 132.608-119.9104 132.608-181.6576 0-61.7472-49.5616-129.6384-132.608-181.6576C751.104 246.0672 633.856 214.528 512.3072 214.528z"p-id="3395"></path><path d="M512.3072 650.0352c-90.9312 0-164.9664-74.0352-164.9664-164.9664s74.0352-164.9664 164.9664-164.9664c90.9312 0 164.9664 74.0352 164.9664 164.9664S603.3408 650.0352 512.3072 650.0352zM512.3072 354.5088c-71.9872 0-130.56 58.5728-130.56 130.56 0 71.9872 58.5728 130.56 130.56 130.56 71.9872 0 130.56-58.5728 130.56-130.56C642.8672 412.9792 584.2944 354.5088 512.3072 354.5088z"p-id="3396"></path><path d="M427.6224 506.2656c-9.3184 0-16.9984-7.4752-17.2032-16.7936-0.7168-29.696 11.776-57.856 34.304-77.312 7.168-6.2464 18.1248-5.4272 24.2688 1.7408 6.2464 7.168 5.4272 18.1248-1.7408 24.2688-14.6432 12.5952-22.8352 31.0272-22.3232 50.3808 0.2048 9.5232-7.2704 17.408-16.7936 17.6128C427.8272 506.2656 427.7248 506.2656 427.6224 506.2656z"p-id="3397"></path></svg>' + data_arr[j]["page_views"] + '</h6></a>';
         }
 		 hgoods.innerHTML += out;
@@ -172,7 +174,10 @@ function get_goods() {
 
     });
 }
-
+function img_onload(a){
+	if(a.offsetTop<doc.body.clientWidth*0.3){a.style.opacity="1";}else{a.style.display="none"}
+	
+}
 doc.onscroll = function() {
     var top = doc.documentElement.scrollTop || doc.body.scrollTop,
     vw = doc.body.clientWidth;

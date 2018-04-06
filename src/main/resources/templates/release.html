@@ -9,7 +9,7 @@
 
 		*{tap-highlight-color:rgba(0, 0, 0,0);-webkit-tap-highlight-color:transparent;outline:none}
 		body {position:absolute;background-color:rgb(240,240,240);width:100%;margin: 0; overflow-x:hidden}
-#choose{position: absolute;width: 100vw;top: -5vw;left: 0;height: 17vw;background-color: #fff;z-index: 100;border-bottom: 0.3vw solid #888;text-align: center;line-height: 8vw;font-size: 4vw;box-shadow:-2vw -4vw 1vw -4vw #555 inset;}
+#choose{position: absolute;width: 100vw;top: -5vw;left: 0;height: 17vw;background-color: #fff;z-index: 300;border-bottom: 0.3vw solid #888;text-align: center;line-height: 8vw;font-size: 4vw;box-shadow:-2vw -4vw 1vw -4vw #555 inset;}
 #choose span{position: absolute;width: 40vw;height: 8.3vw;background-color: rgb(240,240,240);border: 0.2vw solid #888;border-bottom:0;bottom: -0.3vw;z-index: 101;border-top-left-radius:5vw;border-top-right-radius:5vw;}
 #choose .un{background-color: rgba(0,0,0,0.2);bottom: 0;height: 8vw;}
 		.card{position: relative; width: 94vw;margin: 3vw;border-radius: 3vw;background-color: #fff;overflow: hidden;box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);}
@@ -30,10 +30,11 @@
 		#price span{position: absolute;right: 3.5vw; top: 0;height: 12vw;line-height: 12vw; font-size: 5vw;}
 		#post{top: 10vw;height: 15vw;background-color: rgba(200,0,0,1.00);color: #fff;border: 0;font-size: 6vw;}
 		.active{box-shadow:0 0 1vw 0 rgba(255,0,0,1);}
-		
+		#layer{position: fixed;display: block; left: 0;top: 0;height:100%;width: 100%;z-index: 299;}
 	</style>
 </head>
 <body>
+	<a id="layer" target="new" href="/sign_in"></a>
 <div id="choose">
 	<span style="left: 5vw" onClick="choose(true,this) ">发布闲置</span>
 	<span style="right:5vw" onClick="choose(false,this)" class="un">发布需求</span>
@@ -83,9 +84,9 @@
 <script type="text/javascript" src="/js/img_upload.js"></script>
 <script>
 "use strict";
-var doname="http://8v8cc9.natappfree.cc",
+var doname="http://nanfeng.s1.natapp.link",
 pic_len=0,doc=document,dom_arr=[doc.getElementById("title").getElementsByTagName("input")[0],doc.getElementById("content").getElementsByTagName("textarea")[0],doc.getElementById("add_pic"),doc.getElementById("goods_type").getElementsByTagName("select")[0],doc.getElementById("condition").getElementsByTagName("select")[0],doc.getElementById("price").getElementsByTagName("input")[0]];  
-
+if(pengge.cookie.get("uid")!==null){doc.getElementById("layer").style.display="none"}
 doc.getElementById("upload").onchange=function(){if(!this.files||!this.files[0]||pic_len>9){return};pic_len++;var b=doc.createElement("img"),z=doc.createElement("a");z.dataset.id=pic_len;b.style.left=(pic_len*25+4)+"vw";z.style.left=(pic_len*25+4)+"vw";b.src="images/loading.gif";dom_arr[2].appendChild(b);dom_arr[2].appendChild(z);var a=new FileReader();a.onload=function(c){var e=c.target.result,d=new Image();d.src=e;d.onload=function(){var n=this,g=1280,m=g*n.height/n.width;var k=doc.createElement("canvas"),o=doc.createAttribute("width");o.nodeValue=g;var i=doc.createAttribute("height");i.nodeValue=m;k.setAttributeNode(o);k.setAttributeNode(i);k.getContext("2d").drawImage(n,0,0,g,m);var f=k.toDataURL("image/jpg",0.3);b.src=((f.length>e.length)?e:f)}};a.readAsDataURL(this.files[0])}; 
 	
 dom_arr[2].onclick=function(b){var d=b.target.dataset.id;if(d!==undefined){d=parseInt(d)-1;var a=dom_arr[2].getElementsByTagName("img"),c=dom_arr[2].getElementsByTagName("a");this.removeChild(b.target);this.removeChild(a[d]);pic_len--;for(;d<pic_len;d++){a[d].style.left=((d+1)*25+4)+"vw";c[d].style.left=((d+1)*25+4)+"vw";c[d].dataset.id=(d+1)}}}; 

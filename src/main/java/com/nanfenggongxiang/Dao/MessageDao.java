@@ -19,6 +19,7 @@ public interface MessageDao {
     @Select("select message.*,info.nick_name,info.head_pic,info.uid " +
             "from message join info on message.releaser = info.uid " +
             "where message.gid = ${gid} " +
+            "order by mid desc "+
             "limit ${page},10 ")
     public List<Map<String,Object>> getMessageByPageWithInfo(@Param("page")int page,
                                                              @Param("gid") int gid);

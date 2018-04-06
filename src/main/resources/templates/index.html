@@ -62,7 +62,7 @@ function bottom_click(ad){
 	
 	a.style.color="#f00";
 	a.getElementsByTagName("path")[0].style.fill="#f00";
-	ifr.src="/"+a.id;
+	ifr.src="/"+a.id+".html";
 	ifr.dataset.id=a.id;
 	window.history.pushState({},0,location.pathname+"?u=0&page="+a.id+"&dl=0");
 	doc.title=a.getElementsByTagName("b")[0].innerHTML+" - 南风共享";
