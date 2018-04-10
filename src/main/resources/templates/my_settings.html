@@ -5,86 +5,55 @@
 <meta charset="utf-8">
 <title>个人设置&nbsp;-&nbsp;南风共享</title>
 <style type="text/css">
-input{-webkit-appearance:none;margin: 0;padding: 0}
-
-* {
-	tap-highlight-color:rgba(0,0,0,0);
-	-webkit-tap-highlight-color:transparent;
-	outline:none;
-	font-family: Arial, Helvetica, sans-serif;
-}
-	body {
-	position:absolute;
-	background-color:rgb(240,240,240);
-	width:100%;
-	height:100%;
-	margin:0;
-	overflow-x:hidden
-}
-	
-.card {
-	position:relative;
-	width:94vw;	
-	margin:3vw;
-	margin-top: 12vw;
-	border-radius:3vw;
-	background-color:#fff;
-	box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);
-}
-
-#post {
-	height:15vw;
-	background-color:rgba(200,0,0,1.00);
-	color:#fff;
-	border:0;
-	font-size:6vw;
-}
-
-.card input,textarea {
-	width:90vw;
-	height:8vw;
-	margin:2vw;
-	border:0;
-	font-size:5.3vw
-}
-	textarea{height:38vw;}
-	.card span{position: absolute;left: 3vw;top: -7vw;height: 6vw;line-height: 6vw;font-size: 4vw;}
-.active{
-	box-shadow:0 0 1vw 0 rgba(255,0,0,1);
-}
-	#headPic{position: relative;width:94vw;height: 20vw; margin:3vw;margin-top: 20vw;}
-	#headPic b{position: absolute;display: block;left: 3vw;height: 20vw;line-height: 20vw;font-size: 6vw;}
-	#headPic div{position: absolute;top: 0;right: 10vw;overflow: hidden;width: 20vw;height: 20vw;z-index: 10;opacity: 0}
-	#headPic input{display: block;width: 30vw;height: 30vw;}
-	#headPic img{position: absolute;top: 0;right: 10vw;overflow: hidden;width: 20vw;height: 20vw;z-index: 1;border-radius: 100%;box-shadow:0 0 2vw 0 rgba(100,100,100,1);}
+input {-webkit-appearance:none;margin:0;padding:0}
+* {tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;outline:none;font-family:Arial,Helvetica,sans-serif;}
+body {position:absolute;background-color:rgb(240,240,240);width:100%;height:100%;margin:0;overflow-x:hidden}
+.card {position:relative;width:94vw;margin:3vw;margin-top:12vw;border-radius:3vw;background-color:#fff;box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);}
+#post {height:15vw;background-color:rgba(200,0,0,1.00);color:#fff;border:0;font-size:6vw;}
+.card input,textarea {width:90vw;height:8vw;margin:2vw;border:0;font-size:5.3vw}
+textarea {height:38vw;}
+.card span {position:absolute;left:3vw;top:-7vw;height:6vw;line-height:6vw;font-size:4vw;}
+.active {box-shadow:0 0 1vw 0 rgba(255,0,0,1);}
+#headPic {position:relative;width:94vw;height:20vw;margin:3vw;margin-top:20vw;}
+#headPic b {position:absolute;display:block;left:3vw;height:20vw;line-height:20vw;font-size:6vw;}
+#headPic div {position:absolute;top:0;right:10vw;overflow:hidden;width:20vw;height:20vw;z-index:10;opacity:0}
+#headPic input {display:block;width:30vw;height:30vw;}
+#headPic img {position:absolute;top:0;right:10vw;overflow:hidden;width:20vw;height:20vw;z-index:1;border-radius:100%;box-shadow:0 0 2vw 0 rgba(100,100,100,1);}
 </style>
 </head>
 <body>
-  <div id="headPic">
-    <b>头像：</b>
-    <div>
-      <input id="upload" type="file" accept="image/*" /></div>
-    <img id="showHeadPic" src="data:image/jpeg;base64," alt="" /></div>
-  <div class="card">
-    <span>昵称：</span>
-    <input id="nickName" type="text" placeholder="请输入您的昵称" maxlength="60"></div>
-  <div class="card">
-    <span>真实名字：</span>
-    <input id="realName" type="text" placeholder="请输入您的真实名字" maxlength="5" onFocus="pengge.input.check('ch',this)"></div>
-  <div class="card">
-    <span>手机号码：</span>
-    <input id="telNum" type="text" onFocus="pengge.input.check('num',this)" onBlur="check_input('phone',this)" placeholder="请输入您的手机号码" maxlength="11"></div>
-  <div class="card">
-    <span>邮箱地址：</span>
-    <input id="email" type="text" onBlur="check_input('email',this)" placeholder="请输入您的邮箱地址" maxlength="30"></div>
-  <div class="card">
-    <span>默认联系方式：（买家拍下后会看到这里的内容）</span>
-    <input id="contact" type="text" placeholder="请输入您的默认联系方式" maxlength="60"></div>
-  <div class="card">
-    <span>个性签名：</span>
-    <textarea id="signature" type="text" placeholder="请输入您的个性签名" maxlength="100"></textarea>
-  </div>
-  <input id="post" class="card" type="button" value="确&nbsp;&nbsp;&nbsp;定">
+	<div id="headPic">
+		<b>头像：</b>
+		<div>
+			<input id="upload" type="file" accept="image/*" />
+		</div>
+		<img id="showHeadPic" src="data:image/jpeg;base64," alt="" />
+	</div>
+	<div class="card">
+		<span>昵称：</span>
+		<input id="nickName" type="text" placeholder="请输入您的昵称" maxlength="60">
+	</div>
+	<div class="card">
+		<span>真实名字：</span>
+		<input id="realName" type="text" placeholder="请输入您的真实名字" maxlength="5" onFocus="pengge.input.check('ch',this)">
+	</div>
+	<div class="card">
+		<span>手机号码：</span>
+		<input id="telNum" type="text" onFocus="pengge.input.check('num',this)" onBlur="check_input('phone',this)" placeholder="请输入您的手机号码" maxlength="11">
+	</div>
+	<div class="card">
+		<span>邮箱地址：</span>
+		<input id="email" type="text" onBlur="check_input('email',this)" placeholder="请输入您的邮箱地址" maxlength="30">
+	</div>
+	<div class="card">
+		<span>默认联系方式：（买家拍下后会看到这里的内容）</span>
+		<input id="contact" type="text" placeholder="请输入您的默认联系方式" maxlength="60">
+	</div>
+	<div class="card">
+		<span>个性签名：</span>
+		<textarea id="signature" type="text" placeholder="请输入您的个性签名" maxlength="100"></textarea>
+	</div>
+	<input id="post" class="card" type="button" value="确&nbsp;&nbsp;&nbsp;定">
 </body>
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
 <script type="text/javascript" src="/js/img_upload.js"></script>
@@ -92,11 +61,14 @@ input{-webkit-appearance:none;margin: 0;padding: 0}
 <script type="text/javascript">
 "use strict";
 sign("个人设置");
-var doname = "http://nanfeng.s1.natapp.link",
-doc = document,
+var doc = document,
 list = ["nickName", "realName", "telNum", "email", "contact", "signature"],
-old_user_arr=[];
-if(pengge.cookie.get("uid")===null){location.href="/sign_in"}
+old_user_arr=[],
+hpost=doc.getElementById("post"),
+dom3=doc.getElementById("nickName");
+if(pengge.cookie.get("uid")===null){
+	location.href="/sign_in"
+}
 doc.getElementById("upload").onchange = function() {
     if (!this.files || !this.files[0]) {
         return
@@ -126,33 +98,53 @@ doc.getElementById("upload").onchange = function() {
     };
     a.readAsDataURL(this.files[0])
 };
-pengge.post(doname + "/public/user/get-info-by-id", "uid=" + pengge.cookie.get("uid"),
+pengge.post("/public/user/get-info-by-id", "uid=" + pengge.cookie.get("uid"),
 function(data) {
+	var d;
     old_user_arr = JSON.parse(data);
     doc.getElementById("showHeadPic").src = "http://pic.zdnfbbs.cn/" + old_user_arr["headPic"];
     for (var i = 0; i < list.length; i++) {
-        doc.getElementById(list[i]).value = old_user_arr[list[i]];
+		d=old_user_arr[list[i]];
+		if(d==="null"||d===null){old_user_arr[list[i]]="";continue;}
+        doc.getElementById(list[i]).value = d;
     }
 
 });
 function check_input(type, dom) {
-    console.log(type, dom);
     if (!pengge.input.test(type, dom.value)) {
         dom.focus();
         pengge.nanfenggx.active(dom);
     }
 
 }
-doc.getElementById("post").onclick = function() {
+dom3.onblur=function(){
+	if (dom3.value!==""&&dom3.value!==old_user_arr["nickName"]){
+    pengge.post("/public/hasNickName","nickName="+pengge.html_encode(dom3.value),function(d){
+		var dom=dom3.parentNode.getElementsByTagName("span")[0];
+		if(d==="hasExist"){
+			dom.innerHTML="昵称 - 该昵称已存在";
+			dom.style.color="#f00";
+            hpost.disabled = true;
+			pengge.nanfenggx.active(dom3);
+		}else{
+			dom.innerHTML="昵称";
+			dom.style.color="";
+            hpost.disabled = false;
+		}
+	});   
+    
+	}
+}
+hpost.onclick = function() {
     var dom;
-    this.disabled = true;
+    
     this.value = "正在提交"
     this.style.backgroundColor = "#888";
     for (var i = 0; i < list.length; i++) {
         dom = doc.getElementById(list[i]);
 
         if (dom.value === "") {
-            if (old_user_arr[list[i]] === null) {
+            if (old_user_arr[list[i]] === null||old_user_arr[list[i]] === "") {
                 continue;
             } else {
                 pengge.nanfenggx.active(dom);
@@ -165,10 +157,10 @@ doc.getElementById("post").onclick = function() {
         }
 
     }
-
+	this.disabled = true;
     if (doc.getElementById("showHeadPic").src[0] === "d") {
         var b = doc.getElementById("headPic").getElementsByTagName("img");
-        pengge.post(doname + "/public/pic/token?fileName=" + Math.random(), "",
+        pengge.post("/public/pic/token?fileName=" + Math.random(), "",
         function(g) {
             img_upload(b, g,
             function(h) {
@@ -186,12 +178,12 @@ function post() {
     for (var x in old_user_arr) {
         data += "&" + x + "=" + old_user_arr[x];
     }
-    pengge.post(doname + "/private/user/update", data,
+    pengge.post("/private/user/update", data,
     function(d) {
         if (d === "success") {
 			pengge.cookie.set("nickName",old_user_arr["nickName"],31104000,"/");
 			pengge.cookie.set("headPic",old_user_arr["headPic"],31104000,"/");
-			location.href="/?u=0&page=user&dl=0";
+			location.href="/?page=user&";
         }
     })
 }

@@ -5,46 +5,39 @@
 <meta charset="utf-8">
 <title>主页&nbsp;-&nbsp;南风共享</title>
 <style type="text/css">
-input::-webkit-input-placeholder{color:#555}
-input{-webkit-appearance:none;margin: 0;padding: 0}
-
-* {
-	tap-highlight-color:rgba(0,0,0,0);
-	-webkit-tap-highlight-color:transparent;
-	outline:none;
-	font-family: Arial, Helvetica, sans-serif;
-}
-	
-body {position:absolute;background-color:rgb(240,240,240);width: 100vw!important;height:100%;margin: 0; overflow-x:hidden}
-#top{position:absolute;width: 100%;height: 60vw;top: 0;left: 0; background-color: #fff;z-index: 102}
-#search{position: absolute;margin: 4vw;width: 92vw;height: 10vw; top: 0;left: 0;border-radius: 5vw;z-index: 106; background-color: rgba(200,200,200,0.7)}
-#search svg{position: absolute;width: 5vw;height: 5vw; top: 2.5vw;left: 4vw;fill:#222}
-#search input{position: absolute;width: 73vw;height: 8vw; top: 1vw;left: 12vw;background-color:transparent;border: 0;font-size: 4.5vw;line-height: 8vw;color: #222}
-#news{position: absolute;width: 100vw;height: 52vw; top:0;left: 0;background-size:100% 100%;background-repeat:no-repeat;z-index: 105; background-image: url(https://gss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/4610b912c8fcc3ce80e483a29a45d688d43f207e.jpg)}
-#notice{position: absolute;width: 100vw;height: 6vw; top:54vw;left: 0;background-color: rgba(255,255,190,1.00)}
-#notice svg{position: absolute;width: 4vw;height: 4vw; top: 1vw;left: 1vw;fill:#f00}
-#choose{position: absolute;width: 100vw;top: 55vw;left: 0;height: 17vw;background-color: #fff;z-index: 100;border-bottom: 0.3vw solid #888;text-align: center;line-height: 8vw;font-size: 4vw;box-shadow:-2vw -4vw 1vw -4vw #555 inset;}
-#choose span{position: absolute;width: 40vw;height: 8.3vw;background-color: rgb(240,240,240);border: 0.2vw solid #888;border-bottom:0;bottom: -0.3vw;z-index: 101;border-top-left-radius:5vw;border-top-right-radius:5vw;}
-#choose .un{background-color: rgba(0,0,0,0.2);bottom: 0;height: 8vw;}
-#goods{position: absolute;top:140vw;}
-.card{display:block;position: relative; width: 94vw;margin: 3vw;margin-top: 5vw; border-radius: 3vw;background-color: #fff;overflow: hidden;box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);text-decoration:none;color:#222}
-.card div{height: 30vw;top: 15vw;margin: 2vw;text-align: center;margin-top: 20vw; white-space: nowrap;}
-.card p{position: absolute;width: 78vw;height: 30vw; top: 15vw;left: 8vw;color: #555;overflow: hidden;font-size: 4.5vw;}
-.card img{height: 28vw;margin: 0;margin-right: 1vw;margin-left: 1vw; display:block; float:left;box-shadow:0 0 1vw 0 #555;opacity: 0;-webkit-transition: .5s;transition: .5s;}
-h1,h2,h3,h4,h5,h6{-webkit-margin-before: 0!important;-webkit-margin-after: 0!important;-webkit-margin-start: 0!important;-webkit-margin-end: 0!important;}
-.card h1{position: absolute;left:  5vw;top:    5.0vw;font-size: 5.1vw;font-weight:800;color: #333;}
-.card h2{position: absolute;right: 4vw;top:    5.8vw;font-size: 4.1vw;font-weight:300;color: #bbb;}
-.card h3{position: absolute;left: 17vw;bottom: 9.9vw;font-size: 4.5vw;font-weight:500;}
-.card h4{position: absolute;left: 17vw;bottom: 4.5vw;font-size: 3.5vw;font-weight:300;}
-.card h5{position: absolute;right: 4vw;bottom: 9.9vw;font-size: 4.5vw;font-weight:500;color: rgb(170,0,0)}
-.card h6{position: absolute;right: 4vw;bottom: 3.8vw;font-size: 4.1vw;font-weight:300;height: 6vw;line-height: 6vw;vertical-align:middle;}
-.card h6 svg{width: 6vw;height: 6vw;fill:#555;vertical-align:middle;margin-right: 1vw;}
-.card span{position: absolute;left: 3vw;bottom: 5vw;height: 11vw;width: 11vw;border-radius: 6vw; background-size:100% 100%;background-repeat:no-repeat;box-shadow:0 0 1vw 0 #555}
-#goods_type{top: 75vw;}
-#goods_type table{width: 84vw;margin: 5vw; text-align: center;color: #555;font-size: 4.5vw}
-#goods_type svg{width: 10vw;height: 10vw; fill:#555}
-.goods{height: 75vw;}
-#loading{position: absolute;background-color: transparent;box-shadow:0 0 0 0;font-size: 5vw;line-height: 30vw; text-align: center;bottom: -75vw;}
+input::-webkit-input-placeholder {color:#555}
+input {-webkit-appearance:none;margin:0;padding:0}
+* {tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;outline:none;font-family:Arial,Helvetica,sans-serif;}
+body {position:absolute;background-color:rgb(240,240,240);width:100vw!important;height:100%;margin:0;overflow-x:hidden}
+#top {position:absolute;width:100%;height:60vw;top:0;left:0;background-color:#fff;z-index:102}
+#search {position:absolute;margin:4vw;width:92vw;height:10vw;top:0;left:0;border-radius:5vw;z-index:106;background-color:rgba(200,200,200,0.7)}
+#search svg {position:absolute;width:5vw;height:5vw;top:2.5vw;left:4vw;fill:#222}
+#search input {position:absolute;width:73vw;height:8vw;top:1vw;left:12vw;background-color:transparent;border:0;font-size:4.5vw;line-height:8vw;color:#222}
+#news {position:absolute;width:100vw;height:52vw;top:0;left:0;background-size:100% 100%;background-repeat:no-repeat;z-index:105;background-image:url(https://gss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/4610b912c8fcc3ce80e483a29a45d688d43f207e.jpg)}
+#notice {position:absolute;width:100vw;height:6vw;top:54vw;left:0;background-color:rgba(255,255,190,1.00)}
+#notice svg {position:absolute;width:4vw;height:4vw;top:1vw;left:1vw;fill:#f00}
+#choose {position:absolute;width:100vw;top:55vw;left:0;height:17vw;background-color:#fff;z-index:100;border-bottom:0.3vw solid #888;text-align:center;line-height:8vw;font-size:4vw;box-shadow:-2vw -4vw 1vw -4vw #555 inset;}
+#choose span {position:absolute;width:40vw;height:8.3vw;background-color:rgb(240,240,240);border:0.2vw solid #888;border-bottom:0;bottom:-0.3vw;z-index:101;border-top-left-radius:5vw;border-top-right-radius:5vw;}
+#choose .un {background-color:rgba(0,0,0,0.2);bottom:0;height:8vw;}
+#goods {position:absolute;top:140vw;}
+.card {display:block;position:relative;width:94vw;margin:3vw;margin-top:5vw;border-radius:3vw;background-color:#fff;overflow:hidden;box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);text-decoration:none;color:#222}
+.card div {height:30vw;top:15vw;margin:2vw;text-align:center;margin-top:20vw;white-space:nowrap;}
+.card p {position:absolute;width:78vw;height:30vw;top:15vw;left:8vw;color:#555;overflow:hidden;font-size:4.5vw;}
+.card img {height:28vw;margin:0;margin-right:1vw;margin-left:1vw;display:block;float:left;box-shadow:0 0 1vw 0 #555;opacity:0;-webkit-transition:.5s;transition:.5s;}
+h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!important;-webkit-margin-start:0!important;-webkit-margin-end:0!important;}
+.card h1 {position:absolute;left:5vw;top:5.0vw;font-size:5.1vw;font-weight:800;color:#333;}
+.card h2 {position:absolute;right:4vw;top:5.8vw;font-size:4.1vw;font-weight:300;color:#bbb;}
+.card h3 {position:absolute;left:17vw;bottom:9.9vw;font-size:4.5vw;font-weight:500;}
+.card h4 {position:absolute;left:17vw;bottom:4.5vw;font-size:3.5vw;font-weight:300;}
+.card h5 {position:absolute;right:4vw;bottom:9.9vw;font-size:4.5vw;font-weight:500;color:rgb(170,0,0)}
+.card h6 {position:absolute;right:4vw;bottom:3.8vw;font-size:4.1vw;font-weight:300;height:6vw;line-height:6vw;vertical-align:middle;}
+.card h6 svg {width:6vw;height:6vw;fill:#555;vertical-align:middle;margin-right:1vw;}
+.card span {position:absolute;left:3vw;bottom:5vw;height:11vw;width:11vw;border-radius:6vw;background-size:100% 100%;background-repeat:no-repeat;box-shadow:0 0 1vw 0 #555}
+#goods_type {top:75vw;}
+#goods_type table {width:84vw;margin:5vw;text-align:center;color:#555;font-size:4.5vw}
+#goods_type svg {width:10vw;height:10vw;fill:#555}
+.goods {height:75vw;}
+#loading {position:absolute;background-color:transparent;box-shadow:0 0 0 0;font-size:5vw;line-height:30vw;text-align:center;bottom:-75vw;}
 </style>
 </head>
 <body>
@@ -83,8 +76,7 @@ h1,h2,h3,h4,h5,h6{-webkit-margin-before: 0!important;-webkit-margin-after: 0!imp
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
 <script type="text/javascript">
 "use strict";
-var doname = "http://nanfeng.s1.natapp.link",
-doc = document,
+var doc = document,
 page_num = 0,
 goods_type = 2,
 isWantBy = 1,
@@ -135,7 +127,7 @@ window.onload = function() {
 
 }
 function get_goods() {
-    pengge.post(doname + "/public/commodity/get-with-info-by-page", "isWantBy=" + isWantBy + "&goodsType=" + goods_type + "&page=" + page_num * 10 + "&isSellOut=0",
+    pengge.post("/public/commodity/get-with-info-by-page", "isWantBy=" + isWantBy + "&goodsType=" + goods_type + "&page=" + page_num * 10 + "&isSellOut=0",
     function(data) {
 		
         var out = "",
@@ -144,7 +136,7 @@ function get_goods() {
 
         for (var j = 0; j < data_arr.length; j++) {
 
-            out += '<a name="card" class="card goods" target="view_window" href="goods?gid=' + data_arr[j]["gid"] + '"><h1>' + pengge.nanfenggx.font_len(data_arr[j]["goods_name"], 10) + '</h1><h2>' + pengge.get_time(data_arr[j]["release_time"] / 1000) + '</h2>';
+            out += '<a name="card" class="card goods" target="view_window" href="goods?gid=' + data_arr[j]["gid"] + '"><h1>' + pengge.nanfenggx.font_len(data_arr[j]["goods_name"], 18) + '</h1><h2>' + pengge.get_time(data_arr[j]["release_time"] / 1000) + '</h2>';
 			if(data_arr[j]["picture"]===undefined){
 			 out += '<p>' + data_arr[j]["content"] + '</p>'	
 			}else{

@@ -1,9 +1,10 @@
 "use strict";
-var Agents=["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"];var flag=true;for(var v=0;v<Agents.length;v++){if(navigator.userAgent.indexOf(Agents[v])>0){flag=false;break}}if(flag){setTimeout(function(){document.write("抱歉，该网页不支持电脑访问。")},10)};
+var doname="http://nanfeng.heartqiu.cn",
+	Agents=["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"];var flag=true;for(var v=0;v<Agents.length;v++){if(navigator.userAgent.indexOf(Agents[v])>0){flag=false;break}}if(flag){setTimeout(function(){document.write("抱歉，该网页不支持电脑访问。")},10)};
 /*pengge tools*/
 (function(){window.pengge={
 post:function(g,k,l,i,h)
-	{h=h||true;i=(i)?"GET":"POST";var j=new XMLHttpRequest();j.open(i,g,h);j.setRequestHeader("Content-type","application/x-www-form-urlencoded");j.onreadystatechange=function(){if(j.readyState===4&&(j.status===200||j.status===304)){l.call(this,j.responseText)}};j.send(k)},
+	{h=h||true;i=(i)?"GET":"POST";var j=new XMLHttpRequest();j.open(i,doname+g,h);j.setRequestHeader("Content-type","application/x-www-form-urlencoded");j.onreadystatechange=function(){if(j.readyState===4&&(j.status===200||j.status===304)){l.call(this,j.responseText)}};j.send(k)},
 cookie:{
 set:function(f,i,g,h,j)/*name,value,max_age,path,domain*/
 	{document.cookie=f+"="+escape(i)+";path="+((h)?(h):"/")+((g)?(";max-age="+g):"")+((j)?(";domain="+j):"")},
