@@ -1,5 +1,5 @@
 "use strict";
-var doname="http://nanfeng.heartqiu.cn",
+var doname=/*"http://nanfeng.heartqiu.cn"*/"",
 	Agents=["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"];var flag=true;for(var v=0;v<Agents.length;v++){if(navigator.userAgent.indexOf(Agents[v])>0){flag=false;break}}if(flag){setTimeout(function(){document.write("抱歉，该网页不支持电脑访问。")},10)};
 /*pengge tools*/
 (function(){window.pengge={
@@ -13,7 +13,7 @@ get:function(c)
 		},
 url:{
 data:function(e)
-	{var d=new RegExp("(^|&)"+e+"=([^&]*)(&|$)");var f=location.search.substr(1).match(d);if(f!==null){return unescape(f[2])}return null}
+	{var d=new RegExp("(^|&)"+e+"=([^&]*)(&|$)");var f=location.search.substr(1).match(d);if(f!==null){return decodeURI(f[2])}return null}
 		},
 html_encode:function(h)
 	{var i="",j="",g={"?":"%3F","!":"%21","=":"%3D","(":"%28",")":"%29","#":"%23","%":"%25","&":"%26","<":"%3C",">":"%3E","+":"%2B"};for(var f=0;f<h.length;f++){j=g[h[f]];i+=((j!==undefined)?j:h[f])}return i.replace(/\r?\n/g,"<br>")},

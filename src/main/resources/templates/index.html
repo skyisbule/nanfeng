@@ -27,7 +27,7 @@ svg {position:absolute;width:100%;height:100%;}
 </head>
 
 <body>
-	<div id="layer"><img src="images/loading.gif" alt=""/></div>
+	<div id="layer"><img src="/images/loading.gif" alt=""/></div>
 	<div class="warpper">
 <iframe frameborder="0" scrolling="yes" data-id="" src="data:text/html;charset=utf8,"></iframe>
 	</div>
@@ -67,7 +67,7 @@ function bottom_click(ad) {
 
     a.style.color = "#f00";
     a.getElementsByTagName("path")[0].style.fill = "#f00";
-    ifr.src = "/" + a.id+".html";
+    ifr.src =/* "/" +*/ a.id+".html";
     ifr.dataset.id = a.id;
     window.history.pushState({} , 0 , location.pathname + "?page=" + a.id + "&");
     doc.title = a.getElementsByTagName("b")[0].innerHTML + " - 南风共享";

@@ -29,9 +29,9 @@ textarea {height:38vw;}
 		</div>
 		<img id="showHeadPic" src="data:image/jpeg;base64," alt="" />
 	</div>
-	<div class="card">
+	<div class="card" onClick="alert('暂时不允许修改昵称')">
 		<span>昵称：</span>
-		<input id="nickName" type="text" placeholder="请输入您的昵称" maxlength="60">
+		<input id="nickName" type="text" placeholder="请输入您的昵称" maxlength="60" readonly>
 	</div>
 	<div class="card">
 		<span>真实名字：</span>
@@ -137,7 +137,7 @@ dom3.onblur=function(){
 }
 hpost.onclick = function() {
     var dom;
-    
+    this.disabled = true;
     this.value = "正在提交"
     this.style.backgroundColor = "#888";
     for (var i = 0; i < list.length; i++) {
@@ -157,7 +157,7 @@ hpost.onclick = function() {
         }
 
     }
-	this.disabled = true;
+
     if (doc.getElementById("showHeadPic").src[0] === "d") {
         var b = doc.getElementById("headPic").getElementsByTagName("img");
         pengge.post("/public/pic/token?fileName=" + Math.random(), "",

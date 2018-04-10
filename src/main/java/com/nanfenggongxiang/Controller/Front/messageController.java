@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,8 +36,8 @@ public class messageController {
      * @return         成功与否
      */
     @ApiOperation("添加一条商品的留言")
-    @RequestMapping(value = "/private/message/add",method = {RequestMethod.POST,RequestMethod.GET})
-    public String add(//@CookieValue("uid")int uid,
+    @RequestMapping(value = "/private/message/add",method = RequestMethod.POST)
+    public String add(@CookieValue("uid")int uid,
                       Message message){
         Date date = new Date();
         message.setReleaseTime(date);

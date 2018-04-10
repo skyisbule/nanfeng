@@ -5,6 +5,7 @@ import com.nanfenggongxiang.Dao.NewsCommentMapper;
 import com.nanfenggongxiang.Domain.NewsComment;
 import com.nanfenggongxiang.Domain.PostReply;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,9 +25,11 @@ public class newsReplyController {
     NewsCommentDao    complexDao;
 
     @RequestMapping("/private/newsReply/add")
-    public String add(NewsComment comment){
+    public String add(@CookieValue("uid")int uid
+                    ,NewsComment comment){
         Date date = new Date();
         comment.setReleaseTime(date);
+        comment.setUid(uid);
         return dao.insert(comment)==1?"success":"error";
     }
 
