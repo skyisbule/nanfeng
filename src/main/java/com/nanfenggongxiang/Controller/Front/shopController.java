@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by skyisbule on 2018/3/26.
@@ -99,6 +96,19 @@ public class shopController {
     public Integer getSellingCount(@ApiParam("用户id") int uid,
                                    @ApiParam("是否卖出") int isSellOut){
         return complexDao.getCommoditySellOutCount(uid,isSellOut);
+    }
+
+    @ApiOperation("搜索商品")
+    @RequestMapping("/public/commodity/search")
+    public List<Map<String,Object>> getCommodityAndUserInfoByPageAndTypeAndGoodsName(@ApiParam("是否被卖出去了，传1和0")int isSellOut,
+                                                                   @ApiParam("是想买还是想卖")int isWantBy,
+                                                                   @ApiParam("页码数，从0开始") int page,
+                                                                   @ApiParam("分类")int goodsType,
+                                                                   @ApiParam("名字")String goodsName){
+        if (goodsName.startsWith("%")||goodsName.endsWith("%"))
+            return new LinkedList<>();
+        goodsName = "%"+goodsName+"%";
+        return complexDao.getCommodityAndUserInfoByPageAndTypeAndGoodsName(isSellOut,isWantBy,page,goodsType,goodsName);
     }
 
     private void init(Commodity commodity){
