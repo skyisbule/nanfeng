@@ -108,7 +108,14 @@ public class shopController {
         if (goodsName.startsWith("%")||goodsName.endsWith("%"))
             return new LinkedList<>();
         goodsName = "%"+goodsName+"%";
-        return complexDao.getCommodityAndUserInfoByPageAndTypeAndGoodsName(isSellOut,isWantBy,page,goodsType,goodsName);
+        List<Map<String,Object>> res = complexDao.getCommodityAndUserInfoByPageAndTypeAndGoodsName(isSellOut,isWantBy,page,goodsType,goodsName);
+        //把查到的密码消掉
+        if (res == null)
+            return new LinkedList<>();
+        for (Map map : res){
+            map.put("passwd","***");
+        }
+        return res;
     }
 
     private void init(Commodity commodity){
