@@ -75,7 +75,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from order
+    from orders
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -94,27 +94,27 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from order
+    from orders
     where oid = #{oid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from order
+    delete from orders
     where oid = #{oid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.nanfenggongxiang.Domain.OrderExample">
-    delete from order
+    delete from orders
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.nanfenggongxiang.Domain.Order">
-    insert into order (oid, uid, gid, 
+    insert into orders (oid, uid, gid,
       buy_time, status)
     values (#{oid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, 
       #{buyTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.nanfenggongxiang.Domain.Order">
-    insert into order
+    insert into orders
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="oid != null">
         oid,
@@ -151,13 +151,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.nanfenggongxiang.Domain.OrderExample" resultType="java.lang.Long">
-    select count(*) from order
+    select count(*) from orders
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update order
+    update orders
     <set>
       <if test="record.oid != null">
         oid = #{record.oid,jdbcType=INTEGER},
@@ -180,7 +180,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update order
+    update orders
     set oid = #{record.oid,jdbcType=INTEGER},
       uid = #{record.uid,jdbcType=INTEGER},
       gid = #{record.gid,jdbcType=INTEGER},
@@ -191,7 +191,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.nanfenggongxiang.Domain.Order">
-    update order
+    update orders
     <set>
       <if test="uid != null">
         uid = #{uid,jdbcType=INTEGER},
@@ -209,7 +209,7 @@
     where oid = #{oid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.nanfenggongxiang.Domain.Order">
-    update order
+    update orders
     set uid = #{uid,jdbcType=INTEGER},
       gid = #{gid,jdbcType=INTEGER},
       buy_time = #{buyTime,jdbcType=TIMESTAMP},
