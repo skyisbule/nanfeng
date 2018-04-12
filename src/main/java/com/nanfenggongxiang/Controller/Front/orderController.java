@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +37,8 @@ public class orderController {
     @ApiOperation("添加一条记录")
     @RequestMapping("/private/order/add")
     public String add(Order order){
+        Date date = new Date();
+        order.setBuyTime(date);
         dao.insert(order);
         return "success";
     }
