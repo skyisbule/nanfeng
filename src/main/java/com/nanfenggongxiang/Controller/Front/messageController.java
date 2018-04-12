@@ -66,4 +66,16 @@ public class messageController {
         return complexDao.getCount(gid);
     }
 
+    @ApiOperation("拿到某个人有多少未读的留言")
+    @RequestMapping(value = "/public/message/count-unreaded",method = RequestMethod.GET)
+    public Integer getCountUnReaded(int uid){
+        return complexDao.getCountUnReaded(uid);
+    }
+
+    @ApiOperation("标记已读留言,即用户看过留言后要请求此接口")
+    @RequestMapping(value = "/private/message/tag-readed")
+    public String tagReaded(int gid,int uid){
+        return complexDao.tagReaded(uid,gid)==1?"success":"error";
+    }
+
 }

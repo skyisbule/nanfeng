@@ -3,6 +3,7 @@ package com.nanfenggongxiang.Dao;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -24,4 +25,9 @@ public interface MessageDao {
     public List<Map<String,Object>> getMessageByPageWithInfo(@Param("page")int page,
                                                              @Param("gid") int gid);
 
+    @Select("select count(*) from message where receiver = #{uid} and id_readed = 0")
+    public int getCountUnReaded(@Param("uid")int uid);
+
+    @Update("update message set is_readed = 1 where gid = ${gid} and receiver = ${uid}")
+    public int tagReaded(@Param("receiver")int uid,@Param("gid")int gid);
 }
