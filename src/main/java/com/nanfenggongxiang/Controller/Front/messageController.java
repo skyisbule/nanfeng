@@ -78,4 +78,10 @@ public class messageController {
         return complexDao.tagReaded(uid,gid)==1?"success":"error";
     }
 
+    @ApiOperation("拿到某用户的未读消息或已读消息")
+    @RequestMapping(value = "/private/message/get-if-readed")
+    public List<Map<String,Object>> getAll(int uid,int isReaded){
+        return complexDao.getMessagesIfReaded(uid,isReaded);
+    }
+
 }

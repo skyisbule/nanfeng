@@ -17,9 +17,9 @@ import java.io.IOException;
  * 用户登录的拦截器
  * 检测用户cookie的有效性
  */
-@Component
-@ServletComponentScan
-@WebFilter(urlPatterns = "/private/*",filterName = "userFilter")
+//@Component
+//@ServletComponentScan
+//@WebFilter(urlPatterns = "/private/**",filterName = "userFilter")
 public class userFilter implements Filter{
 
     @Autowired
@@ -34,7 +34,6 @@ public class userFilter implements Filter{
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request= (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        System.out.print(request.getRequestURL());
         Cookie[] cookies = request.getCookies();
         if (cookies == null)
             return;

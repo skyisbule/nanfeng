@@ -25,9 +25,18 @@ public interface MessageDao {
     public List<Map<String,Object>> getMessageByPageWithInfo(@Param("page")int page,
                                                              @Param("gid") int gid);
 
-    @Select("select count(*) from message where receiver = #{uid} and id_readed = 0")
+    @Select("select count(*) from message where receiver = #{uid} and is_readed = 0")
     public int getCountUnReaded(@Param("uid")int uid);
 
     @Update("update message set is_readed = 1 where gid = ${gid} and receiver = ${uid}")
     public int tagReaded(@Param("receiver")int uid,@Param("gid")int gid);
+
+    @Select("select message.*,info.nick_name,info.head_pic,info.uid " +
+            "from message join info on message.releaser = info.uid " +
+            "where message.receiver = ${uid} "+
+            "and message.is_readed = ${isReaded} "+
+            "order by mid desc " +
+            "limit 0,10")
+    public List<Map<String,Object>> getMessagesIfReaded(@Param("uid")int uid,
+                                                        @Param("isReaded")int isReaded);
 }
