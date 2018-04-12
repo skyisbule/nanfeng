@@ -3,6 +3,7 @@ package com.nanfenggongxiang.Dao;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -64,5 +65,8 @@ public interface CommodityDao {
             @Param("type")int type,
             @Param("names")String name
     );
+
+    @Update("update commodity is_sell_out = 1 where gid = #{gid}")
+    public int tagSellOut(@Param("gid") int gid);
 
 }

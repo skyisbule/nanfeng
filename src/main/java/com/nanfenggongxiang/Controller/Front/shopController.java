@@ -118,6 +118,12 @@ public class shopController {
         return res;
     }
 
+    @ApiOperation("用于修改商品状态，即关闭交易")
+    @RequestMapping("/private/commodity/close")
+    public String close(int gid){
+        return complexDao.tagSellOut(gid)==1?"success":"error";
+    }
+
     private void init(Commodity commodity){
         commodity.setGid(null);
         //commodity.setUid(uid);
