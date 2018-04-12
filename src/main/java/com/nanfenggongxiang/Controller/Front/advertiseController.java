@@ -42,7 +42,7 @@ public class advertiseController {
     @RequestMapping("/public/ad/get-all")
     public List<Advertisement> getAll(){
         AdvertisementExample e = new AdvertisementExample();
-        e.setOrderByClause("power dese");
+        e.setOrderByClause("power desc");
         return dao.selectByExample(e);
     }
 

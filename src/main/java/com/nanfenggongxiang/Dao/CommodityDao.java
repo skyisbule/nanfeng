@@ -54,8 +54,7 @@ public interface CommodityDao {
             "from commodity join info on " +
             "commodity.uid = info.uid where " +
             "commodity.is_sell_out = ${sell} and commodity.is_want_by = ${buy} " +
-            "and commodity.goods_type = ${type} "+
-            "and commodity.goods_name like ${name} "+
+            "and commodity.goods_name like #{names} "+
             "order by gid desc " +
             "limit ${page},10")
     public List<Map<String,Object>> getCommodityAndUserInfoByPageAndTypeAndGoodsName(
