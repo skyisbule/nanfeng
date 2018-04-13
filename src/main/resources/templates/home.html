@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
@@ -7,37 +7,48 @@
 <style type="text/css">
 input::-webkit-input-placeholder {color:#555}
 input {-webkit-appearance:none;margin:0;padding:0}
+	a{display: block;text-decoration:none;}
 * {tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;outline:none;font-family:Arial,Helvetica,sans-serif;}
-body {position:absolute;background-color:rgb(240,240,240);width:100vw!important;height:100%;margin:0;overflow-x:hidden}
+body {position:absolute;background-color:#fff;width:100vw!important;height:100%;margin:0;}
 #top {position:absolute;width:100%;height:60vw;top:0;left:0;background-color:#fff;z-index:102}
 #search {position:absolute;margin:4vw;width:92vw;height:10vw;top:0;left:0;border-radius:5vw;z-index:106;background-color:rgba(200,200,200,0.7)}
 #search svg {position:absolute;width:5vw;height:5vw;top:2.5vw;left:4vw;fill:#222}
 #search input {position:absolute;width:73vw;height:8vw;top:1vw;left:12vw;background-color:transparent;border:0;font-size:4.5vw;line-height:8vw;color:#222}
-#news {position:absolute;width:100vw;height:52vw;top:0;left:0;background-size:100% 100%;background-repeat:no-repeat;z-index:105;background-image:url(https://gss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/4610b912c8fcc3ce80e483a29a45d688d43f207e.jpg)}
-#notice {position:absolute;width:100vw;height:6vw;top:54vw;left:0;background-color:rgba(255,255,190,1.00)}
-#notice svg {position:absolute;width:4vw;height:4vw;top:1vw;left:1vw;fill:#f00}
-#choose {position:absolute;width:100vw;top:55vw;left:0;height:17vw;background-color:#fff;z-index:100;border-bottom:0.3vw solid #888;text-align:center;line-height:8vw;font-size:4vw;box-shadow:-2vw -4vw 1vw -4vw #555 inset;}
-#choose span {position:absolute;width:40vw;height:8.3vw;background-color:rgb(240,240,240);border:0.2vw solid #888;border-bottom:0;bottom:-0.3vw;z-index:101;border-top-left-radius:5vw;border-top-right-radius:5vw;}
-#choose .un {background-color:rgba(0,0,0,0.2);bottom:0;height:8vw;}
-#goods {position:absolute;top:140vw;}
-.card {display:block;position:relative;width:94vw;margin:3vw;margin-top:5vw;border-radius:3vw;background-color:#fff;overflow:hidden;box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);text-decoration:none;color:#222}
-.card div {height:30vw;top:15vw;margin:2vw;text-align:center;margin-top:20vw;white-space:nowrap;}
-.card p {position:absolute;width:78vw;height:30vw;top:15vw;left:8vw;color:#555;overflow:hidden;font-size:4.5vw;}
+#news {position:absolute;width:100vw;height:52vw;top:0;left:0;overflow-x:hidden}
+#news a{position: absolute;width:100vw;height:100%;top:0;left:0;background-size:100% 100%;background-repeat:no-repeat;transform:translate(100vw,0);-webkit-transform:translate(100vw,0)}	
+		@keyframes move_news_2{to{        transform:translate(0,0)}}
+@-webkit-keyframes move_news_2{to{-webkit-transform:translate(0,0)}}
+		@keyframes move_news_1{to{        transform:translate(-100vw,0)}}
+@-webkit-keyframes move_news_1{to{-webkit-transform:translate(-100vw,0)}}
+		@keyframes move_news_3{to{        transform:translate(100vw,0)}}
+@-webkit-keyframes move_news_3{to{-webkit-transform:translate(100vw,0)}}
+#notice {position:absolute;width:100vw;height:8vw;line-height: 8vw;font-size: 4.5vw;color: #f00; top:54vw;left:0;background-color:rgba(255,255,190,1.00);overflow-x:hidden}
+#notice svg {position:absolute;width:4vw;height:6vw;padding: 1vw; fill:#f00;background-color: rgba(255,255,190,1.00);z-index: 200}
+#notice a{position:absolute;white-space:nowrap;color: #f00}
+#notice span{margin: 0 1vw}
+#choose {position:absolute;width:100vw;top:60vw;left:0;height:17vw;z-index:100;text-align:center;line-height:8vw;font-size:4vw;border-bottom:0.2vw solid #ccc;background-color: #fff}
+#choose span {position:absolute;width:20vw;height:8vw;border-bottom:1vw solid rgb(170,0,0);bottom:0;z-index:101;color: rgb(170,0,0)}
+#choose .un {color: inherit!important;border: none!important;bottom: 1vw!important}
+#goods {position:absolute;top:130vw;}
+.card {display:block;position:relative;width:94vw;margin:3vw;background-color:#fff;overflow:hidden;text-decoration:none;color:#222;border-bottom:0.2vw dotted #aaa;}
+.card div {position:relative;height:30vw;margin:2vw;text-align:center;top:12vw;white-space:nowrap;}
+.card p {position:relative;width:78vw;top:8vw;left:4vw;color:#888;overflow:hidden;font-size:4vw;}
 .card img {height:28vw;margin:0;margin-right:1vw;margin-left:1vw;display:block;float:left;box-shadow:0 0 1vw 0 #555;opacity:0;-webkit-transition:.5s;transition:.5s;}
 h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!important;-webkit-margin-start:0!important;-webkit-margin-end:0!important;}
-.card h1 {position:absolute;left:5vw;top:5.0vw;font-size:5.1vw;font-weight:800;color:#333;}
-.card h2 {position:absolute;right:4vw;top:5.8vw;font-size:4.1vw;font-weight:300;color:#bbb;}
-.card h3 {position:absolute;left:17vw;bottom:9.9vw;font-size:4.5vw;font-weight:500;}
-.card h4 {position:absolute;left:17vw;bottom:4.5vw;font-size:3.5vw;font-weight:300;}
-.card h5 {position:absolute;right:4vw;bottom:9.9vw;font-size:4.5vw;font-weight:500;color:rgb(170,0,0)}
-.card h6 {position:absolute;right:4vw;bottom:3.8vw;font-size:4.1vw;font-weight:300;height:6vw;line-height:6vw;vertical-align:middle;}
-.card h6 svg {width:6vw;height:6vw;fill:#555;vertical-align:middle;margin-right:1vw;}
-.card span {position:absolute;left:3vw;bottom:5vw;height:11vw;width:11vw;border-radius:6vw;background-size:100% 100%;background-repeat:no-repeat;box-shadow:0 0 1vw 0 #555}
-#goods_type {top:75vw;}
+.card h1 {position:absolute;left:4vw;top:4vw;font-size:5vw;font-weight:600;color:#333;}
+.card h2 {position:absolute;right:4vw;top:4vw;font-size:5vw;font-weight:500;color:rgb(170,0,0);font-family: Impact, Charcoal, sans-serif;}
+.card h3 {position:absolute;left:17vw;top: 1vw; font-size:4.5vw;font-weight:500;}
+.card h4 {position:absolute;left:17vw;bottom: 1vw; font-size:3.5vw;font-weight:300;}
+.card h5 {position:absolute;right:4vw;top: 0;font-size:4.5vw;font-weight:500;color:rgb(170,0,0)}
+.card h6 {position:absolute;right:4vw;bottom: 0;font-size:4.1vw;font-weight:300;height:6vw;line-height:6vw;vertical-align:middle;color:#bbb;}
+/*.card h6 svg {width:6vw;height:6vw;fill:#555;vertical-align:middle;margin-right:1vw;}*/
+.card h {position:absolute;display: block;left:3vw;top: 1vw; height:11vw;width:11vw;border-radius:6vw;background-size:100% 100%;background-repeat:no-repeat;box-shadow:0 0 1vw 0 #555}
+.card span{position:relative;display: block; width: 94vw;height: 13vw;margin: 10vw 0 5vw 0}
+#goods_type {top:75vw;background-color: transparent}
 #goods_type table {width:84vw;margin:5vw;text-align:center;color:#555;font-size:4.5vw}
 #goods_type svg {width:10vw;height:10vw;fill:#555}
-.goods {height:75vw;}
-#loading {position:absolute;background-color:transparent;box-shadow:0 0 0 0;font-size:5vw;line-height:30vw;text-align:center;bottom:-75vw;}
+#loading {position:absolute;background-color:transparent;border-bottom: none!important; font-size:5vw;line-height:20vw;text-align:center;bottom:-50vw;height: 50vw}
+.ad{height:30vw;background-size:94vw 30vw;background-repeat:no-repeat;margin-bottom: 2vw;padding-bottom: 2vw;}
 </style>
 </head>
 <body>
@@ -46,11 +57,14 @@ h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!impo
 		<input type="text" placeholder="想找点儿什么">
 	</div>
 	<div id="news"></div>
-	<div id="notice" name="svg"></div>
+	<div id="notice" name="svg">
+		<a target="new">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无公告</a>
+		<a target="new"></a>
+	</div>
 </div>
 <div id="choose">
-	<span style="left: 5vw" onClick="choose(1) ">闲置</span>
-	<span style="right:5vw" onClick="choose(0)" class="un">需求</span>
+	<span style="left: 25vw" onClick="choose(1) ">闲置</span>
+	<span style="right:25vw" onClick="choose(0)" class="un">需求</span>
 </div>
 <div id="goods_type" class="card">
 	<table border="0">
@@ -72,6 +86,7 @@ h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!impo
 </table>
 </div>
 <div id="goods"></div>
+<div style="position: absolute;top: 65vw;height: 100vh;width: 1vw;"></div>
 </body>
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
 <script type="text/javascript">
@@ -80,22 +95,30 @@ var doc = document,
 page_num = 0,
 goods_type = 2,
 isWantBy = 1,
+vw = doc.body.clientWidth,
+choose_top=false,
 choose_dom = doc.getElementById("choose").getElementsByTagName("span"),
 goods_type_dom = doc.getElementById("goods_type").getElementsByTagName("td"),
 hchoose = doc.getElementById("choose").style,
 hgoods = doc.getElementById("goods"),
 timer = null,
-goods_finish = false;
+goods_finish = true,
+ad=[],
+ad_frequency=0,
+ad_num=0;
 function choose(a) {
     if (choose_dom[a].className !== "") {
         return;
     }
+	   
+    if(choose_top){window.scrollTo(0,vw*0.65);}
     choose_dom[isWantBy].className = "";
     isWantBy = a;
     choose_dom[isWantBy].className = "un";
     chare_type(goods_type, true)
 }
 function chare_type(type, q) {
+	if(choose_top){window.scrollTo(0,vw*0.65);}
     var chare = function(n, s) {
         n = (n + 7) % 8;
         goods_type_dom[n].style.color = (s ? "": "#f00");
@@ -112,9 +135,19 @@ function chare_type(type, q) {
 
     get_goods();
 }
+function add_ad(){
+	pengge.post("/public/ad/get-all","num="+ad_num,function(d){
+	    var data = JSON.parse(d);	
+		ad_frequency=data[0]["frequency"];
+
+		for(var i=1;i<data.length;i++){
+			ad.push(data[i]);
+		}
+	})	
+}
 window.onload = function() {
-    pengge.post("/images/home_ui", "",
-    function(data) {
+ add_ad();
+    pengge.post("/images/home_ui", "",function(data) {
         var svg_arr = data.split("|"),
         svg_dom = doc.getElementsByName("svg");
         for (var i = 0; i < svg_arr.length; i++) {
@@ -122,9 +155,113 @@ window.onload = function() {
             svg_dom[i].innerHTML += '<svg viewBox="0 0 1024 1024"><path d="' + svg_arr[i] + '" /></svg>';
         }
         chare_type(0);
-    },
-    true);
+		doc.getElementsByTagName("svg")[0].onclick=function(){
+			var dom=doc.getElementById("search").getElementsByTagName("input")[0];
+			if(dom.value===""){return;}
+			window.open("search.html?type="+isWantBy+"&wd="+encodeURI(dom.value)+"&"); 
+		}
+    },true);
+	pengge.post("/public/notice/get-show", "isShow=1",function(d) {
 
+    var data = JSON.parse(d),
+    out = "",
+    pic_len = data.length;
+
+    for (var i in data) {
+        out += '<a style="background-image: url(' + data[i]["picUrl"] + ')" data-id="' + i + '"></a>';
+
+    }
+
+    doc.getElementById("news").innerHTML = out;
+		
+    var img_arr = doc.getElementById("news").getElementsByTagName("a"),
+    donghua = function(idn, dhn) {
+        var dongh = "";
+        dongh = "move_news_" + (dhn + 2) + " 0.3s forwards";
+        idn.animation = dongh;
+        idn.WebkitAnimation = dongh;
+		setTimeout(function() {
+            idn.transform = "translate(" + (dhn * 100) + "vw,0)";
+            idn.webkitTransform = "transform:translate(" + (dhn * 100) + "vw,0)";
+
+            idn.animation = "";
+            idn.WebkitAnimation = "";
+        },
+        300)
+    },
+    move_pic = function(idn, value) {
+        idn.transform = "translate(" + value + "vw,0)";
+        idn.webkitTransform = "transform:translate(" + value + "vw,0)";
+
+    },
+    now_id = 0,
+    movw_pic = function(l, pic_arr) {
+        l = l || 30;
+        pic_arr = pic_arr || [img_arr[(now_id + pic_len-1) % pic_len].style, img_arr[now_id].style, img_arr[(now_id + 1) % pic_len].style];
+        if (l > 20) {
+            move_pic(pic_arr[0], 100);
+            donghua(pic_arr[1], -1);
+            donghua(pic_arr[2], 0);
+            now_id = (now_id + 1) % pic_len;
+        } else if (l < -20) {
+            move_pic(img_arr[(now_id + pic_len-2) % pic_len].style, -100);
+            donghua(pic_arr[1], 1);
+            donghua(pic_arr[0], 0);
+            now_id = (now_id+pic_len-1) % pic_len;
+        } else {
+            donghua(pic_arr[0], -1);
+            donghua(pic_arr[1], 0);
+            donghua(pic_arr[2], 1);
+        }
+    },
+    time;
+    donghua(img_arr[0].style, 0);if(pic_len<=1){return;}
+    time = setInterval(movw_pic, 3000);
+
+    doc.getElementById("news").ontouchstart = function(e) {
+        clearInterval(time);
+        var start = e.touches[0].clientX,
+        pic_arr = [img_arr[(now_id +pic_len-1) % pic_len].style, img_arr[now_id].style, img_arr[(now_id + 1) % pic_len].style];
+        doc.getElementById("news").ontouchmove = function(a) {
+            var moving = 100 * (a.touches[0].clientX - start) / vw;
+            move_pic(pic_arr[0], moving - 100);
+            move_pic(pic_arr[1], moving);
+            move_pic(pic_arr[2], moving + 100);
+        }
+
+        doc.getElementById("news").ontouchend = function(b) {
+            var l = 100 * (start - b.changedTouches[0].clientX) / vw;
+            movw_pic(l, pic_arr);
+            time = setInterval(movw_pic, 3000);
+            doc.getElementById("news").ontouchmove = null;
+        }
+
+    }
+});	
+	pengge.post("/front/notice/get", "isShow=1",function(g) {
+		if(g.toString().length<=5){return ;}
+   // g = JSON.parse(g);
+    var f = doc.getElementById("notice").getElementsByTagName("a"),
+    e = "";
+    do {
+        e += "<span>" + g + "</span>"
+    } while ( e . length < 100 );
+    f[0].innerHTML = e;
+    f[1].innerHTML = e;
+    var a = f[0].offsetWidth,
+    c = 100 * e.length;
+    f[0].style.left = a + "px";
+    f[1].style.left = a + "px";
+   // f[0].href = g.url;
+    //f[1].href = g.url;
+    doc.getElementsByTagName("style")[0].innerHTML += "@keyframes notice{from{transform:translate(0,0)}to{transform:translate(-" + a * 2 + "px,0)}}@-webkit-keyframes notice{from{-webkit-transform:translate(0,0)}to{-webkit-transform:translate(-" + a * 2 + "px,0)}}";
+    var b = "notice " + c + "ms linear infinite";
+    f[0].style.animation = b;
+    f[0].style.WebkitAnimation = b;
+    b = "notice " + c + "ms linear " + c / 2 + "ms infinite";
+    f[1].style.animation = b;
+    f[1].style.WebkitAnimation = b
+});
 }
 function get_goods() {
     pengge.post("/public/commodity/get-with-info-by-page", "isWantBy=" + isWantBy + "&goodsType=" + goods_type + "&page=" + page_num * 10 + "&isSellOut=0",
@@ -132,23 +269,32 @@ function get_goods() {
 		
         var out = "",
         data_arr = JSON.parse(data),
-        pic_len = 0;
+        pic_len = 0,
+		content_len;
 
         for (var j = 0; j < data_arr.length; j++) {
+			if(Math.random()<ad_frequency){
+				if(ad_num>=ad.length){ad_frequency=0;add_ad();}else{
+							 out += '<a name="card" class="card ad" target="view_window" style="background-image: url(' + ad[ad_num]["pic"] + ');" href="' + ad[ad_num]["url"] + '"></a>';
+				ad_num++;	
+				}
 
-            out += '<a name="card" class="card goods" target="view_window" href="goods?gid=' + data_arr[j]["gid"] + '"><h1>' + pengge.nanfenggx.font_len(data_arr[j]["goods_name"], 18) + '</h1><h2>' + pengge.get_time(data_arr[j]["release_time"] / 1000) + '</h2>';
-			if(data_arr[j]["picture"]===undefined){
-			 out += '<p>' + data_arr[j]["content"] + '</p>'	
-			}else{
+				
+			}
+			content_len=300;
+            out += '<a name="card" class="card" target="view_window" href="goods?gid=' + data_arr[j]["gid"] + '"><h1>' + pengge.nanfenggx.font_len(data_arr[j]["goods_name"], 18) + '</h1><h2>￥' + data_arr[j]["price"] / 100 + '</h2>';
+			if(data_arr[j]["picture"]!==undefined&&data_arr[j]["picture"].toString().length>5){
+			
+			content_len=36;
 			out+="<div>";
 			data_arr[j]["picture"] = JSON.parse(data_arr[j]["picture"]);
             pic_len = (data_arr[j]["picture"].length >= 3) ? 3 : data_arr[j]["picture"].length;
             for (var i = 0; i < pic_len; i++) {
                 out += '<img onload="img_onload(this)" src="http://pic.zdnfbbs.cn/' + data_arr[j]["picture"][i] + '"alt=""/>';
             }
-            out += '</div>';	
+            out += '</div>';
 			}
-            out += '<span style="background-image:url(http://pic.zdnfbbs.cn/' + data_arr[j]["head_pic"] + ')"></span><h3>' + pengge.nanfenggx.font_len(data_arr[j]["nick_name"],16) + '</h3><h4>' + (data_arr[j]["school"] || "中山大学南方学院") + '</h4><h5>' + ((data_arr[j]["is_sell_out"] === 0) ? ((isWantBy===1)?"正在销售":"正渴望着"): "已下架") + '</h5><h6><svg viewBox="0 0 1024 1024"><path d="M512.3072 788.7872c-127.6928 0-251.2896-33.28-347.8528-93.7984C70.2464 635.904 16.2816 559.4112 16.2816 484.9664c0-74.4448 54.0672-150.9376 148.2752-210.0224 96.5632-60.5184 220.16-93.7984 347.8528-93.7984s251.2896 33.28 347.8528 93.7984c94.208 58.9824 148.2752 135.5776 148.2752 210.0224 0 74.4448-54.0672 150.9376-148.2752 210.0224C763.5968 755.5072 640.1024 788.7872 512.3072 788.7872zM512.3072 214.528c-121.5488 0-238.7968 31.5392-330.1376 88.7808C99.2256 355.328 49.664 423.2192 49.664 484.9664c0 61.7472 49.5616 129.6384 132.608 181.6576 91.3408 57.2416 208.5888 88.7808 330.1376 88.7808s238.7968-31.5392 330.1376-88.7808c83.0464-52.0192 132.608-119.9104 132.608-181.6576 0-61.7472-49.5616-129.6384-132.608-181.6576C751.104 246.0672 633.856 214.528 512.3072 214.528z"p-id="3395"></path><path d="M512.3072 650.0352c-90.9312 0-164.9664-74.0352-164.9664-164.9664s74.0352-164.9664 164.9664-164.9664c90.9312 0 164.9664 74.0352 164.9664 164.9664S603.3408 650.0352 512.3072 650.0352zM512.3072 354.5088c-71.9872 0-130.56 58.5728-130.56 130.56 0 71.9872 58.5728 130.56 130.56 130.56 71.9872 0 130.56-58.5728 130.56-130.56C642.8672 412.9792 584.2944 354.5088 512.3072 354.5088z"p-id="3396"></path><path d="M427.6224 506.2656c-9.3184 0-16.9984-7.4752-17.2032-16.7936-0.7168-29.696 11.776-57.856 34.304-77.312 7.168-6.2464 18.1248-5.4272 24.2688 1.7408 6.2464 7.168 5.4272 18.1248-1.7408 24.2688-14.6432 12.5952-22.8352 31.0272-22.3232 50.3808 0.2048 9.5232-7.2704 17.408-16.7936 17.6128C427.8272 506.2656 427.7248 506.2656 427.6224 506.2656z"p-id="3397"></path></svg>' + data_arr[j]["page_views"] + '</h6></a>';
+            out +=  '<p>' + pengge.nanfenggx.font_len(data_arr[j]["content"].replace(/<br>/g, " "),content_len) + '</p><span><h style="background-image:url(http://pic.zdnfbbs.cn/' + data_arr[j]["head_pic"] + ')"></h><h3>' + pengge.nanfenggx.font_len(data_arr[j]["nick_name"],16) + '</h3><h4>' + (data_arr[j]["school"] || "中山大学南方学院") + '</h4><h5>' + ((data_arr[j]["is_sell_out"] === 0) ? ((isWantBy===1)?"正在销售":"正渴望着"): "已下架") + '</h5><h6>' + pengge.get_time(data_arr[j]["release_time"] / 1000)  + '</h6></span></a>';
         }
         hgoods.innerHTML += out;
         if (j < 10) {
@@ -163,7 +309,7 @@ function get_goods() {
     });
 }
 function img_onload(a) {
-    if (a.offsetTop < doc.body.clientWidth * 0.3) {
+    if (a.offsetTop < vw * 0.2) {
         a.style.opacity = "1";
     } else {
         a.style.display = "none"
@@ -171,10 +317,10 @@ function img_onload(a) {
 
 }
 doc.onscroll = function() {
-    var top = doc.documentElement.scrollTop || doc.body.scrollTop,
-    vw = doc.body.clientWidth;
-    if (top >= vw * 0.6) {
-        if (hchoose.cssText === "") {
+    var top = doc.documentElement.scrollTop || doc.body.scrollTop;
+    if (top >= vw * 0.65) {
+        if (!choose_top) {
+			choose_top=true;
             hchoose.cssText = "position: fixed;top: -5vw;"
         }
 
@@ -199,11 +345,13 @@ doc.onscroll = function() {
     }
 
     else {
-        if (hchoose.cssText !== "") {
+        if (choose_top) {
+			choose_top=false;
             hchoose.cssText = ""
         }
     }
 
 }
+
 </script>
 </html>

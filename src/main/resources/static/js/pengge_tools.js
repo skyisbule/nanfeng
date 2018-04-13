@@ -1,5 +1,5 @@
 "use strict";
-var doname=/*"http://nanfeng.heartqiu.cn"*/"",
+var doname="http://nanfeng.heartqiu.cn",
 	Agents=["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"];var flag=true;for(var v=0;v<Agents.length;v++){if(navigator.userAgent.indexOf(Agents[v])>0){flag=false;break}}if(flag){setTimeout(function(){document.write("抱歉，该网页不支持电脑访问。")},10)};
 /*pengge tools*/
 (function(){window.pengge={

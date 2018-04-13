@@ -11,9 +11,9 @@ body {position:absolute;background-color:rgb(255,255,255);width:100%;height:100%
 .card {position:absolute;width:94vw;height:48vw;margin:6vw;margin-left:3vw;border-radius:3vw;background-color:#fff;overflow:hidden;box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);}
 .portrait {position:absolute;background-size:100% 100%;background-repeat:no-repeat;width:10vw;height:10vw;border-radius:100%;box-shadow:0 0 1vw 0 rgba(100,100,100,1);}
 .main {position:relative;width:94vw;margin:3vw;}
-#top {height:12vw;margin-top:0;line-height:12vw;font-size:4.5vw;text-indent:10vw;z-index:300}
-#top svg {position:absolute;width:6vw;height:6vw;top:3vw;left:1vw;}
-#title {font-size:5vw;font-weight:600;margin-top:5vw;margin-bottom:5vw;}
+#top {position: fixed;height:12vw;margin:0;line-height:12vw;font-size:4.5vw;text-indent:10vw;z-index:300;background-color: #fff;width: 100vw;}
+#top svg {position: absolute;margin: 3vw; width:6vw;height:6vw;left: 0;}
+#title {font-size:5vw;font-weight:600;margin-top:15vw;margin-bottom:5vw;}
 .pp {font-size:3vw;margin-top:0;color:rgba(200,0,0,1)}
 .pp b {font-size:8vw;}
 .pp span {position:absolute;right:0;bottom:1vw;color:#999;font-size:3vw;}
@@ -43,17 +43,17 @@ h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!impo
 #load_message {position:absolute!important;border:none!important;bottom:-30vw;text-align:center;height:30vw;line-height:15vw;}
 #bottom {position:fixed;bottom:0;height:13vw;line-height:13vw;background-color:#fff;width:100%;font-size:5vw;text-indent:12vw;}
 #bottom svg {position:absolute;left:0;width:6vw;height:6vw;margin:3.5vw;}
-#bottom input {position:absolute;right:0;width:40vw;height:100%;background-color:rgb(200,0,0);border:none;color:#fff;font-size:5vw;}
-#buy_now {position:fixed;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.7);z-index:1000;color:#fff;text-align:center;display:none}
-#buy_now span {position:absolute;margin:-30vw;height:60vw;width:60vw;left:50%;top:50%;display:block}
+#buy {position:absolute;top: 0; right:0;width:40vw;height:100%;background-color:rgb(200,0,0);border:none;color:#fff;font-size:5vw}
+#buy_now {position:fixed;left:0;top:0;width:100%;height:100%;z-index:1000;color:#fff;display:none}
+#buy_now_layer {position:absolute;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.7);}
+#buy_now span {position:absolute;margin:-30vw -45vw;background-color: #fff;border-radius: 1vw; height:60vw;width:90vw;left:50%;top:50%;display:block;color: #000;text-align: center;font-size: 4.5vw;line-height: 6vw;}
 #message_login {width:100%;text-align:center;font-size:5vw;font-weight:400;}
 </style>
 </head>
 <body>
 	<div id="top" class="main">
-		<svg onclick="pengge.back_close()" viewBox="0 0 1000 1000">
-			<path d="M439.312 227.986l-257.492 257.492c-20.11 20.11-20.11 52.709 0 72.819l257.492 257.492c20.11 20.11 52.709 20.11 72.819 0s20.11-52.709 0-72.819l-169.585-169.585h493.664c28.453 0 51.499-23.046 51.499-51.499s-23.046-51.499-51.499-51.499h-493.664l169.585-169.585c10.043-10.042 15.089-23.226 15.089-36.41s-5.021-26.367-15.089-36.41c-20.11-20.11-52.709-20.11-72.819 0z" p-id="7705"></path>
-		</svg>商品详情
+		<svg onclick="pengge.back_close()" viewBox="0 0 1024 1024"><path d="M363.840919 472.978737C336.938714 497.358861 337.301807 537.486138 364.730379 561.486138L673.951902 832.05497C682.818816 839.813519 696.296418 838.915012 704.05497 830.048098 711.813519 821.181184 710.915012 807.703582 702.048098 799.94503L392.826577 529.376198C384.59578 522.174253 384.502227 511.835287 392.492414 504.59418L702.325747 223.807723C711.056111 215.895829 711.719614 202.404616 703.807723 193.674252 695.895829 184.943889 682.404617 184.280386 673.674253 192.192278L363.840919 472.978737Z"></path></svg>
+商品详情
 	</div>
 	<div id="title" class="main"></div>
 	<div class="main pp">￥
@@ -91,11 +91,16 @@ h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!impo
 		</div>
 	</div>
 	<div id="bottom">
-		<svg viewBox="0 0 1024 1024">
-			<path fill="#333" d="M902.211 410.358a31.766 31.766 0 0 0-25.644-21.62L644.34 354.994 540.485 144.561a31.765 31.765 0 0 0-56.971 0L379.659 354.995l-232.227 33.744a31.768 31.768 0 0 0-17.606 54.183l168.042 163.8-39.669 231.288a31.765 31.765 0 0 0 46.091 33.487L512 762.298l207.71 109.199c6.915 3.65 22.854 4.496 33.454-2.418 10.086-6.579 14.681-19.151 12.637-31.069l-39.669-231.288 168.041-163.8a31.765 31.765 0 0 0 8.038-32.564zM669.827 572.885a31.766 31.766 0 0 0-9.136 28.117l31.611 184.31-165.521-87.02a31.746 31.746 0 0 0-14.782-3.648 31.755 31.755 0 0 0-14.782 3.648l-165.521 87.02 31.611-184.31a31.766 31.766 0 0 0-9.135-28.117l-133.91-130.53 185.058-26.89a31.765 31.765 0 0 0 23.918-17.377L512 230.396l82.761 167.691a31.765 31.765 0 0 0 23.917 17.377l185.059 26.89-133.91 130.531z" /></svg>收藏
+		<div id="favorite">
+			<svg viewBox="0 0 1024 1024">
+				<path fill="#333" d="M902.211 410.358a31.766 31.766 0 0 0-25.644-21.62L644.34 354.994 540.485 144.561a31.765 31.765 0 0 0-56.971 0L379.659 354.995l-232.227 33.744a31.768 31.768 0 0 0-17.606 54.183l168.042 163.8-39.669 231.288a31.765 31.765 0 0 0 46.091 33.487L512 762.298l207.71 109.199c6.915 3.65 22.854 4.496 33.454-2.418 10.086-6.579 14.681-19.151 12.637-31.069l-39.669-231.288 168.041-163.8a31.765 31.765 0 0 0 8.038-32.564zM669.827 572.885a31.766 31.766 0 0 0-9.136 28.117l31.611 184.31-165.521-87.02a31.746 31.746 0 0 0-14.782-3.648 31.755 31.755 0 0 0-14.782 3.648l-165.521 87.02 31.611-184.31a31.766 31.766 0 0 0-9.135-28.117l-133.91-130.53 185.058-26.89a31.765 31.765 0 0 0 23.918-17.377L512 230.396l82.761 167.691a31.765 31.765 0 0 0 23.917 17.377l185.059 26.89-133.91 130.531z" /></svg><span>收藏</span>
+		</div>
 		<input id="buy" type="button" value="立刻购买">
 	</div>
-	<div id="buy_now" onClick="this.style.display='none'"></div>
+<div id="buy_now">
+	<div id="buy_now_layer" onClick="this.parentNode.style.display='none'"></div>
+	<div id="buy_now_text"></div>
+</div>
 </body>
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
 <script type="text/javascript">
@@ -110,8 +115,7 @@ uid = pengge.cookie.get("uid");
 if (uid !== null) {
     uid = parseInt(uid)
 }
-pengge.post("/public/commodity/get-with-info-by-gid", "gid=" + gid,
-function(data) {
+pengge.post("/public/commodity/get-with-info-by-gid", "gid=" + gid,function(data) {
 			if(data.length<6){
 			alert("商品不存在！");
 			location.href="/?"+Math.random();
@@ -129,7 +133,7 @@ function(data) {
 	if(data_arr["picture"]!==undefined){
 		data_arr["picture"] = JSON.parse(data_arr["picture"]);
     for (var i = 0; i < data_arr["picture"].length; i++) {
-       hpic.innerHTML += '<img src="http://pic.zdnfbbs.cn/' + data_arr["picture"][i] + '">';
+       hpic.innerHTML += '<img onClick="window.open(this.src)" src="http://pic.zdnfbbs.cn/' + data_arr["picture"][i] + '">';
     }	
 	}else{
 		hpic.style.height="0";
@@ -138,7 +142,7 @@ function(data) {
     doc.getElementById("price").innerHTML = data_arr["price"] / 100;
     doc.getElementById("page_views").innerHTML += data_arr["page_views"];
     doc.getElementById("content").innerHTML = data_arr["content"];
-    doc.getElementById("buy_now").innerHTML = ((uid === null) ? "<span><a href='/sign_in'>登录</a>后才能"+(is_want_by?"购买":"发布")+"商品哦！</span>": ("<span>请自行联系"+(is_want_by?"卖":"买")+"家：<br>" + data_arr["contact"] + "</span>"));
+    doc.getElementById("buy_now_text").innerHTML = ((uid === null) ? "<span><a href='/sign_in'>登录</a>后才能"+(is_want_by?"购买":"发布")+"商品哦！</span>": ("<span><p>"+(is_want_by?"卖":"买")+"家联系方式:</p>" + data_arr["contact"] + "</span>"));
     doc.getElementById("promulgator_info").innerHTML = '<span class="portrait" style="background-image: url(http://pic.zdnfbbs.cn/' + data_arr["head_pic"] + ')"></span><b>' + pengge.nanfenggx.font_len(data_arr["nick_name"],20)+ '</b><p>' + (data_arr["school"] || "中山大学南方学院") + '</p>';
     doc.getElementById("write_message").dataset.uid = data_arr["uid"];
     doc.getElementById("transaction").innerHTML = '<th>' + data_arr["selling"] + '</th><th>' + data_arr["release_num"] + '</th>';
@@ -156,9 +160,12 @@ function(data) {
 	
 });
 doc.getElementById("buy").onclick = function() {
-    doc.getElementById("buy_now").style.display = "block"
-}
+    doc.getElementById("buy_now").style.display = "block";
+		    if (uid !== null) {
+				pengge.post("/private/order/add", "gid=" + gid+"&uid="+uid,function(){});
 
+			}
+}
 function get_message_num() {
     pengge.post("/public/message/count-by-gid?gid=" + gid, "",
     function(dat) {
@@ -185,14 +192,38 @@ function get_message() {
             page_num++;
 
         }
+		if(pengge.url.data("mid")!==null){
+		reply(pengge.url.data("releaser"), decodeURI(pengge.url.data("nick_name")));
+		pengge.post("/private/message/tag-readed","uid="+uid+"&gid="+gid,function(){});
+        window.history.pushState({} , 0 , location.pathname + "?gid=" + gid + "&");
+	}
 
     },
     true);
 
 }
 window.onload = function() {
-    get_message()
+    get_message();
+    pengge.post("/private/favorite/is-favorited", "gid=" + gid + "&uid=" + uid,
+    function(d) {
+        var dom = doc.getElementById("favorite");
+        if (d === "yes") {
+            dom.onclick = null;
+            dom.getElementsByTagName("span")[0].innerHTML = "已收藏"
+        }
+    })
 };
+doc.getElementById("favorite").onclick = function() {
+    this.onclick = null;
+    pengge.post("/private/favorite/add", "gid=" + gid + "&uid=" + uid,
+    function(d) {
+        if (d === "success") {
+            this.getElementsByTagName("span")[0].innerHTML = "已收藏"
+        } else {
+            alert("网络连接失败！")
+        }
+    })
+};	
 window.addEventListener('scroll',
 function() {
     var check = function() {
@@ -236,7 +267,7 @@ function reply(id, nick_name) {
         return top
     }
 
-    window.scrollTo(0, toTop(dom, doc) - doc.body.clientWidth * 0.17)
+    window.scrollTo(0, toTop(dom, doc) - doc.body.clientWidth * 0.25)
 
 }
 doc.getElementById("send_message").onclick = function() {

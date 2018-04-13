@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta charset="utf-8">
+<title>我收藏的&nbsp;-&nbsp;南风共享</title>
+<style type="text/css">
+input::-webkit-input-placeholder {color:#555}
+input {-webkit-appearance:none;margin:0;padding:0;border-radius: 0;}
+	a{display: block;text-decoration:none;}
+* {tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;outline:none;font-family:Arial,Helvetica,sans-serif;}
+body {position:absolute;background-color:#fff;width:100vw!important;height:100%;margin:0;}
+#choose {position:fixed;width:100vw;top:0;left:0;height:11vw;z-index:100;text-align:center;line-height:8vw;font-size:4vw;border-bottom:0.2vw solid #ccc;background-color: #fff}
+#choose span {position:absolute;width:20vw;height:8vw;border-bottom:1vw solid rgb(170,0,0);bottom:0;z-index:101;color: rgb(170,0,0)}
+#choose .un {color: inherit!important;border: none!important;bottom: 1vw!important}
+#choose svg{position: absolute;left: 0;top: 0;width: 5vw;height: 5vw;margin: 3vw;}
+#goods {position:absolute;top:12vw;}
+.card {display:block;position:relative;width:94vw;height: 50vw; margin:3vw;background-color:#fff;text-decoration:none;color:#222;border-bottom:0.2vw dotted #aaa;}
+.card div {position:relative;float: left;height:30vw;width: 30vw; margin:2vw;top:12vw;overflow: hidden}
+.card img {position: absolute;top: 50%;left: 50%; display:block;opacity:0;-webkit-transition: opacity 0.5s;transition: opacity 0.5s;}
+h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!important;-webkit-margin-start:0!important;-webkit-margin-end:0!important;}
+.card h1 {position:absolute;left:4vw;top:4vw;font-size:5vw;font-weight:600;color:#333;}
+.card h2 {position:absolute;right:4vw;top:4vw;font-size:4.1vw;font-weight:300;height:6vw;line-height:6vw;color:#bbb;}
+.card h3 {position:relative;width:100%;top:0;color:#888;font-size:4vw;font-weight:500;}
+.card h6 {position:absolute;left: 0; bottom: -2vw;font-size:5vw;font-weight:500;color:rgb(170,0,0);font-family: Impact, Charcoal, sans-serif;}
+.card span{position:relative;display: block;top: 12vw; height: 30vw;right: 0;width: 60vw;}
+.card input{position:absolute;right: 0;bottom: -5vw;border: 0.1vw solid #555;width: 20vw;height: 8vw;font-size: 4vw;background-color: transparent}
+#loading {position:absolute;background-color:transparent;border-bottom: none!important; font-size:5vw;line-height:20vw;text-align:center;bottom:-50vw;height: 50vw}
+</style>
+</head>
+<body>
+<div id="choose">
+	<span style="left: 40vw">我收藏的</span>
+	<svg onclick="pengge.back_close()" viewBox="0 0 1024 1024"><path d="M363.840919 472.978737C336.938714 497.358861 337.301807 537.486138 364.730379 561.486138L673.951902 832.05497C682.818816 839.813519 696.296418 838.915012 704.05497 830.048098 711.813519 821.181184 710.915012 807.703582 702.048098 799.94503L392.826577 529.376198C384.59578 522.174253 384.502227 511.835287 392.492414 504.59418L702.325747 223.807723C711.056111 215.895829 711.719614 202.404616 703.807723 193.674252 695.895829 184.943889 682.404617 184.280386 673.674253 192.192278L363.840919 472.978737Z"></path></svg>
+</div>
+<div id="goods">
+
+</div>
+<div style="position: absolute;top: 35vw;height: 100vh;width: 1vw;"></div>
+</body>
+<script type="text/javascript" src="/js/pengge_tools.js"></script>
+<script type="text/javascript">
+"use strict";
+var doc = document,
+page_num = 0,
+vw = doc.body.clientWidth,
+choose_dom = doc.getElementById("choose").getElementsByTagName("span"),
+hchoose = doc.getElementById("choose").style,
+hgoods = doc.getElementById("goods"),
+goods_finish=false,
+timer = null,
+uid=pengge.cookie.get("uid");
+if(uid===null){location.href="/sign_in";}
+
+window.onload = function() {
+
+	hgoods.innerHTML = '<div class="card goods" id="loading">正在加载……</div>';
+	get_goods();
+
+	
+
+}
+function get_goods() {
+    pengge.post("/private/favorite/get", "page=" + page_num * 10 + "&uid="+uid,
+    function(data) {
+		
+        var out = "",
+        data_arr = JSON.parse(data);
+
+        for (var j = 0; j < data_arr.length; j++) {
+			out+='<a name="card" class="card" target="view_window" href="goods?gid=' + data_arr[j]["gid"] + '&"><h1>' + pengge.nanfenggx.font_len(data_arr[j]["goods_name"], 18) + '</h1><h2>' + pengge.get_time(data_arr[j]["release_time"] / 1000)  + '</h2>';
+			if(data_arr[j]["picture"].toString().length>5){
+			
+			
+			//data_arr[j]["picture"] = JSON.parse(data_arr[j]["picture"]);
+			out+='<div><img onload="img_onload(this)" src="' + data_arr[j]["picture"][0] + '" alt=""/></div><span style="float: left;">';
+			}else{out+="<span style='width:100%'>";}
+			out+='<h3>' + pengge.nanfenggx.font_len(data_arr[j]["content"].replace(/<br>/g, " "),100) + '</h3><h6>￥' + data_arr[j]["price"] / 100 + '</h6><input type="button" onClick="sold_out(' + data_arr[j]["gid"] + ',this)" value="删除"></span></a>';
+        }
+        hgoods.innerHTML += out;
+        if (j < 10) {
+            goods_finish = true;
+            doc.getElementById("loading").innerHTML = "没有更多商品了";
+
+        } else {
+            page_num++;
+
+        }
+
+    });
+}
+function img_onload(a) {
+    if (a.offsetTop < vw * 0.2) {
+		if(a.height>a.width){a.style.width="30vw";}else{a.style.height="30vw";}
+		a.style.margin=a.height/(-2)+"px "+a.width/(-2)+"px";
+        a.style.opacity = "1";
+    } else {
+        a.style.display = "none"
+    }
+
+}
+function sold_out(a,b){
+	b.onclick=null;
+	b=b.parentNode.parentNode;
+	b.href="javascript:void(0)";
+	pengge.post("sold_out.txt",'gid=' + a,function(d){
+	if (d === "success") {
+		console.log(d)
+hgoods.innerHTML = '<div class="card goods" id="loading">正在加载……</div>';
+	get_goods();
+	}
+	})
+}
+doc.onscroll = function() {
+    var top = doc.documentElement.scrollTop || doc.body.scrollTop;
+
+
+        var check = function() {
+            if (((doc.body.scrollHeight) - top - doc.body.clientHeight) <= vw) {
+                get_goods();
+            }
+        }
+
+        if (goods_finish) {
+            return;
+        }
+        if (timer === null) {
+            check();
+            timer = setTimeout(function() {
+                check();
+                timer = null;
+            },
+            1000);
+        }
+
+    }
+
+
+
+
+
+</script>
+</html>

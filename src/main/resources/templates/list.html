@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta charset="utf-8">
+<title>模板&nbsp;-&nbsp;南风共享</title>
+<style type="text/css">
+/*移动端优化*/
+* {
+	tap-highlight-color:rgba(0,0,0,0);
+	-webkit-tap-highlight-color:transparent;
+	outline:none;
+	font-family: Arial, Helvetica, sans-serif;
+
+}
+	
+body {
+	position:absolute;
+	background-color:rgb(250,250,250);
+	width:100%;
+	height:100%;
+	margin:0;
+	overflow-x:hidden
+}
+	
+/*卡片框，需要手动设置高度*/
+.card {
+	display: block;
+	position:relative;
+	width:94vw;
+	margin:3vw;
+	border-radius:3vw;
+	background-color:#fff;
+	overflow:hidden;
+	box-shadow:0 0 1vw 0 rgba(200,200,200,0.3);
+	text-decoration:none;
+	color:#222
+}
+
+/*发布按钮设计*/
+#post {
+	height:15vw;
+	background-color:rgba(200,0,0,1.00);
+	color:#fff;
+	border:0;
+	font-size:6vw;
+}
+
+/*输入框*/
+.card input {
+	width:90vw;
+	height:8vw;
+	line-height:8vw;
+	margin:2vw;
+	border:0;
+	font-size:5.3vw
+}
+
+/*文本框未输入时*/
+.active{
+	box-shadow:0 0 1vw 0 rgba(255,0,0,1);
+}
+
+</style>
+</head>
+<body>
+	<div class="card">
+		<input id="title" type="text" placeholder="请输入标题" maxlength="60">
+	</div>
+	<div class="card" style="height: 20vw"></div>
+	<input id="post"  class="card" type="button" value="发&nbsp;&nbsp;&nbsp;布">
+</body>
+<script type="text/javascript" src="pengge_tools.js"></script>
+<script type="text/javascript">
+"use strict";
+var doc=document;	
+doc.getElementById("post").onclick = function() {//发布按钮被按下
+    var dom = doc.getElementById("title");  //获取input元素节点
+    if (dom.value === "") {                //判断input里面的值是否为空
+        active(dom);                       //若为空则突出显示
+        return;
+    } else {
+        alert(dom.value);
+    }
+
+    function active(dom) {
+        dom.focus();                      //指向input元素
+        dom.parentNode.className = "card active";//修改父元素的样式
+        dom.onkeydown = noactive;          //增加监听（分别是：按下键盘、粘贴、改变）
+        dom.onafterpaste = noactive;
+        dom.onchange = noactive;
+    }
+    function noactive() {
+        this.parentNode.className = "card";//清除active样式
+		this.onkeydown = null;          //清除监听事件
+        this.onafterpaste = null;
+        this.onchange = null;
+    }
+}
+</script>
+</html>
