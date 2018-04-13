@@ -1,6 +1,7 @@
 package com.nanfenggongxiang.Dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface favoriteDao {
 
     @Select("select info.*,favorites.* from favorites join info on "+
     "info.uid = favorites.uid where favorites.uid = ${uid}")
-    public List<Map<String,Object>> getFavoritesByUid(int uid);
+    public List<Map<String,Object>> getFavoritesByUid(@Param("uid") int uid);
 
 
 }

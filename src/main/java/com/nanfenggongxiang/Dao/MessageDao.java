@@ -28,7 +28,7 @@ public interface MessageDao {
     @Select("select count(*) from message where receiver = #{uid} and is_readed = 0")
     public int getCountUnReaded(@Param("uid")int uid);
 
-    @Update("update message set is_readed = 1 where gid = ${gid} and receiver = ${uid}")
+    @Update("update message set is_readed = 1 where gid = ${gid} and receiver = ${receiver}")
     public int tagReaded(@Param("receiver")int uid,@Param("gid")int gid);
 
     @Select("select message.*,info.nick_name,info.head_pic,info.uid " +
