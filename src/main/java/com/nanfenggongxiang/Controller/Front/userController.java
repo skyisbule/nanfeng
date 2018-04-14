@@ -132,6 +132,11 @@ public class userController {
         return dao.selectByPrimaryKey(uid);
     }
 
+    @ApiOperation("通过id获取用户的昵称")
+    @RequestMapping("/public/user/get-nickName-by-id")
+    public String getNickName(int uid){
+        return dao.selectByPrimaryKey(uid).getNickName();
+    }
 
     private String getHash(String str){
         if (str != null && str.length() != 0){
