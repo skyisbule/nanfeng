@@ -81,4 +81,7 @@ public interface CommodityDao {
                                                  @Param("isWantBuy")int isWantBuy,
                                                  @Param("page")int page);
 
+    @Update("update info set release_num = release_num + 1 where uid = ${uid}")
+    public void addReleaseNum(@Param("uid")int uid);
+
 }

@@ -4,6 +4,7 @@ import com.nanfenggongxiang.Dao.CommodityDao;
 import com.nanfenggongxiang.Dao.CommodityMapper;
 import com.nanfenggongxiang.Domain.Commodity;
 import com.nanfenggongxiang.Domain.CommodityExample;
+import com.nanfenggongxiang.Service.commodityService;
 import groovy.util.MapEntry;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,6 +31,8 @@ public class shopController {
     CommodityMapper dao;
     @Autowired
     CommodityDao    complexDao;
+    @Autowired
+    commodityService service;
 
     /**
      * 增加一件商品，需要已经登录。
@@ -48,7 +51,11 @@ public class shopController {
         init(commodity);
         Date date = new Date();
         commodity.setReleaseTime(date);
-        return dao.insert(commodity)==1?"success":"false";
+        if(dao.insert(commodity)==1){
+            service.addReleaseNum(uid);
+            return "success";
+        }
+        return "false";
     }
 
 
