@@ -4,6 +4,7 @@ import com.nanfenggongxiang.Dao.OrderMapper;
 import com.nanfenggongxiang.Dao.orderDao;
 import com.nanfenggongxiang.Domain.Order;
 import com.nanfenggongxiang.Domain.OrderExample;
+import com.nanfenggongxiang.Service.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -27,6 +28,8 @@ public class orderController {
     orderDao complexDao;
     @Autowired
     OrderMapper dao;
+    @Autowired
+    OrderService service
 
     @ApiOperation("传用户id，返回该id所拍下的商品")
     @RequestMapping("/private/order/get-by-uid")
@@ -37,6 +40,8 @@ public class orderController {
     @ApiOperation("添加一条记录")
     @RequestMapping("/private/order/add")
     public String add(Order order){
+        if (service.isAdded(order.getUid(),order.getGid()))
+            return "exist";
         Date date = new Date();
         order.setBuyTime(date);
         dao.insert(order);
