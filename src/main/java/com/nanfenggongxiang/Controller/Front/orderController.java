@@ -29,7 +29,7 @@ public class orderController {
     @Autowired
     OrderMapper dao;
     @Autowired
-    OrderService service
+    OrderService service;
 
     @ApiOperation("传用户id，返回该id所拍下的商品")
     @RequestMapping("/private/order/get-by-uid")

@@ -64,9 +64,9 @@ public class view {
         return "user_guest";
     }
 
-    @RequestMapping("/bug_list")
+    @RequestMapping("/buy_list")
     public String bug_list(){
-        return "bug_list";
+        return "buy_list";
     }
 
     @RequestMapping("/list")

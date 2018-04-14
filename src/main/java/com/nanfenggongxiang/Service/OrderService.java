@@ -25,7 +25,7 @@ public class OrderService {
                 .andGidEqualTo(gid)
                 .andUidEqualTo(uid);
         List<Order> list = dao.selectByExample(e);
-        return list != null;
+        return !list.isEmpty();
     }
 
 }

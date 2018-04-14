@@ -4,6 +4,7 @@ import com.nanfenggongxiang.Dao.FavoritesMapper;
 import com.nanfenggongxiang.Dao.favoriteDao;
 import com.nanfenggongxiang.Domain.Favorites;
 import com.nanfenggongxiang.Domain.FavoritesExample;
+import com.nanfenggongxiang.Service.favoriteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class favoriteController {
     FavoritesMapper dao;
     @Autowired
     favoriteDao complexDao;
+    @Autowired
+    favoriteService service;
 
     @ApiOperation("获取某用户的收藏信息，返回所有")
     @RequestMapping("/private/favorite/get")
@@ -37,6 +40,8 @@ public class favoriteController {
     @RequestMapping("/private/favorite/add")
     public String add(Favorites favorites){
         if (favorites.getUid()!=null&&favorites.getGid()!=null){
+            if (service.isAdded(favorites.getUid(),favorites.getGid()))
+                return "exist";
             dao.insert(favorites);
             return "success";
         }
@@ -51,7 +56,7 @@ public class favoriteController {
                 .andGidEqualTo(gid)
                 .andUidEqualTo(uid);
         List<Favorites> list = dao.selectByExample(e);
-        return list==null?"no":"yes";
+        return list.isEmpty()?"no":"yes";
     }
 
 }

@@ -13,8 +13,8 @@ import java.util.Map;
 @Mapper
 public interface favoriteDao {
 
-    @Select("select info.*,favorites.* from favorites join info on "+
-    "info.uid = favorites.uid where favorites.uid = ${uid}")
+    @Select("select commodity.*,favorites.* from favorites join commodity on "+
+    "commodity.uid = favorites.uid where favorites.uid = ${uid}")
     public List<Map<String,Object>> getFavoritesByUid(@Param("uid") int uid);
 
 
