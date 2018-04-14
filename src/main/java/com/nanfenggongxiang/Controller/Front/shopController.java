@@ -124,6 +124,12 @@ public class shopController {
         return complexDao.tagSellOut(gid)==1?"success":"error";
     }
 
+    @ApiOperation("我发布的，传uid和page给我")
+    @RequestMapping("/private/commodity/my_release")
+    public List<Map<String,Object>> myRelease(int uid,int isSellOut,int isWantBuy,int page){
+        return complexDao.getMyRelease(uid,isSellOut,isWantBuy,page*10);
+    }
+
     private void init(Commodity commodity){
         commodity.setGid(null);
         //commodity.setUid(uid);

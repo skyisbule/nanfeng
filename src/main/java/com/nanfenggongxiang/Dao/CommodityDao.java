@@ -68,4 +68,17 @@ public interface CommodityDao {
     @Update("update commodity is_sell_out = 1 where gid = #{gid}")
     public int tagSellOut(@Param("gid") int gid);
 
+    @Select("select commodity.*,info.nick_name,info.head_pic,info.contact " +
+            "from commodity join info on  " +
+            "info.uid = commodity.uid " +
+            "where commodity.uid = ${uid} " +
+            "and is_sell_out = ${isSellOut} " +
+            "and is_want_by = ${isWantBuy} " +
+            "order by commodity.gid desc " +
+            "limit ${page},10")
+    public List<Map<String,Object>> getMyRelease(@Param("uid")int uid,
+                                                 @Param("isSellOut")int isSellOut,
+                                                 @Param("isWantBuy")int isWantBuy,
+                                                 @Param("page")int page);
+
 }
