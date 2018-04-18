@@ -4,10 +4,10 @@
             }
             
             .fade-enter-active {
-    transition: all 1s;
+    transition: all 0.5s;
 }
 .fade-leave-active{
-    transition: all 0.7s;
+    transition: all 0.5s;
 }
 .fade-enter {
     opacity: 0.1;
@@ -55,4 +55,21 @@
     100% {width:80%}
     
    
+}
+
+
+.slide-enter-active {
+  transition: all .5s;
+}
+
+
+.slide-enter, .slide-leave-to /* .fade-leave-active 在低于版本 2.1.8 中 */ {
+  opacity: 0;
+}
+
+.slide2-enter-active, .slide2-leave-active {
+  transition: all .5s;
+}
+.slide2-enter, .slide2-leave-to /* .fade-leave-active 在低于版本 2.1.8 中 */ {
+  opacity: 0;
 }

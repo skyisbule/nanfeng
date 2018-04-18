@@ -7,12 +7,14 @@ and open the template in the editor.
 <html>
     <head>
         <title>TODO supply a title</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://unpkg.com/vue"></script>
 <script src="https://cdn.bootcss.com/velocity/2.0.2/velocity.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
-       
+       <script type="text/javascript" src="/js/bar.js"></script>
+  
 
 <style>
     .ui-upload {
@@ -27,10 +29,13 @@ and open the template in the editor.
       color: #fff;
       border-radius: 3px;
       border: 0px;
-      background-image: url( static/images/porf.gif);
+     background-color: #fff;
       background-size: 100% 100%;
       float: left;
     }
+    
+    
+
   </style>
 
         <style>
@@ -44,6 +49,10 @@ and open the template in the editor.
             ul{
                 list-style-type:none;
             }
+            .setPadding{
+                width:94%;
+                padding-left: 3%;padding-right: 3%
+            }
         </style>
         
         <link href="static/css/9002.css" rel="stylesheet">
@@ -51,48 +60,52 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     
-    <body style="max-width: 410px;">
+    <body style="">
         <div id = 'data'>
-        <table style='width: 100%;position: fixed;height:45px;background-color: #ffffff;top:0%;border-bottom: 1px #cccccc solid;max-width: 410px;'>
-            <td style='width:15%;text-align: center'>
+        <table style='width: 100%;position: fixed;height:45px;background-color: #ffffff;top:0%;border-bottom: 1px #cccccc solid;'>
+            <td v-show='ifshow' style='width:15%;text-align: center'>
             <div style='height: 45px;position: relative;top:14px;'>
-            <img src='static/images/向左.png' style='height:18px;width:18px;float:left' onclick="a.ve.ifshow = false;setTimeout( ()=> { window.scrollTo(0,nowS);bool = true;  });  ">
+            <img src='static/images/向左.png' style='height:18px;width:18px;float:left' onclick="a.ve.ifshow = false;setTimeout( ()=> { window.scrollTo(0,nowS);bool = true;replyPage = 0;  });  ">
             
             </div>
         </td>
+        
+        <td style='width:15%;text-align: center'>
+            <div style='height: 45px;position: relative;top:4px;'class="ass" onclick="a.ve.lis = [];nowtype = 0; page = 0;a.ve.ifshow = false;replyPage = 0;">
             
-        <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 1; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/广场.png' style='height:18px;width:18px;'>
-            <div class="myfont" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >广场</p></div>
-            </div>
-        </td>
-        <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 2; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/养啦主页.png' style='height:18px;width:18px;'>
-            <div class="myfont" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >圈子</p></div>
-            </div>
-        </td>
-        <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 3; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/社团.png' style='height:18px;width:18px;'>
-            <div class="myfont" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >社团</p></div>
-            </div>
-        </td>
-        <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;'class="ass" onclick="a.ve.lis = [];nowtype = 4; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/养啦主页.png' style='height:18px;width:18px;'>
-            <div class="myfont" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >圈子</p></div>
+            <div class="myfont blue"  style='font-size:17px;position: relative;top:8px;margin: 0 auto;text-align: center;'><p  >全部</p></div>
             </div>
         </td>
         
         
+            
         <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;'class="ass" onclick="a.ve.lis = [];nowtype = 0; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/Category.png' style='height:18px;width:18px;'>
-            <div class="myfont blue"  style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >全部</p></div>
+            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 1; page = 0;a.ve.ifshow = false;replyPage = 0;">
+            
+            <div class="myfont" style='font-size:17px;position: relative;top:8px;margin: 0 auto;text-align: center;'><p  >广场</p></div>
             </div>
         </td>
+        <td style='width:15%;text-align: center'>
+            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 2; page = 0;a.ve.ifshow = false;replyPage = 0;">
+            
+            <div class="myfont" style='font-size:17px;position: relative;top:8px;margin: 0 auto;text-align: center;'><p  >圈子</p></div>
+            </div>
+        </td>
+        <td style='width:15%;text-align: center'>
+            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 3; page = 0;a.ve.ifshow = false;replyPage = 0;">
+            
+            <div class="myfont" style='font-size:17px;position: relative;top:8px;margin: 0 auto;text-align: center;'><p  >社团</p></div>
+            </div>
+        </td>
+        <td style='width:15%;text-align: center'>
+            <div style='height: 45px;position: relative;top:4px;'class="ass" onclick="a.ve.lis = [];nowtype = 4; page = 0;a.ve.ifshow = false;replyPage = 0;">
+            
+            <div class="myfont" style='font-size:17px;position: relative;top:8px;margin: 0 auto;text-align: center;'><p  >社区</p></div>
+            </div>
+        </td>
+        
+        
+        
         
         
         
@@ -101,11 +114,11 @@ and open the template in the editor.
         
     </table>
         
-        
-        <ul style="margin-top: 55px;"  v-show='!ifshow'>
-            <div v-if="lis[0] === undefined" style="width:100%;margin: 0 auto;font-size: 10px;text-align: center">偷偷告诉你这里什么都没有..</div>
+         <transition name="slide" tag="p" v-on:duration="300">
+        <ul style="margin-top: 55px;margin-bottom: 15vw"  v-show='!ifshow'>
+            <div id="mutext" v-if="lis[0] === undefined" style="width:100%;margin: 0 auto;font-size: 10px;text-align: center"></div>
                
-            <transition-group style="margin-bottom:15vw" name="fade" tag="p" v-on:duration="300">
+            <transition-group style="" name="fade" tag="p" v-on:duration="300">
                 
                 <li style="width: 100%;height: 135px;background-color: #ffffff;margin-top: 5px;text-overflow: ellipsis"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li"   v-on:click="another(li,{page:0,postId:li.pid},'public/postReply/get-by-page')" >
                 <ul style="width: 100%;height: 135px;">
@@ -118,48 +131,55 @@ and open the template in the editor.
             </transition-group>
 
             <li style="width: 100%;height: 30px;margin-top: 10px;"></li>
-            <li v-if='!ifshow' class='tli colorchange'  style="width: 100%;position: fixed;bottom:15vw;hieght:60px;overflow: hidden;min-height:35px;" onclick = ' '>
+            <li v-if='!ifshow' class='tli colorchange'  style="width: 100%;position: fixed;bottom:0%;hieght:60px;overflow: hidden;min-height:35px;margin-bottom: 15vw" onclick = ' '>
                 <div class=' mypost'  onclick="$(this).parent().animate({top:'0%'});$(this).hide() ;$(this).parent().find('.postcontent').show();$('.postpng').hide();$('.postspan').hide();$('.colorchange').css('background-color','#ffffff')  "  style='width: 100%;float: left;height: 50px;'>
                     <div style="width: 70px;height:38px;font-size: 12px;color:#ffffff;border: #ffffff 1px none;border-radius: 10px;float:right;background-color: rgba(255,102,51,0.8);text-align: center;line-height: 38px;;position: fixed;right:5%"  class="postspan" >发帖</div>
                 </div>
                 
                    
       
-                <div  class='postcontent' style='background-color: #ffffff;display:none;text-align: center;font-family: Microsoft JhengHei;font-size: 14px;font-weight: 700; '> <img onclick="    $('.tli').css('top','');$('.mypost').show() ;$('.postcontent').hide();$('.postpng').show(); $('.postspan').show();$('.colorchange').css('background-color','')   "  src='static/images/关闭3.png' alt='关闭' style='float:left;width: 22px;height: 22px' /> 编辑帖子 <img v-on:click="post('private/post/add')" style='float: right;width: 22px;height: 22px' src='static/images/发帖_icon.png' alt='提交' /><br/>
-                    <br/><input placeholder="写上你的标题吧" v-model="qo" style="width: 380px;border: #ffffff  solid 1px;float: left;height: 30px" ><br/><br/>
-                    
-                    <textarea placeholder="这是帖子的内容哦" v-model="qt"  style="width: 380px;border: #ffffff  solid 1px;float: left;height: 120px" cols="5"></textarea>
+                <div  class='postcontent' style='height: 100%;background-color: #ffffff;display:none;text-align: center;font-family: Microsoft JhengHei;font-size: 16px;font-weight: 700;overflow: hidden '> <img onclick="    $('.tli').css('top','');$('.mypost').show() ;$('.postcontent').hide();$('.postpng').show(); $('.postspan').show();$('.colorchange').css('background-color','')   "  src='static/images/关闭3.png' alt='关闭' style='float:left;width: 28px;height: 28px' /> 编辑帖子 <span v-on:click="post('private/post/add')" style='float: right;margin-right: 3%;'  >发帖</span><br/>
+                    <br/><input placeholder="写上你的标题吧" v-model="qo" style="margin-left: 3%;margin-right: 3%;width: 94%;border: #ffffff  solid 1px;float: left;height: 30px" ><br/><br/>
+                    <textarea placeholder="这是帖子的内容哦" style="width:94%;margin-left: 3%;margin-right: 3%;min-height: 130px;border: #ffffff  solid 1px;float: left;" id="txtarea" v-bind:value="rawHtml.replace(reg,'圖')" v-on:input="rawHtml =a( $event.target.value)" ></textarea>
+ 
+                   <!-- <textarea placeholder="这是帖子的内容哦" v-model="qt"  style="width: 380px;border: #ffffff  solid 1px;float: left;height: 120px" cols="5"></textarea> -->
                     <br/><br/>
-                    <button class="ui-upload" onclick="document.getElementById('upload').click()">该功能尚未开放<img src="static/images/上传.png" style=";width: 28px;height: 28px"/></button>
-  <input type="file" id="upload" style="display:none;" />
-
+                    <button style="margin-left: 3%;margin-right: 3%;" class="ui-upload" onclick="document.getElementById('upload').click()"><img src="static/images/上传.png" style=";width: 28px;height: 28px"/></button>
+  <input type="file" id="upload" style="display:none;"  accept="image/gif, image/jpeg"  onchange="previewFiles()"/><p style="padding-left: 5px;padding-right: 5px;color:white;background-color: #ff6633;margin-top:10px;position: relative;top:10px;left:-20px;float:right;border:1px #ff6633 solid ;border-radius: 5px" onclick="a.ve.rawHtml='';a.ve.rawHtmlS=''">清空</p>
+  <br/><div style="width:94%;height: 50%;display: inline-block;text-align: left;margin-top: 8px;overflow: hidden;text-indent: 2em;white-space:normal;word-break:break-all;    " id="上传图片list" v-html="rawHtml"></div>
+   <div id="模板" style="height:1px;width: 1px;overflow-y: scroll"></div>
+  
                 </div>  
                 </li>
     </ul>
-        
-         <ul style="margin-top: 55px;"  v-show='ifshow' >
+             </transition>
+        <transition name="slide" tag="p" v-on:duration="300">
+         <ul style="margin-top: 55px;width:100%;"  v-show='ifshow' >
              
-             <li style="width: 100%;background-color: #ffffff;margin-top: 10px;margin-bottom: 10px;" onclick="$('.liuyan').css('bottom','15vw');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');">
+             <li class="setPadding" style="background-color: #ffffff;margin-top: 10px;margin-bottom: 10px;" onclick="$('.liuyan').css('bottom','3%');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');">
                 <ul style="width: 100%;">
-                    <li style="margin-bottom: 10px;text-indent:1em;width:100%;overflow: hidden;font-size: 13px;text-align: center;white-space: nowrap;text-overflow: ellipsis;width:100%;overflow: hidden"><p style="font-size:14px;font-weight: 600;white-space: nowrap;text-overflow: ellipsis;width:100%;overflow: hidden">{{nowc.title}}</p></li>
-                    <li style="width:100%;height: 60px"><img style="border-radius: 25px;border: none;height: 50px;width: 50px;float: left;margin-top: 5px;" v-bind:src="'http://pic.zdnfbbs.cn/'+nowc.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:14px;margin-left: 10px;font-size:12px">{{nowc.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">楼主</p></div></li>
+                    <li style="position: relative;width: 100%">
+                                 <div style="font-size:18px;line-height: 26px;font-weight: normal;text-overflow: ellipsis;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;    -webkit-box-orient: vertical;margin-top: -3px;    margin-bottom: 4px;    text-align: left;font-weight: 600;">
+
+                        {{nowc.title}}</div></li>
+                    <li style="width:100%;height: 60px"><img style="border-radius: 20px;border: none;height: 40px;width: 40px;float: left;margin-top: 5px;" v-bind:src="'http://pic.zdnfbbs.cn/'+nowc.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:5px;margin-left: 10px;font-size:12px">{{nowc.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">楼主</p></div></li>
    
-   <li style="width:100%;"><p style="font-size:12px;margin-right: 5px;text-indent:2em;min-height: 80px;margin-top: 10px">{{nowc.content}}</p></li>
+   <li style="font-size:12px;margin-right: 5px;text-indent:2em;min-height: 80px;margin-top: 10px;width:100%;;min-height: 100px" v-html="nowc.content"></li>
       <li style="width:100%;height: 20px"><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{myDate(nowc.release_time)}}</span></li>
 
   </ul>
                 
             </li>
              
-             <div style="width:100%;text-align: center;height: 100%;"  onclick="$('.liuyan').css('bottom','15vw');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');"><p style="font-size: 12px;"> 全部回复:</p>
-                 <div v-if="conts[0] === undefined" style="width:100%;margin: 0 auto;font-size: 10px;text-align: center">偷偷告诉你这里什么都没有..</div>
+             <div style="text-align: center;height: 100%;margin-bottom: 15vw"  onclick=""><p style="font-size: 13px;margin-bottom: 5px"> 全部回复:</p>
+                 <div v-if="conts[0] === undefined" style="width:100%;margin: 0 auto;font-size: 12px;text-align: center">偷偷告诉你这里什么都没有..</div>
                  
             <transition-group name="fade" tag="p" v-on:duration="300">
-            <li style="width: 100%;background-color: #ffffff;margin-top: 10px;"  v-for = '(li,index) in conts' v-bind:key="index">
+            <li class="setPadding" style=" background-color: #ffffff;padding-top: 10px;border-bottom: 1px #bababa solid;"  v-for = '(li,index) in conts' v-bind:key="index">
                 <ul style="width: 100%;">
-                    <li style="width:100%;height: 60px;"><img style="border-radius: 25px;border: none;height: 50px;width: 50px;float: left;margin-top: 5px;" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="float:left;width:120px;height:50px;display: inline-block;text-align:  left;"><p style="margin-top:14px;margin-left: 10px;font-size:12px;">{{li.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">{{ index+2+'楼'}}</p></div></li>
+                    <li style="width:100%;height: 60px;"><img style="border-radius: 20px;border: none;height: 40px;width: 40px;float: left;margin-top: 5px;" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="float:left;width:120px;height:50px;display: inline-block;text-align:  left;"><p style="margin-top:5px;margin-left: 10px;font-size:12px;">{{li.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">{{ index+2+'楼'}}</p></div></li>
    
-  <li style="width:100%;min-height: 50px;text-align: left"><p style="font-size:14px;margin-right: 5px;text-indent:2em;">{{li.content}}</p></li>
+  <li style="width:100%;min-height: 50px;text-align: left;white-space:normal;word-break:break-all;word-wrap:break-word;text-indent:2em;font-size: 14px">{{li.content}}</li>
   <li style="width:100%;height: 20px"><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{myDate(li.release_time)}}</span></li>
   </ul>
                 
@@ -168,27 +188,47 @@ and open the template in the editor.
                  </div>
             
             <li style="width: 100%;height: 30px;margin-top: 10px;min-height:38px;"></li>
-            <li class="liuyan" v-if='ifshow' style="width: 100%;position: fixed;bottom:15vw;hieght:60px;overflow: hidden">
-                <div class='myreply'  onclick="$('.liuyan').animate({bottom:'30vw'});$('.myreply').hide() ;$('.rcontent').show();$('.liuyan').css('background-color','#ffffff')  "  style='width: 100%;float: left;height: 50px;'>
+             <li class="liuyan setPadding" v-if='ifshow' style="position: fixed;bottom:0%;hieght:60px;overflow: hidden;margin-bottom: 15vw">
+                <div class='myreply'  onclick="$('.liuyan').animate({top:'0%'});$('.myreply').hide() ;$('.rcontent').show();$('.liuyan').css('background-color','#ffffff')  "  style='width: 100%;float: left;height: 50px;'>
                     <div style="width: 70px;height:38px;font-size: 12px;color:#ffffff;border: #ffffff 1px none;border-radius: 10px;float:right;background-color: rgba(255,102,51,0.8);text-align: center;line-height: 38px;position: fixed;right:5%"  class="postspan" >回复</div>
                 </div>
                 
                 
-             <div class="rcontent" style="display: none;height: 36px;width: 100%;border-top:3px #ff6633 solid ;border-bottom:3px #ff6633 solid ;">   <input    v-model="replycont" style='width: 85%;border:1px #999999 none;float: left;height: 30px;position: relative;top:3px;' placeholder='要不留个言再走~' /><img class="rpng" v-on:click="Reply('private/postReply/add')" style='float: right;width: 38px;height: 38px' src='static/images/留言.png' alt='提交'  />  </div>
+             <div class="rcontent" style="display: none;height: 36px;width: 100%;"> 
+                 <img onclick=" $('.liuyan').css('top','');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');   "   src='static/images/关闭3.png' alt='关闭' style='float:left;width: 22px;height: 22px' />
+                 <span class="rpng" v-on:click="Reply('private/postReply/add')" style='float: right;'   >提交</span >  
+             <br/><br/><br/>
+             <textarea    v-model="replycont" style='width: 85%;height:300px;border:1px #fff solid;float: left;text-indent: 2px; padding-left: 2px;padding-top: 2px;' placeholder='要不留个言再走~' ></textarea>
+             
+             </div>
             </li>
+            
             
             
             
 
     </ul>
+            </transition>
             <transition name='t' mode="out-in" >
             <div    style="position: fixed;top:40%;width:100%;max-width: 410px;" v-if="warning">
                 <div class="warning" style="margin:0 auto;background-color:rgba(255,102,51,0.8);text-align: center;width:100px;color:#fff;border:  #cccccc 1px none;border-radius: 10px;" >asd</div>
             </div>
             </transition>
         </div>
+        
+        <div class="myLoading"  style="position: fixed;height: 100%;width: 100%;background-color: rgba(144,144,144,0.9);top:0%;text-align: center">
+            <img  src="static/images/loading.gif" style="margin-top: 35%" alt="加载">
+        </div>
+        
         <script>
-     let nowS = '',bool = true,nowtype =0,page;    
+            "use strict";
+var img_arr=[];
+function img_upload(h,n,j,k){k=k||0;var m=h[k].src.split(",")[1]; var i=function(a){var c;if(a.indexOf("=")>0){var b=a.indexOf("=");a=a.substring(0,b)}c=parseInt(a.length-(a.length/8)*2);return c};var g="http://upload-z2.qiniu.com/putb64/"+i(m);var l=new XMLHttpRequest();l.onreadystatechange=function(){if(l.readyState==4){img_arr[k]=JSON.parse(l.responseText).key;k++;if(k>=h.length){j(img_arr)}else{img_upload(h,n,j,k)}}};l.open("POST",g,false);l.setRequestHeader("Content-Type","application/octet-stream");l.setRequestHeader("Authorization","UpToken "+n);l.send(m)};
+
+        </script>
+        
+        <script>
+     let nowS = '',bool = true,nowtype =0,page,btw =true,mypostId = 1,replyPage = 0,checkFull=true,saveP = {};    
      
 $(document).ready(function(){
     page = 0;
@@ -199,7 +239,9 @@ $(document).ready(function(){
     });
     
     
+    
             $(window).scroll(_.debounce(function(){
+                $('.liuyan').css('bottom','3%');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');
 let scrollTop = parseInt($(this).scrollTop());
 
 let scrollHeight = $(document).height();
@@ -207,22 +249,48 @@ let windowHeight = $(this).height();
 if(bool){
     nowS = parseInt($(this).scrollTop());
 console.log(nowS);
-}
-
 
 if(scrollTop + windowHeight == scrollHeight || scrollTop + windowHeight == scrollHeight-2 ||scrollTop + windowHeight == scrollHeight+1){
 console.log("已经到最底部了！");
 //这里写实例的新增楼层的方法 和留言
 
 page++;
+
 a.addLIS('public/post/get-by-page',{page,isTop:0,plate:nowtype});
 
 
 
 }
 
+
+
+
+}else{
+    
+
+//这里写实例的新增楼层的方法 和留言
+
+replyPage++;
+    a.addCONTS('public/postReply/get-by-page',{page:replyPage,postId:mypostId});
+
+
+
+
+    
+    
+    
+}
+
+
+
+
 },300)
         );
+
+
+setTimeout(  ()=> {
+     $('.myLoading').hide();
+},300 );
 });
 
 
@@ -235,7 +303,7 @@ class F {
             data:{
                 lis:[],
                 conts:[],
-                nowc:{},
+                nowc:{title:'昨天又没忍住把新单位的一个男神给上了。今早才看见他嘴巴一圈都'},
                 postdata:'',
                 postdatasave:'??',
                 ifshow:false,
@@ -248,7 +316,12 @@ class F {
                 ansytype:ansy,
                 myid:myid,
                 myhead:myhead,
-                warning:false
+                warning:false,
+                rawHtml:'',
+                rawHtmlS:'',
+               reg : /<img.*?>/g,
+               reg2:/.*圖/,
+               myLoading:false
                 
             },
             methods:{
@@ -278,16 +351,29 @@ class F {
                 },
                 post(url,p = {},func= undefined ){
                     //差板块id  和
+                    let cc = 0;
+                    $('.myLoading').show();
                     
+                    
+                    if(document.getElementsByClassName('abc').length !== 0){
+                         Vue.http.post(allurl+'public/pic/token',{fileName:Math.random()}, {emulateJSON: true}).then(  (response) => {
+                        img_upload(document.getElementsByClassName('abc'),response.bodyText,function(data){
+                        let group =   JSON.stringify(data);
+                        group.forEach(function(item,index){
+                            document.getElementsByClassName('abc')[index].src = item;
+                        });
+                        
+                        
+                                   
             
              p.uid = this.myid;
              p.title = this.qo;
-             p.content = this.qt;
+             p.content = document.getElementById('上传图片list').innerHTML;
              p.isTop = 0;
              p[this.ansytype] =nowtype;
             
          Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
-          if(response.bodyText === 'success')  { console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
+          if(response.bodyText === 'success')  {$('.myLoading').show(); console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
               this.lis = [];
               page = 0;
               a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});
@@ -305,23 +391,72 @@ class F {
                         }
           if(func){  func(); };
          }); 
+                        
+                        
+                        
+                        
+                    });
+                    });
+                    }else{
+                        
+                        p.uid = this.myid;
+             p.title = this.qo;
+             p.content = document.getElementById('上传图片list').innerHTML;
+             p.isTop = 0;
+             p[this.ansytype] =nowtype;
+            
+         Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
+          if(response.bodyText === 'success')  {$('.myLoading').show(); console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
+              this.lis = [];
+              page = 0;
+              a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});
+             /* p.reply_num = '0';
+              p.release_time = '刚刚';
+              p.head_pic = this.myhead;
+              p.nick_name = '我';
+          this.lis.unshift(p);//['uid','releaseTime','title','content','replyNum'] */
+          $(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show();
+          this.warning =true;
+          setTimeout(()=>{  $('.warning').text('发布成功'); },200);
+         
+          setTimeout(()=>{ this.warning = false; },1000);
+          
+                        }
+          if(func){  func(); };
+         }); 
+                 
+                        
+                        
+                        
+                    }
+                    
+                   
+                    
+                    
+                    
+         
     },
     Reply(url,p = {},func = undefined ){
                     //需要  postId uid content
                                 p.uid = this.myid;        
             p.postId = this.tempId;
              p.content = this.replycont;
-                    if(p.postId){
+                    if(1){
              
             
              console.log(p);//这是发布的也包括留言  一切发送的东西
          Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
           if(response.bodyText === 'success')  { console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
-              $('.liuyan').css('bottom','15vw');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');
-              p.head_pic = this.myhead;
+              
+              $('.liuyan').css('top','');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color',''); 
+            /*  p.head_pic = myhead;
               p.release_time = '刚刚';
               p.nick_name = '我';
-          this.conts.push(p);
+              this.conts.push(p); */
+        this.another(saveP.A,saveP.B,saveP.C);
+              /*this.conts = [];
+              a.addCONTS('private/postReply/add',p.postId); */
+              
                         }
           if(func){  func(); };
          }); 
@@ -335,11 +470,27 @@ class F {
            
     },
     another(li,p={}/*回复的实体*/,url = undefined){
+        saveP = {A:li,B:p,C:url};
+        checkFull=true;
         this.conts = [];
        this.nowc = li;
         this.tempId = li.pid;
         a.changeNOWC(url,p);
-    }
+      mypostId =  p.postId;
+    }, a(b){
+                   
+                    if(this.rawHtmlS){
+                        console.log(b.replace(this.reg2,'') );
+                        
+                        return this.rawHtmlS +b.replace(this.reg2,'');
+                        
+                    }else{
+                        return b;
+                    }
+                    
+                }
+    
+    
             }
         });
     }
@@ -360,10 +511,16 @@ class F {
                 delete p.c;
             }
         }
-                                                     
+         var that = this;                                            
              Vue.http.get(allurl+url,{params:p}).then(  (response) => {
             let f =  eval("("+response.bodyText+")");
+            
+            
             f.forEach( (data) => {  a.ve.lis.push(data);  }  );
+            if(that.ve.lis[0] !== undefined){
+               btw = false;
+            }
+            
             
             p.isTop = 0;
         this.addLIS(url,p);
@@ -372,20 +529,31 @@ class F {
     }
     
     addLIS(url,p={}){          
+var that =this;
 
          Vue.http.get(allurl+url,{params:p}).then(  (response) => {
             let fs =  eval("("+response.bodyText+")");
             fs.forEach( (data) => {  a.ve.lis.push(data);  }  );
+            if(that.ve.lis[0] === undefined && btw){
+               $('#mutext').html('偷偷告诉你这里什么都没有...'); 
+            }
+            
+            
          });
     }
     
     addCONTS(url,p){  
-        
-        Vue.http.get(allurl+url,{params:p}).then(  (response) => {
+        if(checkFull){
+            Vue.http.get(allurl+url,{params:p}).then(  (response) => {
             var f =  eval("("+response.bodyText+")");
+            if(!f[0]){
+                checkFull = false;
+            }
             f.forEach( (data) => {  this.ve.conts.push(data);  }  );
          
          });
+        }
+        
         
     }
     
@@ -403,7 +571,58 @@ class F {
     
 }
 
-let a = new F(['nick_name','release_time','title','content','reply_num'],'plateId',1,'http://wx4.sinaimg.cn/mw690/006Zdy2vgy1fn5cqqdux0j31kw0vnjzi.jpg');  //后面两个 一个是id   一个是图片
+function previewFiles() {
+
+  var preview = document.querySelector('#upload');
+  var files   = document.querySelector('input[type=file]').files;
+
+  function readAndPreview(file) {
+
+    
+    if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+      var reader = new FileReader();
+
+      reader.addEventListener("load", function () {
+        
+        /*image.height = 100;
+        image.title = file.name;
+        image.src = this.result;*/
+       
+      //  a.imgUrl = this.result;
+     
+      let o =document.createElement("IMG");
+o.src=this.result;
+o.setAttribute("class", "abc"); 
+o.style.maxWidth = '80%';
+ 
+ o.style.marginRight = '5px';
+ document.getElementById('模板').innerHTML = ' ';
+        document.getElementById('模板').appendChild(o);
+        a.ve.rawHtml +=  document.getElementById('模板').innerHTML;
+        
+        a.ve.rawHtmlS = a.ve.rawHtml;
+        /*preview.appendChild( image );*/
+      }, false);
+
+      reader.readAsDataURL(file);
+    }
+
+  }
+
+  if (files) {
+    [].forEach.call(files, readAndPreview);
+  }
+
+}
+       
+  function  change(){
+      a.ve.rawHtml = document.getElementById('上传图片list');
+  }
+
+
+
+
+let a = new F(['nick_name','release_time','title','content','reply_num'],'plateId',1,'http://wx4.sinaimg.cn/mw690/006Zdy2vgy1fn5cqqdux0j31kw0vnjzi.jpg');  //后面两个 一个是id   一个是图片帮我设置下吧？
 
 a.ve.postdatasave = {uid:null,title:null,content:null,postId:null};
 

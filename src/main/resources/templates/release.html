@@ -30,10 +30,13 @@ select {width:90vw;border:0;font-size:5vw;margin:2vw;height:8vw;line-height:8vw;
 #post {top:10vw;height:15vw;background-color:rgba(200,0,0,1.00);color:#fff;border:0;font-size:6vw;}
 .active {box-shadow:0 0 1vw 0 rgba(255,0,0,1);}
 #layer {position:absolute;display:block;left:0;top:12vw;height:100%;width:100%;z-index:299;}
+#layer1 {position:fixed;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.8);z-index:10000;display:none}
+#layer1 img {position:absolute;left:50%;top:50%;width:40vw;height:40vw;margin:-20vw}
 </style>
 </head>
 <body>
 	<a id="layer" target="new" href="/sign_in"></a>
+	<div id="layer1"><img src="/images/loading.gif" alt=""/></div>
 	<div id="choose">
 		<span style="left: 20vw" onClick="choose(true,this) ">发布闲置</span>
 		<span style="right:20vw" onClick="choose(false,this)" class="un">发布需求</span>
@@ -86,6 +89,7 @@ select {width:90vw;border:0;font-size:5vw;margin:2vw;height:8vw;line-height:8vw;
 </body>
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
 <script type="text/javascript" src="/js/img_upload.js"></script>
+<script type="text/javascript" src="/js/bar.js"></script>
 <script>
 "use strict";
 var doc = document,
@@ -191,7 +195,8 @@ doc.getElementById("post").onclick = function() {
         } else {
             e += "&conditions=" + dom_arr[4].selectedIndex
         }
-        parent.show_load();
+    doc.getElementById("layer1").style.display = "block";
+
         e += "&isWantBy=1";
         var b = dom_arr[2].getElementsByTagName("img"),
         a;
@@ -209,7 +214,8 @@ doc.getElementById("post").onclick = function() {
             post(c, e);
         }
     } else {
-        parent.show_load();
+    doc.getElementById("layer1").style.display = "block";
+
         e += "&isWantBy=0";
         post(c, e);
     }
@@ -219,7 +225,7 @@ function post(c, e) {
     pengge.post(c, e,
     function(da) {
         if (da === "success") {
-            parent.bottom_click("home");
+           location.href="/";
 
         }
 

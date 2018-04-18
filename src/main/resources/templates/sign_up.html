@@ -31,10 +31,10 @@ body {position:absolute;background-color:rgb(250,250,250);width:100%;height:100%
 	<input id="post" class="card" type="button" value="注&nbsp;&nbsp;&nbsp;册">
 </body>
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
-<script type="text/javascript" src="/js/sign.js"></script>
+<script type="text/javascript" src="/js/head.js"></script>
 <script type="text/javascript">
 "use strict";
-sign("注册");
+head(["注册"]);
 var doc = document,
 hpost=doc.getElementById("post"),
 dom1= doc.getElementById("user"),
@@ -115,5 +115,7 @@ hpost.onclick = function() {
     });
 
 }
+window.onload=function(){choose(0);}
+
 </script>
 </html>

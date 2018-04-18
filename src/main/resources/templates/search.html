@@ -117,7 +117,6 @@ function get_goods() {
             pic_len = (data_arr[j]["picture"].length >= 3) ? 3 : data_arr[j]["picture"].length;
             for (var i = 0; i < pic_len; i++) {
                 out += '<img onload="img_onload(this)" src="http://pic.zdnfbbs.cn/' + data_arr[j]["picture"][i] + '"alt=""/>';
-               // out += '<img onload="img_onload(this)" src="' + data_arr[j]["picture"][i] + '"alt=""/>';
             }
             out += '</div>';
 			}

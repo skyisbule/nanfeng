@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -7,12 +7,14 @@ and open the template in the editor.
 <html>
     <head>
         <title>TODO supply a title</title>
+                <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://unpkg.com/vue"></script>
 <script src="https://cdn.bootcss.com/velocity/2.0.2/velocity.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
-       
+   <script type="text/javascript" src="/js/bar.js"></script>    
 
 <style>
     .ui-upload {
@@ -44,6 +46,30 @@ and open the template in the editor.
             ul{
                 list-style-type:none;
             }
+            
+            .topText{
+                height: 45px;position: relative;top:4px;
+                font-size:13px;
+                padding-bottom: 3px;
+            }
+            .topText img {
+                height: 22px;
+                width: 22px;
+            }
+            
+            
+            .contentText {
+    overflow: visible;
+    letter-spacing: .2px;
+    margin-top: 20px;
+}
+.commonPadding {
+    padding-left: 17px;
+    padding-right: 17px;
+}
+.bjh-p {
+    display: block;
+}
         </style>
         
         <link href="static/css/9002.css" rel="stylesheet">
@@ -51,68 +77,70 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     
-    <body style="max-width: 410px;">
+    <body style="">
         <div id = 'data'>
-        <table style='width: 100%;position: fixed;height:45px;background-color: #ffffff;top:0%;border-bottom: 1px #cccccc solid;max-width: 410px;'>
-            <td style='width:20%;text-align: center'>
+        <table style='width: 100%;position: fixed;height:45px;background-color: #ffffff;top:0%;border-bottom: 1px #cccccc solid;'>
+            <td style='width:20%;text-align: center' >
             <div style='height: 45px;position: relative;top:14px;'>
-            <img src='static/images/向左.png' style='height:18px;width:18px;float:left' onclick="a.ve.ifshow = false;setTimeout( ()=> { window.scrollTo(0,nowS);bool = true;  });  ">
+            <img v-show='ifshow' src='static/images/向左.png' style='height:18px;width:18px;float:left' onclick="a.ve.ifshow = false;setTimeout( ()=> { window.scrollTo(0,nowS);bool = true; replyPage = 0; });  ">
             
             </div>
         </td>
             
         <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 1; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/兼职.png' style='height:18px;width:18px;'>
-            <div class="myfont" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >兼职</p></div>
+            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 0; page = 0;a.ve.ifshow = false;">
+            <img src='static/images/幼儿.png' >
+            <div class="myfont blue" style='position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >全部</p></div>
             </div>
         </td>
         <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 2; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/call.png' style='height:18px;width:18px;'>
-            <div class="myfont" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >打听</p></div>
+            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 1; page = 0;a.ve.ifshow = false;">
+            <img src='static/images/幼儿.png' >
+            <div class="myfont" style='position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >打听</p></div>
             </div>
         </td>
         <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 3; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/find.png' style='height:18px;width:18px;'>
-            <div class="myfont" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >寻物</p></div>
+            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 2; page = 0;a.ve.ifshow = false;">
+            <img src='static/images/幼儿.png' >
+            <div class="myfont" style='position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >寻物</p></div>
             </div>
         </td>
         <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;'class="ass" onclick="a.ve.lis = [];nowtype = 4; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/福利.png' style='height:18px;width:18px;'>
-            <div class="myfont" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >福利</p></div>
+            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 3; page = 0;a.ve.ifshow = false;">
+            <img src='static/images/幼儿.png' >
+            <div class="myfont" style='position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >福利</p></div>
             </div>
         </td>
         <td style='width:20%;text-align: center'>
-            <div style='height: 45px;position: relative;top:14px;width: 100%'>
-            <img src='static/images/Category.png' style='height:18px;width:18px;float: right;margin-right: 5px;' v-on:click="dragshow = !dragshow">
+            <div style='height: 45px;position: relative;top:14px;width: 100%' v-on:click="dragshow = !dragshow">
+            <img src='static/images/Category.png' style='height:18px;width:18px;float: right;margin-right: 5px;' >
             
+            <transition name="slide2">
             <div id="dragdown" style="width:100%;background-color: #ffffff" v-show="dragshow"  >
                 <div style='height: 45px;position: relative;top:4px;' >
             <p style='font-size:12px;position: relative;top:-4px;'></p>
             </div>
-                <div style='height: 30px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 5; page = 0;a.ve.ifshow = false;">
-             <div class="myfont" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >求伴</p></div>
+                <div style='height: 30px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 4; page = 0;a.ve.ifshow = false;">
+             <div class="myfont" style='font-size:13px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >求伴</p></div>
+            </div>
+                <div style='height: 30px;position: relative;top:4px;'class="ass" onclick="a.ve.lis = [];nowtype = 5; page = 0;a.ve.ifshow = false;">
+             <div class="myfont" style='font-size:13px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >校园</p></div>
             </div>
                 <div style='height: 30px;position: relative;top:4px;'class="ass" onclick="a.ve.lis = [];nowtype = 6; page = 0;a.ve.ifshow = false;">
-             <div class="myfont" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >校园</p></div>
+             <div class="myfont" style='font-size:13px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >服务</p></div>
             </div>
-                <div style='height: 30px;position: relative;top:4px;'class="ass" onclick="a.ve.lis = [];nowtype = 7; page = 0;a.ve.ifshow = false;">
-             <div class="myfont" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >服务</p></div>
+                <div style='height: 30px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 7; page = 0;a.ve.ifshow = false;">
+             <div class="myfont" style='font-size:13px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >微商</p></div>
             </div>
                 <div style='height: 30px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 8; page = 0;a.ve.ifshow = false;">
-             <div class="myfont" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >微商</p></div>
-            </div>
-                <div style='height: 30px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 0; page = 0;a.ve.ifshow = false;">
-                    <div class="myfont blue" style='font-size:12px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >全部</p></div>
+                    <div class="myfont" style='font-size:13px;position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >兼职</p></div>
         
             </div>
-                
+            
                 
                 
             </div>
+            </transition>
             
             </div>
             
@@ -126,21 +154,47 @@ and open the template in the editor.
     </table>
         
         
+            
+            
         <ul style="margin-top: 55px;"  v-show='!ifshow'>
+            <div id="mutext" v-if="lis[0] === undefined" style="width:100%;margin: 0 auto;font-size: 10px;text-align: center"></div>
+            
+             
             
             
-            <transition-group name="fade" tag="p" v-on:duration="300">
-                <li style="width: 100%;height: 200px;background-color: #ffffff;margin-top: 10px;"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li"   v-on:click="another(li,{page:0,newsId:li.nid},'public/newsReply/get-by-page')" >
-                <ul style="width: 100%;height: 200px;">
-                    <li style="width:100%;height: 30px;text-align: center;overflow: hidden">{{li[showDataW[2]]}}</li>
-   <li style="width:100%;height: 140px;overflow: hidden;font-size: 14px;text-align: center;overflow: hidden">{{li[showDataW[3]]}}</li>
-   <li style="width:100%;height: 30px;"><img style="width: 16px;height: 16px;float: right;margin-right: 10px;" src="static/images/询问.png" alt="xw" /><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">留言数量等待设置</span></li>
-  </ul>
-                
+            
+            <transition-group style="" name="fade" tag="p" v-on:duration="300">
+                <li style="width: 100%;background-color: #ffffff;padding-top: 5px;padding-bottom: 15px"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li"   v-on:click="another(li,{page:0,newsId:li.nid},'public/newsReply/get-by-page')" >
+                <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid" v-if="li.nid===5 ||li.nid===3 ||li.nid===1">
+                    <li style="width:100%;overflow: hidden"><div style="font-size:18px;line-height: 26px;font-weight: normal;text-overflow: ellipsis;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;    -webkit-box-orient: vertical;margin-top: -3px;    margin-bottom: 4px;    text-align: left;">
+                            <!--{{li[showDataW[2]]}} --> 能正确书写小写字母“g”的美国人，每几十人里只有一人林允儿穿短裙好嫩，腿看了都一言难尽，网友：是跪多了吧！</div></li>
+   <li style="width:100%;">
+      <div style="width: 32.105%;height: 22%;display: inline-block"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=4275366585,1117135669&fm=173&app=25&f=JPEG?w=218&h=146&s=653B1BD7106356B4AD2195CE0300F033" style="width:100%;height: 100%;" alt="tu" /></div>
+      <div style="width: 32.105%;height: 22%;display: inline-block"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=4275366585,1117135669&fm=173&app=25&f=JPEG?w=218&h=146&s=653B1BD7106356B4AD2195CE0300F033" style="width:100%;height: 100%;" alt="tu" /></div>
+      <div style="width: 32.105%;height: 22%;display: inline-block"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=4275366585,1117135669&fm=173&app=25&f=JPEG?w=218&h=146&s=653B1BD7106356B4AD2195CE0300F033" style="width:100%;height: 100%;" alt="tu" /></div>
+
+   </li>
+   <li style="width:100%;padding-bottom: 5px;"><span style="font-size:13px;margin-right: 5px;color:#bababa;">04-10</span></li>
+  </ul>  
+             <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid" v-else>  <!-- 单图片内容 -->
+                    
+   <li style="width:100%;">
+      <div style="width: 32.105%;height: 22%;display: inline-block"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=4271797179,3695441039&fm=173&app=25&f=JPEG?w=218&h=146&s=B2A49C08160B46F0452C4DCF030030AF" style="width:100%;height: 100%;" alt="tu" /></div>
+     <div style="display: inline-block;width: 64%;">
+         <div style="font-size:18px;line-height: 26px;font-weight: normal;text-overflow: ellipsis;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;    -webkit-box-orient: vertical;margin-top: -3px;    margin-bottom: 4px;    text-align: left;">
+                            <!--{{li[showDataW[2]]}}-->  能正确书写小写字母“g”的美国人，每几十人里只有一人林允儿穿短裙好嫩，腿看了都一言难尽，网友：是跪多了吧！</div>
+     <div><span style="font-size:13px;margin-right: 5px;color:#bababa;">04-10</span></div>
+     </div>
+   </li>
+   <li style="width:100%;padding-bottom: 5px;"></li>
+  </ul>   
+                            
+                            
+                            
             </li>
             </transition-group>
 
-            <li style="width: 100%;height: 30px;margin-top: 10px;"></li>
+            <!-- <li id="bottomWarning" style="position: relative;width: 100%;height: 50px;margin-top: 10px;text-align: center;overflow: hidden"></li> 暂时先取消下 -->
            <!-- <li class='tli'  style="width: 410px;background-color: #ffffff;position: fixed;bottom:0%;hieght:60px;overflow: hidden;min-height:35px;" onclick = ' '>
                 
                 
@@ -156,36 +210,59 @@ and open the template in the editor.
                 </li> -->
     </ul>
         
-         <ul style="margin-top: 55px;"  v-show='ifshow'>
+         <ul style="margin-top: 55px;margin-bottom: 15vw"  v-show='ifshow'>
              
-             <li style="width: 100%;background-color: #ffffff;margin-top: 10px;">
-                <ul style="width: 100%;">
-                     <li style="width:100%;overflow: hidden;font-size: 14px;text-align: center">{{nowc.title}}</li>
-                     <li style="width:100%;height: 20px"><span style="font-size:12px;float: left;margin-right: 5px;color:#bababa">{{nowc.releaseTime}}</span></li>
+             <li style="width: 100%;background-color: #ffffff;margin-top: 10px;padding-bottom: 20px;">
+                <ul style="width: 94%;margin-left: 3%;margin-right: 3%">
+                     <li style="width:100%;overflow: hidden;text-align: left;margin-bottom: 10px;"><h1 style=" font-size: 18px">高云翔被捕后曾第一时间传话给董璇：相信我，我什么也没做</h1></li>
   
-   <li style="width:100%;"><p style="width: 100%;font-size:14px;word-wrap:break-word;text-indent:2em; word-break:break-all; ">{{nowc.content}}</p></li>
-     
+   <li style="width:100%;"><span style="color:#bababa">2018-4-11</span></li>
+                          <li style="width:100%;">
+                              <p class="contentText contentFont  commonPadding"><span class="bjh-p">近年来，短视频与直播平台不断被曝出低俗、色情、造假等乱象，甚至在平台内还隐藏有一个混乱的少年儿童交往圈，不仅毫无底线还触碰了法律的底线。</span></p>
+                              <p class="contentText contentFont  commonPadding"><span class="bjh-p">近年来，短视频与直播平台不断被曝出低俗、色情、造假等乱象，甚至在平台内还隐藏有一个混乱的少年儿童交往圈，不仅毫无底线还触碰了法律的底线。</span></p>
+                              <p class="contentText contentFont  commonPadding"><span class="bjh-p">近年来，短视频与直播平台不断被曝出低俗、色情、造假等乱象，甚至在平台内还隐藏有一个混乱的少年儿童交往圈，不仅毫无底线还触碰了法律的底线。</span></p>
+                              <p class="contentText contentFont  commonPadding"><span class="bjh-p">近年来，短视频与直播平台不断被曝出低俗、色情、造假等乱象，甚至在平台内还隐藏有一个混乱的少年儿童交往圈，不仅毫无底线还触碰了法律的底线。</span></p>
+                              <p class="contentText contentFont  commonPadding"><span class="bjh-p">近年来，短视频与直播平台不断被曝出低俗、色情、造假等乱象，甚至在平台内还隐藏有一个混乱的少年儿童交往圈，不仅毫无底线还触碰了法律的底线。</span></p>
+                              <p class="contentText contentFont  commonPadding"><span class="bjh-p">近年来，短视频与直播平台不断被曝出低俗、色情、造假等乱象，甚至在平台内还隐藏有一个混乱的少年儿童交往圈，不仅毫无底线还触碰了法律的底线。</span></p>
+
+                          </li>
+
 
   </ul>
                 
             </li>
              
-             
+             <p style="font-size: 13px;text-align: center;margin-top: 3px;"> 全部回复:</p>
+                 <div v-if="conts[0] === undefined" style="width:100%;margin: 0 auto;font-size: 12px;text-align: center">偷偷告诉你这里什么都没有..</div>
             <transition-group name="fade" tag="p" v-on:duration="300">
             <li style="width: 100%;background-color: #ffffff;margin-top: 10px;"  v-for = '(li,index) in conts' v-bind:key="index">
-                <ul style="width: 100%;">
-                    <li style="width:100%;height: 60px;"><img style="border-radius: 25px;border: none;height: 50px;width: 50px;float: left;margin-top: 5px;" src="static/images/porf.gif" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:14px;margin-left: 10px;font-size:12px">{{li.uid}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">{{ index+2+'楼'}}</p></div></li>
+                <ul style="width: 94%;margin-left: 3%;margin-right: 3%">
+                    <li style="width:100%;height: 60px;"><img style="border-radius: 25px;border: none;height: 50px;width: 50px;float: left;" src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:14px;margin-left: 10px;font-size:12px">{{li.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">{{ index+2+'楼'}}</p></div></li>
    
-  <li style="width:100%;min-height: 50px;"><p style="font-size:14px;margin-right: 5px;text-indent:2em;">{{li.content}}</p></li>
-  <li style="width:100%;height: 20px"><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{li.releaseTime}}</span></li>
+  <li style="width:100%;min-height: 50px;font-size: 14px;text-indent:  2em;white-space:normal;word-break:break-all;word-wrap:break-word;">{{li.content}}</li>
+  <li style="width:100%;height: 20px"><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{myDate(li.release_time)}}</span></li>
   </ul>
                 
             </li>
             </transition-group>
             
             <li style="width: 100%;height: 30px;margin-top: 10px;min-height:35px;"></li>
-            <li v-if='ifshow' style="width: 410px;background-color: #ffffff;position: fixed;bottom:0%;hieght:60px;overflow: hidden">
+          <!--  <li v-if='ifshow' style="width: 410px;background-color: #ffffff;position: fixed;bottom:0%;hieght:60px;overflow: hidden">
                 <input v-model="replycont" style='width: 380px;border: #ffffff  solid 1px;float: left;height: 20px' placeholder='你有什么想法？说出来吧' /><img v-on:click="Reply('private/newsReply/add')" style='float: right;width: 28px;height: 22px' src='static/images/询问.png' alt='提交' />
+            </li> -->
+            <li class="liuyan" v-if='ifshow' style="width: 100%;position: fixed;bottom:0%;hieght:60px;overflow: hidden;margin-bottom: 15vw">
+                <div class='myreply'  onclick="$('.liuyan').animate({top:'0%'});$('.myreply').hide() ;$('.rcontent').show();$('.liuyan').css('background-color','#ffffff')  "  style='width: 100%;float: left;height: 50px;'>
+                    <div style="width: 70px;height:38px;font-size: 12px;color:#ffffff;border: #ffffff 1px none;border-radius: 10px;float:right;background-color: rgba(255,102,51,0.8);text-align: center;line-height: 38px;position: fixed;right:5%"  class="postspan" >回复</div>
+                </div>
+                
+                
+             <div class="rcontent" style="display: none;height: 36px;width: 100%;"> 
+                 <img onclick=" $('.liuyan').css('top','');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');   "   src='static/images/关闭3.png' alt='关闭' style='float:left;width: 22px;height: 22px' />
+                 <span class="rpng" v-on:click="Reply('private/newsReply/add')" style='float: right;'   >提交</span >  
+             <br/><br/><br/>
+             <textarea    v-model="replycont" style='width: 85%;height:300px;border:1px #fff solid;float: left;text-indent: 2px; padding-left: 2px;padding-top: 2px;' placeholder='要不留个言再走~' ></textarea>
+             
+             </div>
             </li>
             
             
@@ -202,7 +279,7 @@ and open the template in the editor.
             
         </div>
         <script>
-     let nowS = '',bool = true,nowtype =0,page;    
+     let nowS = '',bool = true,nowtype =0,page,replyPage = 0,mypnewsId,ifnull=false,checkFull=true,saveP=null;    
      
 $(document).ready(function(){
     page = 0;
@@ -210,11 +287,16 @@ $(document).ready(function(){
     a.getTop('public/news/get-by-page',{page,type:nowtype});
     $('.ass').on('click',() =>{
          a.getTop('public/news/get-by-page',{page,type:nowtype});
+         ifnull = false;
     });
     
     
             $(window).scroll(_.debounce(function(){
-                a.ve.ifshow = false;
+                $('.liuyan').css('top','');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');
+                a.ve.dragshow =false;
+                
+                
+                
 let scrollTop = parseInt($(this).scrollTop());
 
 let scrollHeight = $(document).height();
@@ -222,10 +304,9 @@ let windowHeight = $(this).height();
 if(bool){
     nowS = parseInt($(this).scrollTop());
 console.log(nowS);
-}
-
-
-if(scrollTop + windowHeight == scrollHeight || scrollTop + windowHeight == scrollHeight-2 ||scrollTop + windowHeight == scrollHeight+1){
+console.log(windowHeight);
+ console.log(windowHeight+' '+scrollTop+' '+scrollHeight);
+if((scrollTop + windowHeight == scrollHeight || scrollTop + windowHeight == scrollHeight-2 ||scrollTop + windowHeight == scrollHeight+1||scrollTop + windowHeight == scrollHeight-1) &&!ifnull){
 console.log("已经到最底部了！");
 //这里写实例的新增楼层的方法 和留言
 
@@ -236,6 +317,27 @@ a.addLIS('public/news/get-by-page',{page,type:nowtype});
 
 }
 
+
+
+}else{
+    console.log(windowHeight+' '+scrollTop+' '+scrollHeight+'????????');
+
+//这里写实例的新增楼层的方法 和留言
+
+
+   replyPage++;
+    a.addCONTS('public/newsReply/get-by-page',{page:replyPage,newsId:mypnewsId});
+
+
+
+
+ 
+    
+}
+
+
+
+
 },300)
         );
 });
@@ -244,7 +346,7 @@ a.addLIS('public/news/get-by-page',{page,type:nowtype});
 class F {
     
     
-    constructor(redata = [],ansy){
+    constructor(redata = [],ansy,setId,head){
         this.ve = new Vue({
             el:'#data',
             data:{
@@ -261,12 +363,36 @@ class F {
                 replycont:'',
                 showDataW:redata,  //一共5个位置
                 ansytype:ansy,
-                myid:1,
+                myid:setId,
                 dragshow:false,//全部框
                 warning:false
                 
             },
             methods:{
+                myDate(ydate){
+                    
+                    var date = new Date(ydate);
+                     
+   
+                    
+                    if(ydate !== '刚刚'){
+                    var y = date.getFullYear();  
+                var m = date.getMonth() + 1;  
+                m = m < 10 ? ('0' + m) : m;  
+                var d = date.getDate();  
+                d = d < 10 ? ('0' + d) : d;  
+                var h = date.getHours();  
+                h=h < 10 ? ('0' + h) : h;  
+                var minute = date.getMinutes();  
+                minute = minute < 10 ? ('0' + minute) : minute;  
+                var second=date.getSeconds();  
+                second=second < 10 ? ('0' + second) : second;  
+                return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;  
+                    }else{
+                        return '刚刚';
+                    }
+                    
+                },
                 post(url,p = {},func= undefined ){
                     //差板块id  和
                     
@@ -274,6 +400,7 @@ class F {
              p.uid = this.myid;
              p.title = this.qo;
              p.content = this.qt;
+             console.log(head);
              p[this.ansytype] =nowtype;
             
          Vue.http.get(allurl+url,{params:p}).then(  (response) => {
@@ -291,18 +418,26 @@ class F {
             p.newsId = this.tempId;
              p.content = this.replycont;
              console.log(p);//这是发布的也包括留言  一切发送的东西
-         Vue.http.get(allurl+url,{params:p}).then(  (response) => {
+         Vue.http.post(allurl+url,p,{emulateJSON: true}).then(  (response) => {
           if(response.bodyText === 'success')  { console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
-          this.conts.push(p);
+              $('.liuyan').css('top','');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');
+          //this.conts.push(p);
+        //  this.contents = [];
+        this.another(saveP.A,saveP.B,saveP.C);
                         }
           if(func){  func(); };
          }); 
     },
     another(li,p={}/*回复的实体*/,url = undefined){
+        
+        saveP = {A:li,B:p,C:url};
+        checkFull=true;
         this.conts = [];
        this.nowc = li;
         this.tempId = li.nid;
         console.log('??');
+        mypnewsId = p.newsId;
+
         a.changeNOWC(url,p);
     }
             }
@@ -325,32 +460,57 @@ class F {
                 delete p.c;
             }
         }
-                                                     
+                    var that =this;                                 
              Vue.http.get(allurl+url,{params:p}).then(  (response) => {
             let f =  eval("("+response.bodyText+")");
-            f.forEach( (data) => {  a.ve.lis.push(data);  }  );
-            
+            f.forEach( (data) => {  a.ve.lis.push(data);  } 
+                    
+                    
+                    );
+            if(that.ve.lis[0] === undefined){
+               $('#mutext').html('偷偷告诉你这里什么都没有...'); 
+            }
            /* p.isTop = 0;
         this.addLIS(url,p);*/
         });
             
     }
     
-    addLIS(url,p={}){          
-
+    addLIS(url,p={}){    
+        $('#bottomWarning').css('height','50px');
+        $('#bottomWarning').html("<img  alt='加载' src = 'static/images/loading.gif'/>");
+var that =this;
          Vue.http.get(allurl+url,{params:p}).then(  (response) => {
             let fs =  eval("("+response.bodyText+")");
-            fs.forEach( (data) => {  a.ve.lis.push(data);  }  );
+          setTimeout(  ()=>{fs.forEach( (data) => {  a.ve.lis.push(data);  }  );},500  )  ;
+            if(fs){
+              // $('#mutext').html('偷偷告诉你这里什么都没有...'); 
+             // alert('内容都没有啦');
+             ifnull =true;
+              setTimeout( ()=> {$('#bottomWarning').html("<p  style='color:red;font-size:12px;'>已经到底啦~</p>");
+              
+                
+                
+                },500); 
+              setTimeout( ()=>{$('#bottomWarning').animate({height:'0px'});},2000  );
+            }
          });
     }
     
     addCONTS(url,p){  
         
-        Vue.http.get(allurl+url,{params:p}).then(  (response) => {
+        if(checkFull){
+            Vue.http.get(allurl+url,{params:p}).then(  (response) => {
             var f =  eval("("+response.bodyText+")");
+            
+            if(!f[0]){
+                checkFull = false;
+            }
             f.forEach( (data) => {  this.ve.conts.push(data);  }  );
          
          });
+        }
+        
         
     }
     
@@ -378,6 +538,7 @@ a.ve.postdatasave = {nid:null,title:null,content:null,newsId:null};
 //{ uid title content replyNum isTop plateId }  {  postId uid content  isDelete  }
 
  $('.myfont').click( function(){
+    
               $('.myfont').removeClass('blue');
                $(this).addClass('blue');
             });

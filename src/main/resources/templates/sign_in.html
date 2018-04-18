@@ -28,10 +28,10 @@ body {position:absolute;background-color:rgb(250,250,250);width:100%;height:100%
 	<input id="post" class="card" type="button" value="登&nbsp;&nbsp;&nbsp;录">
 </body>
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
-<script type="text/javascript" src="/js/sign.js"></script>
+<script type="text/javascript" src="/js/head.js"></script>
 <script type="text/javascript">
 "use strict";
-sign("登录");
+head(["登录"]);
 var doc = document;
 doc.getElementById("post").onclick = function() {
     var dom1, post_data = "";
@@ -68,5 +68,7 @@ doc.getElementById("post").onclick = function() {
     });
 
 }
+window.onload=function(){choose(0);}
+
 </script>
 </html>

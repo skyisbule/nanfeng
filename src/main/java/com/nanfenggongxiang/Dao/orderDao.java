@@ -13,7 +13,7 @@ import java.util.Map;
 @Mapper
 public interface orderDao {
 
-    @Select("select info.* ,orders.* from orders join info on info.uid = orders.uid where orders.uid = #{uid}")
+    @Select("select commodity.* ,orders.* from orders join commodity on commodity.uid = orders.uid where orders.uid = #{uid}")
     public List<Map<String,Object>> getByUid(@Param("uid")int uid);
 
 }

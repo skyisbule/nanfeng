@@ -65,7 +65,7 @@ public interface CommodityDao {
             @Param("names")String name
     );
 
-    @Update("update commodity is_sell_out = 1 where gid = #{gid}")
+    @Update("update commodity set is_sell_out = 1 where gid = #{gid}")
     public int tagSellOut(@Param("gid") int gid);
 
     @Select("select commodity.*,info.nick_name,info.head_pic,info.contact " +

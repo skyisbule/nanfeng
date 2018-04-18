@@ -95,12 +95,12 @@ public class view {
     }
 
 
-    @RequestMapping("/information.html")
+    @RequestMapping("/information")
     public String infomation(){
         return "zx";
     }
 
-    @RequestMapping("/community.html")
+    @RequestMapping("/community")
     public String bbs(){
         return "tb";
     }

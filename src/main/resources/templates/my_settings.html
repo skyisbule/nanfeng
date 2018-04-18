@@ -57,10 +57,10 @@ textarea {height:38vw;}
 </body>
 <script type="text/javascript" src="/js/pengge_tools.js"></script>
 <script type="text/javascript" src="/js/img_upload.js"></script>
-<script type="text/javascript" src="/js/sign.js"></script>
+<script type="text/javascript" src="/js/head.js"></script>
 <script type="text/javascript">
 "use strict";
-sign("个人设置");
+head(["个人设置"]);
 var doc = document,
 list = ["nickName", "realName", "telNum", "email", "contact", "signature"],
 old_user_arr=[],
@@ -98,8 +98,7 @@ doc.getElementById("upload").onchange = function() {
     };
     a.readAsDataURL(this.files[0])
 };
-pengge.post("/public/user/get-info-by-id", "uid=" + pengge.cookie.get("uid"),
-function(data) {
+pengge.post("/public/user/get-info-by-id", "uid=" + pengge.cookie.get("uid"),function(data) {
 	var d;
     old_user_arr = JSON.parse(data);
     doc.getElementById("showHeadPic").src = "http://pic.zdnfbbs.cn/" + old_user_arr["headPic"];
@@ -183,9 +182,10 @@ function post() {
         if (d === "success") {
 			pengge.cookie.set("nickName",old_user_arr["nickName"],31104000,"/");
 			pengge.cookie.set("headPic",old_user_arr["headPic"],31104000,"/");
-			location.href="/?page=user&";
+			location.href="/user?"+Math.random();
         }
     })
 }
+window.onload=function(){choose(0);}
 </script>
 </html>
