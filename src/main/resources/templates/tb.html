@@ -8,12 +8,11 @@ and open the template in the editor.
     <head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://unpkg.com/vue"></script>
-<script src="https://cdn.bootcss.com/velocity/2.0.2/velocity.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
-       <script type="text/javascript" src="/js/bar.js"></script>
+        <script type="text/javascript" src="static/js/jquery-3.2.1.min.js"></script>
+<script src="static/js/vue"></script>
+<script src="static/js/vue-resource@1.3.4"></script>
+<script src="static/js/lodash.min.js"></script>
+    <!--   <script type="text/javascript" src="/js/bar.js"></script>  -->
   
 
 <style>
@@ -114,7 +113,7 @@ and open the template in the editor.
         
     </table>
         
-         <transition name="slide" tag="p" v-on:duration="300">
+         <transition name="slide" tag="p" >
         <ul style="margin-top: 55px;margin-bottom: 15vw"  v-show='!ifshow'>
             <div id="mutext" v-if="lis[0] === undefined" style="width:100%;margin: 0 auto;font-size: 10px;text-align: center"></div>
                
@@ -153,7 +152,7 @@ and open the template in the editor.
                 </li>
     </ul>
              </transition>
-        <transition name="slide" tag="p" v-on:duration="300">
+        <transition name="slide" tag="p" >
          <ul style="margin-top: 55px;width:100%;"  v-show='ifshow' >
              
              <li class="setPadding" style="background-color: #ffffff;margin-top: 10px;margin-bottom: 10px;" onclick="$('.liuyan').css('bottom','3%');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');">
@@ -350,38 +349,40 @@ class F {
                     
                 },
                 post(url,p = {},func= undefined ){
-                    //差板块id  和
+                     document.getElementById('模板').innerHTML = ' ';
+                   
                     let cc = 0;
                     $('.myLoading').show();
                     
                     
                     if(document.getElementsByClassName('abc').length !== 0){
-                         Vue.http.post(allurl+'public/pic/token',{fileName:Math.random()}, {emulateJSON: true}).then(  (response) => {
-                        img_upload(document.getElementsByClassName('abc'),response.bodyText,function(data){
-                        let group =   JSON.stringify(data);
-                        group.forEach(function(item,index){
-                            document.getElementsByClassName('abc')[index].src = item;
-                        });
+                        var promiseGroup = [];
+                        for(let i =0;i<document.getElementByClassName('abc').length;i++){
+                            let a = new Promise(function(re,rj){
+                                
+                                Vue.http.post(allurl+'public/pic/token',{fileName:Math.random()}, {emulateJSON: true}).then(  (response) => {
+                        img_upload(document.getElementsByClassName('abc')[i],response.bodyText,function(data){ 
+                            document.getElementsByClassName('abc')[i].src = 'http://pic.zdnfbbs.cn/'+JSON.stringify(data).key;
+               re('success');                    
+    }); });
+                            });
+                            promiseGroup.push(a);
+                            
+                        }
                         
-                        
-                                   
-            
-             p.uid = this.myid;
+                        var promiseAll = new Promise(promiseGroup).then(function(){  //贼丑 你确定不把下面的写成函数？
+                             p.uid = this.myid;
              p.title = this.qo;
              p.content = document.getElementById('上传图片list').innerHTML;
              p.isTop = 0;
              p[this.ansytype] =nowtype;
             
          Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
-          if(response.bodyText === 'success')  {$('.myLoading').show(); console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
+          if(response.bodyText === 'success')  {$('.myLoading').hide(); console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
               this.lis = [];
               page = 0;
               a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});
-             /* p.reply_num = '0';
-              p.release_time = '刚刚';
-              p.head_pic = this.myhead;
-              p.nick_name = '我';
-          this.lis.unshift(p);//['uid','releaseTime','title','content','replyNum'] */
+          
           $(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show();
           this.warning =true;
           setTimeout(()=>{  $('.warning').text('发布成功'); },200);
@@ -391,12 +392,27 @@ class F {
                         }
           if(func){  func(); };
          }); 
+                        });
                         
                         
                         
+                     /*    Vue.http.post(allurl+'public/pic/token',{fileName:Math.random()}, {emulateJSON: true}).then(  (response) => {
+                        img_upload(document.getElementsByClassName('abc'),response.bodyText,function(data){
+                            
+                            
+                        let group =   JSON.stringify(data);
+                        group.forEach(function(item,index){
+                            document.getElementsByClassName('abc')[index].src = item;
+                        }); 
+     
                         
                     });
-                    });
+                    
+                    
+                    
+                    
+                    });  */
+                    //尾巴
                     }else{
                         
                         p.uid = this.myid;
@@ -406,7 +422,7 @@ class F {
              p[this.ansytype] =nowtype;
             
          Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
-          if(response.bodyText === 'success')  {$('.myLoading').show(); console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
+          if(response.bodyText === 'success')  {$('.myLoading').hide(); console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
               this.lis = [];
               page = 0;
               a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});
@@ -593,7 +609,7 @@ function previewFiles() {
       let o =document.createElement("IMG");
 o.src=this.result;
 o.setAttribute("class", "abc"); 
-o.style.maxWidth = '80%';
+o.style.maxWidth = '100%';
  
  o.style.marginRight = '5px';
  document.getElementById('模板').innerHTML = ' ';

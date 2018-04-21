@@ -9,21 +9,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<link rel="stylesheet" href="static/css/font.css">
 		<link rel="stylesheet" href="static/css/weadmin.css">
-     
+                <script src="static/js/jquery.js"></script>
                 <script src="static/js/layui.js" type="text/javascript" charset="utf-8"></script>
                 <script src="static/js/list.js" type="text/javascript" charset="utf-8"></script>
 
 
 
 
-
-<script src="static/js/jquery.js"></script>
 <script src="static/js/vue"></script>
 <script src="static/js/vue-resource@1.3.4"></script>
 <script src="static/js/lodash.min.js"></script>
-
-
-
 <style>
     .readonly{
         max-width: 150px;
@@ -69,9 +64,9 @@
 				</form>
 			</div> -->
 			<div class="weadmin-block">
-                            <input class="layui-input" id="thetype" v-model="type"  style="max-width: 100px;display: inline-block" placeholder="输入类型">
+                            <!--<input class="layui-input" id="thetype" v-model="type"  style="max-width: 100px;display: inline-block" placeholder="输入类型">-->
 				<!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button> -->
-				<a ><button class="layui-btn" onclick="a.ve.page = 1;a.addcontents(a.ve.getU,{page:a.ve.page,type:a.ve.type})">查看该板块</button></a>
+				<!--<a ><button class="layui-btn" onclick="a.ve.page = 1;a.addcontents(a.ve.getU,{page:a.ve.page,type:a.ve.type})">确定</button></a> -->
 				<!--<span class="fr" style="line-height:40px">共有数据：？ 条</span> -->
                                 <button v-if="groupIF" class="layui-btn" v-on:click="lis.push({})"><i class="layui-icon"></i>添加空白数据</button>
                                 <button v-if="groupIF" v-on:click='groupIF = !groupIF' onclick="$('.readonly').removeAttr('readonly');" class="layui-btn layui-btn-danger" >编辑开启</button>
@@ -84,12 +79,14 @@
 					<!--	<th>
 							<div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
 						</th> -->
-						<th>咨询ID</th>
+						<th>广告ID</th>
 						<th>标题</th>
-						<th>内容</th>
+                                                <th>内容</th>
+                                                <th>图片</th>
 						<th>日期</th>
-						<th>类型</th>
-						<th>操作</th>
+						<th>权力</th>
+						<th>超链接</th>
+                                                <th>操作</th>
 				</thead>
 				<tbody>
 					<tr v-for="li in lis">
@@ -97,7 +94,7 @@
 							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
 						</td> -->
                                                 <td class="mylis" style="max-width:150px;">
-                                                    <span title="ID和时间不用填也不用管，假如你点了添加空白数据，然后你又不想添加了,也不要点击删除！因为这个数据未被添加的，不要管这一整条数据就好了，刷新他会自动消失的" >{{li.nid}}</span>
+                                                    <span>{{li.aid}}</span>
                                                 </td>
                                                 <td class="mylis" >
                                                     <input class="readonly"  v-model='li.title' readonly>
@@ -111,37 +108,36 @@
                                                             <td style="z-index:999;background-color: #fff;min-width:315px; " v-html="li.content" align="left" valign="top"></td>
                                                         </table>
                                                     </div>
-                                                        </div>
+                                                        </div> 
+                                                </td>
+                                               <td class="mylis" >
+                                                    <input class="readonly"  v-model='li.pic' readonly>
                                                 </td>
                                                 <td class="mylis" >
                                                     <span v-on:click="">{{myDate(li.releaseTime)}}</span>
                                                 </td>
                                                 <td class="mylis" >
-                                                    <input class="readonly" v-model='li.classification' readonly>
+                                                    <input class="readonly"  v-model='li.power' readonly>
+                                                </td>
+                                                <td class="mylis" >
+                                                    <input class="readonly" v-model='li.link' readonly>
                                                 </td>
 						
 						
 						<td class="mylis" style="min-width: 270px;">
 							
-                                                        <template v-show="!groupIF"><button   v-on:click="updateORadd(editU,li)" onclick="  $(this).css('display','none');$(this).parents('.mylis').children('.jl').css('display','none')" class="layui-btn" >确定</button></template>
+                                                    <template v-show="!groupIF"><button   v-on:click="updateORadd(editU,li)" onclick="$(this).css('display','none');$(this).parents('.mylis').children('.jl').css('display','none')" class="layui-btn" >确定</button></template>
                                                        <!-- <span v-else class="layui-btn layui-btn-danger"  onclick="console.log('?')"  v-on:click="updateORadd(editU,li)">呵呵啊</span> -->
-							<button v-if="li.nid"  class="layui-btn layui-btn-danger" onclick="$(this).parent().parent().hide()" v-on:click="updateORadd(deleteU,li)"><i class="layui-icon"></i>删除</button>
-                                                      <template v-if="!li.nid">  <button v-else  class="layui-btn layui-btn-danger jl" onclick="$(this).parent().parent().hide()" ><i class="layui-icon"></i>删除</button><!--传个东西进去--> </template>
-                                                       <button v-if="li.nid"  onclick="$('#rp').css('display','inline')" v-on:click="addcontents(getcontentsU,{newsId:li.nid,page:0})"  class="layui-btn" >回复查看</button> <!--注意下是nid还是pid-->
+							<button v-if="li.aid"  class="layui-btn layui-btn-danger" onclick="$(this).parent().parent().hide()" v-on:click="updateORadd(deleteU,{aid:li.aid})"><i class="layui-icon"></i>删除</button>  <!--传个东西进去-->
+                                                      <template v-if="!li.aid" >  <button  class="layui-btn layui-btn-danger jl" onclick="$(this).parent().parent().hide()" ><i class="layui-icon"></i>删除</button> </template>
+                                                     <!--  <button  onclick="$('#rp').css('display','inline')" v-on:click="addcontents(getcontentsU,{newsId:li.nid,page:0})"  class="layui-btn" >回复查看</button> --> <!--注意下是nid还是pid-->
                                                         
 						</td>
 					</tr>
                                         
 				</tbody>
 			</table>
-			<div class="page">
-				<div>
-					<span onclick="a.ve.page--;a.ve.lis = [];a.addlis(data.getU,{page:a.ve.page,type:a.ve.type});" class="prev" href="">&lt;&lt;</span>
-					<span onclick='' href="">{{page+1}}</span>
-					<span onclick="a.ve.page++;a.ve.lis = [];a.addlis(data.getU,{page:a.ve.page,type:a.ve.type});"  href="">&gt;&gt;</span>
-				</div>
-                            
-			</div>
+			
 		</div>
 
                 <div style="position: fixed;margin-top: 4%;top:0%;width:100%;height:84%;display: none" id="rp">
@@ -165,11 +161,11 @@
             let data,methods;
             
             data ={
-                getU:'public/news/get-by-page',
-                deleteU:'no',
+                getU:'public/ad/get-all',
+                deleteU:'public/ad/deleted',
                 deletecontentsU:'no',
-                addU:'admin/news/add',
-                editU:'admin/news/update',
+                addU:'public/ad/add',
+                editU:'public/ad/update',
                 getcontentsU:'public/newsReply/get-by-page',
                 groupIF:true,
                 
@@ -178,13 +174,13 @@
             methods={
                 updateORadd(url,p){
                     
-                    if(p.nid){
+                    if(p.aid){
                          Vue.http.get(allurl+url,{params:p}).then(  (response) => {alert(response.bodyText);});
                     }else{
-                        console.log(p.nid);
                          url = this.addU;
                          if(p.content ||p.title)
                          Vue.http.get(allurl+url,{params:p}).then(  (response) => {if(response.bodyText=='success')alert(response.bodyText);});
+                     
                     }
 
     },
@@ -207,7 +203,7 @@
 };
             
             let a = new admin(data,methods);
-            a.addlis(data.getU,{page:a.ve.page,type:a.ve.type});
+            a.addlis(data.getU,{});
         </script>
         
    

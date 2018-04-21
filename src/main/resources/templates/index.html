@@ -1,367 +1,331 @@
-﻿<!doctype html>
-<html>
-<head>
-<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-<meta charset="utf-8">
-<title>主页&nbsp;-&nbsp;南风共享</title>
-<style type="text/css">
-input::-webkit-input-placeholder {color:#555}
-input {-webkit-appearance:none;margin:0;padding:0}
-	a{display: block;text-decoration:none;}
-* {tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;outline:none;font-family:Arial,Helvetica,sans-serif;}
-body {position:absolute;background-color:#fff;width:100vw!important;height:100%;margin:0;}
-#top {position:absolute;width:100%;height:60vw;top:14vw;left:0;background-color:#fff;z-index:102}
-#search_layer{position:absolute;width: 100vw;height: 20vw;background-color: rgb(252,82,69)}
-.ma{position:absolute;width:6vw;height:6vw;margin: 4vw}
-#search {position:absolute;margin:2vw 13vw;width:84vw;height:10vw;top:0;left:0;border-radius:5vw;z-index:106;background-color:#fff}
-#search svg {position:absolute;width:5vw;height:5vw;top:2.5vw;left:4vw;fill:#222}
-#search input {position:absolute;width:73vw;height:8vw;top:1vw;left:12vw;background-color:transparent;border:0;font-size:4.5vw;line-height:8vw;color:#222}
-#news {position:absolute;width:100vw;height:52vw;top:0;left:0;overflow-x:hidden}
-#news a{position: absolute;width:100vw;height:100%;top:0;left:0;background-size:100% 100%;background-repeat:no-repeat;transform:translate(100vw,0);-webkit-transform:translate(100vw,0)}	
-		@keyframes move_news_2{to{        transform:translate(0,0)}}
-@-webkit-keyframes move_news_2{to{-webkit-transform:translate(0,0)}}
-		@keyframes move_news_1{to{        transform:translate(-100vw,0)}}
-@-webkit-keyframes move_news_1{to{-webkit-transform:translate(-100vw,0)}}
-		@keyframes move_news_3{to{        transform:translate(100vw,0)}}
-@-webkit-keyframes move_news_3{to{-webkit-transform:translate(100vw,0)}}
-#notice {position:absolute;width:100vw;height:8vw;line-height: 8vw;font-size: 4.5vw;color: #f00; top:52vw;left:0;overflow-x:hidden;border-bottom: 0.5vw solid #eee;border-top: 1.5vw solid #eee}
-#notice svg {position:absolute;width:4vw;height:6vw;padding: 1vw; fill:#333;z-index: 200;background-color: #fff}
-#notice a{position:absolute;white-space:nowrap;color: #333}
-#notice span{margin: 0 1vw}
-#choose {position:absolute;width:100vw;top:70vw;left:0;height:17vw;z-index:100;text-align:center;line-height:8vw;font-size:4vw;border-bottom:0.2vw solid #ccc;background-color: #fff}
-#choose span {position:absolute;width:20vw;height:8vw;border-bottom:1vw solid rgb(170,0,0);bottom:0;z-index:101;color: rgb(170,0,0)}
-#choose .un {color: inherit!important;border: none!important;bottom: 1vw!important}
-#goods {position:absolute;top:145vw;}
-.card {display:block;position:relative;width:94vw;margin:3vw;background-color:#fff;overflow:hidden;text-decoration:none;color:#222;border-bottom:0.2vw dotted #aaa;}
-.card div {position:relative;height:30vw;margin:2vw;text-align:center;top:15vw;white-space:nowrap;}
-.card p {position:relative;width:78vw;left:4vw;color:#888;overflow:hidden;font-size:4vw;margin-top: 15vw;}
-.card img {position: absolute;top: 50%;left: 50%; display:block;opacity:0;-webkit-transition: opacity 0.5s;transition: opacity 0.5s;}
-h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!important;-webkit-margin-start:0!important;-webkit-margin-end:0!important;}
-.card h1 {position:relative;float: left;margin:0 1vw; height:28vw;width: 28vw;box-shadow:0 0 1vw 0 #555; top:0;overflow: hidden}
-.card h2 {position:absolute;right:4vw;top:4vw;font-size:5vw;font-weight:500;color:rgb(252,82,69);font-family: Impact, Charcoal, sans-serif;}
-.card h3 {position:absolute;left:17vw;top: 1vw; font-size:4.5vw;font-weight:500;}
-.card h4 {position:absolute;left:17vw;bottom: 1vw; font-size:3.5vw;font-weight:300;}
-.card h5 {position:relative;right:4vw;float: left;padding: 0 0 4vw 8vw; font-size:4.5vw;font-weight:500;color:rgb(252,82,69);}
-.card h6 {position:relative;right:4vw;float: right;font-size:4.1vw;font-weight:300;height:6vw;line-height:6vw;vertical-align:middle;color:#bbb;}
-.card h {position:absolute;display: block;left:3vw;top: 1vw; height:11vw;width:11vw;border-radius:6vw;background-size:100% 100%;background-repeat:no-repeat;box-shadow:0 0 1vw 0 #555}
-.card span{position:absolute;top: 1.5vw; display: block; width: 94vw;height: 13vw;}
-#goods_type {top:85vw;background-color: transparent}
-#goods_type table {width:84vw;margin:5vw;text-align:center;color:#555;font-size:4.5vw}
-#goods_type svg {width:8vw;height:8vw;margin: 2vw; fill:#fff}
-#goods_type b {display:inline-block; width: 12vw;height: 12vw;border-radius: 50%; }
-#loading {position:absolute;background-color:transparent;border-bottom: none!important; font-size:5vw;line-height:20vw;text-align:center;bottom:-50vw;height: 50vw}
-.ad{height:30vw;background-size:94vw 30vw;background-repeat:no-repeat;margin-bottom: 2vw;padding-bottom: 2vw;}
-</style>
-</head>
-<body>
-<div id="search_layer">
-	<svg class="ma" onclick="window.open('/my_message')" viewBox="0 0 1024 1024"><path style="fill:#fff" d="M928 128l-832 0c-53.024 0-96 42.976-96 96l0 576c0 52.992 42.976 96 96 96l832 0c53.024 0 96-43.008 96-96l0-576c0-53.024-42.976-96-96-96zM87.712 831.68l-23.392-23.424 263.968-263.936 23.392 23.424-263.968 263.936zM936.288 831.68l-263.968-263.936 23.392-23.424 263.968 263.936-23.392 23.424zM544 618.4l0 21.6-64 0 0-21.6-415.904-385.6 40.704-40.704 407.2 377.536 407.2-377.536 40.704 40.704-415.904 385.6z"></path></svg>
-	<div id="search" name="svg">
-		<input type="text" placeholder="想找点儿什么">
-	</div>
-</div>
-<div id="top">
-	
-	<div id="news"></div>
-	<div id="notice" name="svg">
-		<a target="new"></a>
-		<a target="new"></a>
-	</div>
-</div>
-<div id="choose">
-	<span style="left: 25vw" onClick="choose(1) ">闲置</span>
-	<span style="right:25vw" onClick="choose(0)" class="un">需求</span>
-</div>
-<div id="goods_type" class="card">
-	<table border="0">
-  <tbody>
-    <tr>
-      <td onClick="chare_type(1)"><b name="svg" style="background-color: rgb(246,124,108)"></b><br>图书</td>
-      <td onClick="chare_type(2)"><b name="svg" style="background-color: rgb(88,176,248)"></b><br>数码</td>
-      <td onClick="chare_type(3)"><b name="svg" style="background-color: rgb(104,210,193)"></b><br>日用</td>
-      <td onClick="chare_type(4)"><b name="svg" style="background-color: rgb(164,123,243)"></b><br>服饰</td>
-    </tr>
-    <tr style="height: 6vw"></tr>
-    <tr>
-      <td onClick="chare_type(5)"><b name="svg" style="background-color: rgb(104,210,193)"></b><br>妆品</td>
-      <td onClick="chare_type(6)"><b name="svg" style="background-color: rgb(164,123,243)"></b><br>零食</td>
-      <td onClick="chare_type(7)"><b name="svg" style="background-color: rgb(246,124,108)"></b><br>运动</td>
-      <td onClick="chare_type(0)"><b name="svg" style="background-color: rgb(88,176,248)"></b><br>全部</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<div id="goods"></div>
-<div style="position: absolute;top: 83vw;height: 100vh;width: 1vw;"></div>
-</body>
-<script type="text/javascript" src="/js/pengge_tools.js"></script>
-<script type="text/javascript" src="/js/bar.js"></script>
-<script type="text/javascript">
-"use strict";
-var doc = document,
-page_num = 0,
-goods_type = 2,
-isWantBy = 1,
-vw = doc.body.clientWidth,
-choose_top=false,
-choose_dom = doc.getElementById("choose").getElementsByTagName("span"),
-goods_type_dom = doc.getElementById("goods_type").getElementsByTagName("td"),
-hchoose = doc.getElementById("choose").style,
-hgoods = doc.getElementById("goods"),
-timer = null,
-goods_finish = true,
-ad=[],
-ad_frequency=0,
-ad_num=0;
-function choose(a) {
-    if (choose_dom[a].className !== "") {
-        return;
-    }
-	   
-    if(choose_top){window.scrollTo(0,vw*0.75);}
-    choose_dom[isWantBy].className = "";
-    isWantBy = a;
-    choose_dom[isWantBy].className = "un";
-    chare_type(goods_type, true)
-}
-function chare_type(type, q) {
-	if(choose_top){window.scrollTo(0,vw*0.75);}
-   // var chare = function(n, s) {
-       // n = (n + 7) % 8;
-        //goods_type_dom[n].style.color = (s ? "": "#f00");
-       // goods_type_dom[n].getElementsByTagName("path")[0].style.fill = (s ? "": "#f00");
-   // }
-    if (goods_type === type && q !== true) {
-        return;
-    }
-   // chare(goods_type, true);
-    goods_type = type;
-   // chare(goods_type, false);
-    page_num = 0;
-    hgoods.innerHTML = '<div class="card goods" id="loading">正在加载……</div>';
+<!doctype html>
+<html lang="en">
 
-    get_goods();
-}
-function add_ad(){
-	pengge.post("/public/ad/get-all","num="+ad_num,function(d){
-	    var data = JSON.parse(d);	
-		ad_frequency=data[0]["frequency"];
-
-		for(var i=1;i<data.length;i++){
-			ad.push(data[i]);
-		}
-	})	
-}
-window.onload = function() {
- add_ad();
-    pengge.post("/images/home_ui", "",function(data) {
-        var svg_arr = data.split("|"),
-        svg_dom = doc.getElementsByName("svg");
-        for (var i = 0; i < svg_arr.length; i++) {
-
-            svg_dom[i].innerHTML += '<svg viewBox="0 0 1024 1024"><path d="' + svg_arr[i] + '" /></svg>';
-        }
-        chare_type(0);
-		doc.getElementsByTagName("svg")[0].onclick=function(){
-			var dom=doc.getElementById("search").getElementsByTagName("input")[0];
-			if(dom.value===""){return;}
-			window.open("search.html?type="+isWantBy+"&wd="+encodeURI(dom.value)+"&"); 
-		}
-    },true);
-	pengge.post("/public/notice/get-show", "isShow=1",function(d) {
-
-    var data = JSON.parse(d),
-    out = "",
-    pic_len = data.length;
-
-    for (var i in data) {
-        out += '<a style="background-image: url(' + data[i]["picUrl"] + ')" data-id="' + i + '"></a>';
-
-    }
-
-    doc.getElementById("news").innerHTML = out;
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理-WeAdmin Frame型后台管理系统-WeAdmin 1.0</title>
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
 		
-    var img_arr = doc.getElementById("news").getElementsByTagName("a"),
-    donghua = function(idn, dhn) {
-        var dongh = "";
-        dongh = "move_news_" + (dhn + 2) + " 0.3s forwards";
-        idn.animation = dongh;
-        idn.WebkitAnimation = dongh;
-		setTimeout(function() {
-            idn.transform = "translate(" + (dhn * 100) + "vw,0)";
-            idn.webkitTransform = "transform:translate(" + (dhn * 100) + "vw,0)";
+		<link rel="stylesheet" href="static/css/font.css">
+		<link rel="stylesheet" href="static/css/weadmin.css">
+		<script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
 
-            idn.animation = "";
-            idn.WebkitAnimation = "";
-        },
-        300)
-    },
-    move_pic = function(idn, value) {
-        idn.transform = "translate(" + value + "vw,0)";
-        idn.webkitTransform = "transform:translate(" + value + "vw,0)";
+	</head>
 
-    },
-    now_id = 0,
-    movw_pic = function(l, pic_arr) {
-        l = l || 30;
-        pic_arr = pic_arr || [img_arr[(now_id + pic_len-1) % pic_len].style, img_arr[now_id].style, img_arr[(now_id + 1) % pic_len].style];
-        if (l > 20) {
-            move_pic(pic_arr[0], 100);
-            donghua(pic_arr[1], -1);
-            donghua(pic_arr[2], 0);
-            now_id = (now_id + 1) % pic_len;
-        } else if (l < -20) {
-            move_pic(img_arr[(now_id + pic_len-2) % pic_len].style, -100);
-            donghua(pic_arr[1], 1);
-            donghua(pic_arr[0], 0);
-            now_id = (now_id+pic_len-1) % pic_len;
-        } else {
-            donghua(pic_arr[0], -1);
-            donghua(pic_arr[1], 0);
-            donghua(pic_arr[2], 1);
-        }
-    },
-    time;
-    donghua(img_arr[0].style, 0);if(pic_len<=1){return;}
-    time = setInterval(movw_pic, 3000);
+	<body>
+		<!-- 顶部开始 -->
+		<div class="container">
+			<div class="logo">
+				<a href="./index.html">WeAdmin v1.0</a>
+			</div>
+			<div class="left_open">
+				<i title="展开左侧栏" class="iconfont">&#xe699;</i>
+			</div>
+			<!--<ul class="layui-nav left fast-add" lay-filter="">
+				<li class="layui-nav-item">
+					<a href="javascript:;">+新增</a>
+					<dl class="layui-nav-child">
+						
+						<dd>
+							<a onclick="WeAdminShow('资讯','https://www.youfa365.com/')"><i class="iconfont">&#xe6a2;</i>资讯</a>
+						</dd>
+						<dd>
+							<a onclick="WeAdminShow('图片','http://www.baidu.com')"><i class="iconfont">&#xe6a8;</i>图片</a>
+						</dd>
+						<dd>
+							<a onclick="WeAdminShow('用户','https://www.youfa365.com/')"><i class="iconfont">&#xe6b8;</i>用户</a>
+						</dd>
+					</dl>
+				</li>
+			</ul> -->
+			<ul class="layui-nav right" lay-filter="">
+				<li class="layui-nav-item">
+					<a href="javascript:;">Admin</a>
+					<dl class="layui-nav-child">
+						<!-- 二级菜单 -->
+						<dd>
+							<a onclick="WeAdminShow('个人信息','http://www.baidu.com')">个人信息</a>
+						</dd>
+						<dd>
+							<a onclick="WeAdminShow('切换帐号','./login.html')">切换帐号</a>
+						</dd>
+						<dd>
+							<a class="loginout" href="login.html">退出</a>
+						</dd>
+					</dl>
+				</li>
+			<!--	<li class="layui-nav-item to-index">
+					<a href="/">前台首页</a>
+				</li> -->
+			</ul>
 
-    doc.getElementById("news").ontouchstart = function(e) {
-        clearInterval(time);
-        var start = e.touches[0].clientX,
-        pic_arr = [img_arr[(now_id +pic_len-1) % pic_len].style, img_arr[now_id].style, img_arr[(now_id + 1) % pic_len].style];
-        doc.getElementById("news").ontouchmove = function(a) {
-            var moving = 100 * (a.touches[0].clientX - start) / vw;
-            move_pic(pic_arr[0], moving - 100);
-            move_pic(pic_arr[1], moving);
-            move_pic(pic_arr[2], moving + 100);
-        }
+		</div>
+		<!-- 顶部结束 -->
+		<!-- 中部开始 -->
+		<!-- 左侧菜单开始 -->
+		<div class="left-nav">
+			<div id="side-nav">
+				<ul id="nav">
+					<li>
+						<a href="javascript:;">
+							<i class="iconfont">&#xe6b8;</i>
+							<cite>管理</cite>
+							<i class="iconfont nav_right">&#xe697;</i>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a _href="list.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>咨询列表</cite>
 
-        doc.getElementById("news").ontouchend = function(b) {
-            var l = 100 * (start - b.changedTouches[0].clientX) / vw;
-            movw_pic(l, pic_arr);
-            time = setInterval(movw_pic, 3000);
-            doc.getElementById("news").ontouchmove = null;
-        }
+								</a>
+							</li>
+							
+                                                        <li>
+								<a _href="list_1.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>社区列表</cite>
 
-    }
-});	
-	pengge.post("/front/notice/get", "isShow=1",function(g) {
-		if(g.toString().length<=5){return ;}
-   // g = JSON.parse(g);
-    var f = doc.getElementById("notice").getElementsByTagName("a"),
-    e = "";
-    do {
-        e += "<span>" + g + "</span>"
-    } while ( e . length < 100 );
-    f[0].innerHTML = e;
-    f[1].innerHTML = e;
-    var a = f[0].offsetWidth,
-    c = 100 * e.length;
-    f[0].style.left = a + "px";
-    f[1].style.left = a + "px";
-   // f[0].href = g.url;
-    //f[1].href = g.url;
-    doc.getElementsByTagName("style")[0].innerHTML += "@keyframes notice{from{transform:translate(0,0)}to{transform:translate(-" + a * 2 + "px,0)}}@-webkit-keyframes notice{from{-webkit-transform:translate(0,0)}to{-webkit-transform:translate(-" + a * 2 + "px,0)}}";
-    var b = "notice " + c + "ms linear infinite";
-    f[0].style.animation = b;
-    f[0].style.WebkitAnimation = b;
-    b = "notice " + c + "ms linear " + c / 2 + "ms infinite";
-    f[1].style.animation = b;
-    f[1].style.WebkitAnimation = b
-});
-}
-function get_goods() {
-    pengge.post("/public/commodity/get-with-info-by-page", "isWantBy=" + isWantBy + "&goodsType=" + goods_type + "&page=" + page_num * 10 + "&isSellOut=0",
-    function(data) {
-		
-        var out = "",
-        data_arr = JSON.parse(data),
-        pic_len = 0,
-		content_len;
+								</a>
+							</li>
+                                                        
+                                                         <li>
+								<a _href="list_2.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>广告列表</cite>
 
-        for (var j = 0; j < data_arr.length; j++) {
-			if(Math.random()<ad_frequency){
-				if(ad_num>=ad.length){ad_frequency=0;add_ad();}else{
-							 out += '<a name="card" class="card ad" target="view_window" style="background-image: url(' + ad[ad_num]["pic"] + ');" href="' + ad[ad_num]["url"] + '"></a>';
-				ad_num++;	
-				}
+								</a>
+							</li>
+                                                        
+					<!--		<li>
+								<a href="javascript:;">
+									<i class="iconfont">&#xe70b;</i>
+									<cite>会员管理</cite>
+									<i class="iconfont nav_right">&#xe697;</i>
+								</a>
+								<ul class="sub-menu">
+									<li>
+										<a _href="./pages/member/addInput.html">
+											<i class="iconfont">&#xe6a7;</i>
+											<cite>输入框操作</cite>
+										</a>
+									</li>
+									<li>
+										<a _href="./pages/404.html">
+											<i class="iconfont">&#xe6a7;</i>
+											<cite>三级菜单演示</cite>
+										</a>
+									</li>
+									<li>
+										<a _href="./pages/404.html">
+											<i class="iconfont">&#xe6a7;</i>
+											<cite>导航菜单演示</cite>
+										</a>
+									</li>
+								</ul>
+							</li> -->
+						</ul>
+					</li>
+			<!--		<li>
+						<a href="javascript:;">
+							<i class="iconfont">&#xe705;</i>
+							<cite>文章管理</cite>
+							<i class="iconfont nav_right">&#xe697;</i>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a _href="./pages/article/list.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>文章列表</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/article/category.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>分类管理</cite>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<i class="iconfont">&#xe723;</i>
+							<cite>订单管理</cite>
+							<i class="iconfont nav_right">&#xe697;</i>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a _href="./pages/order/list.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>订单列表</cite>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<i class="iconfont">&#xe726;</i>
+							<cite>管理员管理</cite>
+							<i class="iconfont nav_right">&#xe697;</i>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a _href="./pages/admin/list.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>管理员列表</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/admin/role.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>角色管理</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/admin/cate.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>权限分类</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/admin/rule.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>权限管理</cite>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<i class="iconfont">&#xe6ce;</i>
+							<cite>系统统计</cite>
+							<i class="iconfont nav_right">&#xe697;</i>
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a _href="./pages/echarts/echarts1.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>拆线图</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/echarts/echarts2.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>柱状图</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/echarts/echarts3.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>地图</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/echarts/echarts4.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>饼图</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/echarts/echarts5.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>雷达图</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/echarts/echarts6.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>k线图</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/echarts/echarts7.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>热力图</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/echarts/echarts8.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>仪表图</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/echarts/echarts9.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>地图DIY实例</cite>
+								</a>
+							</li>    -->
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- <div class="x-slide_left"></div> -->
+		<!-- 左侧菜单结束 -->
+		<!-- 右侧主体开始 -->
+		<div class="page-content">
+			<div class="layui-tab tab" lay-filter="wenav_tab" id="WeTabTip" lay-allowclose="true">
+				<ul class="layui-tab-title" id="tabName">
+					<li>使用方法</li>
+				</ul>
+				<div class="layui-tab-content">
+					<div class="layui-tab-item layui-show">
+						<iframe src='welcome.html' frameborder="0" scrolling="yes" class="weIframe"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="page-content-bg"></div>
+		<!-- 右侧主体结束 -->
+		<!-- 中部结束 -->
+		<!-- 底部开始 -->
+		<div class="footer">
+			<div class="copyright">Copyright ©2018 WeAdmin v1.0 All Rights Reserved</div>
+		</div>
+		<!-- 底部结束 -->
+		<script type="text/javascript">
+//			layui扩展模块的两种加载方式-示例
+//		    layui.extend({
+//			  admin: '{/}../../static/js/admin' // {/}的意思即代表采用自有路径，即不跟随 base 路径
+//			});
+//			//使用拓展模块
+//			layui.use('admin', function(){
+//			  var admin = layui.admin;
+//			});
+			layui.config({
+			  base: './static/js/'
+			  ,version: '101100'
+			}).use('admin');
+			layui.use(['jquery','admin'], function(){
+				var $ = layui.jquery;
+				$(function(){
+					var login = JSON.parse(localStorage.getItem("login"));
+					if(login){
+						if(login=0){
+							window.location.href='./login.html';
+							return false;
+						}else{
+							return false;
+						}
+					}else{
+						window.location.href='./login.html';
+						return false;
+					}
+				});
+			});
 
-				
-			}
-			content_len=300;
-            out += '<a name="card" class="card" target="view_window" href="goods?gid=' + data_arr[j]["gid"] + '"><h2>￥' + data_arr[j]["price"] / 100 + '</h2>';
-			if(data_arr[j]["picture"]!==undefined&&data_arr[j]["picture"].toString().length>5){
-			//<h1>' + pengge.nanfenggx.font_len(data_arr[j]["goods_name"], 18) + '</h1>
-			content_len=36;
-			out+="<div>";
-			data_arr[j]["picture"] = JSON.parse(data_arr[j]["picture"]);
-            pic_len = (data_arr[j]["picture"].length >= 3) ? 3 : data_arr[j]["picture"].length;
-            for (var i = 0; i < pic_len; i++) {
-                out += '<h1><img onload="img_onload(this)" src="http://pic.zdnfbbs.cn/' + data_arr[j]["picture"][i] + '"alt=""/></h1>';
-            }
-            out += '</div>';
-			}
-            out +=  '<p>' + pengge.nanfenggx.font_len(data_arr[j]["content"].replace(/<br>/g, " "),content_len) + '</p><span><h style="background-image:url(http://pic.zdnfbbs.cn/' + data_arr[j]["head_pic"] + ')"></h><h3>' + pengge.nanfenggx.font_len(data_arr[j]["nick_name"],16) + '</h3><h4>' + (data_arr[j]["school"] || "中山大学南方学院") + '</h4></span><h5>' + ((data_arr[j]["is_sell_out"] === 0) ? ((isWantBy===1)?"正在销售":"正渴望着"): "已下架") + '</h5><h6>' + pengge.get_time(data_arr[j]["release_time"] / 1000)  + '</h6></a>';
-        }
-        hgoods.innerHTML += out;
-        if (j < 10) {
-            goods_finish = true;
-            doc.getElementById("loading").innerHTML = "没有更多商品了";
+		</script>
+	</body>
+	<!--Tab菜单右键弹出菜单-->
+	<ul class="rightMenu" id="rightMenu">
+        <li data-type="fresh">刷新</li>
+        <li data-type="current">关闭当前</li>
+        <li data-type="other">关闭其它</li>
+        <li data-type="all">关闭所有</li>
+    </ul>
 
-        } else {
-            page_num++;
-
-        }
-
-    });
-}
-function img_onload(a) {
-if (a.offsetTop < vw * 0.2) {
-		if(a.height>a.width){a.style.width="28vw";}else{a.style.height="28vw";}
-	    console.log(a.height,a.width)
-		a.style.margin=a.height/(-2)+"px "+a.width/(-2)+"px";
-        a.style.opacity = "1";
-    } else {
-        a.style.display = "none"
-    }
-
-}
-doc.onscroll = function() {
-    var top = doc.documentElement.scrollTop || doc.body.scrollTop;
-    if (top >= vw * 0.75) {
-        if (!choose_top) {
-			choose_top=true;
-            hchoose.cssText = "position: fixed;top: -5vw;"
-        }
-
-        var check = function() {
-            if (((doc.body.scrollHeight) - top - doc.body.clientHeight) <= vw) {
-                get_goods();
-            }
-        }
-
-        if (goods_finish) {
-            return;
-        }
-        if (timer === null) {
-            check();
-            timer = setTimeout(function() {
-                check();
-                timer = null;
-            },
-            1000);
-        }
-
-    }
-
-    else {
-        if (choose_top) {
-			choose_top=false;
-            hchoose.cssText = ""
-        }
-    }
-
-}
-
-</script>
 </html>

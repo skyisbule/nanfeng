@@ -16,7 +16,6 @@
 
 .fade-leave-to{
     opacity: 0;
-    
 }
 
 
@@ -61,7 +60,9 @@
 .slide-enter-active {
   transition: all .5s;
 }
-
+.slide-leave-active {
+  transition: all 0s;
+}
 
 .slide-enter, .slide-leave-to /* .fade-leave-active 在低于版本 2.1.8 中 */ {
   opacity: 0;
@@ -70,6 +71,7 @@
 .slide2-enter-active, .slide2-leave-active {
   transition: all .5s;
 }
-.slide2-enter, .slide2-leave-to /* .fade-leave-active 在低于版本 2.1.8 中 */ {
-  opacity: 0;
+.slide2-enter,.slide2-leave-to /* .fade-leave-active 在低于版本 2.1.8 中 */ {
+   transform:  translateY(-100px);
+   opacity: 0;
 }

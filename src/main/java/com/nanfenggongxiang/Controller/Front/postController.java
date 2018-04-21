@@ -34,7 +34,8 @@ public class postController {
     @ApiOperation("添加一条帖子，时间、回复数不用填")
     @RequestMapping("/private/post/add")
     public String add(Post post,
-                      @CookieValue("uid")int uid){
+                      @CookieValue("uid")int uid
+    ){
         post.setUid(uid);
         Date date = new Date();
         post.setReleaseTime(date);

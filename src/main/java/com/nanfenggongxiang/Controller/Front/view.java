@@ -104,4 +104,14 @@ public class view {
     public String bbs(){
         return "tb";
     }
+
+    @RequestMapping("/list_1")
+    public String list_1(){
+        return "list_1";
+    }
+
+    @RequestMapping("/list_2")
+    public String list_2(){
+        return "list_2";
+    }
 }
