@@ -114,4 +114,9 @@ public class view {
     public String list_2(){
         return "list_2";
     }
+
+    @RequestMapping("/admins")
+    public String admin(){
+        return "admin_index";
+    }
 }
