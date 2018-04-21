@@ -36,7 +36,7 @@ public class postReplyController {
 
     @RequestMapping("/public/postReply/get-by-page")
     public List<Map<String,Object>> GetByPage(int page, int postId){
-        return complexDao.getPostReplyByPage(page,postId);
+        return complexDao.getPostReplyByPage(page*10,postId);
     }
 
 }
