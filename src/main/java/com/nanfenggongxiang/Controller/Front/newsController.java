@@ -3,11 +3,14 @@ package com.nanfenggongxiang.Controller.Front;
 import com.nanfenggongxiang.Dao.NewsCommentMapper;
 import com.nanfenggongxiang.Dao.NewsMapper;
 import com.nanfenggongxiang.Domain.News;
+import com.nanfenggongxiang.Domain.NewsComment;
+import com.nanfenggongxiang.Domain.NewsCommentExample;
 import com.nanfenggongxiang.Domain.NewsExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +22,9 @@ public class newsController {
 
     @Autowired
     NewsMapper dao;
+
+    @Autowired
+    NewsCommentMapper replyDao;
 
     /**
      * 查询资讯的api
@@ -50,7 +56,19 @@ public class newsController {
 
     @RequestMapping("/admin/news/update")
     public String update(News news){
+        Date date = new Date();
+        news.setReleaseTime(date);
         dao.updateByPrimaryKey(news);
+        return "success";
+    }
+
+    @RequestMapping("/admin/news/delete")
+    public String delete(int newsId){
+        dao.deleteByPrimaryKey(newsId);
+        NewsCommentExample e = new NewsCommentExample();
+        e.createCriteria()
+                .andNewsIdEqualTo(newsId);
+        replyDao.deleteByExample(e);
         return "success";
     }
 

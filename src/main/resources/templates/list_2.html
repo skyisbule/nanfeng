@@ -92,8 +92,8 @@
 					<!--	<td>
 							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
 						</td> -->
-                                                <td class="mylis" style="max-width:150px;">
-                                                    <span>{{li.aid}}</span>
+                                                <td class="mylis" style="min-width: 70px;">
+                                                    <span style='min-width: 70px;'>{{li.aid}}</span>
                                                 </td>
                                                 <td class="mylis" >
                                                     <input class="readonly"  v-model='li.title' readonly>
@@ -101,9 +101,9 @@
                                                 <td class="mylis" style="max-width:150px;" >
                                                     <div  style="max-width:100px;max-height: 20px;overflow: hidden;" >{{li.content}}</div><span v-if="!groupIF" onclick="$(this).parent().find('.as').css('display','inline')"  class="layui-btn layui-btn-normal layui-btn-xs" >详情</span>
                                                     <div class="as" style="width:1px;height:1px;background-color: #fff;display: none" >
-                                                    <div style="position: absolute;top:20%;background-color: #fff;min-width:630px;">
+                                                    <div style="position: absolute;top:20%;z-index:999;background-color: #fff;min-width:630px;">
                                                         <table>
-                                                            <td style="z-index:999;background-color: #fff;min-width:315px;"> <textarea style=";background-color: #fff;" v-model="li.content"></textarea><span onclick="$(this).parent().parent().parent().parent().parent().parent().css('display','none')" class="layui-btn layui-btn-normal layui-btn-xs">关闭</span></td>
+                                                            <td style="z-index:999;background-color: #fff;min-width:315px;"> <textarea style="min-height: 300px;width:100%;background-color: #fff;" v-model="li.content"></textarea><span onclick="$(this).parent().parent().parent().parent().parent().parent().css('display','none')" class="layui-btn layui-btn-normal layui-btn-xs">关闭</span></td>
                                                             <td style="z-index:999;background-color: #fff;min-width:315px; " v-html="li.content" align="left" valign="top"></td>
                                                         </table>
                                                     </div>
@@ -112,7 +112,7 @@
                                                <td class="mylis" >
                                                     <input class="readonly"  v-model='li.pic' readonly>
                                                 </td>
-                                                <td class="mylis" >
+                                                <td class="mylis" style='min-width:100px'>
                                                     <span v-on:click="">{{myDate(li.releaseTime)}}</span>
                                                 </td>
                                                 <td class="mylis" >

@@ -15,29 +15,75 @@ and open the template in the editor.
 <script src="https://cdn.bootcss.com/lodash.js/4.17.3/lodash.min.js"></script>
     </head>
     <body>
-        <div>图片上传页面</div>
-        <img class="abc" style="max-width: 50%"  alt="请先上传图片"><br/>
-        <span>图片链接:</span><span id="lj"></span>
-        <br/>
-        <input type="file" ><button onclick="upl()">确定上传</button>
-        <br/><br/><br/>
-        咨询：0代表全部 1代表打听 2代表寻物 3代表福利  4代表求伴 5代表校园 6代表兼职 7代表微商
-        <br/>
-        社区：0代表全部 1代表广场 2代表圈子 3代表社团  4代表社区 
-        <br/>
-        在编辑内容区的时候 你是可以更换字体颜色和字体大小的 详细方法你可以参考下http://www.w3school.com.cn/html/index.asp
-        <script>
-            function upl(){
-             if(!document.getElementsByClassName('abc')[0].src){alert('请先上传图片');}else{
-                      Vue.http.post('public/pic/token',{fileName:Math.random()}, {emulateJSON: true}).then(  (response) => {
-                        img_upload(document.getElementsByClassName('abc')[0],response.bodyText,function(data){
-                            document.getElementsByClassName('abc')[0].src = 'http://pic.zdnfbbs.cn/'+JSON.stringify(data).key;
-                            document.getElementById('lj').innerHTML = 'http://pic.zdnfbbs.cn/'+JSON.stringify(data).key;
-    }); });                  
-             }
-  
-            }
-    
+
+
+        <div><span>标题：</span><input id='A' /></div>
+        <div><span>类型：</span><input id='B'/></div>
+        <div><span>内容：</span></div>
+      <div id="div1"></div>
+       <button id="btn1" onclick="ul()">提交</button>
+     
+        <script src="https://unpkg.com/wangeditor@3.1.1/release/wangEditor.min.js"></script>
+                <script>
+            "use strict";
+var img_arr=[];
+function img_upload(h,n,j,k){k=k||0;var m=h[k].src.split(",")[1]; var i=function(a){var c;if(a.indexOf("=")>0){var b=a.indexOf("=");a=a.substring(0,b)}c=parseInt(a.length-(a.length/8)*2);return c};var g="http://upload-z2.qiniu.com/putb64/"+i(m);var l=new XMLHttpRequest();l.onreadystatechange=function(){if(l.readyState==4){img_arr[k]=JSON.parse(l.responseText).key;k++;if(k>=h.length){j(img_arr)}else{img_upload(h,n,j,k)}}};l.open("POST",g,false);l.setRequestHeader("Content-Type","application/octet-stream");l.setRequestHeader("Authorization","UpToken "+n);l.send(m)};
+
         </script>
+        <script>
+    var E = window.wangEditor;
+    var editor = new E('#div1');
+    editor.customConfig.uploadImgShowBase64 = true ;  // 使用 base64 保存图片
+    editor.create();
+        </script>
+        <script>
+            var allurl = '';
+            var c = null;
+            function ul(){
+                                if(document.getElementsByTagName('img').length !== 0){
+                        var promiseGroup = [],lg = document.getElementsByTagName('img').length;
+                        for(let i =0;i<lg;i++){
+                            let a = new Promise(function(re,rj){
+                                
+                                Vue.http.post(allurl+'public/pic/token',{fileName:Math.random()}, {emulateJSON: true}).then(  (response) => {
+                        img_upload(document.getElementsByTagName('img'),response.bodyText,function(data){ 
+           
+                            document.getElementsByTagName('img')[i].src = 'http://pic.zdnfbbs.cn/'+data[i];
+               re('success');                    
+    },i); });
+                            });
+                            promiseGroup.push(a);
+                            
+                        }
+                        
+                        Promise.all(promiseGroup).then(function(){ 
+                                                   Vue.http.get(allurl+'admin/news/add',{params:{title:document.getElementById('A').value,content:editor.txt.html(),classification:document.getElementById('B').value}}).then(  (response) => {
+                                                       alert(response.bodyText);
+                 window.parent.document.getElementById('flash').click();                              
+        });           
+         
+  
+                        });
+                        
+                    }else{
+                     
+                       // window.opener.document.getElementById('flash').click();
+                                                        Vue.http.get(allurl+'admin/news/add',{params:{title:document.getElementById('A').value,content:editor.txt.html(),classification:document.getElementById('B').value}}).then(  (response) => {
+                                                            
+        alert(response.bodyText);
+          window.parent.document.getElementById('flash').click();                                                
+    });           
+
+      /*  editor.txt.html();
+    Vue.http.get(allurl+'admin/news/add',{params:{nid:p.nid}}).then(  (response) => {alert(response.bodyText);});   */   
+                   
+                    // alert(parent.window.a.ve.lis.push({}));
+                    }
+                    
+                    }
+                    
+               
+
+            </script>
     </body>
 </html>

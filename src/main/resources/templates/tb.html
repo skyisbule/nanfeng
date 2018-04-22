@@ -215,7 +215,7 @@ and open the template in the editor.
             </transition>
         </div>
         
-        <div class="myLoading"  style="position: fixed;height: 100%;width: 100%;background-color: rgba(144,144,144,0.9);top:0%;text-align: center">
+        <div class="myLoading"  style="position: fixed;height: 100%;width: 100%;background-color: #fff;top:0%;text-align: center">
             <img  src="static/images/loading.gif" style="margin-top: 35%" alt="加载">
         </div>
         
@@ -361,22 +361,22 @@ class F {
                             let a = new Promise(function(re,rj){
                                 
                                 Vue.http.post(allurl+'public/pic/token',{fileName:Math.random()}, {emulateJSON: true}).then(  (response) => {
-                        img_upload(document.getElementsByClassName('abc')[i],response.bodyText,function(data){ 
-                            document.getElementsByClassName('abc')[i].src = 'http://pic.zdnfbbs.cn/'+JSON.stringify(data).key;
+                        img_upload(document.getElementsByClassName('abc'),response.bodyText,function(data){ 
+                            document.getElementsByClassName('abc')[i].src = 'http://pic.zdnfbbs.cn/'+data[i];
                re('success');                    
-    }); });
+    },i); });
                             });
                             promiseGroup.push(a);
                             
                         }
                         
-                        var promiseAll = new Promise(promiseGroup).then(function(){  //贼丑 你确定不把下面的写成函数？
+                        Promise.all(promiseGroup).then(function(){  //贼丑 你确定不把下面的写成函数？
                              p.uid = this.myid;
              p.title = this.qo;
              p.content = document.getElementById('上传图片list').innerHTML;
              p.isTop = 0;
              p[this.ansytype] =nowtype;
-            
+            delete p.uid;
          Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
           if(response.bodyText === 'success')  {$('.myLoading').hide(); console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
               this.lis = [];
@@ -420,7 +420,7 @@ class F {
              p.content = document.getElementById('上传图片list').innerHTML;
              p.isTop = 0;
              p[this.ansytype] =nowtype;
-            
+          delete p.uid;
          Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
           if(response.bodyText === 'success')  {$('.myLoading').hide(); console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
               this.lis = [];
@@ -459,7 +459,7 @@ class F {
              p.content = this.replycont;
                     if(1){
              
-            
+            delete p.uid;
              console.log(p);//这是发布的也包括留言  一切发送的东西
          Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
           if(response.bodyText === 'success')  { console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
@@ -475,6 +475,8 @@ class F {
               
                         }
           if(func){  func(); };
+         },(error)=>{
+             self.location.href="/sign_in" ;
          }); 
                     }else{
                         this.warning =true;

@@ -69,6 +69,9 @@ and open the template in the editor.
 .bjh-p {
     display: block;
 }
+.mypW img{
+    max-width:100%;
+}
         </style>
         
         <link href="static/css/9002.css" rel="stylesheet">
@@ -89,26 +92,26 @@ and open the template in the editor.
            
         <td style='width:15%;text-align: center'>
             <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 0; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/幼儿.png' >
-            <div class="myfont blue" style='position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >全部</p></div>
+            <img src='static/images/全部.png' >
+            <div class="myfont blue" style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p  >全部</p></div>
             </div>
         </td>
         <td style='width:15%;text-align: center'>
             <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 1; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/幼儿.png' >
-            <div class="myfont" style='position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >打听</p></div>
+            <img src='static/images/搜索_1.png' >
+            <div class="myfont" style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p  >打听</p></div>
             </div>
         </td>
         <td style='width:15%;text-align: center'>
             <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 2; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/幼儿.png' >
-            <div class="myfont" style='position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >寻物</p></div>
+            <img src='static/images/物品申请.png' >
+            <div class="myfont" style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p  >寻物</p></div>
             </div>
         </td>
         <td style='width:15%;text-align: center'>
             <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 3; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/幼儿.png' >
-            <div class="myfont" style='position: relative;top:-4px;margin: 0 auto;text-align: center;'><p  >福利</p></div>
+            <img src='static/images/福利_1.png' >
+            <div class="myfont" style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p  >福利</p></div>
             </div>
         </td>
         <td style='width:20%;text-align: center'>
@@ -125,7 +128,7 @@ and open the template in the editor.
         
         <tr   >  <!--第二行了啊-->
             
-                <td style='width:20%;text-align: center' >
+                <td style='width:20%;text-align: center;' >
             <transition name="slide2" >
             <div v-if="dragshow" style=" background-color: rgb(255, 255, 255); height: 100%" >
             
@@ -139,7 +142,7 @@ and open the template in the editor.
             <div v-if="dragshow" style="background-color: rgb(255, 255, 255);">
             <div  class="ass topText" onclick="a.ve.lis = [];nowtype = 4; page = 0;a.ve.ifshow = false;">
             <img src='static/images/幼儿.png' >
-            <div class="myfont " style='position: relative;top:-4px;margin: 0 auto;text-align: center;'><p>求伴</p></div>
+            <div class="myfont " style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p>求伴</p></div>
             </div>
                 </div>
             </transition>
@@ -148,8 +151,8 @@ and open the template in the editor.
             <transition name="slide2">
             <div v-if="dragshow" style="background-color: rgb(255, 255, 255);">
             <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 5; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/幼儿.png' >
-            <div class="myfont " style='position: relative;top:-4px;margin: 0 auto;text-align: center;'><p>校园</p></div>
+            <img src='static/images/校园咨询.png' >
+            <div class="myfont " style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p>校园</p></div>
             </div>
                 </div>
             </transition>
@@ -158,8 +161,8 @@ and open the template in the editor.
             <transition name="slide2">
             <div  v-if="dragshow" style="background-color: rgb(255, 255, 255);">
             <div class="ass  topText" onclick="a.ve.lis = [];nowtype = 6; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/幼儿.png' >
-            <div class="myfont " style='position: relative;top:-4px;margin: 0 auto;text-align: center;'><p>兼职</p></div>
+            <img src='static/images/消息_兼职.png' >
+            <div class="myfont " style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p>兼职</p></div>
             </div>
                 </div>
             </transition>
@@ -168,8 +171,8 @@ and open the template in the editor.
             <transition name="slide2">
             <div v-if="dragshow" style="background-color: rgb(255, 255, 255);">
             <div   class="ass  topText" onclick="a.ve.lis = [];nowtype = 7; page = 0;a.ve.ifshow = false;">
-            <img src='static/images/幼儿.png' >
-            <div class="myfont " style='position: relative;top:-4px;margin: 0 auto;text-align: center;'><p>微商</p></div>
+            <img src='static/images/微商城.png' >
+            <div class="myfont " style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p>微商</p></div>
             </div>
                 </div>
             </transition>
@@ -268,7 +271,7 @@ and open the template in the editor.
                      <li style="width:100%;overflow: hidden;text-align: left;margin-bottom: 10px;"><h1 style=" font-size: 18px">{{nowc.title}}</h1></li>
   
    <li style="width:100%;"><span style="color:#bababa">{{myDate(nowc.releaseTime)}}</span></li>
-                          <li style="width:100%;" v-html="nowc.content">
+                          <li class="mypW" style="width:100%;" v-html="nowc.content">
                              
                           </li>
 
@@ -282,7 +285,7 @@ and open the template in the editor.
             <transition-group name="fade">
             <li style="width: 100%;background-color: #ffffff;margin-top: 10px;"  v-for = '(li,index) in conts' v-bind:key="index">
                 <ul style="width: 94%;margin-left: 3%;margin-right: 3%">
-                    <li style="width:100%;height: 60px;"><img style="border-radius: 25px;border: none;height: 50px;width: 50px;float: left;" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:14px;margin-left: 10px;font-size:12px">{{li.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">{{ index+2+'楼'}}</p></div></li>
+                    <li style="width:100%;height: 60px;"><img style="border-radius: 25px;border: none;height: 50px;width: 50px;float: left;" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:6px;margin-left: 10px;font-size:12px">{{li.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">{{ index+2+'楼'}}</p></div></li>
    
   <li style="width:100%;min-height: 50px;font-size: 14px;text-indent:  2em;white-space:normal;word-break:break-all;word-wrap:break-word;">{{li.content}}</li>
   <li style="width:100%;height: 20px"><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{myDate(li.release_time)}}</span></li>
@@ -305,7 +308,7 @@ and open the template in the editor.
                  <img onclick=" $('.liuyan').css('top','');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');   "   src='static/images/关闭3.png' alt='关闭' style='float:left;width: 22px;height: 22px' />
                  <span class="rpng" v-on:click="Reply('private/newsReply/add')" style='float: right;'   >提交</span >  
              <br/><br/><br/>
-             <textarea    v-model="replycont" style='width: 85%;height:300px;border:1px #fff solid;float: left;text-indent: 2px; padding-left: 2px;padding-top: 2px;' placeholder='要不留个言再走~' ></textarea>
+             <textarea    v-model="replycont" style='margin-left: 3%;width: 85%;height:300px;border:1px #fff solid;float: left;text-indent: 2px; padding-left: 2px;padding-top: 2px;' placeholder='要不留个言再走~' ></textarea>
              
              </div>
             </li>
@@ -321,6 +324,11 @@ and open the template in the editor.
                 <div class="warning" style="margin:0 auto;background-color:rgba(255,102,51,0.8);text-align: center;width:100px;color:#fff;border:  #cccccc 1px none;border-radius: 10px;" >asd</div>
             </div>
             </transition> 
+            
+             <div class="myLoading"  style="position: fixed;height: 100%;width: 100%;background-color: #fff;top:0%;text-align: center">
+            <img  src="static/images/loading.gif" style="margin-top: 35%" alt="加载">
+        </div>
+            
             
         </div>
         <script>
@@ -385,6 +393,9 @@ a.addLIS('public/news/get-by-page',{page,type:nowtype});
 
 },300)
         );
+setTimeout(()=>{
+   $('.myLoading').hide(); 
+},1000);
 });
 
 
@@ -471,6 +482,7 @@ class F {
             p.newsId = this.tempId;
              p.content = this.replycont;
              console.log(p);//这是发布的也包括留言  一切发送的东西
+             delete p.uid;
          Vue.http.post(allurl+url,p,{emulateJSON: true}).then(  (response) => {
           if(response.bodyText === 'success')  { console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
               $('.liuyan').css('top','');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');
@@ -479,6 +491,8 @@ class F {
         this.another(saveP.A,saveP.B,saveP.C);
                         }
           if(func){  func(); };
+         },(error)=>{
+             self.location.href="/sign_in" ;
          }); 
     },
     another(li,p={}/*回复的实体*/,url = undefined){
