@@ -9,11 +9,11 @@ and open the template in the editor.
         <title>TODO supply a title</title>
                 <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
 
-<script type="text/javascript" src="static/js/jquery-3.2.1.min.js"></script>
-<script src="static/js/vue"></script>
-<script src="static/js/vue-resource@1.3.4"></script>
-<script src="static/js/lodash.min.js"></script>
-    <!--   <script type="text/javascript" src="/js/bar.js"></script>  -->
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/vue-resource/1.3.4/vue-resource.js"></script>
+<script src="https://cdn.bootcss.com/lodash.js/4.17.3/lodash.min.js"></script>
+       <script type="text/javascript" src="/js/bar.js"></script> 
 
 <style>
     .ui-upload {
@@ -205,29 +205,40 @@ and open the template in the editor.
             
             <transition-group style="" name="fade"  >
                 <li style="width: 100%;background-color: #ffffff;padding-top: 5px;padding-bottom: 15px"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li"   v-on:click="another(li,{page:0,newsId:li.nid},'public/newsReply/get-by-page')" >
-                <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid" v-if="piccontent(li.content)">
+                <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid" v-if="piccontent(li.content) == 3">
                     <li style="width:100%;overflow: hidden"><div style="font-size:18px;line-height: 26px;font-weight: normal;text-overflow: ellipsis;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;    -webkit-box-orient: vertical;margin-top: -3px;    margin-bottom: 4px;    text-align: left;">
-                            <!--{{li[showDataW[2]]}} --> 能正确书写小写字母“g”的美国人，每几十人里只有一人林允儿穿短裙好嫩，腿看了都一言难尽，网友：是跪多了吧！</div></li>
+                            {{li[showDataW[2]]}} </div></li>
    <li style="width:100%;">
       <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content,0)" style="width:100%;height: 100%;" alt="tu" /></div>
       <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content,1)" style="width:100%;height: 100%;" alt="tu" /></div>
       <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content,2)" style="width:100%;height: 100%;" alt="tu" /></div>
 
    </li>
-   <li style="width:100%;padding-bottom: 5px;"><span style="font-size:13px;margin-right: 5px;color:#bababa;">04-10</span></li>
+   <li style="width:100%;padding-bottom: 5px;"><span style="font-size:13px;margin-right: 5px;color:#bababa;">{{myDate(li.releaseTime)}}</span></li>
   </ul>  
-             <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid" v-else>  <!-- 单图片内容 -->
+             <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid" v-else-if="piccontent(li.content) == 1">  <!-- 单图片内容 -->
                     
    <li style="width:100%;">
       <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content)"  style="width:100%;height: 100%;" alt="tu" /></div>
      <div style="display: inline-block;width: 64%;">
          <div style="font-size:18px;line-height: 26px;font-weight: normal;text-overflow: ellipsis;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;    -webkit-box-orient: vertical;margin-top: -3px;    margin-bottom: 4px;    text-align: left;">
-                            <!--{{li[showDataW[2]]}}-->  能正确书写小写字母“g”的美国人，每几十人里只有一人林允儿穿短裙好嫩，腿看了都一言难尽，网友：是跪多了吧！</div>
-     <div><span style="font-size:13px;margin-right: 5px;color:#bababa;">04-10</span></div>
+                           {{li[showDataW[2]]}}</div>
+     <div><span style="font-size:13px;margin-right: 5px;color:#bababa;">{{myDate(li.releaseTime)}}</span></div>
      </div>
    </li>
    <li style="width:100%;padding-bottom: 5px;"></li>
   </ul>   
+                   <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid" v-else>
+                    <li style="width:100%;overflow: hidden"><div style="font-size:18px;line-height: 26px;font-weight: normal;text-overflow: ellipsis;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;    -webkit-box-orient: vertical;margin-top: -3px;    margin-bottom: 4px;    text-align: left;">
+                            {{li[showDataW[2]]}} </div></li>
+   <li style="width:100%;">
+     <!-- <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content,0)" style="width:100%;height: 100%;" alt="tu" /></div>
+      <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content,1)" style="width:100%;height: 100%;" alt="tu" /></div>
+      <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content,2)" style="width:100%;height: 100%;" alt="tu" /></div> -->
+
+   </li>
+   <li style="width:100%;padding-bottom: 5px;"><span style="font-size:13px;margin-right: 5px;color:#bababa;">{{myDate(li.releaseTime)}}</span></li>
+  </ul>
                             
                             
                             
@@ -254,17 +265,11 @@ and open the template in the editor.
              
              <li style="width: 100%;background-color: #ffffff;margin-top: 10px;padding-bottom: 20px;">
                 <ul style="width: 94%;margin-left: 3%;margin-right: 3%">
-                     <li style="width:100%;overflow: hidden;text-align: left;margin-bottom: 10px;"><h1 style=" font-size: 18px">高云翔被捕后曾第一时间传话给董璇：相信我，我什么也没做</h1></li>
+                     <li style="width:100%;overflow: hidden;text-align: left;margin-bottom: 10px;"><h1 style=" font-size: 18px">{{nowc.title}}</h1></li>
   
-   <li style="width:100%;"><span style="color:#bababa">2018-4-11</span></li>
-                          <li style="width:100%;">
-                              <p class="contentText contentFont  commonPadding"><span class="bjh-p">近年来，短视频与直播平台不断被曝出低俗、色情、造假等乱象，甚至在平台内还隐藏有一个混乱的少年儿童交往圈，不仅毫无底线还触碰了法律的底线。</span></p>
-                              <p class="contentText contentFont  commonPadding"><span class="bjh-p">近年来，短视频与直播平台不断被曝出低俗、色情、造假等乱象，甚至在平台内还隐藏有一个混乱的少年儿童交往圈，不仅毫无底线还触碰了法律的底线。</span></p>
-                              <p class="contentText contentFont  commonPadding"><span class="bjh-p">近年来，短视频与直播平台不断被曝出低俗、色情、造假等乱象，甚至在平台内还隐藏有一个混乱的少年儿童交往圈，不仅毫无底线还触碰了法律的底线。</span></p>
-                              <p class="contentText contentFont  commonPadding"><span class="bjh-p">近年来，短视频与直播平台不断被曝出低俗、色情、造假等乱象，甚至在平台内还隐藏有一个混乱的少年儿童交往圈，不仅毫无底线还触碰了法律的底线。</span></p>
-                              <p class="contentText contentFont  commonPadding"><span class="bjh-p">近年来，短视频与直播平台不断被曝出低俗、色情、造假等乱象，甚至在平台内还隐藏有一个混乱的少年儿童交往圈，不仅毫无底线还触碰了法律的底线。</span></p>
-                              <p class="contentText contentFont  commonPadding"><span class="bjh-p">近年来，短视频与直播平台不断被曝出低俗、色情、造假等乱象，甚至在平台内还隐藏有一个混乱的少年儿童交往圈，不仅毫无底线还触碰了法律的底线。</span></p>
-
+   <li style="width:100%;"><span style="color:#bababa">{{myDate(nowc.releaseTime)}}</span></li>
+                          <li style="width:100%;" v-html="nowc.content">
+                             
                           </li>
 
 
@@ -414,7 +419,8 @@ class F {
                    return end.replace(/src/,' ').trim().replace(/^=/,' ').trim().replace(/^(\"|\')/g,'').replace(/(\"|\')$/,'');//这个叫我真的不会正则
                 },
                 piccontent(li){
-                    if(li.match(/src\s*=\s*(\"|\').+?(\"|\')/g).length >2){ return true; }else{ return false }
+                    if(li.match(/src\s*=\s*(\"|\').+?(\"|\')/g) === null){return 0;}
+                    if(li.match(/src\s*=\s*(\"|\').+?(\"|\')/g).length >2){ return 3; }else if(li.match(/src\s*=\s*(\"|\').+?(\"|\')/g).length  >=1){ return 1; }else{ return 0; };
                 },
                 myDate(ydate){
                     

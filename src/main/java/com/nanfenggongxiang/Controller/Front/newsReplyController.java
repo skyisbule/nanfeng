@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by skyisbule on 2018/3/28.
@@ -34,7 +35,7 @@ public class newsReplyController {
     }
 
     @RequestMapping("/public/newsReply/get-by-page")
-    public List<NewsComment> getByPage(int newsId,int page){
+    public List<Map<String,Object>> getByPage(int newsId,int page){
         return complexDao.getByPage(page*10,newsId);
     }
 

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by skyisbule on 2018/3/28.
@@ -19,6 +20,6 @@ public interface NewsCommentDao {
             "where news_comment.news_id = #{newsId} " +
             "order by release_time ASC " +
             "limit #{page},10;")
-    public List<NewsComment> getByPage(@Param("page") int page,@Param("newsId")int newsId);
+    public List<Map<String,Object>> getByPage(@Param("page") int page, @Param("newsId")int newsId);
 
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>上传</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/vue-resource/1.3.4/vue-resource.js"></script>
+<script src="https://cdn.bootcss.com/lodash.js/4.17.3/lodash.min.js"></script>
+    </head>
+    <body>
+        <div>图片上传页面</div>
+        <img class="abc" style="max-width: 50%"  alt="请先上传图片"><br/>
+        <span>图片链接:</span><span id="lj"></span>
+        <br/>
+        <input type="file" ><button onclick="upl()">确定上传</button>
+        <br/><br/><br/>
+        咨询：0代表全部 1代表打听 2代表寻物 3代表福利  4代表求伴 5代表校园 6代表兼职 7代表微商
+        <br/>
+        社区：0代表全部 1代表广场 2代表圈子 3代表社团  4代表社区 
+        <br/>
+        在编辑内容区的时候 你是可以更换字体颜色和字体大小的 详细方法你可以参考下http://www.w3school.com.cn/html/index.asp
+        <script>
+            function upl(){
+             if(!document.getElementsByClassName('abc')[0].src){alert('请先上传图片');}else{
+                      Vue.http.post('public/pic/token',{fileName:Math.random()}, {emulateJSON: true}).then(  (response) => {
+                        img_upload(document.getElementsByClassName('abc')[0],response.bodyText,function(data){
+                            document.getElementsByClassName('abc')[0].src = 'http://pic.zdnfbbs.cn/'+JSON.stringify(data).key;
+                            document.getElementById('lj').innerHTML = 'http://pic.zdnfbbs.cn/'+JSON.stringify(data).key;
+    }); });                  
+             }
+  
+            }
+    
+        </script>
+    </body>
+</html>

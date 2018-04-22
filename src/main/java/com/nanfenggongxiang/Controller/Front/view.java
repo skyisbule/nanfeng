@@ -105,6 +105,11 @@ public class view {
         return "tb";
     }
 
+    @RequestMapping("/list_0")
+    public String list_0(){
+        return "list_0";
+    }
+
     @RequestMapping("/list_1")
     public String list_1(){
         return "list_1";
@@ -115,8 +120,18 @@ public class view {
         return "list_2";
     }
 
+    @RequestMapping("/list_3")
+    public String list_3(){
+        return "list_3";
+    }
+
     @RequestMapping("/admins")
     public String admin(){
-        return "admin_index";
+        return "background";
+    }
+
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
     }
 }

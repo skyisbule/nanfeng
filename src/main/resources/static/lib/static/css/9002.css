@@ -1,0 +1,77 @@
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            
+            .fade-enter-active {
+    transition: all 0.5s;
+}
+.fade-leave-active{
+    transition: all 0.5s;
+}
+.fade-enter {
+    opacity: 0.1;
+    transform:  translateY(300px);
+}
+
+.fade-leave-to{
+    opacity: 0;
+}
+
+
+
+            .t-enter-active {
+    transition: all 1s;
+}
+.t-leave-active{
+    transition: all 0.7s;
+}
+.t-enter/* .fade-leave-active 在低于版本 2.1.8 中 */ {
+    opacity: 0.1;
+}
+
+.t-leave-to{
+    opacity: 0;
+    
+    
+}
+
+.blue{
+    background-color:rgba(255,102,51,0.8);
+    color:#fff;
+    border:  #cccccc 1px none;border-radius: 10px;
+    
+    animation:cartoon 1s infinite alternate;
+	
+	-webkit-animation:cartoon 1s infinite alternate;
+    
+}
+
+@keyframes  cartoon{
+     0%   {width:100%}
+    25%  {width:80%}
+    50%  {width:100%}
+    100% {width:80%}
+    
+   
+}
+
+
+.slide-enter-active {
+  transition: all .5s;
+}
+.slide-leave-active {
+  transition: all 0s;
+}
+
+.slide-enter, .slide-leave-to /* .fade-leave-active 在低于版本 2.1.8 中 */ {
+  opacity: 0;
+}
+
+.slide2-enter-active, .slide2-leave-active {
+  transition: all .5s;
+}
+.slide2-enter,.slide2-leave-to /* .fade-leave-active 在低于版本 2.1.8 中 */ {
+   transform:  translateY(-100px);
+   opacity: 0;
+}

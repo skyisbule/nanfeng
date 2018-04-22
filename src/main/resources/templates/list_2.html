@@ -9,16 +9,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<link rel="stylesheet" href="static/css/font.css">
 		<link rel="stylesheet" href="static/css/weadmin.css">
-                <script src="static/js/jquery.js"></script>
+
                 <script src="static/js/layui.js" type="text/javascript" charset="utf-8"></script>
                 <script src="static/js/list.js" type="text/javascript" charset="utf-8"></script>
 
 
-
-
-<script src="static/js/vue"></script>
-<script src="static/js/vue-resource@1.3.4"></script>
-<script src="static/js/lodash.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/vue-resource/1.3.4/vue-resource.js"></script>
+<script src="https://cdn.bootcss.com/lodash.js/4.17.3/lodash.min.js"></script>
 <style>
     .readonly{
         max-width: 150px;
@@ -89,7 +88,7 @@
                                                 <th>操作</th>
 				</thead>
 				<tbody>
-					<tr v-for="li in lis">
+					<tr v-for="(li,index) in lis" >
 					<!--	<td>
 							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
 						</td> -->
@@ -126,7 +125,7 @@
 						
 						<td class="mylis" style="min-width: 270px;">
 							
-                                                    <template v-show="!groupIF"><button   v-on:click="updateORadd(editU,li)" onclick="$(this).css('display','none');$(this).parents('.mylis').children('.jl').css('display','none')" class="layui-btn" >确定</button></template>
+                                                    <div v-show="!groupIF" style="display:inline"><button   v-on:click="updateORadd(editU,li)" onclick="$(this).css('display','none');$(this).parents('.mylis').children('.jl').css('display','none')" class="layui-btn" >确定</button></div>
                                                        <!-- <span v-else class="layui-btn layui-btn-danger"  onclick="console.log('?')"  v-on:click="updateORadd(editU,li)">呵呵啊</span> -->
 							<button v-if="li.aid"  class="layui-btn layui-btn-danger" onclick="$(this).parent().parent().hide()" v-on:click="updateORadd(deleteU,{aid:li.aid})"><i class="layui-icon"></i>删除</button>  <!--传个东西进去-->
                                                       <template v-if="!li.aid" >  <button  class="layui-btn layui-btn-danger jl" onclick="$(this).parent().parent().hide()" ><i class="layui-icon"></i>删除</button> </template>
@@ -191,7 +190,7 @@
         Vue.http.get(allurl+url,{params:p}).then(  (response) => {
             let f =  eval("("+response.bodyText+")");
             f.forEach( (data) => {  this.contents.push(data);  }  );
-            if(f[0]){alert('没有了');}else{ this.addcontents(url,++p) }
+            if(!f[0]){alert('没有了');}else{ this.addcontents(url,++p) }
         });
     },
     deletecontents(url,p,tmp = null){

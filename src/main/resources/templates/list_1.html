@@ -9,16 +9,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<link rel="stylesheet" href="static/css/font.css">
 		<link rel="stylesheet" href="static/css/weadmin.css">
-                <script src="static/js/jquery.js"></script>
                 <script src="static/js/layui.js" type="text/javascript" charset="utf-8"></script>
                 <script src="static/js/list.js" type="text/javascript" charset="utf-8"></script>
 
 
 
-
-<script src="static/js/vue"></script>
-<script src="static/js/vue-resource@1.3.4"></script>
-<script src="static/js/lodash.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/vue-resource/1.3.4/vue-resource.js"></script>
+<script src="https://cdn.bootcss.com/lodash.js/4.17.3/lodash.min.js"></script>
 <style>
     .readonly{
         max-width: 150px;
@@ -68,10 +67,10 @@
 				<!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button> -->
 				<a ><button class="layui-btn" onclick="a.ve.page = 0;a.ve.isTop=1;a.addcontents(a.ve.getU,{page:a.ve.page,type:a.ve.type,isTop:1})" style="margin-right: 30px;">查看该板块</button></a>
 				<!--<span class="fr" style="line-height:40px">共有数据：？ 条</span> -->
-                                <button v-if="groupIF" class="layui-btn" v-on:click="lis.push({})"><i class="layui-icon"></i>添加空白数据</button>
+                                <button v-if="groupIF" class="layui-btn" v-on:click="lis.unshift({})"><i class="layui-icon"></i>添加空白数据</button>
                                 <button v-if="groupIF" v-on:click='groupIF = !groupIF' onclick="$('.readonly').removeAttr('readonly');" class="layui-btn layui-btn-danger" >编辑开启</button>
                                 <button v-if="!groupIF" v-on:click='groupIF = !groupIF' onclick="$('.readonly').attr('readonly','readonly');" class="layui-btn layui-btn-danger" >关闭编辑</button>
-                                <span>tips:1.如果你想添加数据，去前台添加吧。</span>
+                                <span>tips: ①最好在前台发帖  ②咨询：0代表全部 1代表广场 2代表圈子 3代表社团  4代表社区 </span>
 			</div>
 			<table class="layui-table">
 				<thead>
@@ -130,7 +129,7 @@
 						
 						<td class="mylis" style="min-width: 270px;">
 							
-                                                    <template v-show="!groupIF"><button   v-on:click="updateORadd(editU,li)" onclick="$(this).css('display','none');$(this).parents('.mylis').children('.jl').css('display','none');" class="layui-btn" >确定</button></template>
+                                                    <div v-show="!groupIF" style="display:inline"><button   v-on:click="updateORadd(editU,li)" onclick="$(this).css('display','none');$(this).parents('.mylis').children('.jl').css('display','none');" class="layui-btn" >确定</button></div>
                                                        <!-- <span v-else class="layui-btn layui-btn-danger"  onclick="console.log('?')"  v-on:click="updateORadd(editU,li)">呵呵啊</span> -->
 							<button v-if="li.postId" class="layui-btn layui-btn-danger" onclick="$(this).parent().parent().hide()" v-on:click="updateORadd(deleteU,li)"><i class="layui-icon"></i>删除</button> 
                                                    <template v-if="!li.postId">     <button   class="layui-btn layui-btn-danger jl" onclick="$(this).parent().parent().hide()" ><i class="layui-icon"></i>删除</button><!--传个东西进去--> </template>
@@ -143,9 +142,9 @@
 			</table>
 			<div class="page">
 				<div>
-					<span onclick="a.ve.page--;a.ve.lis = [];a.ve.isTop=1;a.addlis(data.getU,{page:a.ve.page,plate:a.ve.type,isTop:1});" class="prev" href="">&lt;&lt;</span>
+					<span onclick="if(a.ve.page>0){a.ve.groupIF = true;a.ve.page--;a.ve.lis = [];a.ve.isTop=1;a.addlis(data.getU,{page:a.ve.page,plate:a.ve.type,isTop:1});}" class="prev" href="">&lt;&lt;</span>
 					<span onclick='' href="">{{page+1}}</span>
-					<span onclick="a.ve.page++;a.ve.lis = [];a.ve.isTop=1;a.addlis(data.getU,{page:a.ve.page,plate:a.ve.type,isTop:1});"  href="">&gt;&gt;</span>
+					<span onclick="a.ve.page++;a.ve.groupIF = true;a.ve.lis = [];a.ve.isTop=1;a.addlis(data.getU,{page:a.ve.page,plate:a.ve.type,isTop:1});"  href="">&gt;&gt;</span>
 				</div>
                             
 			</div>
@@ -187,11 +186,11 @@
                 updateORadd(url,p){
                     
                     if(p.postId){
-                         Vue.http.get(allurl+url,{params:p}).then(  (response) => {alert(response.bodyText);});
+                         Vue.http.get(allurl+url,{postId:p.postId}, {emulateJSON: true}).then(  (response) => {alert(response.bodyText);});
                     }else{
                          url = this.addU;
                          if(p.content ||p.title)
-                         Vue.http.get(allurl+url,{params:p}).then(  (response) => {if(response.bodyText=='success') alert(response.bodyText);});
+                         Vue.http.get(allurl+url,p, {emulateJSON: true}).then(  (response) => {if(response.bodyText=='success') alert(response.bodyText);});
                     }
 
     },
@@ -199,15 +198,14 @@
                     var date = new Date(ydate);var y = date.getFullYear();   var m = date.getMonth() + 1;  m = m < 10 ? ('0' + m) : m;  var d = date.getDate();  d = d < 10 ? ('0' + d) : d;  var h = date.getHours();  h=h < 10 ? ('0' + h) : h;  var minute = date.getMinutes();  minute = minute < 10 ? ('0' + minute) : minute;  var second=date.getSeconds();  second=second < 10 ? ('0' + second) : second;  return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;  
                 },
                 addcontents(url,p){
-        Vue.http.get(allurl+url,{params:p}).then(  (response) => {
+        Vue.http.get(allurl+url,p, {emulateJSON: true}).then(  (response) => {
             let f =  eval("("+response.bodyText+")");
             f.forEach( (data) => {  this.contents.push(data);  }  );
-            if(f[0]){alert('没有了');}else{ this.addcontents(url,++p) }
+            if(!f[0]){alert('没有了');}else{ this.addcontents(url,++p) }
         });
     },
     deletecontents(url,p,tmp = null){
-                                 Vue.http.get(allurl+url,{params:p}).then(  (response) => {alert(response.bodyText);});
-                                 
+                                 Vue.http.get(allurl+url,p, {emulateJSON: true}).then(  (response) => {alert(response.bodyText);});
 
     }
                 
