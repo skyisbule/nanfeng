@@ -168,21 +168,22 @@
                 <div v-if='ifshow' style='width:100%;height:80%;position: fixed;top:7%;z-index: 999'>
                 <div style='margin:0 auto;width:70%;height: 100%'>
                     <div style='background-color: #bababa;width:100%;height:20px'><span style='float: right' v-on:click='ifshow = !ifshow'>关闭</span></div>
-             <iframe   style='position: relative;z-index:999;background-color: #fff' src="list_3.html" style='' width="100%" height="100%"></iframe>
+             <iframe   style='position: relative;z-index:999;background-color: #fff' src="list_3.html"  width="100%" height="100%"></iframe>
                 </div>
 </div>
         <script>
             function ul(){
+               
                                 if(document.getElementsByTagName('img').length !== 0){
                         var promiseGroup = [],lg = document.getElementsByTagName(img).length;
                         for(let i =0;i<lg;i++){
                             let a = new Promise(function(re,rj){
                                 
                                 Vue.http.post(allurl+'public/pic/token',{fileName:Math.random()}, {emulateJSON: true}).then(  (response) => {
-                        img_upload(document.getElementsByTagName('img')[i],response.bodyText,function(data){ 
+                        img_upload(document.getElementsByTagName('img'),response.bodyText,function(data){ 
                             document.getElementsByTagName('img')[i].src = 'http://pic.zdnfbbs.cn/'+JSON.stringify(data).key;
                re('success');                    
-    }); });
+    },i); });
                             });
                             promiseGroup.push(a);
                             

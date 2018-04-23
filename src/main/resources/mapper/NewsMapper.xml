@@ -7,6 +7,7 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime" />
     <result column="classification" jdbcType="INTEGER" property="classification" />
+    <result column="is_top" jdbcType="INTEGER" property="isTop" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    nid, title, content, release_time, classification
+    nid, title, content, release_time, classification, is_top
   </sql>
   <select id="selectByExample" parameterType="com.nanfenggongxiang.Domain.NewsExample" resultMap="BaseResultMap">
     select
@@ -108,17 +109,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.nanfenggongxiang.Domain.News">
-    insert into news (nid, title, content, 
-      release_time, classification)
-    values (#{nid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{releaseTime,jdbcType=TIMESTAMP}, #{classification,jdbcType=INTEGER})
+    <selectKey keyProperty="nid" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into news (title, content, release_time, 
+      classification, is_top)
+    values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{releaseTime,jdbcType=TIMESTAMP}, 
+      #{classification,jdbcType=INTEGER}, #{isTop,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.nanfenggongxiang.Domain.News">
+    <selectKey keyProperty="nid" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into news
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nid != null">
-        nid,
-      </if>
       <if test="title != null">
         title,
       </if>
@@ -131,11 +135,11 @@
       <if test="classification != null">
         classification,
       </if>
+      <if test="isTop != null">
+        is_top,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nid != null">
-        #{nid,jdbcType=INTEGER},
-      </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>
@@ -147,6 +151,9 @@
       </if>
       <if test="classification != null">
         #{classification,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null">
+        #{isTop,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -174,6 +181,9 @@
       <if test="record.classification != null">
         classification = #{record.classification,jdbcType=INTEGER},
       </if>
+      <if test="record.isTop != null">
+        is_top = #{record.isTop,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -185,7 +195,8 @@
       title = #{record.title,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=VARCHAR},
       release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
-      classification = #{record.classification,jdbcType=INTEGER}
+      classification = #{record.classification,jdbcType=INTEGER},
+      is_top = #{record.isTop,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -205,6 +216,9 @@
       <if test="classification != null">
         classification = #{classification,jdbcType=INTEGER},
       </if>
+      <if test="isTop != null">
+        is_top = #{isTop,jdbcType=INTEGER},
+      </if>
     </set>
     where nid = #{nid,jdbcType=INTEGER}
   </update>
@@ -213,7 +227,8 @@
     set title = #{title,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       release_time = #{releaseTime,jdbcType=TIMESTAMP},
-      classification = #{classification,jdbcType=INTEGER}
+      classification = #{classification,jdbcType=INTEGER},
+      is_top = #{isTop,jdbcType=INTEGER}
     where nid = #{nid,jdbcType=INTEGER}
   </update>
 </mapper>

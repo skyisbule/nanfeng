@@ -50,6 +50,8 @@ public class newsController {
 
     @RequestMapping("/admin/news/add")
     public String add(News news){
+        Date date = new Date();
+        news.setReleaseTime(date);
         dao.insert(news);
         return "success";
     }

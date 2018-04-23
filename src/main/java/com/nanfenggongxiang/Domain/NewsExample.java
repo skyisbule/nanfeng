@@ -444,6 +444,66 @@ public class NewsExample {
             addCriterion("classification not between", value1, value2, "classification");
             return (Criteria) this;
         }
+
+        public Criteria andIsTopIsNull() {
+            addCriterion("is_top is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopIsNotNull() {
+            addCriterion("is_top is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopEqualTo(Integer value) {
+            addCriterion("is_top =", value, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopNotEqualTo(Integer value) {
+            addCriterion("is_top <>", value, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopGreaterThan(Integer value) {
+            addCriterion("is_top >", value, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_top >=", value, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopLessThan(Integer value) {
+            addCriterion("is_top <", value, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopLessThanOrEqualTo(Integer value) {
+            addCriterion("is_top <=", value, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopIn(List<Integer> values) {
+            addCriterion("is_top in", values, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopNotIn(List<Integer> values) {
+            addCriterion("is_top not in", values, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopBetween(Integer value1, Integer value2) {
+            addCriterion("is_top between", value1, value2, "isTop");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTopNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_top not between", value1, value2, "isTop");
+            return (Criteria) this;
+        }
     }
 
     /**

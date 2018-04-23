@@ -33,7 +33,7 @@ and open the template in the editor.
       float: left;
     }
     
-    
+
 
   </style>
 
@@ -114,16 +114,16 @@ and open the template in the editor.
     </table>
         
          <transition name="slide" tag="p" >
-        <ul style="margin-top: 55px;margin-bottom: 15vw"  v-show='!ifshow'>
+        <ul id='me' style="margin-top: 55px;margin-bottom: 15vw"  v-show='!ifshow'>
             <div id="mutext" v-if="lis[0] === undefined" style="width:100%;margin: 0 auto;font-size: 10px;text-align: center"></div>
                
             <transition-group style="" name="fade" tag="p" v-on:duration="300">
                 
-                <li style="width: 100%;height: 135px;background-color: #ffffff;margin-top: 5px;text-overflow: ellipsis"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li"   v-on:click="another(li,{page:0,postId:li.pid},'public/postReply/get-by-page')" >
+                <li  style="width: 100%;height: 135px;background-color: #ffffff;margin-top: 5px;text-overflow: ellipsis;padding-bottom: 6px;"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li"   v-on:click="another(li,{page:0,postId:li.pid},'public/postReply/get-by-page')" >
                 <ul style="width: 100%;height: 135px;">
-                    <li style="width:100%;height: 45px;"><img style="border-radius: 20px;border: none;height: 40px;width: 40px;float: left;margin-top: 5px;" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="width:55%;height:40px;display: inline-block;"><p style="margin-top:4px;margin-left: 10px;font-size:12px">{{li[showDataW[0]]}}</p><p style="margin-top:7px;font-size:10px;margin-left: 10px;color:#bababa;">{{myDate(li[showDataW[1]])}}</p></div></li>
-                    <li style="width:100%;height: 70px;overflow: hidden;font-size: 13px;text-indent:0.5em;font-weight: 600"><p style="white-space: nowrap;text-overflow: ellipsis;width:90%;overflow: hidden">{{li[showDataW[2]]}}</p><p style="width:100%;font-weight: 400;font-size:12px;margin-right: 5px;margin-top: 4px;text-indent:2.5em;color:#999999">{{li[showDataW[3]]}}</p></li>
-   <li style="width:100%;height: 20px;"><img style="width: 16px;height: 16px;float: right;margin-right: 10px;" src="static/images/询问.png" alt="xw" /><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{li[showDataW[4]]}}</span></li>
+                    <li style="width:100%;height: 45px;"><img style="border-radius: 20px;border: none;height: 40px;width: 40px;float: left;margin-top: 5px;" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="width:55%;height:40px;display: inline-block;"><p style="margin-top:8px;margin-left: 10px;font-size:12px">{{li[showDataW[0]]}}</p><p style="margin-top:7px;font-size:10px;margin-left: 10px;color:#bababa;">{{myDate(li[showDataW[1]])}}</p></div></li>
+                    <li style="width:100%;height: 70px;overflow: hidden;font-size: 13px;text-indent:0.5em;font-weight: 600;margin-top: 5px;margin-bottom: 5px;"><p style="white-space: nowrap;text-overflow: ellipsis;width:90%;overflow: hidden" >{{li[showDataW[2]]}}</p><p style="width:100%;font-weight: 400;font-size:12px;margin-right: 5px;margin-top: 4px;text-indent:2.5em;color:#999999">{{imgdele(li.content)}}</p></li>
+   <li style="width:100%;height: 20px;position: relative;top:-5px"><img style="width: 16px;height: 16px;float: right;margin-right: 10px;" src="static/images/询问.png" alt="xw" /><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{li[showDataW[4]]}}</span></li>
   </ul>
                 
             </li>
@@ -137,7 +137,7 @@ and open the template in the editor.
                 
                    
       
-                <div  class='postcontent' style='height: 100%;background-color: #ffffff;display:none;text-align: center;font-family: Microsoft JhengHei;font-size: 16px;font-weight: 700;overflow: hidden '> <img onclick="    $('.tli').css('top','');$('.mypost').show() ;$('.postcontent').hide();$('.postpng').show(); $('.postspan').show();$('.colorchange').css('background-color','')   "  src='static/images/关闭3.png' alt='关闭' style='float:left;width: 28px;height: 28px' /> 编辑帖子 <span v-on:click="post('private/post/add')" style='float: right;margin-right: 3%;'  >发帖</span><br/>
+                <div  class='postcontent' style='height: 100%;background-color: #ffffff;display:none;text-align: center;font-family: Microsoft JhengHei;font-size: 16px;font-weight: 700;overflow: hidden '> <img onclick="    $('.tli').css('top','');$('.mypost').show() ;$('.postcontent').hide();$('.postpng').show(); $('.postspan').show();$('.colorchange').css('background-color','');a.ve.rawHtml='';a.ve.rawHtmlS=''   "  src='static/images/关闭3.png' alt='关闭' style='float:left;width: 28px;height: 28px' /> 编辑帖子 <span v-on:click="post('private/post/add')" style='float: right;margin-right: 3%;'  >发帖</span><br/>
                     <br/><input placeholder="写上你的标题吧" v-model="qo" style="margin-left: 3%;margin-right: 3%;width: 94%;border: #ffffff  solid 1px;float: left;height: 30px" ><br/><br/>
                     <textarea placeholder="这是帖子的内容哦" style="width:94%;margin-left: 3%;margin-right: 3%;min-height: 130px;border: #ffffff  solid 1px;float: left;" id="txtarea" v-bind:value="rawHtml.replace(reg,'圖')" v-on:input="rawHtml =a( $event.target.value)" ></textarea>
  
@@ -163,7 +163,7 @@ and open the template in the editor.
                         {{nowc.title}}</div></li>
                     <li style="width:100%;height: 60px"><img style="border-radius: 20px;border: none;height: 40px;width: 40px;float: left;margin-top: 5px;" v-bind:src="'http://pic.zdnfbbs.cn/'+nowc.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:5px;margin-left: 10px;font-size:12px">{{nowc.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">楼主</p></div></li>
    
-   <li style="font-size:12px;margin-right: 5px;text-indent:2em;min-height: 80px;margin-top: 10px;width:100%;;min-height: 100px" v-html="nowc.content"></li>
+   <li class='myinpic' style="font-size:12px;margin-right: 5px;min-height: 80px;margin-top: 10px;width:100%;;min-height: 100px" v-html="move(nowc.content)"></li>
       <li style="width:100%;height: 20px"><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{myDate(nowc.release_time)}}</span></li>
 
   </ul>
@@ -324,6 +324,21 @@ class F {
                 
             },
             methods:{
+                imgdele(content){
+                    let c = content.replace(/<\s*img.+?>/g,' ');
+                 
+                    return c;
+                },
+                move(abc){
+                    try{
+                      
+                       return abc.replace(/abc/g,' '); 
+                    }catch(e){
+                        return abc;
+                    }
+                    
+                   
+                },
                 myDate(ydate){
                     
                     var date = new Date(ydate);
@@ -350,13 +365,13 @@ class F {
                 },
                 post(url,p = {},func= undefined ){
                      document.getElementById('模板').innerHTML = ' ';
-                   
+                   var that = this;
                     let cc = 0;
                     $('.myLoading').show();
                     
                     
                     if(document.getElementsByClassName('abc').length !== 0){
-                        var promiseGroup = [],lg = document.getElementByClassName('abc').length;
+                        var promiseGroup = [],lg = document.getElementsByClassName('abc').length;
                         for(let i =0;i<lg;i++){
                             let a = new Promise(function(re,rj){
                                 
@@ -371,23 +386,23 @@ class F {
                         }
                         
                         Promise.all(promiseGroup).then(function(){  //贼丑 你确定不把下面的写成函数？
-                             p.uid = this.myid;
-             p.title = this.qo;
+                             p.uid = that.myid;
+             p.title = that.qo;
              p.content = document.getElementById('上传图片list').innerHTML;
              p.isTop = 0;
-             p[this.ansytype] =nowtype;
+             p[that.ansytype] =nowtype;
             delete p.uid;
          Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
-          if(response.bodyText === 'success')  {$('.myLoading').hide(); console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
-              this.lis = [];
+          if(response.bodyText === 'success'){ a.ve.rawHtml='';a.ve.rawHtmlS=''; {$('.myLoading').hide(); $('.tli').css('top','');$('.mypost').show() ;$('.postcontent').hide();$('.postpng').show(); $('.postspan').show();$('.colorchange').css('background-color','');}
+              that.lis = [];
               page = 0;
               a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});
           
-          $(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show();
-          this.warning =true;
+ 
+          that.warning =true;
           setTimeout(()=>{  $('.warning').text('发布成功'); },200);
          
-          setTimeout(()=>{ this.warning = false; },1000);
+          setTimeout(()=>{ that.warning = false; },1000);
           
                         }
           if(func){  func(); };
@@ -422,7 +437,8 @@ class F {
              p[this.ansytype] =nowtype;
           delete p.uid;
          Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
-          if(response.bodyText === 'success')  {$('.myLoading').hide(); console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 
+          if(response.bodyText === 'success')  {$('.myLoading').hide(); console.log('发布成功');$('.tli').css('top','');$('.mypost').show() ;$('.postcontent').hide();$('.postpng').show(); $('.postspan').show();$('.colorchange').css('background-color','')
+              
               this.lis = [];
               page = 0;
               a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});
@@ -431,7 +447,7 @@ class F {
               p.head_pic = this.myhead;
               p.nick_name = '我';
           this.lis.unshift(p);//['uid','releaseTime','title','content','replyNum'] */
-          $(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show();
+
           this.warning =true;
           setTimeout(()=>{  $('.warning').text('发布成功'); },200);
          
@@ -459,7 +475,7 @@ class F {
              p.content = this.replycont;
                     if(1){
              
-            delete p.uid;
+            
              console.log(p);//这是发布的也包括留言  一切发送的东西
          Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
           if(response.bodyText === 'success')  { console.log('发布成功');$(".tli").css("top","");$(".mypost").show() ;$(".postcontent").hide();$(".postpng").show() ; 

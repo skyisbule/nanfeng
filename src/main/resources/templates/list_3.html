@@ -18,11 +18,16 @@ and open the template in the editor.
 
 
         <div><span>标题：</span><input id='A' /></div>
-        <div><span>类型：</span><input id='B'/></div>
+        <div><span>类型：</span>
+            <input type="text"  id='B' placeholder='请输入数字 0-7' onkeypress="return event.keyCode>=48&&event.keyCode<=54" ng-pattern="/[^a-zA-Z]/" /></div>
         <div><span>内容：</span></div>
       <div id="div1"></div>
-       <button id="btn1" onclick="ul()">提交</button>
-     
+       <button id="btn1" onclick="ul()">提交(图片上传可能比较久，无需多次按请等待)</button>
+                     <div id='myshow' style='width:100%;height:80%;position: fixed;top:7%;z-index: 999;display:  none'>
+                <div style='margin:0 auto;width:100px;height: 100px'>
+                   上传中...
+                </div>
+</div>
         <script src="https://unpkg.com/wangeditor@3.1.1/release/wangEditor.min.js"></script>
                 <script>
             "use strict";
@@ -40,6 +45,10 @@ function img_upload(h,n,j,k){k=k||0;var m=h[k].src.split(",")[1]; var i=function
             var allurl = '';
             var c = null;
             function ul(){
+            if(  parseInt(document.getElementById('B').value)<9 ){
+                
+              
+                 $('#myshow').show();   
                                 if(document.getElementsByTagName('img').length !== 0){
                         var promiseGroup = [],lg = document.getElementsByTagName('img').length;
                         for(let i =0;i<lg;i++){
@@ -58,7 +67,8 @@ function img_upload(h,n,j,k){k=k||0;var m=h[k].src.split(",")[1]; var i=function
                         
                         Promise.all(promiseGroup).then(function(){ 
                                                    Vue.http.get(allurl+'admin/news/add',{params:{title:document.getElementById('A').value,content:editor.txt.html(),classification:document.getElementById('B').value}}).then(  (response) => {
-                                                       alert(response.bodyText);
+            $('#myshow').hide();                                          
+            alert(response.bodyText);
                  window.parent.document.getElementById('flash').click();                              
         });           
          
@@ -69,7 +79,7 @@ function img_upload(h,n,j,k){k=k||0;var m=h[k].src.split(",")[1]; var i=function
                      
                        // window.opener.document.getElementById('flash').click();
                                                         Vue.http.get(allurl+'admin/news/add',{params:{title:document.getElementById('A').value,content:editor.txt.html(),classification:document.getElementById('B').value}}).then(  (response) => {
-                                                            
+            $('#myshow').hide();                                                    
         alert(response.bodyText);
           window.parent.document.getElementById('flash').click();                                                
     });           
@@ -80,6 +90,9 @@ function img_upload(h,n,j,k){k=k||0;var m=h[k].src.split(",")[1]; var i=function
                     // alert(parent.window.a.ve.lis.push({}));
                     }
                     
+                    } else{
+                        alert('请输入0-7的数字');
+                    }
                     }
                     
                
