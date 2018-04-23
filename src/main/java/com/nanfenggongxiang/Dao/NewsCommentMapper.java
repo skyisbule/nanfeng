@@ -10,13 +10,21 @@ public interface NewsCommentMapper {
 
     int deleteByExample(NewsCommentExample example);
 
+    int deleteByPrimaryKey(Integer replyId);
+
     int insert(NewsComment record);
 
     int insertSelective(NewsComment record);
 
     List<NewsComment> selectByExample(NewsCommentExample example);
 
+    NewsComment selectByPrimaryKey(Integer replyId);
+
     int updateByExampleSelective(@Param("record") NewsComment record, @Param("example") NewsCommentExample example);
 
     int updateByExample(@Param("record") NewsComment record, @Param("example") NewsCommentExample example);
+
+    int updateByPrimaryKeySelective(NewsComment record);
+
+    int updateByPrimaryKey(NewsComment record);
 }

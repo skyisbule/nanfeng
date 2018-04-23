@@ -7,10 +7,7 @@ import java.util.Date;
  * @author 
  */
 public class NewsComment implements Serializable {
-    /**
-     * 文章的id
-     */
-    private Integer newsId;
+    private Integer replyId;
 
     /**
      * 评论者id
@@ -21,14 +18,16 @@ public class NewsComment implements Serializable {
 
     private Date releaseTime;
 
+    private Integer nid;
+
     private static final long serialVersionUID = 1L;
 
-    public Integer getNewsId() {
-        return newsId;
+    public Integer getReplyId() {
+        return replyId;
     }
 
-    public void setNewsId(Integer newsId) {
-        this.newsId = newsId;
+    public void setReplyId(Integer replyId) {
+        this.replyId = replyId;
     }
 
     public Integer getUid() {
@@ -55,6 +54,14 @@ public class NewsComment implements Serializable {
         this.releaseTime = releaseTime;
     }
 
+    public Integer getNid() {
+        return nid;
+    }
+
+    public void setNid(Integer nid) {
+        this.nid = nid;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -67,20 +74,22 @@ public class NewsComment implements Serializable {
             return false;
         }
         NewsComment other = (NewsComment) that;
-        return (this.getNewsId() == null ? other.getNewsId() == null : this.getNewsId().equals(other.getNewsId()))
+        return (this.getReplyId() == null ? other.getReplyId() == null : this.getReplyId().equals(other.getReplyId()))
             && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
-            && (this.getReleaseTime() == null ? other.getReleaseTime() == null : this.getReleaseTime().equals(other.getReleaseTime()));
+            && (this.getReleaseTime() == null ? other.getReleaseTime() == null : this.getReleaseTime().equals(other.getReleaseTime()))
+            && (this.getNid() == null ? other.getNid() == null : this.getNid().equals(other.getNid()));
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getNewsId() == null) ? 0 : getNewsId().hashCode());
+        result = prime * result + ((getReplyId() == null) ? 0 : getReplyId().hashCode());
         result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
         result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
         result = prime * result + ((getReleaseTime() == null) ? 0 : getReleaseTime().hashCode());
+        result = prime * result + ((getNid() == null) ? 0 : getNid().hashCode());
         return result;
     }
 
@@ -90,10 +99,11 @@ public class NewsComment implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", newsId=").append(newsId);
+        sb.append(", replyId=").append(replyId);
         sb.append(", uid=").append(uid);
         sb.append(", content=").append(content);
         sb.append(", releaseTime=").append(releaseTime);
+        sb.append(", nid=").append(nid);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

@@ -39,4 +39,10 @@ public class newsReplyController {
         return complexDao.getByPage(page*10,newsId);
     }
 
+    @RequestMapping("/private/newReply/delete")
+    public String delete(int replyId){
+        dao.deleteByPrimaryKey(replyId);
+        return "success";
+    }
+
 }

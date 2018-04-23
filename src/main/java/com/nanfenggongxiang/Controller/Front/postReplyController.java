@@ -23,7 +23,7 @@ public class postReplyController {
     @Autowired
     PostReplyDao    complexDao;
 
-    private final String hasDelete = "<strong>该内容已被删除</string>";
+    private final String hasDelete = "<strong>该内容已被删除</strong>";
 
     @RequestMapping("/private/postReply/add")
     public String add(PostReply reply){

@@ -125,63 +125,63 @@ public class NewsCommentExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andNewsIdIsNull() {
-            addCriterion("news_id is null");
+        public Criteria andReplyIdIsNull() {
+            addCriterion("reply_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andNewsIdIsNotNull() {
-            addCriterion("news_id is not null");
+        public Criteria andReplyIdIsNotNull() {
+            addCriterion("reply_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNewsIdEqualTo(Integer value) {
-            addCriterion("news_id =", value, "newsId");
+        public Criteria andReplyIdEqualTo(Integer value) {
+            addCriterion("reply_id =", value, "replyId");
             return (Criteria) this;
         }
 
-        public Criteria andNewsIdNotEqualTo(Integer value) {
-            addCriterion("news_id <>", value, "newsId");
+        public Criteria andReplyIdNotEqualTo(Integer value) {
+            addCriterion("reply_id <>", value, "replyId");
             return (Criteria) this;
         }
 
-        public Criteria andNewsIdGreaterThan(Integer value) {
-            addCriterion("news_id >", value, "newsId");
+        public Criteria andReplyIdGreaterThan(Integer value) {
+            addCriterion("reply_id >", value, "replyId");
             return (Criteria) this;
         }
 
-        public Criteria andNewsIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("news_id >=", value, "newsId");
+        public Criteria andReplyIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("reply_id >=", value, "replyId");
             return (Criteria) this;
         }
 
-        public Criteria andNewsIdLessThan(Integer value) {
-            addCriterion("news_id <", value, "newsId");
+        public Criteria andReplyIdLessThan(Integer value) {
+            addCriterion("reply_id <", value, "replyId");
             return (Criteria) this;
         }
 
-        public Criteria andNewsIdLessThanOrEqualTo(Integer value) {
-            addCriterion("news_id <=", value, "newsId");
+        public Criteria andReplyIdLessThanOrEqualTo(Integer value) {
+            addCriterion("reply_id <=", value, "replyId");
             return (Criteria) this;
         }
 
-        public Criteria andNewsIdIn(List<Integer> values) {
-            addCriterion("news_id in", values, "newsId");
+        public Criteria andReplyIdIn(List<Integer> values) {
+            addCriterion("reply_id in", values, "replyId");
             return (Criteria) this;
         }
 
-        public Criteria andNewsIdNotIn(List<Integer> values) {
-            addCriterion("news_id not in", values, "newsId");
+        public Criteria andReplyIdNotIn(List<Integer> values) {
+            addCriterion("reply_id not in", values, "replyId");
             return (Criteria) this;
         }
 
-        public Criteria andNewsIdBetween(Integer value1, Integer value2) {
-            addCriterion("news_id between", value1, value2, "newsId");
+        public Criteria andReplyIdBetween(Integer value1, Integer value2) {
+            addCriterion("reply_id between", value1, value2, "replyId");
             return (Criteria) this;
         }
 
-        public Criteria andNewsIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("news_id not between", value1, value2, "newsId");
+        public Criteria andReplyIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("reply_id not between", value1, value2, "replyId");
             return (Criteria) this;
         }
 
@@ -372,6 +372,66 @@ public class NewsCommentExample {
 
         public Criteria andReleaseTimeNotBetween(Date value1, Date value2) {
             addCriterion("release_time not between", value1, value2, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andNidIsNull() {
+            addCriterion("nid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNidIsNotNull() {
+            addCriterion("nid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNidEqualTo(Integer value) {
+            addCriterion("nid =", value, "nid");
+            return (Criteria) this;
+        }
+
+        public Criteria andNidNotEqualTo(Integer value) {
+            addCriterion("nid <>", value, "nid");
+            return (Criteria) this;
+        }
+
+        public Criteria andNidGreaterThan(Integer value) {
+            addCriterion("nid >", value, "nid");
+            return (Criteria) this;
+        }
+
+        public Criteria andNidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("nid >=", value, "nid");
+            return (Criteria) this;
+        }
+
+        public Criteria andNidLessThan(Integer value) {
+            addCriterion("nid <", value, "nid");
+            return (Criteria) this;
+        }
+
+        public Criteria andNidLessThanOrEqualTo(Integer value) {
+            addCriterion("nid <=", value, "nid");
+            return (Criteria) this;
+        }
+
+        public Criteria andNidIn(List<Integer> values) {
+            addCriterion("nid in", values, "nid");
+            return (Criteria) this;
+        }
+
+        public Criteria andNidNotIn(List<Integer> values) {
+            addCriterion("nid not in", values, "nid");
+            return (Criteria) this;
+        }
+
+        public Criteria andNidBetween(Integer value1, Integer value2) {
+            addCriterion("nid between", value1, value2, "nid");
+            return (Criteria) this;
+        }
+
+        public Criteria andNidNotBetween(Integer value1, Integer value2) {
+            addCriterion("nid not between", value1, value2, "nid");
             return (Criteria) this;
         }
     }

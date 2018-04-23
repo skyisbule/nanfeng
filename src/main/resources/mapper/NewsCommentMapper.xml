@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nanfenggongxiang.Dao.NewsCommentMapper">
   <resultMap id="BaseResultMap" type="com.nanfenggongxiang.Domain.NewsComment">
-    <result column="news_id" jdbcType="INTEGER" property="newsId" />
+    <id column="reply_id" jdbcType="INTEGER" property="replyId" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime" />
+    <result column="nid" jdbcType="INTEGER" property="nid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    news_id, uid, content, release_time
+    reply_id, uid, content, release_time, nid
   </sql>
   <select id="selectByExample" parameterType="com.nanfenggongxiang.Domain.NewsCommentExample" resultMap="BaseResultMap">
     select
@@ -90,6 +91,16 @@
       </if>
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from news_comment
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from news_comment
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="com.nanfenggongxiang.Domain.NewsCommentExample">
     delete from news_comment
     <if test="_parameter != null">
@@ -97,17 +108,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.nanfenggongxiang.Domain.NewsComment">
-    insert into news_comment (news_id, uid, content, 
-      release_time)
-    values (#{newsId,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
-      #{releaseTime,jdbcType=TIMESTAMP})
+    <selectKey keyProperty="replyId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into news_comment (uid, content, release_time, 
+      nid)
+    values (#{uid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{releaseTime,jdbcType=TIMESTAMP}, 
+      #{nid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.nanfenggongxiang.Domain.NewsComment">
+    <selectKey keyProperty="replyId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into news_comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="newsId != null">
-        news_id,
-      </if>
       <if test="uid != null">
         uid,
       </if>
@@ -117,11 +131,11 @@
       <if test="releaseTime != null">
         release_time,
       </if>
+      <if test="nid != null">
+        nid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="newsId != null">
-        #{newsId,jdbcType=INTEGER},
-      </if>
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
       </if>
@@ -130,6 +144,9 @@
       </if>
       <if test="releaseTime != null">
         #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nid != null">
+        #{nid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -142,8 +159,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update news_comment
     <set>
-      <if test="record.newsId != null">
-        news_id = #{record.newsId,jdbcType=INTEGER},
+      <if test="record.replyId != null">
+        reply_id = #{record.replyId,jdbcType=INTEGER},
       </if>
       <if test="record.uid != null">
         uid = #{record.uid,jdbcType=INTEGER},
@@ -154,6 +171,9 @@
       <if test="record.releaseTime != null">
         release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.nid != null">
+        nid = #{record.nid,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -161,12 +181,39 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update news_comment
-    set news_id = #{record.newsId,jdbcType=INTEGER},
+    set reply_id = #{record.replyId,jdbcType=INTEGER},
       uid = #{record.uid,jdbcType=INTEGER},
       content = #{record.content,jdbcType=VARCHAR},
-      release_time = #{record.releaseTime,jdbcType=TIMESTAMP}
+      release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
+      nid = #{record.nid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nanfenggongxiang.Domain.NewsComment">
+    update news_comment
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseTime != null">
+        release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nid != null">
+        nid = #{nid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nanfenggongxiang.Domain.NewsComment">
+    update news_comment
+    set uid = #{uid,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      nid = #{nid,jdbcType=INTEGER}
+    where reply_id = #{replyId,jdbcType=INTEGER}
   </update>
 </mapper>

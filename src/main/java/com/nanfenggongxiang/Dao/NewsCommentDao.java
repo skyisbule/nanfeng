@@ -17,7 +17,7 @@ public interface NewsCommentDao {
     @Select("select news_comment.*,info.nick_name,info.head_pic " +
             "from news_comment join info on " +
             "news_comment.uid = info.uid " +
-            "where news_comment.news_id = #{newsId} " +
+            "where news_comment.nid = ${newsId} " +
             "order by release_time ASC " +
             "limit #{page},10;")
     public List<Map<String,Object>> getByPage(@Param("page") int page, @Param("newsId")int newsId);

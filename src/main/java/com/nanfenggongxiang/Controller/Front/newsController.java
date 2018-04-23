@@ -71,7 +71,7 @@ public class newsController {
         dao.deleteByPrimaryKey(newsId);
         NewsCommentExample e = new NewsCommentExample();
         e.createCriteria()
-                .andNewsIdEqualTo(newsId);
+                .andNidEqualTo(newsId);
         replyDao.deleteByExample(e);
         return "success";
     }
