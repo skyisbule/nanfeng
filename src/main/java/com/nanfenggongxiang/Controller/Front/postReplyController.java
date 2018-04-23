@@ -23,6 +23,8 @@ public class postReplyController {
     @Autowired
     PostReplyDao    complexDao;
 
+    private final String hasDelete = "<strong>该内容已被删除</string>";
+
     @RequestMapping("/private/postReply/add")
     public String add(PostReply reply){
         //给帖子的回复数加一
@@ -36,7 +38,18 @@ public class postReplyController {
 
     @RequestMapping("/public/postReply/get-by-page")
     public List<Map<String,Object>> GetByPage(int page, int postId){
-        return complexDao.getPostReplyByPage(page*10,postId);
+        List<Map<String, Object>> res = complexDao.getPostReplyByPage(page*10,postId);
+        res.forEach((Map<String, Object> map) ->{
+            if (map.get("is_delete").toString().equals("1"))
+                map.put("content",this.hasDelete);
+        });
+        return res;
+    }
+
+    @RequestMapping("/private/postReply/delete")
+    public String setDelete(int isDelete,int rid){
+        complexDao.setDelete(isDelete,rid);
+        return "success";
     }
 
 }

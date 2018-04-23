@@ -33,11 +33,13 @@ public class newsController {
      * @return new的实体。
      */
     @RequestMapping("/public/news/get-by-page")
-    public List<News> getByPage(int page,int type){
+    public List<News> getByPage(int page,int type,int isTop){
         NewsExample e = new NewsExample();
         e.setOffset(page*10);
         e.setLimit(10);
         e.setOrderByClause("nid desc");
+        e.createCriteria()
+                .andIsTopEqualTo(isTop);
         //如果type传0，那么就搜索全部
         if (type==0){
             return dao.selectByExample(e);

@@ -2,8 +2,11 @@ package com.nanfenggongxiang.Controller.Front;
 
 import com.nanfenggongxiang.Dao.PostDao;
 import com.nanfenggongxiang.Dao.PostMapper;
+import com.nanfenggongxiang.Dao.PostReplyMapper;
 import com.nanfenggongxiang.Domain.Post;
 import com.nanfenggongxiang.Domain.PostExample;
+import com.nanfenggongxiang.Domain.PostReply;
+import com.nanfenggongxiang.Domain.PostReplyExample;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -30,6 +33,8 @@ public class postController {
     PostMapper dao;
     @Autowired
     PostDao   complexDao;
+    @Autowired
+    PostReplyMapper replyDao;
 
     @ApiOperation("添加一条帖子，时间、回复数不用填")
     @RequestMapping("/private/post/add")
@@ -56,4 +61,21 @@ public class postController {
         return dao.updateByPrimaryKey(post)==1?"success":"error";
     }
 
+    @RequestMapping("/private/post/set-top")
+    public String updateById(int pid,int isTop){
+        Post post = dao.selectByPrimaryKey(pid);
+        if (post == null)
+            return "null";
+        post.setIsTop(isTop);
+        return dao.updateByPrimaryKey(post)==1?"success":"error";
+    }
+
+    @RequestMapping("private/post/delete")
+    public String delete(int pid){
+        dao.deleteByPrimaryKey(pid);
+        PostReplyExample e = new PostReplyExample();
+        e.createCriteria()
+                .andPostIdEqualTo(pid);
+        return "success";
+    }
 }

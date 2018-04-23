@@ -26,4 +26,8 @@ public interface PostReplyDao {
     @Update("update post set reply_num = reply_num + 1 where post.pid =#{pid};")
     public void addReplyNum(@Param("pid")int pid);
 
+    @Update("update post_reply set is_delete = ${isDelete} where rid = ${rid};")
+    public void setDelete(@Param("isDelete")int delete,
+                          @Param("rid")int rid);
+
 }
