@@ -109,7 +109,7 @@ margin-top: 5px;
             <div class="myfont" style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p  >打听</p></div>
             </div>
         </td>
-        <td style='width:15%;text-align: center' v-if='!ifshow'>
+        <td style='width:15%;text-align: center' v-show='!ifshow'>
             <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 2; page = 0;a.ve.ifshow = false;a.ve.ALLSHOW=false" v-show='!ifshow'>
             <img src='static/images/物品申请.png' >
             <div class="myfont" style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p  >寻物</p></div>
@@ -303,7 +303,7 @@ margin-top: 5px;
             </li>
              
             <li style="width: 100%;height: 30px;margin-top: 10px;min-height:25px;background-color: #fff;padding-left: 2%;padding-top: 4px">评论:</li>
-            <li v-if="conts[0] === undefined" style="width:100%;margin: 0 auto;font-size: 12px;text-align: center;background-color: #fff;padding-bottom: 15vw">偷偷告诉你这里什么都没有..</li>
+            <li v-if="conts[0] === undefined" style="width:100%;margin: 0 auto;font-size: 12px;text-align: center;background-color: #fff;padding-bottom: 20px">偷偷告诉你这里什么都没有..</li>
             <!-- <p style="font-size: 13px;text-align: center;margin-top: 3px;"> 全部回复:</p> -->
                  
             <transition-group name="fade">
@@ -355,6 +355,7 @@ margin-top: 5px;
             
             
         </div>
+        <script type="text/javascript" src="js/pic_ad.js"></script>
         <script>
      let nowS = '',bool = true,nowtype =0,page,replyPage = 0,mypnewsId,ifnull=false,checkFull=true,saveP=null;    
      
@@ -507,7 +508,7 @@ class F {
              p = this.postdatasave;
              p.uid = this.myid;
              p.title = this.qo;
-             p.content = this.qt;
+             p.content = this.qt.replace(/script/g,' ');
              console.log(head);
              p[this.ansytype] =nowtype;
             
@@ -523,8 +524,8 @@ class F {
     Reply(url,p = {},func = undefined ){
                     //需要  postId uid content
             p.uid = this.myid;        
-            p.newsId = this.tempId;
-             p.content = this.replycont;
+            p.newsId = this.tempId;  
+             p.content = this.replycont.replace(/script/g,' ');
              console.log(p);//这是发布的也包括留言  一切发送的东西
              delete p.uid;
          Vue.http.post(allurl+url,p,{emulateJSON: true}).then(  (response) => {
@@ -547,7 +548,7 @@ class F {
        this.nowc = li;
         this.tempId = li.nid;
         console.log('??');
-        mypnewsId = p.newsId;
+        mypnewsId = p.nid;
 
         a.changeNOWC(url,p);
     }
@@ -640,10 +641,10 @@ var that =this;
     
 }
 
-let a = new F(['AO','releaseTime','title','content','nothing'],'newsId');
+let a = new F(['AO','releaseTime','title','content','nothing'],'nid');
 
 
-a.ve.postdatasave = {nid:null,title:null,content:null,newsId:null};
+a.ve.postdatasave = {nid:null,title:null,content:null,nid:null};
 
 
 //  写一个实体吧  

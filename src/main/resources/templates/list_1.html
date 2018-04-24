@@ -70,7 +70,7 @@
                            <!--     <button v-if="groupIF" class="layui-btn" v-on:click="lis.unshift({})"><i class="layui-icon"></i>添加空白数据</button> -->
                                <button v-if="groupIF" v-on:click='groupIF = !groupIF' onclick="$('.readonly').removeAttr('readonly');" class="layui-btn layui-btn-danger" >编辑开启</button>
                                 <button v-if="!groupIF" v-on:click='groupIF = !groupIF' onclick="$('.readonly').attr('readonly','readonly');" class="layui-btn layui-btn-danger" >关闭编辑</button>  
-                                <span>tips: ①最好在前台发帖  ②咨询：0代表全部 1代表广场 2代表圈子 3代表社团  4代表社区 </span>
+                                <span>tips: ①最好在前台发帖  ②咨询： 1代表广场 2代表圈子 3代表社团  4代表社区 </span>
 			</div>
 			<table class="layui-table">
 				<thead>
@@ -120,7 +120,7 @@
                                                     <span >{{li.reply_num}}</span>
                                                 </td>
                                                 <td class="mylis" >
-                                                    <input style="width:30px" class="readonly" v-model='li.is_top' readonly>
+                                                    <input style="" placeholder='0是否 1是置顶' onkeypress="return event.keyCode>=48&&event.keyCode<=49" ng-pattern="/[^a-zA-Z]/" class="readonly" v-model='li.is_top' readonly>
                                                 </td>
                                                 <td class="mylis" >
                                                    <span>{{li.plate_id}}</span>
@@ -156,7 +156,7 @@
                         <ul>
                             <li style="width: 100%;background-color: #ffffff;"  v-for = '(li,index) in contents' v-bind:key="index">
                 <ul style="width: 94%;margin-left: 3%;margin-right: 3%">
-                    <li style="width:100%;height: 60px;"><img style="border-radius: 25px;border: none;height: 40px;width: 40px;float: left;margin-top: 5px" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:14px;margin-left: 10px;font-size:12px">{{li.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">{{ index+2+'楼'}}</p><span style="color:red;float:right;position: relative;top:-5px" class="tete"  v-on:click="contDu(deletecontentsU,li)" onclick="$(this).parent().parent().parent().parent().hide();">点击删除该楼</span></div></li>
+                    <li style="width:100%;height: 60px;"><img style="border-radius: 25px;border: none;height: 40px;width: 40px;float: left;margin-top: 5px" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:14px;margin-left: 10px;font-size:12px">{{li.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">{{ index+2+'楼'}}</p><span style="color:red;float:right;position: relative;top:-5px" class="tete" v-if="li.content !== '<strong>该内容已被删除</strong>'"  v-on:click="contDu(deletecontentsU,li)" onclick="$(this).parent().parent().parent().parent().hide();">点击删除该楼</span></div></li>
    
   <li style="width:100%;min-height: 50px;font-size: 14px;text-indent:  2em;white-space:normal;word-break:break-all;word-wrap:break-word;">{{li.content}}</li>
   <li style="width:100%;height: 20px"><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{myDate(li.release_time)}}</span></li>
@@ -179,7 +179,7 @@
                 getcontentsU:'public/postReply/get-by-page',
                 groupIF:true,
                 
-                type:0,
+                type:1,
                 isTop:1
             };
             methods={

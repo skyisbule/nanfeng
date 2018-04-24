@@ -132,7 +132,7 @@
 						
 						<td class="mylis" style="min-width: 270px;">
 							
-                                                        <div v-show="!groupIF" style="display:inline"><button   v-on:click="thetrueupdate(editU,li)" onclick="  $(this).css('display','none');$(this).parents('.mylis').children('.jl').css('display','none')" class="layui-btn" >确定</button></div>
+                                                        <div v-show="!groupIF" style="display:inline"><button   v-on:click="thetrueupdate(editU,li)" onclick="  " class="layui-btn" >确定</button></div>
                                                        <!-- <span v-else class="layui-btn layui-btn-danger"  onclick="console.log('?')"  v-on:click="updateORadd(editU,li)">呵呵啊</span> -->
 							<button v-if="li.nid"  class="layui-btn layui-btn-danger" onclick="$(this).parent().parent().hide()" v-on:click="updateORadd(deleteU,li)"><i class="layui-icon"></i>删除</button>
                                                       <template v-if="!li.nid">  <button v-else  class="layui-btn layui-btn-danger jl" onclick="$(this).parent().parent().hide()" ><i class="layui-icon"></i>删除</button><!--传个东西进去--> </template>
@@ -221,7 +221,7 @@
             };
             methods={
                contDu(url,p){
-                    Vue.http.post(allurl+url,{isDelete:1,rid:p.rid}, {emulateJSON: true}).then(  (response) => {alert(response.bodyText);});
+                    Vue.http.post(allurl+url,{isDelete:1,replyId:p.reply_id}, {emulateJSON: true}).then(  (response) => {alert(response.bodyText);});
                 },
                 thetrueupdate(url,p){
                     delete p.releaseTime;

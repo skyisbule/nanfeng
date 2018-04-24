@@ -35,8 +35,9 @@ public class newsReplyController {
     }
 
     @RequestMapping("/public/newsReply/get-by-page")
-    public List<Map<String,Object>> getByPage(int newsId,int page){
-        return complexDao.getByPage(page*10,newsId);
+    public List<Map<String,Object>> getByPage(int newsId,int page) {
+        List<Map<String, Object>> res = complexDao.getByPage(page * 10, newsId);
+        return res;
     }
 
     @RequestMapping("/private/newReply/delete")

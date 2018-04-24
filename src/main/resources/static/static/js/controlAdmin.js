@@ -56,5 +56,5 @@ class admin {
     
 }
 
-var allurl = 'http://nanfeng.heartqiu.cn/';
+var allurl = '';
 
