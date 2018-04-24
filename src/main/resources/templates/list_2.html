@@ -63,9 +63,9 @@
 				</form>
 			</div> -->
 			<div class="weadmin-block">
-                            <!--<input class="layui-input" id="thetype" v-model="type"  style="max-width: 100px;display: inline-block" placeholder="输入类型">-->
+                            <input class="layui-input" id="thetype" v-model="type"  style="max-width: 100px;display: inline-block" placeholder="输入类型">
 				<!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button> -->
-				<!--<a ><button class="layui-btn" onclick="a.ve.page = 1;a.addcontents(a.ve.getU,{page:a.ve.page,type:a.ve.type})">确定</button></a> -->
+				<button class="layui-btn" onclick="a.ve.page = 1;a.ve.lis = [];a.addlis(a.ve.getU,{page:a.ve.page,type:a.ve.type})">确定</button>
 				<!--<span class="fr" style="line-height:40px">共有数据：？ 条</span> -->
                                 <button v-if="groupIF" class="layui-btn" v-on:click="lis.push({})"><i class="layui-icon"></i>添加空白数据</button>
                                 <button v-if="groupIF" v-on:click='groupIF = !groupIF' onclick="$('.readonly').removeAttr('readonly');" class="layui-btn layui-btn-danger" >编辑开启</button>

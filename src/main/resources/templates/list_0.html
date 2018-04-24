@@ -73,12 +73,12 @@
 			<div class="weadmin-block">
                             <input class="layui-input" id="thetype" v-model="type"  style="max-width: 100px;display: inline-block" placeholder="输入类型">
 				<!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button> -->
-				<a ><button class="layui-btn" onclick="a.ve.page = 0;a.addcontents(a.ve.getU,{page:a.ve.page,type:a.ve.type})">查看该板块</button></a>
+				<a ><button class="layui-btn" onclick="a.ve.page = 0;a.ve.lis=[];a.addlis(a.ve.getU,{page:a.ve.page,type:a.ve.type,isTop:1});">查看该板块</button></a>
 				<!--<span class="fr" style="line-height:40px">共有数据：？ 条</span> -->
                                 <button v-if="groupIF" class="layui-btn" v-on:click='ifshow = !ifshow'><i class="layui-icon"></i>添加空白数据</button>
                                 <button v-if="groupIF" v-on:click='groupIF = !groupIF' onclick="$('.readonly').removeAttr('readonly');" class="layui-btn layui-btn-danger" >编辑开启</button>
                                 <button v-if="!groupIF" v-on:click='groupIF = !groupIF' onclick="$('.readonly').attr('readonly','readonly');" class="layui-btn layui-btn-danger" >关闭编辑</button>
-                                <span>tips:0代表全部 1代表打听 2代表寻物 3代表福利  4代表求伴 5代表校园 6代表兼职 7代表微商</span>
+                                <span>tips:①0代表全部 1代表打听 2代表寻物 3代表福利  4代表求伴 5代表校园 6代表兼职 7代表微商 ②当添加新数据的时候不能输入为0的类型</span>
 			</div>
 			<table class="layui-table">
 				<thead>
@@ -90,6 +90,7 @@
 						<th>标题</th>
 						<th>内容</th>
 						<th>日期</th>
+                                                <th>置顶</th>
 						<th>类型</th>
 						<th>操作</th>
 				</thead>
@@ -122,13 +123,16 @@
                                                     <span v-on:click="">{{myDate(li.releaseTime)}}</span>
                                                 </td>
                                                 <td class="mylis"  style='position: relative;'>
+                                                    <input class="readonly" v-model='li.isTop' placeholder='0是否 1是置顶' onkeypress="return event.keyCode>=48&&event.keyCode<=49" ng-pattern="/[^a-zA-Z]/"  readonly>
+                                                </td>
+                                                <td class="mylis"  style='position: relative;'>
                                                     <input class="readonly" v-model='li.classification' readonly>
                                                 </td>
 						
 						
 						<td class="mylis" style="min-width: 270px;">
 							
-                                                        <div v-show="!groupIF" style="display:inline"><button   v-on:click="updateORadd(editU,li)" onclick="  $(this).css('display','none');$(this).parents('.mylis').children('.jl').css('display','none')" class="layui-btn" >确定</button></div>
+                                                        <div v-show="!groupIF" style="display:inline"><button   v-on:click="thetrueupdate(editU,li)" onclick="  $(this).css('display','none');$(this).parents('.mylis').children('.jl').css('display','none')" class="layui-btn" >确定</button></div>
                                                        <!-- <span v-else class="layui-btn layui-btn-danger"  onclick="console.log('?')"  v-on:click="updateORadd(editU,li)">呵呵啊</span> -->
 							<button v-if="li.nid"  class="layui-btn layui-btn-danger" onclick="$(this).parent().parent().hide()" v-on:click="updateORadd(deleteU,li)"><i class="layui-icon"></i>删除</button>
                                                       <template v-if="!li.nid">  <button v-else  class="layui-btn layui-btn-danger jl" onclick="$(this).parent().parent().hide()" ><i class="layui-icon"></i>删除</button><!--传个东西进去--> </template>
@@ -141,9 +145,9 @@
 			</table>
 			<div class="page">
 				<div>
-					<span onclick="if(a.ve.page >0){a.ve.groupIF = true;a.ve.page--;a.ve.lis = [];a.addlis(data.getU,{page:a.ve.page,type:a.ve.type});}" class="prev" href="">&lt;&lt;</span>
+					<span onclick="if(a.ve.page >0){a.ve.groupIF = true;a.ve.page--;a.ve.lis = [];a.addlis(data.getU,{page:a.ve.page,type:a.ve.type,isTop:1});}" class="prev" href="">&lt;&lt;</span>
 					<span onclick='' href="">{{page+1}}</span>
-					<span onclick="a.ve.groupIF = true;a.ve.page++;a.ve.lis = [];a.addlis(data.getU,{page:a.ve.page,type:a.ve.type});"  href="">&gt;&gt;</span>
+					<span onclick="a.ve.groupIF = true;a.ve.page++;a.ve.lis = [];a.addlis(data.getU,{page:a.ve.page,type:a.ve.type,isTop:1});"  href="">&gt;&gt;</span>
 				</div>
                             
 			</div>
@@ -155,7 +159,7 @@
                         <ul>
                             <li style="width: 100%;background-color: #ffffff;"  v-for = '(li,index) in contents' v-bind:key="index">
                 <ul style="width: 94%;margin-left: 3%;margin-right: 3%">
-                    <li style="width:100%;height: 60px;"><img style="border-radius: 25px;border: none;height: 50px;width: 50px;float: left;" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:14px;margin-left: 10px;font-size:12px">{{li.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">{{ index+2+'楼'}}</p><span style="color:red;float:right" class="tete"  v-on:click="deletecontents(deletecontentsU,li,this)" onclick="$(this).parent().parent().parent().parent().hide();">点击删除该楼</span></div></li><!--这让我怎么填哦-->
+                    <li style="width:100%;height: 60px;"><img style="border-radius: 25px;border: none;height: 50px;width: 50px;float: left;" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:14px;margin-left: 10px;font-size:12px">{{li.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">{{ index+2+'楼'}}</p><span style="color:red;float:right" class="tete"  v-on:click="contDu(deletecontentsU,li)" onclick="$(this).parent().parent().parent().parent().hide();">点击删除该楼</span></div></li><!--这让我怎么填哦-->
    
   <li style="width:100%;min-height: 50px;font-size: 14px;text-indent:  2em;white-space:normal;word-break:break-all;word-wrap:break-word;">{{li.content}}</li>
   <li style="width:100%;height: 20px"><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{myDate(li.release_time)}}</span></li>
@@ -206,7 +210,7 @@
             data ={
                 getU:'public/news/get-by-page',
                 deleteU:'admin/news/delete',
-                deletecontentsU:'no',
+                deletecontentsU:'private/newReply/delete',
                 addU:'admin/news/add',
                 editU:'admin/news/update',
                 getcontentsU:'public/newsReply/get-by-page',
@@ -216,8 +220,12 @@
                 type:0
             };
             methods={
-                frame(index){
-                    
+               contDu(url,p){
+                    Vue.http.post(allurl+url,{isDelete:1,rid:p.rid}, {emulateJSON: true}).then(  (response) => {alert(response.bodyText);});
+                },
+                thetrueupdate(url,p){
+                    delete p.releaseTime;
+                      Vue.http.get(allurl+url,{params:p}).then(  (response) => {alert(response.bodyText);});
                 },
                 updateORadd(url,p){
                     
@@ -225,7 +233,7 @@
                          Vue.http.get(allurl+url,{params:{newsId:p.nid}}).then(  (response) => {alert(response.bodyText);});
                     }else{
                         console.log(p.nid);
-                        delete p.releaseTime;
+                        
                          url = this.addU;
                          if(p.content ||p.title)
                          Vue.http.get(allurl+url,{params:p}).then(  (response) => {if(response.bodyText=='success')alert(response.bodyText);});
@@ -253,7 +261,7 @@
 };
             
             var a = new admin(data,methods);
-            a.addlis(data.getU,{page:a.ve.page,type:a.ve.type});
+            a.addlis(data.getU,{page:a.ve.page,type:a.ve.type,isTop:1});
         </script>
         
    

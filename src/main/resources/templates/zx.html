@@ -88,7 +88,7 @@ margin-top: 5px;
     
     <body style="">
         <div id = 'data'>
-        <table style='width: 100%;position: fixed;height:45px;top:0%;z-index:99;' border="0" cellspacing="0" cellpadding="0">
+        <table style='width: 100%;position: fixed;height:45px;top:0%;z-index:99;border-collapse:collapse;' border="0" cellspacing="0" cellpadding="0">
             <tr style="background-color: #ffffff;">
             <td style='width:20%;text-align: center' >
             <div style='height: 45px;position: relative;top:14px;'>
@@ -98,19 +98,19 @@ margin-top: 5px;
         </td>
            
         <td style='width:15%;text-align: center' >
-            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 0; page = 0;a.ve.ifshow = false;" v-show='!ifshow'>
+            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 0; page = 0;a.ve.ifshow = false;" v-on:click='ALLSHOW = true' v-show='!ifshow'>
             <img src='static/images/全部.png' >
             <div class="myfont blue" style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p  >全部</p></div>
             </div>
         </td>
         <td style='width:15%;text-align: center'>
-            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 1; page = 0;a.ve.ifshow = false;" v-show='!ifshow'>
+            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 1; page = 0;a.ve.ifshow = false;a.ve.ALLSHOW=false" v-show='!ifshow'>
             <img src='static/images/搜索_1.png' >
             <div class="myfont" style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p  >打听</p></div>
             </div>
         </td>
         <td style='width:15%;text-align: center' v-if='!ifshow'>
-            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 2; page = 0;a.ve.ifshow = false;" v-show='!ifshow'>
+            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 2; page = 0;a.ve.ifshow = false;a.ve.ALLSHOW=false" v-show='!ifshow'>
             <img src='static/images/物品申请.png' >
             <div class="myfont" style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p  >寻物</p></div>
             </div>
@@ -122,7 +122,7 @@ margin-top: 5px;
             </div>
         </td>
         <td style='width:15%;text-align: center'>
-            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 3; page = 0;a.ve.ifshow = false;" v-show='!ifshow'>
+            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 3; page = 0;a.ve.ifshow = false;a.ve.ALLSHOW=false" v-show='!ifshow'>
             <img src='static/images/福利_1.png' >
             <div class="myfont" style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p  >福利</p></div>
             </div>
@@ -154,7 +154,7 @@ margin-top: 5px;
         <td style='width:15%;text-align: center;background-color: rgba(0,0,0,0)'>
         <transition name="slide2">
             <div v-show="dragshow" style="background-color: rgb(255, 255, 255);">
-            <div  class="ass topText" onclick="a.ve.lis = [];nowtype = 4; page = 0;a.ve.ifshow = false;">
+            <div  class="ass topText" onclick="a.ve.lis = [];nowtype = 4; page = 0;a.ve.ifshow = false;a.ve.ALLSHOW=false">
             <img src='static/images/幼儿.png' >
             <div class="myfont " style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p>求伴</p></div>
             </div>
@@ -164,7 +164,7 @@ margin-top: 5px;
         <td style='width:15%;text-align: center'>
             <transition name="slide2">
             <div v-show="dragshow" style="background-color: rgb(255, 255, 255);">
-            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 5; page = 0;a.ve.ifshow = false;">
+            <div  class="ass  topText" onclick="a.ve.lis = [];nowtype = 5; page = 0;a.ve.ifshow = false;a.ve.ALLSHOW=false">
             <img src='static/images/校园咨询.png' >
             <div class="myfont " style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p>校园</p></div>
             </div>
@@ -174,7 +174,7 @@ margin-top: 5px;
         <td style='width:15%;text-align: center'>
             <transition name="slide2">
             <div  v-show="dragshow" style="background-color: rgb(255, 255, 255);">
-            <div class="ass  topText" onclick="a.ve.lis = [];nowtype = 6; page = 0;a.ve.ifshow = false;">
+            <div class="ass  topText" onclick="a.ve.lis = [];nowtype = 6; page = 0;a.ve.ifshow = false;a.ve.ALLSHOW=false">
             <img src='static/images/消息_兼职.png' >
             <div class="myfont " style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p>兼职</p></div>
             </div>
@@ -184,7 +184,7 @@ margin-top: 5px;
         <td style='width:15%;text-align: center'>
             <transition name="slide2">
             <div v-show="dragshow" style="background-color: rgb(255, 255, 255);">
-            <div   class="ass  topText" onclick="a.ve.lis = [];nowtype = 7; page = 0;a.ve.ifshow = false;">
+            <div   class="ass  topText" onclick="a.ve.lis = [];nowtype = 7; page = 0;a.ve.ifshow = false;a.ve.ALLSHOW=false">
             <img src='static/images/微商城.png' >
             <div class="myfont " style='position: relative;top:-2px;margin: 0 auto;text-align: center;'><p>微商</p></div>
             </div>
@@ -215,6 +215,7 @@ margin-top: 5px;
             
         <ul class='allpic' style="margin-top: 55px;margin-bottom: 15vw"  v-show='!ifshow'>
             <div id="mutext" v-if="lis[0] === undefined" style="width:100%;margin: 0 auto;font-size: 10px;text-align: center"></div>
+           <!-- <li style='width:100%;height:200px;background-color: #000;background-image: url(http://wx4.sinaimg.cn/large/006Zdy2vgy1fn5cu7897wj31hb0n111y.jpg); background-size: auto 100%'></li> -->
             
              
             
@@ -224,14 +225,16 @@ margin-top: 5px;
                 <li style="width: 100%;background-color: #ffffff;padding-top: 5px;padding-bottom: 5px"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li"   v-on:click="another(li,{page:0,newsId:li.nid},'public/newsReply/get-by-page')" >
                 <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid" v-if="piccontent(li.content) == 3">
                     <li style="width:100%;overflow: hidden"><div style="font-size:18px;line-height: 26px;font-weight: normal;text-overflow: ellipsis;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;    -webkit-box-orient: vertical;margin-top: -3px;    margin-bottom: 4px;    text-align: left;">
-                            {{li[showDataW[2]]}} </div></li>
+               <div  style='display:inline;border-radius: 5px;padding-right: 3px;padding-left: 3px; margin-right: 3px;position: relative;top:-1px;border: 1px solid rgb(255, 44, 0);font-size: 13px;color: rgb(251, 47, 13);' v-if='li.isTop == 1'>置顶</div>{{li[showDataW[2]]}} </div></li>
    <li style="width:100%;">
       <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content,0)" style="width:100%;height: 100%;" alt="tu" /></div>
       <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content,1)" style="width:100%;height: 100%;" alt="tu" /></div>
       <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content,2)" style="width:100%;height: 100%;" alt="tu" /></div>
 
    </li>
-   <li style="width:100%;padding-bottom: 5px;"><span style="font-size:13px;margin-right: 5px;color:#bababa;">{{myDate(li.releaseTime)}}</span></li>
+   <li style="width:100%;padding-bottom: 5px;"><span style="font-size:13px;margin-right: 5px;color:#bababa;">{{myDate(li.releaseTime)}}</span>
+       <div v-show='ALLSHOW' style='display:inline;border-radius: 5px;padding-right: 3px;padding-left: 3px; border: 1px solid rgb(157, 157, 157);font-size: 13px;font-size: 13px;color: rgb(132, 132, 132);'>{{classification(li.classification)}}</div>
+   </li>
   </ul>  
              <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid;padding-bottom: 4px" v-else-if="piccontent(li.content) == 1">  <!-- 单图片内容 -->
                     
@@ -239,22 +242,24 @@ margin-top: 5px;
       <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content)"  style="width:100%;height: 100%;" alt="tu" /></div>
      <div style="display: inline-block;width: 60%;position: absolute;margin-left: 3%">
          <div style="font-size:18px;line-height: 26px;font-weight: normal;text-overflow: ellipsis;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;    -webkit-box-orient: vertical;margin-top: -3px;        text-align: left;">
-                           {{li[showDataW[2]]}}</div>
-     <div><span style="font-size:13px;margin-right: 5px;color:#bababa;">{{myDate(li.releaseTime)}}</span></div>
+                           <div  style='display:inline;border-radius: 5px;padding-right: 3px;padding-left: 3px; position: relative;top:-1px;border: 1px solid rgb(255, 44, 0);font-size: 13px;color: rgb(251, 47, 13);' v-if='li.isTop == 1'>置顶</div> {{li[showDataW[2]]}}</div>
+                           <div><span style="font-size:13px;margin-right: 5px;color:#bababa;">{{myDate(li.releaseTime)}}</span><div v-show='ALLSHOW' style='display:inline;border-radius: 5px;padding-right: 3px;padding-left: 3px;border: 1px solid rgb(157, 157, 157);font-size: 13px;    color: rgb(132, 132, 132);' >{{classification(li.classification)}}</div></div>
      </div>
    </li>
    <li style="width:100%;padding-bottom: 5px;"></li>
   </ul>   
                    <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid" v-else>
                     <li style="width:100%;overflow: hidden"><div style="font-size:18px;line-height: 26px;font-weight: normal;text-overflow: ellipsis;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;    -webkit-box-orient: vertical;margin-top: -3px;    margin-bottom: 4px;    text-align: left;">
-                            {{li[showDataW[2]]}} </div></li>
+            <div  style='display:inline;border-radius: 5px;padding-right: 3px;padding-left: 3px; position: relative;top:-1px;border: 1px solid rgb(255, 44, 0);font-size: 13px;color: rgb(251, 47, 13);margin-right: 3px;' v-if='li.isTop == 1'>置顶</div>{{li[showDataW[2]]}} </div></li>
    <li style="width:100%;">
      <!-- <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content,0)" style="width:100%;height: 100%;" alt="tu" /></div>
       <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content,1)" style="width:100%;height: 100%;" alt="tu" /></div>
       <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content,2)" style="width:100%;height: 100%;" alt="tu" /></div> -->
 
    </li>
-   <li style="width:100%;padding-bottom: 5px;"><span style="font-size:13px;margin-right: 5px;color:#bababa;">{{myDate(li.releaseTime)}}</span></li>
+   <li style="width:100%;padding-bottom: 5px;"><span style="font-size:13px;margin-right: 5px;color:#bababa;">{{myDate(li.releaseTime)}}</span>
+   <div v-show='ALLSHOW' style='display:inline;border-radius: 5px;padding-right: 3px;padding-left: 3px;border: 1px solid rgb(157, 157, 157);font-size: 13px;color: rgb(132, 132, 132);'>{{classification(li.classification)}}</div>
+   </li>
   </ul>
                             
                             
@@ -325,7 +330,7 @@ margin-top: 5px;
                 
              <div class="rcontent" style="display: none;height: 36px;width: 100%;"> 
                  <img onclick=" $('.liuyan').css('top','');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');   "   src='static/images/关闭3.png' alt='关闭' style='float:left;width: 22px;height: 22px' />
-                 <span class="rpng" v-on:click="Reply('private/newsReply/add')" style='float: right;'   >提交</span >  
+                 <span class="rpng" v-on:click="Reply('private/newsReply/add')" style='float: right;margin-right: 20px;'   >提交</span >  
              <br/><br/><br/>
              <textarea    v-model="replycont" style='margin-left: 3%;width: 85%;height:300px;border:1px #fff solid;float: left;text-indent: 2px; padding-left: 2px;padding-top: 2px;' placeholder='要不留个言再走~' ></textarea>
              
@@ -356,15 +361,15 @@ margin-top: 5px;
 $(document).ready(function(){
     page = 0;
     
-    a.getTop('public/news/get-by-page',{page,type:nowtype});
+    a.getTop('public/news/get-by-page',{page,type:nowtype,isTop:1});
     $('.ass').on('click',() =>{
-         a.getTop('public/news/get-by-page',{page,type:nowtype});
+         a.getTop('public/news/get-by-page',{page,type:nowtype,isTop:1});
          ifnull = false;
     });
     
     
             $(window).scroll(_.debounce(function(){
-                $('.liuyan').css('top','');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');
+             //   $('.liuyan').css('top','');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');
                 a.ve.dragshow =false;
                 
                 
@@ -383,7 +388,7 @@ console.log("已经到最底部了！");
 //这里写实例的新增楼层的方法 和留言
 
 page++;
-a.addLIS('public/news/get-by-page',{page,type:nowtype});
+a.addLIS('public/news/get-by-page',{page,type:nowtype,isTop:0});
 
 
 
@@ -398,7 +403,7 @@ a.addLIS('public/news/get-by-page',{page,type:nowtype});
 
 
    replyPage++;
-    a.addCONTS('public/newsReply/get-by-page',{page:replyPage,newsId:mypnewsId});
+    a.addCONTS('public/newsReply/get-by-page',{page:replyPage,newsId:mypnewsId,isTop:0});
 
 
 
@@ -425,6 +430,7 @@ class F {
         this.ve = new Vue({
             el:'#data',
             data:{
+                ALLSHOW:true,
                 lis:[],
                 conts:[],
                 nowc:{},
@@ -444,7 +450,19 @@ class F {
                 
             },
             methods:{
-               
+               classification(type){
+                   switch(type){
+                       case 0:return '全部';
+                       case 1:return '打听';
+                       case 2:return '寻物';
+                       case 3:return '福利';
+                       case 4:return '求伴';
+                       case 5:return '校园';
+                       case 6:return '兼职';
+                       case 7:return '微商';
+                       default:return ' ';
+                   }
+               },
                 ppic(li,p = 0){
                     try{
                          let end =  li.match(/src\s*=\s*(\"|\').+?(\"|\')/g)[p];
@@ -560,11 +578,12 @@ class F {
                     
                     
                     );
-            if(that.ve.lis[0] === undefined){
+            /*if(that.ve.lis[0] === undefined){
+                udf = true;
                $('#mutext').html('偷偷告诉你这里什么都没有...'); 
-            }
-           /* p.isTop = 0;
-        this.addLIS(url,p);*/
+            }*/
+           p.isTop = 0;
+        this.addLIS(url,p);
         });
             
     }
@@ -575,7 +594,7 @@ class F {
 var that =this;
          Vue.http.get(allurl+url,{params:p}).then(  (response) => {
             let fs =  eval("("+response.bodyText+")");
-          setTimeout(  ()=>{fs.forEach( (data) => {  a.ve.lis.push(data);  }  );},500  )  ;
+          setTimeout(  ()=>{fs.forEach( (data) => {  a.ve.lis.push(data);  }  );},100  )  ;
             if(fs){
               // $('#mutext').html('偷偷告诉你这里什么都没有...'); 
              // alert('内容都没有啦');

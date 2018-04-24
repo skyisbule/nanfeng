@@ -16,16 +16,22 @@ class admin {
     }
     
     addlis(url,p){
-        this.ve.lis = [];
+        
+       
+        
        Vue.http.get(allurl+url,{params:p}).then(  (response) => {
             let f =  eval("("+response.bodyText+")");
             f.forEach( (data) => {  this.ve.lis.push(data);  }  );
          
+   
            
-           if(a.ve.isTop == 1){
+           
+           
+           if(p.isTop == 1){
             a.ve.isTop = 0;
             p.isTop = 0;
             this.addlis(url,p);
+          
         }
            
            
@@ -50,5 +56,5 @@ class admin {
     
 }
 
-var allurl = '';
+var allurl = 'http://nanfeng.heartqiu.cn/';
 

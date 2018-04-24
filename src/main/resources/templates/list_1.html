@@ -65,11 +65,11 @@
 			<div class="weadmin-block">
                             <input class="layui-input" id="thetype" v-model="type"  style="max-width: 100px;display: inline-block" placeholder="输入类型">
 				<!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button> -->
-				<a ><button class="layui-btn" onclick="a.ve.page = 0;a.ve.isTop=1;a.addcontents(a.ve.getU,{page:a.ve.page,type:a.ve.type,isTop:1})" style="margin-right: 30px;">查看该板块</button></a>
+				<a ><button class="layui-btn" onclick="a.ve.page = 0;a.ve.isTop=1;a.ve.lis = [];a.addlis(a.ve.getU,{page:a.ve.page,plate:a.ve.type,isTop:1});$('.readonly').attr('readonly','readonly');a.ve.groupIF = true;" style="margin-right: 30px;">查看该板块</button></a>
 				<!--<span class="fr" style="line-height:40px">共有数据：？ 条</span> -->
                            <!--     <button v-if="groupIF" class="layui-btn" v-on:click="lis.unshift({})"><i class="layui-icon"></i>添加空白数据</button> -->
-                           <!--     <button v-if="groupIF" v-on:click='groupIF = !groupIF' onclick="$('.readonly').removeAttr('readonly');" class="layui-btn layui-btn-danger" >编辑开启</button>
-                                <button v-if="!groupIF" v-on:click='groupIF = !groupIF' onclick="$('.readonly').attr('readonly','readonly');" class="layui-btn layui-btn-danger" >关闭编辑</button>  -->
+                               <button v-if="groupIF" v-on:click='groupIF = !groupIF' onclick="$('.readonly').removeAttr('readonly');" class="layui-btn layui-btn-danger" >编辑开启</button>
+                                <button v-if="!groupIF" v-on:click='groupIF = !groupIF' onclick="$('.readonly').attr('readonly','readonly');" class="layui-btn layui-btn-danger" >关闭编辑</button>  
                                 <span>tips: ①最好在前台发帖  ②咨询：0代表全部 1代表广场 2代表圈子 3代表社团  4代表社区 </span>
 			</div>
 			<table class="layui-table">
@@ -100,14 +100,14 @@
                                                     <span>{{li.uid}}</span>
                                                 </td>
                                                 <td class="mylis" >
-                                                    <input class="readonly"  v-model='li.title' readonly>
+                                                   <span>{{li.title}}</span>
                                                 </td>
                                                 <td class="mylis" style="max-width:150px;" >
                                                     <div  style="max-width:100px;max-height: 20px;overflow: hidden;" >{{li.content}}</div><span v-if="!groupIF" onclick="$(this).parent().find('.as').css('display','inline')"  class="layui-btn layui-btn-normal layui-btn-xs" >详情</span>
                                                     <div class="as" style="width:1px;height:1px;background-color: #fff;display: none" >
                                                     <div style="position: fixed;top:20%;left: 10%;z-index: 999;background-color: #fff;min-width:630px;">
                                                         <table>
-                                                            <td style="z-index:999;background-color: #fff"> <textarea style="min-height: 300px;width:100%;background-color: #fff;" v-model="li.content"></textarea><span onclick="$(this).parent().parent().parent().parent().parent().parent().css('display','none')" class="layui-btn layui-btn-normal layui-btn-xs">关闭</span></td>
+                                                            <td style="z-index:999;background-color: #fff"> <span onclick="$(this).parent().parent().parent().parent().parent().parent().css('display','none')" class="layui-btn layui-btn-normal layui-btn-xs">关闭</span></td>
                                                             <td style="z-index:999;background-color: #fff;" v-html="li.content" align="left" valign="top"></td>
                                                         </table>
                                                     </div>
@@ -123,7 +123,7 @@
                                                     <input style="width:30px" class="readonly" v-model='li.is_top' readonly>
                                                 </td>
                                                 <td class="mylis" >
-                                                    <input style="width:30px" class="readonly" v-model='li.plate_id' readonly>
+                                                   <span>{{li.plate_id}}</span>
                                                 </td>
 						
 						
@@ -131,7 +131,7 @@
 							
                                                     <div v-show="!groupIF" style="display:inline"><button   v-on:click="updateORadd(editU,li)" onclick="$(this).parents('.mylis').children('.jl').css('display','none');" class="layui-btn" >确定</button></div>
                                                        <!-- <span v-else class="layui-btn layui-btn-danger"  onclick="console.log('?')"  v-on:click="updateORadd(editU,li)">呵呵啊</span> -->
-							<button v-if="li.pid" class="layui-btn layui-btn-danger" onclick="$(this).parent().parent().hide()" v-on:click="updateORadd(deleteU,li)"><i class="layui-icon"></i>删除</button> 
+							<button v-if="li.pid" class="layui-btn layui-btn-danger" onclick="$(this).parent().parent().hide()" v-on:click="tdele(deleteU,li)"><i class="layui-icon"></i>删除</button> 
                                                    <template v-if="!li.pid">     <button   class="layui-btn layui-btn-danger jl" onclick="$(this).parent().parent().hide()" ><i class="layui-icon"></i>删除</button><!--传个东西进去--> </template>
                                                        <button v-if="li.pid" onclick="$('#rp').css('display','inline')" v-on:click="addcontents(getcontentsU,{postId:li.pid,page:0},'f')"  class="layui-btn" >回复查看</button> <!--注意下是nid还是pid-->
                                                         
@@ -156,7 +156,7 @@
                         <ul>
                             <li style="width: 100%;background-color: #ffffff;"  v-for = '(li,index) in contents' v-bind:key="index">
                 <ul style="width: 94%;margin-left: 3%;margin-right: 3%">
-                    <li style="width:100%;height: 60px;"><img style="border-radius: 25px;border: none;height: 40px;width: 40px;float: left;margin-top: 5px" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:14px;margin-left: 10px;font-size:12px">{{li.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">{{ index+2+'楼'}}</p><span style="color:red;float:right;position: relative;top:-5px" class="tete"  v-on:click="deletecontents(deletecontentsU,{uid:li.uid},this)" onclick="$(this).parent().parent().parent().parent().hide();">点击删除该楼</span></div></li>
+                    <li style="width:100%;height: 60px;"><img style="border-radius: 25px;border: none;height: 40px;width: 40px;float: left;margin-top: 5px" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="width:120px;height:50px;display: inline-block;"><p style="margin-top:14px;margin-left: 10px;font-size:12px">{{li.nick_name}}</p><p style="margin-top:7px;font-size:12px;margin-left: 10px;color:#bababa">{{ index+2+'楼'}}</p><span style="color:red;float:right;position: relative;top:-5px" class="tete"  v-on:click="contDu(deletecontentsU,li)" onclick="$(this).parent().parent().parent().parent().hide();">点击删除该楼</span></div></li>
    
   <li style="width:100%;min-height: 50px;font-size: 14px;text-indent:  2em;white-space:normal;word-break:break-all;word-wrap:break-word;">{{li.content}}</li>
   <li style="width:100%;height: 20px"><span style="font-size:12px;float: right;margin-right: 5px;color:#bababa">{{myDate(li.release_time)}}</span></li>
@@ -172,10 +172,10 @@
             
             data ={
                 getU:'public/post/get-by-page',
-                deleteU:'no',
-                deletecontentsU:'no',
+                deleteU:'private/post/delete',
+                deletecontentsU:'private/postReply/delete',
                 addU:'private/post/add',
-                editU:'private/post/update',
+                editU:'private/post/set-top',
                 getcontentsU:'public/postReply/get-by-page',
                 groupIF:true,
                 
@@ -183,11 +183,19 @@
                 isTop:1
             };
             methods={
+                contDu(url,p){
+                    Vue.http.post(allurl+url,{isDelete:1,rid:p.rid}, {emulateJSON: true}).then(  (response) => {alert(response.bodyText);});
+                },
+                tdele(url,p){
+                    Vue.http.post(allurl+url,{pid:p.pid}, {emulateJSON: true}).then(  (response) => {alert(response.bodyText);});
+                },
                 updateORadd(url,p){
                     
                     if(p.pid){
                         console.log(p);
-                         Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {alert(response.bodyText);});
+                        delete p.releaseTime;
+                         Vue.http.post(allurl+url,{isTop:p.is_top,pid:p.pid}, {emulateJSON: true}).then(  (response) => {alert(response.bodyText);});
+                         
                     }else{
                          url = this.addU;
                          if(p.content ||p.title)
