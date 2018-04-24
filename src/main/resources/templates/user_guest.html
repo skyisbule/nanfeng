@@ -4,37 +4,24 @@
 <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 <meta charset="utf-8">
 <title>我的&nbsp;-&nbsp;南风共享</title>
-<style type="text/css">
-input {-webkit-appearance:none;margin:0;padding:0}
-* {tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;outline:none;font-family:Arial,Helvetica,sans-serif;}
-.card {position:relative;width:94vw;margin:3vw;border-radius:3vw;background-color:#fff;overflow:hidden;box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);}
-body {position:absolute;background-color:rgb(255,255,255);width:100%;height:100%;margin:0;overflow:hidden}
-h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!important;-webkit-margin-start:0!important;-webkit-margin-end:0!important;font-size:7vw;text-shadow:1vw 1vw 1vw rgba(100,100,100,0.4)}
-#layer {position:absolute;background-color:rgba(255,255,200,1.00);height:70vw;width:100vw;left:0;top:0vw;margin:0;border-radius:0;z-index:100;box-shadow:0 0 0 0}
-.arc {box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);z-index:99;background-color:rgba(255,255,200,1.00);top:60vw;position:absolute;left:0;margin:0;width:100vw;height:20vw;border-radius:50%;}
-#main {position:absolute;z-index:102;width:100%;top:10vw;}
-#main span {color:#f00;font-size:9vw}
-#main svg {width:20vw;height:20vw;margin:40vw;}
-#main h1 {position:absolute;top:5vw;left:10vw}
-#main h2 {position:absolute;top:20vw;left:30vw}
-.button {text-decoration-line:none;text-decoration:none;display:block;text-align:center;top:90vw;height:12vw;width:30vw;margin:10vw;background-color:rgba(200,0,0,1.00);color:#fff;border:0;box-shadow:0 0 2vw 0 rgba(100,100,100,1);font-size:6vw;line-height:12vw;float:left;z-index:200}
-</style>
+<link rel="stylesheet" href="http://cdn.nanfeng.hejianpeng.cn/css/main.css" type="text/css"/>	
+<link rel="stylesheet" href="http://cdn.nanfeng.hejianpeng.cn/css/user.css" type="text/css"/>	
 </head>
 <body>
 	<div id="layer" class="card"></div>
 	<div class="arc"></div>
 	<div id="main">
-		<h1>加入<span>南方共享</span></h1>
-		<h2>探索<span>未知的世界</span></h2>
+		<h3>加入<b>南方共享</b></h3>
+		<h4>探索<b>未知的世界</b></h4>
 		<svg viewBox="0 0 1024 1024">
 			<path d="M363.776 551.68a239.104 239.104 0 0 0 297.216-0.512c161.92 82.624 184.512 234.112 189.248 284.544a468.8 468.8 0 0 0 132.416-326.912 470.656 470.656 0 1 0-941.312 0.064c0 127.104 50.624 242.24 132.48 326.912 4.736-48.512 28.672-201.152 189.952-284.096zM512 177.6c102.016 0 184.96 82.944 184.96 184.896S614.016 547.328 512 547.328c-101.952 0-184.896-82.816-184.896-184.832S410.048 177.6 512 177.6z" p-id="4093"></path>
 		</svg>
 	</div>
-	<a class="card button" type="button" target="new" href="/sign_in">登&nbsp;录</a>
-	<a class="card button" type="button" target="new" href="/sign_up" style="background-color: #ccc;color: #000">注&nbsp;册</a>
+	<a class="card button" target="new" href="/sign_in">登&nbsp;录</a>
+	<a class="card button" target="new" href="/sign_up" style="background-color: #ccc;color: #000">注&nbsp;册</a>
 </body>
-<script type="text/javascript" src="/js/pengge_tools.js"></script>
-<script type="text/javascript" src="/js/bar.js"></script>
+<script type="text/javascript" src="http://cdn.nanfeng.hejianpeng.cn/js/pengge_tools.js"></script>
+<script type="text/javascript" src="http://cdn.nanfeng.hejianpeng.cn/js/bar.js"></script>
 <script type="text/javascript">
 "use strict";
 if(pengge.cookie.get("uid")!==null){location.href="/user";}

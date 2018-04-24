@@ -524,7 +524,7 @@ class F {
     Reply(url,p = {},func = undefined ){
                     //需要  postId uid content
             p.uid = this.myid;        
-            p.newsId = this.tempId;  
+            p.nid = this.tempId;  
              p.content = this.replycont.replace(/script/g,' ');
              console.log(p);//这是发布的也包括留言  一切发送的东西
              delete p.uid;

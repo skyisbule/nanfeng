@@ -4,28 +4,8 @@
 <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 <meta charset="utf-8">
 <title>我的消息&nbsp;-&nbsp;南风共享</title>
-<style type="text/css">
-input::-webkit-input-placeholder {color:#555}
-input {-webkit-appearance:none;margin:0;padding:0;border-radius: 0;}
-	a{display: block;text-decoration:none;color: inherit}
-* {tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;outline:none;font-family:Arial,Helvetica,sans-serif;}
-body {position:absolute;background-color:#eee;width:100vw!important;height:100%;margin:0;}
-#choose {position:fixed;width:100vw;top:0;left:0;height:11vw;z-index:100;text-align:center;line-height:8vw;font-size:4vw;border-bottom:0.2vw solid #ccc;background-color: #fff}
-#choose span {position:absolute;width:20vw;height:8vw;border-bottom:1vw solid rgb(170,0,0);bottom:0;z-index:101;color: rgb(170,0,0)}
-#choose .un {color: inherit!important;border: none!important;bottom: 1vw!important}
-#choose svg{position: absolute;left: 0;top: 0;width: 5vw;height: 5vw;margin: 3vw;}
-h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!important;-webkit-margin-start:0!important;-webkit-margin-end:0!important;}
-#goods {position:absolute;top:15vw;}
-#goods a {position: relative;width: 100vw;height: 25vw; margin-bottom: 4vw;background-color: #fff}
-#goods h1 {position: absolute;font-weight:600;font-size:4.5vw;top: 3vw;left: 20vw;}	
-#goods h2 {position: absolute;font-weight:400;font-size:4vw;top: 10vw;left: 20vw;color: #888}	
-#goods h3 {position: absolute;font-weight:400;font-size:4vw;top: 16vw;left: 20vw;color: #888}	
-#goods span{position:absolute;top: 1vw; background-size:100% 100%;background-repeat:no-repeat;width:14vw;height:14vw;border-radius:100%;box-shadow:0 0 1vw 0 rgba(100,100,100,1);margin: 3vw}
-#goods div {position:absolute;right: 0; height:20vw;width: 20vw; margin:2.5vw;overflow: hidden}
-#goods img {position: absolute;top: 50%;left: 50%; display:block;opacity:0;-webkit-transition: opacity 0.5s;transition: opacity 0.5s;}
-
-#loading {background-color:transparent; font-size:5vw;line-height:20vw;text-align:center;bottom:-50vw;height: 50vw!important;width: 95vw!important;left: 0}
-</style>
+<link rel="stylesheet" href="http://cdn.nanfeng.hejianpeng.cn/css/main.css" type="text/css"/>	
+<link rel="stylesheet" href="http://cdn.nanfeng.hejianpeng.cn/css/my_sessage.css" type="text/css"/>	
 </head>
 <body>
 <div id="choose">
@@ -36,101 +16,6 @@ h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!impo
 <div id="goods"></div>
 <div style="position: absolute;top: 35vw;height: 100vh;width: 1vw;"></div>
 </body>
-<script type="text/javascript" src="/js/pengge_tools.js"></script>
-<script type="text/javascript">
-"use strict";
-var doc = document,
-page_num = 0,
-isWantBy = 1,
-vw = doc.body.clientWidth,
-choose_dom = doc.getElementById("choose").getElementsByTagName("span"),
-hchoose = doc.getElementById("choose").style,
-hgoods = doc.getElementById("goods"),
-goods_finish=false,
-timer = null,
-uid=pengge.cookie.get("uid");
-if(uid===null){location.href="/sign_in";}
-function choose(a) {
-    if (choose_dom[a].className !== "") {
-        return;
-    }
-   window.scrollTo(0,0);
-    choose_dom[isWantBy].className = "";
-    isWantBy = a;
-    choose_dom[isWantBy].className = "un";
-	hgoods.innerHTML = '<div id="loading">正在加载……</div>';
-	get_goods();
-}
-window.onload = function() {
-
-    choose(1);	
-
-	
-
-}
-function get_goods() {
-    pengge.post("/private/message/get-if-readed","page=" + page_num * 10 + "&uid="+uid+"&isReaded="+isWantBy,
-    function(data) {
-		
-        var out = "",
-        data_arr = JSON.parse(data);
-
-        for (var j = 0; j < data_arr.length; j++) {
-			out+='<a href="goods?gid=' + data_arr[j]["gid"] + '&mid=' + data_arr[j]["mid"] + '&releaser=' + data_arr[j]["releaser"] +'&nick_name=' + encodeURI(data_arr[j]["nick_name"]) +'&" target="new"><span style="background-image: url(http://pic.zdnfbbs.cn/' + data_arr[j]["head_pic"] + ')"></span><h1>' + pengge.nanfenggx.font_len(data_arr[j]["nick_name"],18) + '</h1><h2>' + pengge.nanfenggx.font_len(data_arr[j]["content"].replace(/<br>/g, " "),20) + '</h2><h3>' + pengge.get_time(data_arr[j]["release_time"] / 1000)  + '</h3><div><img onload="img_onload(this)" src="http://pic.zdnfbbs.cn/' + data_arr[j]["picture"] + '" alt=""/></div></a>';
-
-			
-			
-        }
-        hgoods.innerHTML += out;
-        if (j < 10) {
-            goods_finish = true;
-            doc.getElementById("loading").innerHTML = "没有更多消息了";
-
-        } else {
-            page_num++;
-
-        }
-
-    });
-}
-function img_onload(a) {
-    if (a.offsetTop < vw * 0.2) {
-		if(a.height>a.width){a.style.width="20vw";}else{a.style.height="20vw";}
-		a.style.margin=a.height/(-2)+"px "+a.width/(-2)+"px";
-        a.style.opacity = "1";
-    } else {
-        a.style.display = "none"
-    }
-
-}
-
-doc.onscroll = function() {
-    var top = doc.documentElement.scrollTop || doc.body.scrollTop;
-
-
-        var check = function() {
-            if (((doc.body.scrollHeight) - top - doc.body.clientHeight) <= vw) {
-                get_goods();
-            }
-        }
-
-        if (goods_finish) {
-            return;
-        }
-        if (timer === null) {
-            check();
-            timer = setTimeout(function() {
-                check();
-                timer = null;
-            },
-            1000);
-        }
-
-    }
-
-
-
-
-
-</script>
+<script type="text/javascript" src="http://cdn.nanfeng.hejianpeng.cn/js/pengge_tools.js"></script>
+<script type="text/javascript" src="http://cdn.nanfeng.hejianpeng.cn/js/my_message.js"></script>
 </html>

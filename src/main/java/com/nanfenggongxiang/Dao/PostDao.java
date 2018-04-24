@@ -22,4 +22,10 @@ public interface PostDao {
                                                       @Param("page")   int page,
                                                       @Param("isTop")  int top);
 
+    @Select("select post.*,info.nick_name,info.head_pic,info.uid " +
+            "from post join info on info.uid = post.uid " +
+            "order by post.pid desc " +
+            "limit ${page},10")
+    public List<Map<String,Object>> getAllPostInfoByPage(@Param("page")int page);
+
 }

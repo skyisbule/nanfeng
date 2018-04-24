@@ -69,35 +69,35 @@ and open the template in the editor.
             </div>
         </td>
         
-       <!-- <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;'class="ass" onclick="/*a.ve.lis = [];nowtype = 0; page = 0;a.ve.ifshow = false;replyPage = 0;*/">
+        <td style='width:15%;text-align: center'>
+            <div style='height: 45px;position: relative;top:4px;'class="ass" onclick="a.ve.lis = [];nowtype = 0; page = 0;a.ve.ifshow = false;replyPage = 0;  a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});">
             
             <div class=""  style='font-size:17px;position: relative;top:8px;margin: 0 auto;text-align: center;'><p  >全部</p></div>
             </div>
-        </td>-->
+        </td>
         
         
             
         <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 1; page = 0;a.ve.ifshow = false;replyPage = 0;">
+            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 1; page = 0;a.ve.ifshow = false;replyPage = 0;  a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});">
             
             <div class="myfont blue" style='font-size:17px;position: relative;top:8px;margin: 0 auto;text-align: center;'><p  >广场</p></div>
             </div>
         </td>
         <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 2; page = 0;a.ve.ifshow = false;replyPage = 0;">
+            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 2; page = 0;a.ve.ifshow = false;replyPage = 0;  a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});">
             
             <div class="myfont" style='font-size:17px;position: relative;top:8px;margin: 0 auto;text-align: center;'><p  >圈子</p></div>
             </div>
         </td>
         <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 3; page = 0;a.ve.ifshow = false;replyPage = 0;">
+            <div style='height: 45px;position: relative;top:4px;' class="ass" onclick="a.ve.lis = [];nowtype = 3; page = 0;a.ve.ifshow = false;replyPage = 0;  a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});">
             
             <div class="myfont" style='font-size:17px;position: relative;top:8px;margin: 0 auto;text-align: center;'><p  >社团</p></div>
             </div>
         </td>
         <td style='width:15%;text-align: center'>
-            <div style='height: 45px;position: relative;top:4px;'class="ass" onclick="a.ve.lis = [];nowtype = 4; page = 0;a.ve.ifshow = false;replyPage = 0;">
+            <div style='height: 45px;position: relative;top:4px;'class="ass" onclick="a.ve.lis = [];nowtype = 4; page = 0;a.ve.ifshow = false;replyPage = 0;  a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});">
             
             <div class="myfont" style='font-size:17px;position: relative;top:8px;margin: 0 auto;text-align: center;'><p  >社区</p></div>
             </div>
@@ -234,7 +234,7 @@ $(document).ready(function(){
     
     a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});
     $('.ass').on('click',() =>{
-         a.getTop('public/post/get-by-page',{page,isTop:1,plate:nowtype});
+       
     });
     
     
@@ -509,6 +509,7 @@ class F {
            
     },
     another(li,p={}/*回复的实体*/,url = undefined){
+       
         saveP = {A:li,B:p,C:url};
         checkFull=true;
         this.conts = [];
@@ -538,6 +539,13 @@ class F {
    
     
     getTop(url,p={}){
+        
+          if(nowtype ==0){
+            url = 'public/post/get-all-by-page';
+            delete p.plate;
+            delete p.isTop;
+        }
+        
         /* if(p.type == null){
             delete p.type;
         }  
@@ -551,7 +559,7 @@ class F {
             }
         }
          var that = this;                                            
-             Vue.http.get(allurl+url,{params:p}).then(  (response) => {
+             Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
             let f =  eval("("+response.bodyText+")");
             
             
@@ -562,15 +570,20 @@ class F {
             
             
             p.isTop = 0;
-        this.addLIS(url,p);
+      if(nowtype !==0){ console.log(p); this.addLIS(url,p);}
         });
             
     }
     
-    addLIS(url,p={}){          
+    addLIS(url,p={}){
+        if(nowtype ==0){
+            url = 'public/post/get-all-by-page';
+            delete p.plate;
+            delete p.isTop;
+        }
 var that =this;
 
-         Vue.http.get(allurl+url,{params:p}).then(  (response) => {
+         Vue.http.post(allurl+url,p, {emulateJSON: true}).then(  (response) => {
             let fs =  eval("("+response.bodyText+")");
             fs.forEach( (data) => {  a.ve.lis.push(data);  }  );
             if(that.ve.lis[0] === undefined && btw){

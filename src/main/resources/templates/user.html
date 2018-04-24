@@ -4,21 +4,8 @@
 <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 <meta charset="utf-8">
 <title>我的&nbsp;-&nbsp;南风共享</title>
-<style type="text/css">
-input {-webkit-appearance:none;margin:0;padding:0}
-* {tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;outline:none;font-family:Arial,Helvetica,sans-serif;}
-body {position:absolute;background-color:rgb(255,255,255);width:100vw;margin:0;overflow-x:hidden}
-.card {display:block;position:relative;width:94vw;margin:3vw;height:12vw;font-size:5vw;line-height:12vw;text-indent:12vw;text-decoration:none;color:#222;border-bottom: 0.1vw solid rgba(150,150,150,0.5)}
-h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!important;-webkit-margin-start:0!important;-webkit-margin-end:0!important;}
-#layer {position:absolute;background-color:#fff;height:60vw;width:100vw;left:0;top:0vw;margin:0;border-radius:0;z-index:100;border: none!important}
-#main {position:absolute;z-index:102;width:100%;}
-#main span {position:absolute;width:26vw;height:26vw;border-radius:26vw;left:50%;margin-left:-13vw;top:15vw;box-shadow:0 0 2vw 0 rgba(100,100,100,1);background-size:100% 100%;background-repeat:no-repeat}
-#main h1 {position:absolute;width:100%;text-align:center;top:43vw;font-size:7vw;font-weight:800;color:#333;}
-#main h2 {position:absolute;width:100%;text-align:center;top:53vw;font-size:5vw;font-weight:300;color:#333;}
-#card svg {position:absolute;width:7vw;height:7vw;top:2.5vw}
-#post {background-color:rgba(200,0,0,1.00);color:#fff;border:0;text-indent:0;width:90vw;height:12vw;line-height:8vw;margin:5vw;font-size:5.3vw;margin-bottom:30vw;}
-.arc {box-shadow:0 0 1vw 0 rgba(100,100,100,0.4);z-index:99;background-color:#fff;top:50vw;position:absolute;left:0;margin:0;width:100vw;height:20vw;border-radius:50%;}
-</style>
+<link rel="stylesheet" href="http://cdn.nanfeng.hejianpeng.cn/css/main.css" type="text/css"/>	
+<link rel="stylesheet" href="http://cdn.nanfeng.hejianpeng.cn/css/user.css" type="text/css"/>	
 </head>
 <body>
 	<div id="layer" class="card"></div>
@@ -27,58 +14,7 @@ h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!impo
 	<div id="card"></div>
 	<input id="post"  class="card" type="button" value="退出登录">
 </body>
-<script type="text/javascript" src="/js/pengge_tools.js"></script>
-<script type="text/javascript" src="/js/bar.js"></script>
-<script type="text/javascript">
-"use strict";
-var doc=document,
-headPic=pengge.cookie.get("headPic"),
-nickName=pengge.cookie.get("nickName"),
-uid=pengge.cookie.get("uid");
-uid=10;
-if (uid === null) {
-    location.href = "/user_guest";
-} else {
-    doc.getElementById("main").innerHTML = '<span style="background-image:url(http://pic.zdnfbbs.cn/' + headPic + ')"></span><h1>' + pengge.nanfenggx.font_len((nickName || "南风共享用户"),20) + '</h1><h2>' + (pengge.cookie.get("school") || "中山大学南方学院") + '</h2>'
-
-    pengge.post("/images/user_ui", "",
-    function(data) {
-        var ui_data = data.split("|"),
-        user_index = [{
-            "release_list": "我发布的",
-            "buy_list": "我拍下的"
-        },
-        {
-            "my_settings": "个人设置",
-            "my_favourite": "我收藏的",
-            "my_message": "我的消息"
-        },
-        {
-            "help": "帮助",
-            "about": "关于"
-        }],
-        out = '<div class="card" style="height: 70vw ;opacity: 0"></div>',
-        o = 1,
-        i,
-        j;
-
-        for (j = 0; j < user_index.length; j++) {
-            for (i in user_index[j]) {
-                out += '<a class="card" target="view_window" href="' + i + '"><svg style="left:3vw;" viewBox="0 0 1024 1024"><path style="fill:rgb(252,82,69)" d="' + ui_data[o] + '"></path></svg>' + user_index[j][i] + '<svg style="right:3vw;" viewBox="0 0 1024 1024"><path d="' + ui_data[0] + '"></path></svg></a>';
-                o++;
-            }
-            out += '<div class="card" style="height: 5vw ;opacity: 0"></div>';
-        }
-        doc.getElementById("card").innerHTML = out;
-    },
-    true)
-}
-document.getElementById("post").onclick=function(){
-pengge.cookie.set("headPic","",-1,"/");
-pengge.cookie.set("nickName","",-1,"/");
-pengge.cookie.set("uid","",-1,"/");
-pengge.cookie.set("session","",-1,"/");
-setTimeout(function(){ location.href = "/user_guest";},10);
-}
-</script>
+<script type="text/javascript" src="http://cdn.nanfeng.hejianpeng.cn/js/pengge_tools.js"></script>
+<script type="text/javascript" src="http://cdn.nanfeng.hejianpeng.cn/js/bar.js"></script>
+<script type="text/javascript" src="http://cdn.nanfeng.hejianpeng.cn/js/user.js"></script>
 </html>

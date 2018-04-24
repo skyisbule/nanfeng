@@ -53,7 +53,13 @@ public class postController {
     public List<Map<String,Object>> getByPage(@ApiParam("开始页码") int page,
                                @ApiParam("是否置顶") int isTop,
                                @ApiParam("哪个版块") int plate){
-        return complexDao.getPostInfoByPage(plate,page,isTop);
+        return complexDao.getPostInfoByPage(plate,page*10,isTop);
+    }
+
+    @ApiOperation("拿到最新的帖子")
+    @RequestMapping(value = "/public/post/get-all-by-page")
+    public List<Map<String,Object>> getAllByPage(int page){
+        return complexDao.getAllPostInfoByPage(page*10);
     }
 
     @RequestMapping("/private/post/update")

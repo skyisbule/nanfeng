@@ -38,13 +38,14 @@ public class newsController {
         e.setOffset(page*10);
         e.setLimit(10);
         e.setOrderByClause("nid desc");
-        e.createCriteria()
-                .andIsTopEqualTo(isTop);
         //如果type传0，那么就搜索全部
         if (type==0){
+            e.createCriteria()
+                    .andIsTopEqualTo(isTop);
             return dao.selectByExample(e);
         }else{
             e.createCriteria()
+                    .andIsTopEqualTo(isTop)
                     .andClassificationEqualTo(type);
             return dao.selectByExample(e);
         }
