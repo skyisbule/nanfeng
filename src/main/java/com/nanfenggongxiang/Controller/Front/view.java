@@ -64,19 +64,9 @@ public class view {
         return "user_guest";
     }
 
-    @RequestMapping("/buy_list")
-    public String bug_list(){
-        return "buy_list";
-    }
-
     @RequestMapping("/list")
     public String list(){
         return "list";
-    }
-
-    @RequestMapping("/my_favourite")
-    public String my_favourite(){
-        return "my_favourite";
     }
 
     @RequestMapping("/my_message")
@@ -84,9 +74,9 @@ public class view {
         return "my_message";
     }
 
-    @RequestMapping("/release_list")
-    public String release_list(){
-        return "release_list";
+    @RequestMapping("/goods_list")
+    public String goods_list(){
+        return "goods_list";
     }
 
     @RequestMapping("/search")
