@@ -5,6 +5,7 @@ import com.nanfenggongxiang.Dao.PostReplyMapper;
 import com.nanfenggongxiang.Domain.PostReply;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,13 +27,15 @@ public class postReplyController {
     private final String hasDelete = "<strong>该内容已被删除</strong>";
 
     @RequestMapping("/private/postReply/add")
-    public String add(PostReply reply){
+    public String add(PostReply reply,
+                      @CookieValue("id")int uid){
         //给帖子的回复数加一
         complexDao.addReplyNum(reply.getPostId());
         
         Date date = new Date();
         reply.setReleaseTime(date);
         reply.setIsDelete(0);
+        reply.setUid(uid);
         return dao.insert(reply)==1?"success":"error";
     }
 

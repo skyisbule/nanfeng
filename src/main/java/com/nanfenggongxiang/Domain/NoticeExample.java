@@ -313,6 +313,76 @@ public class NoticeExample {
             addCriterion("is_show not between", value1, value2, "isShow");
             return (Criteria) this;
         }
+
+        public Criteria andLinksIsNull() {
+            addCriterion("links is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksIsNotNull() {
+            addCriterion("links is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksEqualTo(String value) {
+            addCriterion("links =", value, "links");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksNotEqualTo(String value) {
+            addCriterion("links <>", value, "links");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksGreaterThan(String value) {
+            addCriterion("links >", value, "links");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksGreaterThanOrEqualTo(String value) {
+            addCriterion("links >=", value, "links");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksLessThan(String value) {
+            addCriterion("links <", value, "links");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksLessThanOrEqualTo(String value) {
+            addCriterion("links <=", value, "links");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksLike(String value) {
+            addCriterion("links like", value, "links");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksNotLike(String value) {
+            addCriterion("links not like", value, "links");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksIn(List<String> values) {
+            addCriterion("links in", values, "links");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksNotIn(List<String> values) {
+            addCriterion("links not in", values, "links");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksBetween(String value1, String value2) {
+            addCriterion("links between", value1, value2, "links");
+            return (Criteria) this;
+        }
+
+        public Criteria andLinksNotBetween(String value1, String value2) {
+            addCriterion("links not between", value1, value2, "links");
+            return (Criteria) this;
+        }
     }
 
     /**

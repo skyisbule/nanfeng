@@ -1,30 +1,27 @@
 package com.nanfenggongxiang.Domain;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 
-@ApiModel("首页公告的信息")
+/**
+ * @author 
+ */
 public class Notice implements Serializable {
     /**
      * 公告id
      */
-    @ApiModelProperty("公告id，不要传已拥有的值")
     private Integer nid;
 
     /**
      * 图片的url
      */
-    @ApiModelProperty("公告图片的url")
     private String picUrl;
 
     /**
      * 是否展示
      */
-    @ApiModelProperty("是否展示，传0或者1")
     private Integer isShow;
+
+    private String links;
 
     private static final long serialVersionUID = 1L;
 
@@ -52,6 +49,14 @@ public class Notice implements Serializable {
         this.isShow = isShow;
     }
 
+    public String getLinks() {
+        return links;
+    }
+
+    public void setLinks(String links) {
+        this.links = links;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -66,7 +71,8 @@ public class Notice implements Serializable {
         Notice other = (Notice) that;
         return (this.getNid() == null ? other.getNid() == null : this.getNid().equals(other.getNid()))
             && (this.getPicUrl() == null ? other.getPicUrl() == null : this.getPicUrl().equals(other.getPicUrl()))
-            && (this.getIsShow() == null ? other.getIsShow() == null : this.getIsShow().equals(other.getIsShow()));
+            && (this.getIsShow() == null ? other.getIsShow() == null : this.getIsShow().equals(other.getIsShow()))
+            && (this.getLinks() == null ? other.getLinks() == null : this.getLinks().equals(other.getLinks()));
     }
 
     @Override
@@ -76,6 +82,7 @@ public class Notice implements Serializable {
         result = prime * result + ((getNid() == null) ? 0 : getNid().hashCode());
         result = prime * result + ((getPicUrl() == null) ? 0 : getPicUrl().hashCode());
         result = prime * result + ((getIsShow() == null) ? 0 : getIsShow().hashCode());
+        result = prime * result + ((getLinks() == null) ? 0 : getLinks().hashCode());
         return result;
     }
 
@@ -88,6 +95,7 @@ public class Notice implements Serializable {
         sb.append(", nid=").append(nid);
         sb.append(", picUrl=").append(picUrl);
         sb.append(", isShow=").append(isShow);
+        sb.append(", links=").append(links);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

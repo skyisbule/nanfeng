@@ -5,6 +5,7 @@
     <result column="nid" jdbcType="INTEGER" property="nid" />
     <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
     <result column="is_show" jdbcType="INTEGER" property="isShow" />
+    <result column="links" jdbcType="VARCHAR" property="links" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    nid, pic_url, is_show
+    nid, pic_url, is_show, links
   </sql>
   <select id="selectByExample" parameterType="com.nanfenggongxiang.Domain.NoticeExample" resultMap="BaseResultMap">
     select
@@ -96,10 +97,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.nanfenggongxiang.Domain.Notice">
-    insert into notice (nid, pic_url, is_show
-      )
-    values (#{nid,jdbcType=INTEGER}, #{picUrl,jdbcType=VARCHAR}, #{isShow,jdbcType=INTEGER}
-      )
+    insert into notice (nid, pic_url, is_show, 
+      links)
+    values (#{nid,jdbcType=INTEGER}, #{picUrl,jdbcType=VARCHAR}, #{isShow,jdbcType=INTEGER}, 
+      #{links,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.nanfenggongxiang.Domain.Notice">
     insert into notice
@@ -113,6 +114,9 @@
       <if test="isShow != null">
         is_show,
       </if>
+      <if test="links != null">
+        links,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="nid != null">
@@ -123,6 +127,9 @@
       </if>
       <if test="isShow != null">
         #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="links != null">
+        #{links,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -144,6 +151,9 @@
       <if test="record.isShow != null">
         is_show = #{record.isShow,jdbcType=INTEGER},
       </if>
+      <if test="record.links != null">
+        links = #{record.links,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -153,7 +163,8 @@
     update notice
     set nid = #{record.nid,jdbcType=INTEGER},
       pic_url = #{record.picUrl,jdbcType=VARCHAR},
-      is_show = #{record.isShow,jdbcType=INTEGER}
+      is_show = #{record.isShow,jdbcType=INTEGER},
+      links = #{record.links,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
