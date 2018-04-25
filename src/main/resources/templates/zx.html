@@ -36,7 +36,7 @@
                 padding: 0;
             }
             body{
-                background-color: #eeeeee;
+                background-color: #fff;
             }
             ul{
                 list-style-type:none;
@@ -84,7 +84,7 @@ margin-top: 5px;
     
     <body style="">
         <div id = 'data'>
-        <table style='width: 100%;position: fixed;height:45px;top:0%;z-index:99;border-collapse:collapse;' border="0" cellspacing="0" cellpadding="0">
+        <table style='width: 100%;position: fixed;height:45px;top:0%;z-index:10001;border-collapse:collapse;' border="0" cellspacing="0" cellpadding="0">
             <tr style="background-color: #ffffff;">
             <td style='width:20%;text-align: center' >
             <div style='height: 45px;position: relative;top:14px;'>
@@ -209,7 +209,7 @@ margin-top: 5px;
         
             
             
-        <ul class='allpic' style="margin-top: 55px;margin-bottom: 15vw"  v-show='!ifshow'>
+        <ul class='allpic' style="margin-top: 69vw;margin-bottom: 15vw"  v-show='!ifshow'>
             <div id="mutext" v-if="lis[0] === undefined" style="width:100%;margin: 0 auto;font-size: 10px;text-align: center"></div>
            <!-- <li style='width:100%;height:200px;background-color: #000;background-image: url(http://wx4.sinaimg.cn/large/006Zdy2vgy1fn5cu7897wj31hb0n111y.jpg); background-size: auto 100%'></li> -->
             
@@ -279,7 +279,7 @@ margin-top: 5px;
                 </li> -->
     </ul>
         
-         <ul style="margin-top: 55px;margin-bottom: 15vw;margin-top: 48px"  v-show='ifshow'>
+         <ul style="margin-top: 55px;margin-bottom: 15vw;margin-top: 48px;position: relative;z-index:10001"  v-show='ifshow'>
              
              <li style="width: 100%;background-color: #ffffff;margin-top: 10px;padding-bottom: 20px;">
                 <ul style="width: 94%;margin-left: 3%;margin-right: 3%">
@@ -298,7 +298,7 @@ margin-top: 5px;
                 
             </li>
              
-            <li style="width: 100%;height: 30px;margin-top: 10px;min-height:25px;background-color: #fff;padding-left: 2%;padding-top: 4px">评论:</li>
+            <li style="width: 100%;height: 30px;margin-top: 10px;min-height:25px;background-color: #fff;padding-top: 4px">评论:</li>
             <li v-if="conts[0] === undefined" style="width:100%;margin: 0 auto;font-size: 12px;text-align: center;background-color: #fff;padding-bottom: 20px">偷偷告诉你这里什么都没有..</li>
             <!-- <p style="font-size: 13px;text-align: center;margin-top: 3px;"> 全部回复:</p> -->
                  
@@ -318,7 +318,7 @@ margin-top: 5px;
           <!--  <li v-if='ifshow' style="width: 410px;background-color: #ffffff;position: fixed;bottom:0%;hieght:60px;overflow: hidden">
                 <input v-model="replycont" style='width: 380px;border: #ffffff  solid 1px;float: left;height: 20px' placeholder='你有什么想法？说出来吧' /><img v-on:click="Reply('private/newsReply/add')" style='float: right;width: 28px;height: 22px' src='static/images/询问.png' alt='提交' />
             </li> -->
-            <li class="liuyan" v-if='ifshow' style="width: 100%;position: fixed;bottom:0%;hieght:60px;overflow: hidden;margin-bottom: 15vw;z-index: 999">
+            <li class="liuyan" v-if='ifshow' style="width: 100%;position: fixed;bottom:0%;hieght:60px;overflow: hidden;margin-bottom: 15vw;z-index: 10001">
                 <div class='myreply'  onclick="$('.liuyan').animate({top:'0%'});$('.myreply').hide() ;$('.rcontent').show();$('.liuyan').css('background-color','#ffffff')  "  style='width: 100%;float: left;height: 50px;'>
                     <div style="width: 70px;height:38px;font-size: 12px;color:#ffffff;border: #ffffff 1px none;border-radius: 10px;float:right;background-color: rgba(255,102,51,0.8);text-align: center;line-height: 38px;position: fixed;right:5%"  class="postspan" >回复</div>
                 </div>

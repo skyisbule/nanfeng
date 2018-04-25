@@ -24,11 +24,11 @@ public class postReplyController {
     @Autowired
     PostReplyDao    complexDao;
 
-    private final String hasDelete = "<strong>该内容已被删除</strong>";
+    private final String hasDelete = "该内容已被删除";
 
     @RequestMapping("/private/postReply/add")
     public String add(PostReply reply,
-                      @CookieValue("id")int uid){
+                      @CookieValue("uid")int uid){
         //给帖子的回复数加一
         complexDao.addReplyNum(reply.getPostId());
         
