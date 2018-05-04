@@ -124,4 +124,9 @@ public class view {
     public String login(){
         return "login";
     }
+
+    @RequestMapping("/ban")
+    public String ban(){
+        return "ban";
+    }
 }

@@ -63,7 +63,7 @@ and open the template in the editor.
         <div id = 'data'>
         <table style='width: 100%;position: fixed;height:45px;background-color: #ffffff;top:0%;border-bottom: 1px #cccccc solid;'>
             <td v-show='ifshow' style='width:5%;text-align: center'>
-            <div style='height: 45px;position: relative;top:14px;'>
+            <div style='height: 45px;position: relative;top:14px;' >
             <img src='static/images/向左.png' style='height:18px;width:18px;float:left' onclick="a.ve.ifshow = false;setTimeout( ()=> { window.scrollTo(0,nowS);bool = true;replyPage = 0;  });  ">
             
             </div>
@@ -119,7 +119,7 @@ and open the template in the editor.
                
             <transition-group style="" name="fade" v-on:duration="300">
                 
-                <li  style="width: 100%;height: 135px;background-color: #ffffff;margin-top: 5px;text-overflow: ellipsis;padding-bottom: 6px;"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li"   v-on:click="another(li,{page:0,postId:li.pid},'public/postReply/get-by-page')" >
+                <li  style="width: 100%;height: 135px;background-color: #ffffff;margin-top: 5px;text-overflow: ellipsis;padding-bottom: 6px;"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li" onclick="window.scrollTo(0,0);window.history.pushState(json,'','#af');"  v-on:click="another(li,{page:0,postId:li.pid},'public/postReply/get-by-page')" >
                 <ul style="width: 100%;height: 135px;">
                     <li style="width:100%;height: 45px;"><img style="border-radius: 20px;border: none;height: 40px;width: 40px;float: left;margin-top: 5px;" v-bind:src="'http://pic.zdnfbbs.cn/'+li.head_pic" alt="头"><div style="width:55%;height:40px;display: inline-block;"><p style="margin-top:8px;margin-left: 10px;font-size:12px">{{li[showDataW[0]]}}</p><p style="margin-top:7px;font-size:10px;margin-left: 10px;color:#bababa;">{{myDate(li[showDataW[1]])}}</p></div></li>
                     <li style="width:100%;height: 70px;overflow: hidden;font-size: 13px;text-indent:0.5em;font-weight: 600;margin-top: 5px;margin-bottom: 5px;padding-top: 3px;"><div  style='display:inline;border-radius: 5px;padding-right: 3px;padding-left: 3px; margin-right: 3px;position: relative;top:-1px;border: 1px solid rgb(255, 44, 0);font-size: 13px;color: rgb(251, 47, 13);' v-if='li.is_top == 1'>置顶</div><div style="display: inline;white-space: nowrap;text-overflow: ellipsis;width:90%;overflow: hidden" >{{textLength(li.title)}}</div><p style="width:100%;font-weight: 400;font-size:12px;margin-right: 5px;margin-top: 4px;color:#999999">{{imgdele(li.content)}}</p></li>
@@ -137,13 +137,13 @@ and open the template in the editor.
                 
                    
       
-                <div  class='postcontent' style='height: 100%;background-color: #ffffff;display:none;text-align: center;font-family: Microsoft JhengHei;font-size: 16px;font-weight: 700;overflow: hidden '> <img onclick="    $('.tli').css('top','');$('.mypost').show() ;$('.postcontent').hide();$('.postpng').show(); $('.postspan').show();$('.colorchange').css('background-color','');a.ve.rawHtml='';a.ve.rawHtmlS=''   "  src='static/images/关闭3.png' alt='关闭' style='float:left;width: 28px;height: 28px' /> 编辑帖子 <span v-on:click="post('private/post/add')" style='float: right;margin-right: 3%;'  >发帖</span><br/>
+                <div  class='postcontent' style='height: 100%;background-color: #ffffff;display:none;text-align: center;font-family: Microsoft JhengHei;font-size: 16px;font-weight: 700;overflow: hidden '> <img onclick="    $('.tli').css('top','');$('.mypost').show() ;$('.postcontent').hide();$('.postpng').show(); $('.postspan').show();$('.colorchange').css('background-color','');a.ve.rawHtml='';a.ve.rawHtmlS=''   "  src='static/images/关闭3.png' alt='关闭' style='float:left;width: 28px;height: 28px;padding-left: 3%' /> 编辑帖子 <span v-on:click="post('private/post/add')" style='float: right;margin-right: 3%;'  >发帖</span><br/>
                     <br/><input placeholder="写上你的标题吧" v-model="qo" style="margin-left: 3%;margin-right: 3%;width: 94%;border: #ffffff  solid 1px;float: left;height: 30px" ><br/><br/>
                     <textarea placeholder="这是帖子的内容哦" style="width:94%;margin-left: 3%;margin-right: 3%;min-height: 130px;border: #ffffff  solid 1px;float: left;" id="txtarea" v-bind:value="rawHtml.replace(reg,'圖')" v-on:input="rawHtml =a( $event.target.value)" ></textarea>
  
                    <!-- <textarea placeholder="这是帖子的内容哦" v-model="qt"  style="width: 380px;border: #ffffff  solid 1px;float: left;height: 120px" cols="5"></textarea> -->
                     <br/><br/>
-                    <button style="margin-left: 3%;margin-right: 3%;" class="ui-upload" onclick="document.getElementById('upload').click()"><img src="static/images/上传.png" style=";width: 28px;height: 28px"/></button>
+                    <button style="margin-left: 3%;margin-right: 3%;" class="ui-upload" onclick="document.getElementById('upload').click()"><img src="static/images/上传.png" style=";width: 45px;height: 45px"/></button>
   <input type="file" id="upload" style="display:none;"  accept="image/gif, image/jpeg"  onchange="previewFiles()"/><p style="padding-left: 5px;padding-right: 5px;color:white;background-color: #ff6633;margin-top:10px;position: relative;top:10px;left:-20px;float:right;border:1px #ff6633 solid ;border-radius: 5px" onclick="a.ve.rawHtml='';a.ve.rawHtmlS=''">清空</p>
   <br/><div style="width:94%;height: 50%;display: inline-block;text-align: left;margin-top: 8px;overflow: hidden;text-indent: 2em;white-space:normal;word-break:break-all;    " id="上传图片list" v-html="rawHtml"></div>
    <div id="模板" style="height:1px;width: 1px;overflow-y: scroll"></div>
@@ -194,10 +194,10 @@ and open the template in the editor.
                 
                 
              <div class="rcontent" style="display: none;height: 36px;width: 100%;"> 
-                 <img onclick=" $('.liuyan').css('top','');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');   "   src='static/images/关闭3.png' alt='关闭' style='float:left;width: 22px;height: 22px' />
+                 <img onclick=" $('.liuyan').css('top','');$('.myreply').fadeIn(300) ;$('.rcontent').hide();$('.liuyan').css('background-color','');   "   src='static/images/关闭3.png' alt='关闭' style='float:left;width: 28px;height: 28px;' />
                  <span class="rpng" v-on:click="Reply('private/postReply/add')" style='float: right;'   >提交</span >  
              <br/><br/><br/>
-             <textarea    v-model="replycont" style='width: 85%;height:300px;border:1px #fff solid;float: left;text-indent: 2px; padding-left: 2px;padding-top: 2px;' placeholder='要不留个言再走~' ></textarea>
+             <textarea    v-model="replycont" style='width: 85%;height:300px;border:1px #fff solid;float: left;text-indent: 2px; padding-left: 3%;padding-top: 2px;' placeholder='要不留个言再走~' ></textarea>
              
              </div>
             </li>
@@ -228,7 +228,10 @@ function img_upload(h,n,j,k){k=k||0;var m=h[k].src.split(",")[1]; var i=function
         
         <script>
      let nowS = '',bool = true,nowtype =1,page,btw =true,mypostId = 1,replyPage = 0,checkFull=true,saveP = {};    
-     
+      var json = {time:1};
+       window.addEventListener("popstate", function (e) {
+      a.ve.ifshow = false;setTimeout( ()=> { window.scrollTo(0,nowS);bool = true;replyPage = 0;  });
+    }, false);
 $(document).ready(function(){
     page = 0;
     
@@ -591,6 +594,8 @@ var that =this;
             }
             
             
+         },(err) =>{
+             self.location.href="/sign_in" ;
          });
     }
     
@@ -603,6 +608,8 @@ var that =this;
             }
             f.forEach( (data) => {  this.ve.conts.push(data);  }  );
          
+         },(err) =>{
+             self.location.href="/sign_in" ;
          });
         }
         
@@ -687,7 +694,7 @@ a.ve.postdatasave = {uid:null,title:null,content:null,postId:null};
             });
             
 var allurl = '';
-//http://nanfeng.heartqiu.cn/
+//
         </script>
         
     </body>

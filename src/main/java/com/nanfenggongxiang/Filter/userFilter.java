@@ -17,9 +17,9 @@ import java.io.IOException;
  * 用户登录的拦截器
  * 检测用户cookie的有效性
  */
-//@Component
-//@ServletComponentScan
-//@WebFilter(urlPatterns = "/private/**",filterName = "userFilter")
+@Component
+@ServletComponentScan
+@WebFilter(urlPatterns = "/private/*",filterName = "userFilter")
 public class userFilter implements Filter{
 
     @Autowired
@@ -35,8 +35,10 @@ public class userFilter implements Filter{
         HttpServletRequest request= (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         Cookie[] cookies = request.getCookies();
-        if (cookies == null)
+        if (cookies == null){
+            response.sendRedirect("/user_guest");
             return;
+        }
         int uid = 1;
         String session = "session";
         //从cookie里拿到用户的uid和session
@@ -50,7 +52,13 @@ public class userFilter implements Filter{
         if (loginService.auth(uid,session)){
             filterChain.doFilter(request,response);
         }else {
-            response.sendRedirect("/login");
+            Cookie idCookie      = new Cookie("uid","1");
+            Cookie sessionCookie = new Cookie("session","1");
+            idCookie.setMaxAge(0);
+            sessionCookie.setMaxAge(0);
+            response.addCookie(idCookie);
+            response.addCookie(sessionCookie);
+            response.sendRedirect("/user_guest");
         }
 
     }

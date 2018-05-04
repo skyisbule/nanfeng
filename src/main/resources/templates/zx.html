@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
     <head>
@@ -36,7 +36,7 @@
                 padding: 0;
             }
             body{
-                background-color: #fff;
+                background-color: #eee;
             }
             ul{
                 list-style-type:none;
@@ -88,7 +88,7 @@ margin-top: 5px;
             <tr style="background-color: #ffffff;">
             <td style='width:20%;text-align: center' >
             <div style='height: 45px;position: relative;top:14px;'>
-            <img v-show='ifshow' src='static/images/向左.png' style='height:18px;width:18px;float:left;margin-left: 3%' onclick="a.ve.ifshow = false;setTimeout( ()=> { window.scrollTo(0,nowS);bool = true; replyPage = 0; });  ">
+            <img v-show='ifshow' src='static/images/向左.png' style='height:18px;width:18px;float:left;margin-left: 3%' onclick="$('#news').show();a.ve.ifshow = false;setTimeout( ()=> { window.scrollTo(0,nowS);bool = true; replyPage = 0; });  ">
             
             </div>
         </td>
@@ -209,7 +209,7 @@ margin-top: 5px;
         
             
             
-        <ul class='allpic' style="margin-top: 69vw;margin-bottom: 15vw"  v-show='!ifshow'>
+        <ul class='allpic' style="margin-top: 67.5vw;margin-bottom: 15vw"  v-show='!ifshow'>
             <div id="mutext" v-if="lis[0] === undefined" style="width:100%;margin: 0 auto;font-size: 10px;text-align: center"></div>
            <!-- <li style='width:100%;height:200px;background-color: #000;background-image: url(http://wx4.sinaimg.cn/large/006Zdy2vgy1fn5cu7897wj31hb0n111y.jpg); background-size: auto 100%'></li> -->
             
@@ -218,7 +218,7 @@ margin-top: 5px;
             
             
             <transition-group style="" name="fade"  >
-                <li style="width: 100%;background-color: #ffffff;padding-top: 5px;padding-bottom: 5px"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li"   v-on:click="another(li,{page:0,newsId:li.nid},'public/newsReply/get-by-page')" >
+                <li style="width: 100%;background-color: #ffffff;padding-top: 5px;padding-bottom: 5px" href="#sf"  v-for = '(li,index) in lis' v-bind:key="index"  v-bind:nowcontent ="li" onclick="$('#news').hide();window.scrollTo(0,0);window.history.pushState(json,'','#af');"  v-on:click="another(li,{page:0,newsId:li.nid},'public/newsReply/get-by-page')" >
                 <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid" v-if="piccontent(li.content) == 3">
                     <li style="width:100%;overflow: hidden"><div style="font-size:18px;line-height: 26px;font-weight: normal;text-overflow: ellipsis;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;    -webkit-box-orient: vertical;margin-top: -3px;    margin-bottom: 4px;    text-align: left;">
                <div  style='display:inline;border-radius: 5px;padding-right: 3px;padding-left: 3px; margin-right: 3px;position: relative;top:-1px;border: 1px solid rgb(255, 44, 0);font-size: 13px;color: rgb(251, 47, 13);' v-if='li.isTop == 1'>置顶</div>{{li[showDataW[2]]}} </div></li>
@@ -232,13 +232,13 @@ margin-top: 5px;
        <div v-show='ALLSHOW' style='display:inline;border-radius: 5px;padding-right: 3px;padding-left: 3px; border: 1px solid rgb(157, 157, 157);font-size: 13px;font-size: 13px;color: rgb(132, 132, 132);'>{{classification(li.classification)}}</div>
    </li>
   </ul>  
-             <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid;padding-bottom: 4px" v-else-if="piccontent(li.content) == 1">  <!-- 单图片内容 -->
+                    <ul style="width: 94%;margin-left: 3%;margin-right: 3%;border-bottom: 1px #bababa solid;padding-bottom: 4px" v-else-if="piccontent(li.content) == 1">  <!-- 单图片内容 -->
                     
    <li style="width:100%;">
       <div style="width: 32.105%;height: 22%;display: inline-block"><img v-bind:src="ppic(li.content)"  style="width:100%;height: 100%;" alt="tu" /></div>
      <div style="display: inline-block;width: 60%;position: absolute;margin-left: 3%">
          <div style="font-size:18px;line-height: 26px;font-weight: normal;text-overflow: ellipsis;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;    -webkit-box-orient: vertical;margin-top: -3px;        text-align: left;">
-                           <div  style='display:inline;border-radius: 5px;padding-right: 3px;padding-left: 3px; position: relative;top:-1px;border: 1px solid rgb(255, 44, 0);font-size: 13px;color: rgb(251, 47, 13);' v-if='li.isTop == 1'>置顶</div> {{li[showDataW[2]]}}</div>
+             <div  style='display:inline;border-radius: 5px;padding-right: 3px;padding-left: 3px; position: relative;top:-1px;border: 1px solid rgb(255, 44, 0);font-size: 13px;color: rgb(251, 47, 13);' v-if='li.isTop == 1'>置顶</div>{{li[showDataW[2]]}}</div>
                            <div><span style="font-size:13px;margin-right: 5px;color:#bababa;">{{myDate(li.releaseTime)}}</span><div v-show='ALLSHOW' style='display:inline;border-radius: 5px;padding-right: 3px;padding-left: 3px;border: 1px solid rgb(157, 157, 157);font-size: 13px;    color: rgb(132, 132, 132);' >{{classification(li.classification)}}</div></div>
      </div>
    </li>
@@ -260,7 +260,7 @@ margin-top: 5px;
                             
                             
                             
-            </li>
+            </li> 
             </transition-group>
 
             <!-- <li id="bottomWarning" style="position: relative;width: 100%;height: 50px;margin-top: 10px;text-align: center;overflow: hidden"></li> 暂时先取消下 -->
@@ -279,7 +279,7 @@ margin-top: 5px;
                 </li> -->
     </ul>
         
-         <ul style="margin-top: 55px;margin-bottom: 15vw;margin-top: 48px;position: relative;z-index:10001"  v-show='ifshow'>
+         <ul style="margin-top: 55px;margin-bottom: 15vw;margin-top: 50px;position: relative;z-index:10001"  v-show='ifshow'>
              
              <li style="width: 100%;background-color: #ffffff;margin-top: 10px;padding-bottom: 20px;">
                 <ul style="width: 94%;margin-left: 3%;margin-right: 3%">
@@ -354,7 +354,10 @@ margin-top: 5px;
         <script type="text/javascript" src="http://cdn.nanfeng.hejianpeng.cn/js/pic_ad.js"></script>
         <script>
      let nowS = '',bool = true,nowtype =0,page,replyPage = 0,mypnewsId,ifnull=false,checkFull=true,saveP=null;    
-     
+     var json = {time:1};
+       window.addEventListener("popstate", function (e) {
+      $('#news').show();a.ve.ifshow = false;setTimeout( ()=> { window.scrollTo(0,nowS);bool = true; replyPage = 0; }); 
+    }, false);
 $(document).ready(function(){
     page = 0;
     
