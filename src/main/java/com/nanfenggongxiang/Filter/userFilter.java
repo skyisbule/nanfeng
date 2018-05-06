@@ -58,7 +58,7 @@ public class userFilter implements Filter{
             sessionCookie.setMaxAge(0);
             response.addCookie(idCookie);
             response.addCookie(sessionCookie);
-            response.sendRedirect("/user_guest");
+            response.sendRedirect("/ban");
         }
 
     }
