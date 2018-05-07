@@ -50,6 +50,12 @@ public class userController {
             idCookie.setMaxAge(maxAge);
             passwdCookie.setMaxAge(maxAge);
             headCookie.setMaxAge(maxAge);
+            //idCookie.setPath("/");
+           // passwdCookie.setPath("/");
+          //  headCookie.setPath("/");
+          //  idCookie.setDomain("hejianpeng.cn");
+           // passwdCookie.setDomain("hejianpeng.cn");
+          //  headCookie.setDomain("hejianpeng.cn");
             //nickCookie.setMaxAge(maxAge);
             response.addCookie(idCookie);
             response.addCookie(passwdCookie);

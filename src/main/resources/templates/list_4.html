@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>公告栏</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+</head>
+<body>
+<h2>目前的公告信息：</h2>
+<table id="notice">
+
+</table>
+
+<h1>添加一条公告（首页的图片轮播）</h1>
+<form method="post" action="/public/notice/add">
+    <p>公告的id（数字）：<input name="nid" type="text"/></p>
+    <p>图片的地址：<input name="picUrl" type="text"/></p>
+    <p>点击后跳转的链接：<input name="links" type="text"/></p>
+    <input name="isShow" type="hidden" value="1">
+    <p><input type="submit"></p>
+</form>
+
+<h1>删除公告</h1>
+<form method="post" action="/public/notice/delete-by-id">
+    <p>公告的id（数字）：<input name="id" type="text"/></p>
+    <p><input type="submit"></p>
+</form>
+<hr>
+<h1>首页公告栏下边漂过的那行字</h1>
+<form method="post" action="/front/notice/set">
+    <p>内容：<input name="content" type="text"/></p>
+    <p><input type="submit"></p>
+</form>
+
+</body>
+<script>
+     axios.get('/public/notice/get-show?isShow=1')
+     .then(function (response) {
+     let result = " <tr> <th>公告ID</th> <th>公告图片的地址</th> <th>是否显示</th> <th>点击后跳转的地址</th> </tr>";
+     let data = response.data;
+     for (let i = 0; i < data.length; i++) {
+     let column = data[i];
+     let res = "<tr><td>";
+     res += column.nid + "</td><td>";
+     res += column.picUrl + "</td><td>";
+     res += column.isShow + "</td><td>";
+     res += column.links + "</td><td>";
+     result += res;
+     res = "";
+     }
+     alert(result)
+     $("#notice").append(result);
+     })
+     .catch(function (err) {
+     console.log(err);
+     });
+
+
+</script>
+</html>

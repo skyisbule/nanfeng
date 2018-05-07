@@ -84,7 +84,7 @@ and open the template in the editor.
                 for (let i = 0; i < lg; i++) {
                     let a = new Promise(function (re, rj) {
 
-                        Vue.http.post(allurl + 'public/pic/token', {fileName: Math.random()}, {emulateJSON: true}).then((response) => {
+                        Vue.http.post(allurl + 'public/pic/token', {fileName: Math.random()}, {emulateJSON: false}).then((response) => {
                             img_upload(document.getElementsByTagName('img'), response.bodyText, function (data) {
 
                                 document.getElementsByTagName('img')[i].src = 'http://pic.zdnfbbs.cn/' + data[i];
@@ -102,7 +102,7 @@ and open the template in the editor.
                         title: document.getElementById('A').value,
                         content: editor.txt.html(),
                         classification: document.getElementById('B').value
-                    }, {emulateJSON:false  }).then((response) => {
+                    }, {emulateJSON:true  }).then((response) => {
                         $('#myshow').hide();
                         alert(response.bodyText);
                         window.parent.document.getElementById('flash').click();

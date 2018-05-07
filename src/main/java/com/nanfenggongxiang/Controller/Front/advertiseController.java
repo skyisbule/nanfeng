@@ -34,6 +34,8 @@ public class advertiseController {
     @ApiOperation("更新一条广告，要传主键")
     @RequestMapping("/public/ad/update")
     public String update(Advertisement ad){
+        Date date = new Date();
+        ad.setTimes(date);
         dao.updateByPrimaryKey(ad);
         return "success";
     }
@@ -48,8 +50,8 @@ public class advertiseController {
 
     @ApiOperation("删除一条广告")
     @RequestMapping("/public/ad/delete")
-    public String delete(int adId){
-        dao.deleteByPrimaryKey(adId);
+    public String delete(int aid){
+        dao.deleteByPrimaryKey(aid);
         return "success";
     }
 
