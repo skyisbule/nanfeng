@@ -3,6 +3,7 @@ package com.nanfenggongxiang.Filter;
 import com.nanfenggongxiang.Service.loginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -17,6 +18,7 @@ import java.io.IOException;
  * 用户登录的拦截器
  * 检测用户cookie的有效性
  */
+@Order(2)
 @Component
 @ServletComponentScan
 @WebFilter(urlPatterns = "/private/*",filterName = "userFilter")
