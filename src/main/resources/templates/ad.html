@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <script src="http://vuejs.org/js/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/vue-resource/1.3.4/vue-resource.js"></script>
+<!-- import stylesheet -->
+<link rel="stylesheet" href="http://unpkg.com/iview/dist/styles/iview.css">
+<!-- import iView -->
+<script src="http://unpkg.com/iview/dist/iview.min.js"></script>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="app">
+            <row v-bind:style="{height:'60px',background:'#000',width:'100%'}">
+                 
+    </row>
+    <row>
+        <i-table border :columns="columns" :data="lis"></i-table>
+    </row>
+             <row v-bind:style="{height:'60px',background:'#fff',width:'100%'}">
+                 <i-button v-bind:style="{float:'right',marginTop:'20px',marginRight:'20px'}" v-on:click="tro = true" type="primary">添加数据</i-button>
+    </row>
+             <modal
+        v-model="tro"
+        title="Common Modal dialog box title"
+        @on-ok="addData"
+        >
+                 <div id="模板" style="float:right;width:250px;height:100%"></div>
+                  <i-input v-model="title" placeholder="标题" clearable style="width: 200px"></i-input><br/><br/>
+                  <i-input v-model="content" placeholder="内容" clearable style="width: 200px"></i-input><br/><br/>
+                  <i-input v-model="power" placeholder="权力" clearable style="width: 200px"></i-input><br/><br/>
+        <br/><br/>
+        <i-input v-model="pic" placeholder="图片链接" clearable style="width: 200px"></i-input>
+        <br/><br/>
+        <i-input v-model="links" placeholder="超链接" clearable style="width: 200px"></i-input>
+        <br/><br/>
+        
+        <i-button v-bind:style=""  type="info">上传图片</i-button><input style='width:150px;height:150px;z-index: 999;opacity: 0;position: relative;left:-60px' id="browse" type="file" onchange="previewFiles()" multiple>
+    </modal>
+            </div>
+        
+        <script>
+            let vue =new Vue({
+                el:'#app',
+                data:{
+                    power:'',
+                    content:'',
+                    title:'',
+                    pic:'',
+                    links:'',
+                    tro:false,
+                    columns:[{title:'Id',key:'aid'},{title:'图片',key:'pic'},{title:'链接',key:'links'},{title:'内容',key:'content'},{title:'标题',key:'title'},{title:'权力',key:'power'},{
+                        title: 'Action',
+                        key: 'action',
+                        width: 150,
+                        align: 'center',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Button', {
+                                    props: {
+                                        type: 'error',
+                                        size: 'small'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            console.log(params.index+1);
+                                            vue.deleteData(params.index+1);
+                                        }
+                                    }
+                                }, 'Delete')
+                            ]);
+                        }}],
+                    lis:[]
+                },
+                methods:{
+                    getData(){
+                           this.lis = [];
+       Vue.http.get(allurl+'/public/ad/get-all').then(  (response) => {
+            let f =  eval("("+response.bodyText+")");
+            f.forEach( (data) => {  this.lis.push(data);  }  );  
+        });
+                    },
+                    deleteData(aid){
+                         Vue.http.get(allurl+'/public/ad/deleted',{params:{aid:aid}}).then(  (response) => {
+                    this.getData(); 
+                    alert(response.bodyText);},(err)=>{alert('错误');}) 
+            
+            },
+            addData(pic=null,links=null){
+                pic = this.pic;
+                links = this.links;
+                let power =this.power;
+                let content =this.content;
+                let title = this.title;
+                if(!pic || !links|| !content|| !title){
+                    alert('不能为空');
+                }else{
+                    if(!power){//我懒
+                                        Vue.http.post(allurl+'/public/ad/add',{pic,links,title,content}, {emulateJSON: true}).then(  (response) => {   if(response.bodyText=='success') {alert(response.bodyText);this.getData(); } });
+
+                    }else{
+                                        Vue.http.post(allurl+'/public/ad/add',{pic,links,title,content,power}, {emulateJSON: true}).then(  (response) => {   if(response.bodyText=='success') {alert(response.bodyText);this.getData(); } });
+
+                    }
+                    
+                }
+                
+            }
+                    
+                }
+            });
+            let allurl = ''; //http://nanfengdev.s3.natapp.cc
+            vue.getData(); 
+            
+            function previewFiles() {
+
+  var files   = document.querySelector('input[type=file]').files;
+
+  function readAndPreview(file) {
+
+    
+    if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+      var reader = new FileReader();
+
+      reader.addEventListener("load", function () {
+        
+        /*image.height = 100;
+        image.title = file.name;
+        image.src = this.result;*/
+       
+      //  a.imgUrl = this.result;
+      let o =document.createElement("IMG");
+o.src=this.result;
+o.className = 'pic';
+o.style.maxWidth = '100%';
+ /*o.style.maxHeight = '200px';      
+ o.style.marginRight = '5px';*/
+ document.getElementById('模板').innerHTML = ' ';
+        document.getElementById('模板').appendChild(o);
+        Vue.http.post(allurl+'/public/pic/token',{fileName:Math.random()}, {emulateJSON: true}).then(  (response) => {
+                        img_upload(document.getElementsByTagName('img'),response.bodyText,function(data){ 
+                            let get =  'http://pic.zdnfbbs.cn/'+data[i];
+                           vue.pic = get;
+               alert('成功上传'+get)        ;            
+    }); });
+        /*preview.appendChild( image );*/
+      }, false);
+
+      reader.readAsDataURL(file);
+    }
+
+  }
+
+  if (files) {
+    [].forEach.call(files, readAndPreview);
+  }
+
+}
+
+function img_upload(h,n,j,k){k=k||0;var m=h[k].src.split(",")[1]; var i=function(a){var c;if(a.indexOf("=")>0){var b=a.indexOf("=");a=a.substring(0,b)}c=parseInt(a.length-(a.length/8)*2);return c};var g="http://upload-z2.qiniu.com/putb64/"+i(m);var l=new XMLHttpRequest();l.onreadystatechange=function(){if(l.readyState==4){img_arr[k]=JSON.parse(l.responseText).key;k++;if(k>=h.length){j(img_arr)}else{img_upload(h,n,j,k)}}};l.open("POST",g,false);l.setRequestHeader("Content-Type","application/octet-stream");l.setRequestHeader("Authorization","UpToken "+n);l.send(m)};
+
+        </script>
+    </body>
+</html>

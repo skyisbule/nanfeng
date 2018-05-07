@@ -83,7 +83,7 @@
                                                 <th>内容</th>
                                                 <th>图片</th>
 						<th>日期</th>
-						<th>权力</th>
+						<th>权值(越大越前)</th>
 						<th>超链接</th>
                                                 <th>操作</th>
 				</thead>
@@ -113,7 +113,7 @@
                                                     <input class="readonly"  v-model='li.pic' readonly>
                                                 </td>
                                                 <td class="mylis" style='min-width:100px'>
-                                                    <span v-on:click="">{{myDate(li.releaseTime)}}</span>
+                                                    <span v-on:click="">{{myDate(li.times)}}</span>
                                                 </td>
                                                 <td class="mylis" >
                                                     <input class="readonly"  v-model='li.power' readonly>
@@ -161,7 +161,7 @@
             
             data ={
                 getU:'public/ad/get-all',
-                deleteU:'public/ad/deleted',
+                deleteU:'public/ad/delete',
                 deletecontentsU:'no',
                 addU:'public/ad/add',
                 editU:'public/ad/update',
@@ -183,8 +183,13 @@
                     }
 
     },
-               myDate(ydate){
-                    var date = new Date(ydate);var y = date.getFullYear();   var m = date.getMonth() + 1;  m = m < 10 ? ('0' + m) : m;  var d = date.getDate();  d = d < 10 ? ('0' + d) : d;  var h = date.getHours();  h=h < 10 ? ('0' + h) : h;  var minute = date.getMinutes();  minute = minute < 10 ? ('0' + minute) : minute;  var second=date.getSeconds();  second=second < 10 ? ('0' + second) : second;  return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;  
+               myDate(obj){
+                   var date =  new Date(obj);
+                   var y = 1900+date.getYear();
+                   var m = "0"+(date.getMonth()+1);
+                   var d = "0"+date.getDate();
+                   let time = y+"-"+m.substring(m.length-2,m.length)+"-"+d.substring(d.length-2,d.length);
+                   return time;
                 },
                 addcontents(url,p){
         Vue.http.get(allurl+url,{params:p}).then(  (response) => {
