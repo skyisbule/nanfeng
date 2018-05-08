@@ -137,6 +137,18 @@ public class shopController {
         return complexDao.getMyRelease(uid,isSellOut,isWantBuy,page*10);
     }
 
+    @ApiOperation("获取有多少条商品")
+    @RequestMapping(value = "/public/commodity/get-count",method = RequestMethod.GET)
+    public Integer getCount(){
+        return complexDao.getTotalCommodityCount();
+    }
+
+    @ApiOperation("删除一件商品")
+    @RequestMapping(value = "/admin/commodity/delete",method = {RequestMethod.GET,RequestMethod.POST})
+    public String delete(int gid){
+        return service.delectCommodity(gid)?"删除成功":"删除失败，一般情况为gid输入有误，数据库已回滚";
+    }
+
     private void init(Commodity commodity){
         commodity.setGid(null);
         //commodity.setUid(uid);

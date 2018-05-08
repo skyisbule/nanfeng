@@ -84,4 +84,10 @@ public interface CommodityDao {
     @Update("update info set release_num = release_num + 1 where uid = ${uid}")
     public void addReleaseNum(@Param("uid")int uid);
 
+    @Select("select count(gid) from commodity")
+    public int getTotalCommodityCount();
+
+    @Update("update info set release_num = release_num - 1 where uid = (select uid from commodity where gid = ${gid})")
+    public int reduceUserReleaseNum(@Param("gid") int gid);
+
 }

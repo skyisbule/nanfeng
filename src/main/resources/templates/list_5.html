@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品管理页面</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $.get("/public/commodity/get-count",(data)=>{
+            let res = "<p>当前共有商品："+data+"件</p>";
+            $("#count").append(res);
+        })
+    </script>
+</head>
+<body>
+<h1 id="count"></h1>
+<h1>删除一件商品：</h1>
+<form action="/admin/commodity/delete" method="post">
+    <p>请输入商品的id：<input type="test" name="gid"/></p>
+    <input type="submit">
+    <p>商品的id可以打开商品后在地址栏查看（gid）</p>
+</form>
+</body>
+</html>

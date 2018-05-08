@@ -120,6 +120,11 @@ public class view {
         return "list_4";
     }
 
+    @RequestMapping("/list_5")
+    public String list_5(){
+        return "list_5";
+    }
+
     @RequestMapping("/admins")
     public String admin(){
         return "background";
