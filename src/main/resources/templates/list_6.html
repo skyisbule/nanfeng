@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传图片至七牛</title>
+    <script src="https://unpkg.com/qiniu-js@2.2.2/dist/qiniu.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+
+        function getFileName(o){
+            let pos= o.lastIndexOf("\\");
+            return  o.substring(pos+1);
+        }
+
+        function upload(files) {
+            let observer = {
+                next(res){
+                    //do nothing
+                },
+                error(err){
+                    alert("图片上传错误，请联系开发者,图片可能已经存在。");
+                    alert(err)
+
+                },
+                complete(res){
+                    let fileName = res.key;
+                    let hash     = res.hash;
+                    alert("上传成功，图片地址为：http://pic.zdnfbbs.cn/跟上你的文件名");
+                    alert("http://pic.zdnfbbs.cn/"+fileName);
+                    var url = "图片的地址："+"http://pic.zdnfbbs.cn/"+fileName;
+                    $("#res").append(url);
+                }
+            };
+            let putExtra = {
+                fname: getFileName($("#img").val()),
+                params: {},
+                mimeType: [] || null
+            };
+            let config = {
+                useCdnDomain: true,
+                region: qiniu.region.z2
+            };
+
+            let file  = $("#img");
+            let key   = getFileName(file.val());
+            let tokens = "";
+            let f = files[0];
+            $.get("/public/pic/token",(data)=>{
+                tokens = data;
+                let observable = qiniu.upload(f, key, tokens, putExtra, config)
+                let subscription = observable.subscribe(observer) // 上传开始
+            });
+
+        }
+
+    </script>
+    <style>
+        span{
+            color : red;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="img" onchange="upload(this.files)">
+
+<h3 id="res"></h3>
+</body>
+</html>

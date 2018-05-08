@@ -120,6 +120,11 @@ public class view {
         return "list_4";
     }
 
+    @RequestMapping("/list_6")
+    public String list_6(){
+        return "list_6";
+    }
+
     @RequestMapping("/list_5")
     public String list_5(){
         return "list_5";
