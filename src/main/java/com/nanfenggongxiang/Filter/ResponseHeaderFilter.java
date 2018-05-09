@@ -2,6 +2,7 @@ package com.nanfenggongxiang.Filter;
 
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -14,8 +15,8 @@ import java.io.IOException;
  * 通用的响应头拦截器
  */
 @Order(1)
-//重点
 @ServletComponentScan
+//@Component
 @WebFilter(filterName = "ResponseHeaderFilter", urlPatterns = "/*")
 public class ResponseHeaderFilter implements Filter {
 
