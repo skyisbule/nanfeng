@@ -29,6 +29,7 @@
 </form>
 <hr>
 <h1>首页公告栏下边漂过的那行字</h1>
+<h2 id="content"></h2>
 <form method="post" action="/front/notice/set">
     <p>内容：<input name="content" type="text"/></p>
     <p><input type="submit"></p>
@@ -36,6 +37,13 @@
 
 </body>
 <script>
+    axios.get("/front/notice/get?isShow=1")
+        .then((response)=>{
+            let data = response.data;
+            data = "当前的内容为：" + data;
+            $("#content").append(data)
+        });
+
      axios.get('/public/notice/get-show?isShow=1')
      .then(function (response) {
      let result = " <tr> <th>公告ID</th> <th>公告图片的地址</th> <th>是否显示</th> <th>点击后跳转的地址</th> </tr>";
@@ -50,7 +58,6 @@
      result += res;
      res = "";
      }
-     alert(result)
      $("#notice").append(result);
      })
      .catch(function (err) {

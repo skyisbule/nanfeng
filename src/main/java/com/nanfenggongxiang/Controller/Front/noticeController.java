@@ -61,6 +61,7 @@ public class noticeController {
     @RequestMapping("/public/notice/delete-by-id")
     public String delete(@ApiParam("公告的id") int id){
         NoticeExample e = new NoticeExample();
+        e.setOrderByClause("nid desc");
         e.createCriteria()
                 .andNidEqualTo(id);
         return dao.deleteByExample(e)==1?"success":"error";
