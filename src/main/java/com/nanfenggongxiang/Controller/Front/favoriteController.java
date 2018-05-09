@@ -4,11 +4,13 @@ import com.nanfenggongxiang.Dao.FavoritesMapper;
 import com.nanfenggongxiang.Dao.favoriteDao;
 import com.nanfenggongxiang.Domain.Favorites;
 import com.nanfenggongxiang.Domain.FavoritesExample;
+import com.nanfenggongxiang.Domain.Post;
 import com.nanfenggongxiang.Service.favoriteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -57,6 +59,17 @@ public class favoriteController {
                 .andUidEqualTo(uid);
         List<Favorites> list = dao.selectByExample(e);
         return list.isEmpty()?"no":"yes";
+    }
+
+    @ApiOperation(value = "删除收藏的商品")
+    @RequestMapping(value = "/private/favorite/delete",method = RequestMethod.POST)
+    public String delete(int gid,int uid){
+        FavoritesExample e = new FavoritesExample();
+        e.createCriteria()
+                .andGidEqualTo(gid)
+                .andUidEqualTo(uid);
+        dao.deleteByExample(e);
+        return "success";
     }
 
 }
