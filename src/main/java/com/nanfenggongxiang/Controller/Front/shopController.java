@@ -2,6 +2,7 @@ package com.nanfenggongxiang.Controller.Front;
 
 import com.nanfenggongxiang.Dao.CommodityDao;
 import com.nanfenggongxiang.Dao.CommodityMapper;
+import com.nanfenggongxiang.Dao.countDao;
 import com.nanfenggongxiang.Domain.Commodity;
 import com.nanfenggongxiang.Domain.CommodityExample;
 import com.nanfenggongxiang.Service.commodityService;
@@ -33,6 +34,8 @@ public class shopController {
     CommodityDao    complexDao;
     @Autowired
     commodityService service;
+    @Autowired
+    countDao        commodity;
 
     /**
      * 增加一件商品，需要已经登录。
@@ -95,6 +98,8 @@ public class shopController {
         //拿到在售的宝贝有多少件
         Object count = complexDao.getCommoditySellOutCount(uid,isSellOut);
         map.put("selling",count);
+        //浏览量加一
+        commodity.commodityPageViewsAdd(gid);
         return map;
     }
 
