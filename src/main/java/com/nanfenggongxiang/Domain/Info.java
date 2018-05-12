@@ -56,6 +56,13 @@ public class Info implements Serializable {
      */
     private String headPic;
 
+    /**
+     * qq号
+     */
+    private String qq;
+
+    private String wechat;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getUid() {
@@ -138,6 +145,22 @@ public class Info implements Serializable {
         this.headPic = headPic;
     }
 
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getWechat() {
+        return wechat;
+    }
+
+    public void setWechat(String wechat) {
+        this.wechat = wechat;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -159,7 +182,9 @@ public class Info implements Serializable {
             && (this.getReleaseNum() == null ? other.getReleaseNum() == null : this.getReleaseNum().equals(other.getReleaseNum()))
             && (this.getSignature() == null ? other.getSignature() == null : this.getSignature().equals(other.getSignature()))
             && (this.getContact() == null ? other.getContact() == null : this.getContact().equals(other.getContact()))
-            && (this.getHeadPic() == null ? other.getHeadPic() == null : this.getHeadPic().equals(other.getHeadPic()));
+            && (this.getHeadPic() == null ? other.getHeadPic() == null : this.getHeadPic().equals(other.getHeadPic()))
+            && (this.getQq() == null ? other.getQq() == null : this.getQq().equals(other.getQq()))
+            && (this.getWechat() == null ? other.getWechat() == null : this.getWechat().equals(other.getWechat()));
     }
 
     @Override
@@ -176,6 +201,8 @@ public class Info implements Serializable {
         result = prime * result + ((getSignature() == null) ? 0 : getSignature().hashCode());
         result = prime * result + ((getContact() == null) ? 0 : getContact().hashCode());
         result = prime * result + ((getHeadPic() == null) ? 0 : getHeadPic().hashCode());
+        result = prime * result + ((getQq() == null) ? 0 : getQq().hashCode());
+        result = prime * result + ((getWechat() == null) ? 0 : getWechat().hashCode());
         return result;
     }
 
@@ -195,6 +222,8 @@ public class Info implements Serializable {
         sb.append(", signature=").append(signature);
         sb.append(", contact=").append(contact);
         sb.append(", headPic=").append(headPic);
+        sb.append(", qq=").append(qq);
+        sb.append(", wechat=").append(wechat);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
