@@ -125,6 +125,11 @@ public class view {
         return "list_6";
     }
 
+    @RequestMapping("/list_7")
+    public String list_7(){
+        return "list_7";
+    }
+
     @RequestMapping("/list_5")
     public String list_5(){
         return "list_5";

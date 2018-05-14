@@ -35,11 +35,11 @@ and open the template in the editor.
                  <div id="模板" style="float:right;width:250px;height:100%"></div>
                   <i-input v-model="title" placeholder="标题" clearable style="width: 200px"></i-input><br/><br/>
                   <i-input v-model="content" placeholder="内容" clearable style="width: 200px"></i-input><br/><br/>
-                  <i-input v-model="power" placeholder="权力" clearable style="width: 200px"></i-input><br/><br/>
+                  <i-input v-model="power" placeholder="权值" clearable style="width: 200px"></i-input><br/><br/>
         <br/><br/>
         <i-input v-model="pic" placeholder="图片链接" clearable style="width: 200px"></i-input>
         <br/><br/>
-        <i-input v-model="links" placeholder="超链接" clearable style="width: 200px"></i-input>
+        <i-input v-model="links" placeholder="点击后跳转的链接" clearable style="width: 200px"></i-input>
         <br/><br/>
         
         <i-button v-bind:style=""  type="info">上传图片</i-button><input style='width:150px;height:150px;z-index: 999;opacity: 0;position: relative;left:-60px' id="browse" type="file" onchange="previewFiles()" multiple>

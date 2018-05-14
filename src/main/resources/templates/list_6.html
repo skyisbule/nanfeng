@@ -1,117 +1,130 @@
 ﻿<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
-    <head>
-                <script src="http://vuejs.org/js/vue.min.js"></script>
-<script src="https://cdn.bootcss.com/vue-resource/1.3.4/vue-resource.js"></script>
-<!-- import stylesheet -->
-<link rel="stylesheet" href="http://unpkg.com/iview/dist/styles/iview.css">
-<!-- import iView -->
-<script src="http://unpkg.com/iview/dist/iview.min.js"></script>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-              <div id="app">
-            <row v-bind:style="{width:'100%',textAlign:'center',marginBottom:'5px'}">
-                <i-input v-model="input.goodsType" placeholder="0:全部 1图书 2数码 3日用 4服饰 5妆品 6零食 7运动 " clearable style="width: 330px"></i-input>
-                 <i-input v-model="input.isWantBy" placeholder="想买想卖 想买是1   想卖是0" clearable style="width: 200px"></i-input>
-                 <i-input v-model="input.isSellOut" placeholder="1上架中，0表示已经下架。" clearable style="width: 200px"></i-input>
-                 <i-button v-on:click='begin' type="primary">确定</i-button>
-                 总数据:{{length}}
+<head>
+    <script src="https://cdn.bootcss.com/vue/2.5.12/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.3.4/vue-resource.js"></script>
+    <link rel="stylesheet" href="http://unpkg.com/iview/dist/styles/iview.css">
+    <script src="http://unpkg.com/iview/dist/iview.min.js"></script>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="app">
+    <row v-bind:style="{width:'100%',textAlign:'center',marginBottom:'5px'}">
+        <p>0:全部 1图书 2数码 3日用 4服饰 5妆品 6零食 7运动 <i-input v-model="input.goodsType" placeholder="0:全部 1图书 2数码 3日用 4服饰 5妆品 6零食 7运动 " clearable
+                 style="width: 330px"></i-input></p>
+        <p>想买想卖 想买是1   想卖是0<i-input v-model="input.isWantBy" placeholder="想买想卖 想买是1   想卖是0" clearable style="width: 200px"></i-input></p>
+        <p>1表示在售，0表示已经下架。<i-input v-model="input.isSellOut" placeholder="1上架中，0表示已经下架。" clearable style="width: 200px"></i-input></p>
+        <i-button v-on:click='begin' type="primary">搜索</i-button>
+        总数据:{{length}}
     </row>
     <row>
         <i-table border :columns="columns" :data="lis"></i-table>
     </row>
 
-                  <row>
-                      <div style='text-align: center'>
-                      <page  v-bind:total="99999" v-bind:current="currentPage" @on-change="getByPage" page-size="10"  simple></page>
-                      </div>
-                  </row>
-      <!--       <modal
-        v-model="tro"
-        title="Common Modal dialog box title"
-        @on-ok="addData"
-        >
-                 <div id="模板" style="float:right;width:250px;height:100%"></div>
-                  <i-input v-model="content" placeholder="内容" clearable style="width: 200px"></i-input><br/><br/>
-        <br/><br/>
-      
-        
-    </modal> -->
-            </div>
-        <script>
-            let allurl = '';
-           let vue = new Vue({
-               el:'#app',
-               data:{
-                   input:{page:0,isWantBy:1,isSellOut:0,goodsType:0},
-                   length:1,
-                   currentPage:1,
-                   columns:[{title:'商品id',key:'gid'},{title:'商品名称',key:'goods_name'},{title:'是否已经出售',key:'is_sell_out'},{title:'是否想买',key:'is_want_by'},{title:'用户id',key:'uid'},{title:'价格',key:'price'},{title:'成色',key:'conditions'},{
-                        title: 'Action',
-                        key: 'action',
-                        width: 150,
-                        align: 'center',
-                        render: (h, params) => {
-                            return h('div', [
-                                h('Button', {
-                                    props: {
-                                        type: 'error',
-                                        size: 'small'
-                                    },
-                                    on: {
-                                        click: () => {
-                                          
-                                            vue.deleteData(params);
-                                        }
-                                    }
-                                }, 'Delete')
-                            ]);
-                        }}],
-                    lis:[]
-               },
-               methods:{
-                   getCount(){
-                       Vue.http.get(allurl+'/public/commodity/get-count').then(  (response) => {
-                     this.length =  parseInt(response.bodyText);
-        });
-                   },
-                   getByPage(page){
-                       this.currentPage = page;
-                       page =  page -1;
-                       
-                       let p = {page,isWantBy:this.input.isWantBy,isSellOut:this.input.isSellOut,goodsType:this.input.goodsType};
-                       let that = this;
-                       this.lis = [];
-                       Vue.http.get(allurl+'/public/commodity/get-with-info-by-page',{params:p}).then(  (response) => {
-                     let f =  eval("("+response.bodyText+")");
-            f.forEach( (data) => {  that.lis.push(data);  } 
+    <row>
+        <div style='text-align: center'>
+            <page v-bind:total="99999" v-bind:current="currentPage" @on-change="getByPage" page-size="10" simple></page>
+        </div>
+    </row>
+
+</div>
+<script>
+    let allurl = '';
+    let vue = new Vue({
+        el: '#app',
+        data: {
+            input: {page: 0, isWantBy: 1, isSellOut: 0, goodsType: 0},
+            length: 1,
+            currentPage: 1,
+            columns: [{title: '商品id', key: 'gid'}, {title: '商品名称', key: 'goods_name'}, {
+                title: '是否已经出售',
+                key: 'is_sell_out'
+            }, {title: '是否想买', key: 'is_want_by'}, {title: '用户id', key: 'uid'}, {
+                title: '价格',
+                key: 'price'
+            }, {title: '成色', key: 'conditions'}, {
+                title: 'Action',
+                key: 'action',
+                width: 150,
+                align: 'center',
+                render: (h, params) => {
+                    return h('div', [
+                        h('Button', {
+                            props: {
+                                type: 'error',
+                                size: 'small'
+                            },
+                            on: {
+                                click: () => {
+
+                                    vue.deleteData(params);
+                                }
+                            }
+                        }, 'Delete')
+                    ]);
+                }
+            }],
+            lis: []
+        },
+        methods: {
+            getCount(){
+                Vue.http.get(allurl + '/public/commodity/get-count').then((response) => {
+                    this.length = parseInt(response.bodyText);
+                });
+            },
+            getByPage(page){
+                this.currentPage = page;
+                page = page - 1;
+
+                let p = {
+                    page,
+                    isWantBy: this.input.isWantBy,
+                    isSellOut: this.input.isSellOut,
+                    goodsType: this.input.goodsType
+                };
+                let that = this;
+                this.lis = [];
+                Vue.http.get(allurl + '/public/commodity/get-with-info-by-page', {params: p}).then((response) => {
+                    let f = eval("(" + response.bodyText + ")");
+                    f.forEach((data) => {
+                            data.price = data.price/100;
+
+                            if(data.is_sell_out == 0){
+                                data.is_sell_out = "未售出";
+                            }else {
+                                data.is_sell_out = "已售出";
+                            }
+                        if(data.is_want_by == 0){
+                            data.is_sell_out = "想卖";
+                        }else {
+                            data.is_sell_out = "想买";
+                        }
+                            that.lis.push(data);
+                        }
                     );
-        });
-                   },
-                   deleteData(params){
-                       console.log(params.row.gid);
-                       let that =this;
-                       Vue.http.get(allurl+'/admin/commodity/delete',{params:{gid:params.row.gid}}).then(  (response) => {
+                });
+            },
+            deleteData(params){
+                console.log(params.row.gid);
+                let that = this;
+                Vue.http.get(allurl + '/admin/commodity/delete', {params: {gid: params.row.gid}}).then((response) => {
                     alert(response.bodyText);
                     that.getByPage(that.currentPage);
-        },err=>{that.getByPage(that.currentPage);});
-                   },
-                   begin(){
-                       this.currentPage = 1;
-                       this.getByPage(1);
-                       this.getCount();
-                   }
-               }
-           });
-        </script>
-        
-    </body>
+                }, err => {
+                    that.getByPage(that.currentPage);
+                });
+            },
+            begin(){
+                this.currentPage = 1;
+                this.getByPage(1);
+                this.getCount();
+            }
+        }
+    });
+</script>
+
+</body>
 </html>

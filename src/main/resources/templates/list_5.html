@@ -1,83 +1,60 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <script src="http://vuejs.org/js/vue.min.js"></script>
-    <script src="https://cdn.bootcss.com/vue-resource/1.3.4/vue-resource.js"></script>
-    <!-- import stylesheet -->
-    <link rel="stylesheet" href="http://unpkg.com/iview/dist/styles/iview.css">
-    <!-- import iView -->
-    <script src="http://unpkg.com/iview/dist/iview.min.js"></script>
-    <title>TODO supply a title</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公告栏</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
 </head>
 <body>
-<div id="app">
-    <row v-bind:style="{height:'60px',background:'#000',width:'100%'}">
+<h2>目前的公告信息：</h2>
+<table id="notice">
 
-    </row>
-    <row>
-        <i-table border :columns="columns" :data="lis"></i-table>
-    </row>
-    <row v-bind:style="{height:'60px',background:'#fff',width:'100%'}">
-        <i-button v-bind:style="{float:'right',marginTop:'20px',marginRight:'20px'}" v-on:click="tro = true"
-                  type="primary">添加数据
-        </i-button>
-    </row>
-    <modal
-            v-model="tro"
-            title="Common Modal dialog box title"
-            @on-ok="addData"
-    >
-        <div id="模板" style="float:right;width:250px;height:100%"></div>
-        <i-input v-model="content" placeholder="内容" clearable style="width: 200px"></i-input>
-        <br/><br/>
-        <br/><br/>
+</table>
 
+<h1>添加一条公告（首页的图片轮播）</h1>
+<form method="post" action="/public/notice/add">
+    <p>公告的id（数字）：<input name="nid" type="text"/></p>
+    <p>图片的地址：<input name="picUrl" type="text"/></p>
+    <p>点击后跳转的链接：<input name="links" type="text"/></p>
+    <input name="isShow" type="hidden" value="1">
+    <p><input type="submit"></p>
+</form>
 
-    </modal>
-</div>
+<h1>删除公告</h1>
+<form method="post" action="/public/notice/delete-by-id">
+    <p>公告的id（数字）：<input name="id" type="text"/></p>
+    <p><input type="submit"></p>
+</form>
+<hr>
+<h1>首页公告栏下边漂过的那行字</h1>
+<form method="post" action="/front/notice/set">
+    <p>内容：<input name="content" type="text"/></p>
+    <p><input type="submit"></p>
+</form>
 
-
-<script>
-    let vue = new Vue({
-        el: '#app',
-        data: {
-
-            content: '',
-
-            tro: false,
-            columns: [{title: '内容', key: 'content'}],
-            lis: [{content: ''}]
-        },
-        methods: {
-            getData(){
-                this.lis = [{content: ''}];
-                Vue.http.get(allurl + '/front/notice/get').then((response) => {
-
-                    this.lis[0].content = response.bodyText;
-                });
-            },
-            addData(pic = null, links = null){
-
-                let content = this.content;
-
-                Vue.http.post(allurl + '/front/notice/set', {content}, {emulateJSON: true}).then((response) => {
-                    if (response.bodyText == 'success') {
-                        alert(response.bodyText);
-                        this.getData();
-                    }
-                });
-
-
-            }
-
-        }
-
-
-    });
-    let allurl = ''; //http://api.nanfeng.hejianpeng.cn
-    vue.getData();
-</script>
 </body>
+<script>
+    axios.get('/public/notice/get-show?isShow=1')
+        .then(function (response) {
+            let result = " <tr> <th>公告ID</th> <th>公告图片的地址</th> <th>是否显示</th> <th>点击后跳转的地址</th> </tr>";
+            let data = response.data;
+            for (let i = 0; i < data.length; i++) {
+                let column = data[i];
+                let res = "<tr><td>";
+                res += column.nid + "</td><td>";
+                res += column.picUrl + "</td><td>";
+                res += column.isShow + "</td><td>";
+                res += column.links + "</td><td>";
+                result += res;
+                res = "";
+            }
+            alert(result)
+            $("#notice").append(result);
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+</script>
 </html>
