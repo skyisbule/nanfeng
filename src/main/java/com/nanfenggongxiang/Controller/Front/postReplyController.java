@@ -3,20 +3,22 @@ package com.nanfenggongxiang.Controller.Front;
 import com.nanfenggongxiang.Dao.PostReplyDao;
 import com.nanfenggongxiang.Dao.PostReplyMapper;
 import com.nanfenggongxiang.Domain.PostReply;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by skyisbule on 2018/3/28.
- */
+@Api("社区模块内，帖子回复的相关api。")
 @RestController
+@RequestMapping(value = "/",method = {RequestMethod.GET,RequestMethod.POST})
 public class postReplyController {
 
     @Autowired
@@ -26,6 +28,7 @@ public class postReplyController {
 
     private final String hasDelete = "该内容已被删除";
 
+    @ApiOperation("添加一条帖子的留言，传实体。")
     @RequestMapping("/private/postReply/add")
     public String add(PostReply reply,
                       @CookieValue("uid")int uid){
@@ -39,6 +42,7 @@ public class postReplyController {
         return dao.insert(reply)==1?"success":"error";
     }
 
+    @ApiOperation("")
     @RequestMapping("/public/postReply/get-by-page")
     public List<Map<String,Object>> GetByPage(int page, int postId){
         List<Map<String, Object>> res = complexDao.getPostReplyByPage(page*10,postId);

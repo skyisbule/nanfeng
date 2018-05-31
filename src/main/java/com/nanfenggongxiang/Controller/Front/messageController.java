@@ -30,24 +30,18 @@ public class messageController {
     @Autowired
     MessageDao complexDao;
 
-    /**
-     *
-     * @param message  留言的实体
-     * @return         成功与否
-     */
-    @ApiOperation("添加一条商品的留言")
+    @ApiOperation("添加一条商品的留言，参数为用户的uid。")
     @RequestMapping(value = "/private/message/add",method = RequestMethod.POST)
     public String add(@CookieValue("uid")int uid,
                       Message message){
         Date date = new Date();
         message.setReleaseTime(date);
-        //message.setReleaser(uid);
+        message.setReleaser(uid);
         message.setIsReaded(0);
         return dao.insert(message)==1?"success":"error";
     }
 
     /**
-     *
      * @param gid    商品id
      * @param page   第几页 从0开始
      * @return       message的集合

@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Created by skyisbule on 2018/4/12.
+ * 广告的控制器，就是穿插在商品中间的那个。
  */
 @RestController
 @RequestMapping(value = "/",method = {RequestMethod.GET,RequestMethod.POST})

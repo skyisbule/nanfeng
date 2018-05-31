@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by skyisbule on 2018/4/12.
+ * 控制首页飘过的那行公告
  */
 @RequestMapping("/front/notice")
 @RestController
