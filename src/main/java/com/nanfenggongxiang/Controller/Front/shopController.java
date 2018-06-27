@@ -4,13 +4,10 @@ import com.nanfenggongxiang.Dao.CommodityDao;
 import com.nanfenggongxiang.Dao.CommodityMapper;
 import com.nanfenggongxiang.Dao.countDao;
 import com.nanfenggongxiang.Domain.Commodity;
-import com.nanfenggongxiang.Domain.CommodityExample;
 import com.nanfenggongxiang.Service.commodityService;
-import groovy.util.MapEntry;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -72,10 +69,8 @@ public class shopController {
                                                                   @ApiParam("页码数，从0开始") int page,
                                                                   @ApiParam("分类")int goodsType
                                                                   ){
-        if (goodsType==0)
-            return complexDao.getCommodityAndUserInfoByPage(isSellOut,isWantBy,page*10);
-        else
-            return complexDao.getCommodityAndUserInfoByPageAndType(isSellOut,isWantBy,page*10,goodsType);
+        //注意这里用了动态sql，type传0会把“and type = type"去掉 未测试 如果发生错误而且无法解决的话请联系我
+        return complexDao.getCommodityAndUserInfoByPageAndType(isSellOut,isWantBy,page*10,goodsType);
     }
 
     @ApiOperation("通过商品id获取商品详情")

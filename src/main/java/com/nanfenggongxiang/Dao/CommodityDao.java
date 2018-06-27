@@ -13,26 +13,18 @@ import java.util.Map;
  */
 @Mapper
 public interface CommodityDao {
-
-    @Select("select commodity.*,info.nick_name,info.release_num,info.head_pic " +
+    //动态SQL
+    @Select("<script>"+
+            "select commodity.*,info.nick_name,info.release_num,info.head_pic " +
             "from commodity join info on " +
             "commodity.uid = info.uid where " +
             "commodity.is_sell_out = ${sell} and commodity.is_want_by = ${buy} " +
-            "order by gid desc " +
-            "limit #{page},10")
-    public List<Map<String,Object>> getCommodityAndUserInfoByPage(
-                                                                  @Param("sell")int isSellOut,
-                                                                  @Param("buy")int isWantBuy,
-                                                                  @Param("page")int page
-                                                                  );
-
-    @Select("select commodity.*,info.nick_name,info.release_num,info.head_pic " +
-            "from commodity join info on " +
-            "commodity.uid = info.uid where " +
-            "commodity.is_sell_out = ${sell} and commodity.is_want_by = ${buy} " +
+            "<if test=\"type!=0\">"+//这里判断一下type  如果等于0直接跳过 代表查询全部 即无视类别
             "and commodity.goods_type = ${type} "+
+            "</if>"+
             "order by gid desc " +
-            "limit ${page},10")
+            "limit ${page},10"+
+            "</script>")
     public List<Map<String,Object>> getCommodityAndUserInfoByPageAndType(
             @Param("sell")int isSellOut,
             @Param("buy") int isWantBuy,
