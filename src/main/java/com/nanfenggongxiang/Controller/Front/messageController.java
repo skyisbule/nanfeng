@@ -41,16 +41,10 @@ public class messageController {
         return dao.insert(message)==1?"success":"error";
     }
 
-    /**
-     * @param gid    商品id
-     * @param page   第几页 从0开始
-     * @return       message的集合
-     */
     @ApiOperation("拿到某商品的留言信息，每次最多返回10条")
     @RequestMapping(value = "/public/message/get-by-gid",method = RequestMethod.GET)
     public List<Map<String,Object>> getByGoodsId(@ApiParam("你想查询的商品的id") int gid,
                                                  @ApiParam("第几页，从0开始。") int page){
-
         return complexDao.getMessageByPageWithInfo(page*10,gid);
     }
 
@@ -74,7 +68,8 @@ public class messageController {
 
     @ApiOperation("拿到某用户的未读消息或已读消息")
     @RequestMapping(value = "/private/message/get-if-readed")
-    public List<Map<String,Object>> getAll(int uid,int isReaded){
+    public List<Map<String,Object>> getAll(int uid,
+                                           @ApiParam("已读传1，未读传0") int isReaded){
         return complexDao.getMessagesIfReaded(uid,isReaded);
     }
 

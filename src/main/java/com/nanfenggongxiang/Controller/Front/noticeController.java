@@ -27,22 +27,12 @@ public class noticeController {
     @Autowired
     NoticeMapper dao;
 
-    /**
-     * 添加一条公告
-     * @param notice 公告的实体
-     * @return
-     */
     @ApiOperation("添加一条公告")
     @RequestMapping("/public/notice/add")
     public String add(Notice notice){
         return dao.insert(notice)==1?"success":"error";
     }
 
-    /**
-     * 拿到公告
-     * @param isShow 是否在首页显示的
-     * @return
-     */
     @ApiOperation("拿到所有的公告")
     @RequestMapping("/public/notice/get-show")
     public List<Notice> getShow(@ApiParam("是否显示") Integer isShow){
@@ -52,11 +42,6 @@ public class noticeController {
         return dao.selectByExample(e);
     }
 
-    /**
-     * 删除公告
-     * @param id 公告的id
-     * @return
-     */
     @ApiOperation("删除公告")
     @RequestMapping("/public/notice/delete-by-id")
     public String delete(@ApiParam("公告的id") int id){

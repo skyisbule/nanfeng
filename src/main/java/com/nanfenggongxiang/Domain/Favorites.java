@@ -1,19 +1,19 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
- * @author 
+ * @author skyisbule
  */
+@ApiModel("商品记录")
 public class Favorites implements Serializable {
-    /**
-     * 用户id
-     */
+    @ApiModelProperty("用户的id")
     private Integer uid;
 
-    /**
-     * 商品id
-     */
+    @ApiModelProperty("商品的id")
     private Integer gid;
 
     private static final long serialVersionUID = 1L;

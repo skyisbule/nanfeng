@@ -1,23 +1,31 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author 
+ * @author skyisbule
  */
+@ApiModel("资讯的留言")
 public class NewsComment implements Serializable {
     private Integer replyId;
 
     /**
      * 评论者id
      */
+    @ApiModelProperty("谁在评论，传用户的id。")
     private Integer uid;
 
+    @ApiModelProperty("评论的内容")
     private String content;
 
+    @ApiModelProperty("评论时间")
     private Date releaseTime;
 
+    @ApiModelProperty("资讯的id，即评论哪条资讯")
     private Integer nid;
 
     private static final long serialVersionUID = 1L;

@@ -40,14 +40,13 @@ public class newsReplyController {
         return dao.insert(comment)==1?"success":"error";
     }
 
-    @ApiOperation("根据页码获取资讯的回复，从0开始。")
+    @ApiOperation("根据页码获取资讯的回复，同上，从0开始。")
     @RequestMapping("/public/newsReply/get-by-page")
     public List<Map<String,Object>> getByPage(int newsId,int page) {
-        List<Map<String, Object>> res = complexDao.getByPage(page * 10, newsId);
-        return res;
+        return complexDao.getByPage(page * 10, newsId);
     }
 
-    @ApiOperation("删掉自己的回复，注意鉴权。")
+    @ApiOperation("删掉自己的回复。")
     @RequestMapping("/private/newReply/delete")
     public String delete(int replyId){
         dao.deleteByPrimaryKey(replyId);

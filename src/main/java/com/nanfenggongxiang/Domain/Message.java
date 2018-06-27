@@ -1,42 +1,53 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author 
+ * @author skyisbule
  */
+@ApiModel("商品下边的留言")
 public class Message implements Serializable {
     /**
      * 留言id
      */
+    @ApiModelProperty("留言的id")
     private Integer mid;
 
     /**
      * 写这条留言的用户id
      */
+    @ApiModelProperty("发布者的uid")
     private Integer releaser;
 
     /**
      * 接收留言者的id
      */
+    @ApiModelProperty("接受者的uid")
     private Integer receiver;
 
     /**
      * 留言内容
      */
+    @ApiModelProperty("留言的内容")
     private String content;
 
     /**
      * 是否已读
      */
+    @ApiModelProperty("代表是否已读，1是已读，0是未读")
     private Integer isReaded;
 
     /**
      * 商品id
      */
+    @ApiModelProperty("商品的id")
     private Integer gid;
 
+    @ApiModelProperty("发布时间")
     private Date releaseTime;
 
     private static final long serialVersionUID = 1L;

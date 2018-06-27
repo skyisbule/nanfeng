@@ -1,37 +1,46 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author 
+ * @author skyisbule
  */
+@ApiModel("帖子的回复")
 public class PostReply implements Serializable {
     private Integer rid;
 
     /**
      * 帖子id
      */
+    @ApiModelProperty("帖子的id")
     private Integer postId;
 
     /**
      * 作者id
      */
+    @ApiModelProperty("作者的id")
     private Integer uid;
 
     /**
      * 回复内容
      */
+    @ApiModelProperty("回复的内容")
     private String content;
 
     /**
      * 回复时间
      */
+    @ApiModelProperty("回复的时间")
     private Date releaseTime;
 
     /**
      * 是否被删除
      */
+    @ApiModelProperty("是否被删除了，1是删除，0是未被删除。")
     private Integer isDelete;
 
     private static final long serialVersionUID = 1L;

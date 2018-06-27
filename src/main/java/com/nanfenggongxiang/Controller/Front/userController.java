@@ -25,7 +25,7 @@ public class userController {
 
     @ApiOperation("登录接口")
     @ApiResponses(value = {
-            @ApiResponse(code = 200,message = "返回 success 或者 noThisUser 、wrongPasswd"),
+            @ApiResponse(code = 200,message = "返回 success 或者 账号错误 、密码错误"),
             @ApiResponse(code = 400,message = "前端输入了非法参数")
     })
     @RequestMapping(value = "/login")
@@ -38,7 +38,7 @@ public class userController {
         List<Info> users = dao.selectByExample(e);
         //没有该用户
         if (users.size()==0)
-            return "noThisUser";
+            return "账号错误";
         //核对一下密码
         if (users.get(0).getPasswd().equals(passwd)){
             Info user  = users.get(0);
@@ -46,21 +46,15 @@ public class userController {
             Cookie idCookie     = new Cookie("uid",user.getUid().toString());
             Cookie passwdCookie = new Cookie("session",getHash(user.getPasswd()));
             Cookie headCookie   = new Cookie("headPic",user.getHeadPic());
-            //Cookie nickCookie   = new Cookie("nickName",user.getNickName());
             idCookie.setMaxAge(maxAge);
             passwdCookie.setMaxAge(maxAge);
             headCookie.setMaxAge(maxAge);
             idCookie.setPath("/");
             passwdCookie.setPath("/");
             headCookie.setPath("/");
-          //  idCookie.setDomain("hejianpeng.cn");
-           // passwdCookie.setDomain("hejianpeng.cn");
-          //  headCookie.setDomain("hejianpeng.cn");
-            //nickCookie.setMaxAge(maxAge);
             response.addCookie(idCookie);
             response.addCookie(passwdCookie);
             response.addCookie(headCookie);
-            //response.addCookie(nickCookie);
             user.setPasswd(null);
             Gson gson = new Gson();
             return gson.toJson(user);
@@ -73,11 +67,7 @@ public class userController {
     public String regist(Info info){
         //初始化注册信息
         registInit(info);
-        if (dao.insert(info)==1){
-            return "success";
-        }else {
-            return "error";
-        }
+        return dao.insert(info)==1?"success":"error";
     }
 
     @ApiOperation("修改用户信息的接口")
@@ -91,11 +81,6 @@ public class userController {
         return dao.updateByPrimaryKey(info)==1?"success":"error";
     }
 
-    /**
-     * 获取当前用户名是否可以注册
-     * @param nickName  昵称  也就是注册登录用的名字
-     * @return
-     */
     @ApiOperation("判断该昵称是否被人注册过")
     @RequestMapping("/public/hasNickName")
     public String isRegisted(String nickName){
@@ -109,11 +94,7 @@ public class userController {
             return "hasExist";
     }
 
-    /**
-     * 获取手机号是否被使用
-     * @param tel  手机号
-     * @return
-     */
+
     @ApiOperation("判断该手机号有没有被注册")
     @RequestMapping(value = "/public/hasTelNum",method = RequestMethod.GET)
     public String hasTel(String tel){

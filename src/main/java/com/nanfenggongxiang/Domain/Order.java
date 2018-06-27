@@ -1,35 +1,45 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author 
+ * @author skyisbule
  */
+@ApiModel("订单")
 public class Order implements Serializable {
     /**
      * 订单id
      */
+    @ApiModelProperty("订单的id")
     private Integer oid;
 
     /**
      * 买家的id
      */
+
+    @ApiModelProperty("买家的id")
     private Integer uid;
 
     /**
      * 商品id
      */
+    @ApiModelProperty("商品的id")
     private Integer gid;
 
     /**
      * 下单时间
      */
+    @ApiModelProperty("下单时间")
     private Date buyTime;
 
     /**
      * 订单状态
      */
+    @ApiModelProperty("订单的状态（目前项目中没有用到，传0即可）")
     private Integer status;
 
     private static final long serialVersionUID = 1L;

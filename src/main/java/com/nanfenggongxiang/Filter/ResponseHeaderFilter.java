@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * Created by skyisbule on 2018/5/6.
- * 通用的响应头拦截器
+ * 通用的响应头拦截器，用于处理跨域问题。
  */
 @Order(1)
 @ServletComponentScan

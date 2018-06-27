@@ -1,66 +1,82 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
- * @author 
+ * @author skyisbule
  */
+@ApiModel("个人信息")
 public class Info implements Serializable {
     /**
      * 用户id
      */
+    @ApiModelProperty("用户id")
     private Integer uid;
 
     /**
      * 昵称
      */
+    @ApiModelProperty("用户的昵称")
     private String nickName;
 
     /**
      * 真实姓名
      */
+    @ApiModelProperty("用户的真实姓名")
     private String realName;
 
     /**
      * 手机号
      */
+    @ApiModelProperty("用户的手机号")
     private String telNum;
 
     /**
      * 邮箱
      */
+    @ApiModelProperty("用户的邮箱")
     private String email;
 
     /**
      * 密码
      */
+    @ApiModelProperty("密码")
     private String passwd;
 
     /**
      * 累计发布数量
      */
+    @ApiModelProperty("用户累计的发布商品的数量")
     private Integer releaseNum;
 
     /**
      * 个性签名
      */
+    @ApiModelProperty("用户的个人签名")
     private String signature;
 
     /**
      * 联系方式
      */
+    @ApiModelProperty("用户的联系方式")
     private String contact;
 
     /**
      * 头像
      */
+    @ApiModelProperty("用户的头像的地址")
     private String headPic;
 
     /**
      * qq号
      */
+    @ApiModelProperty("qq号")
     private String qq;
 
+    @ApiModelProperty("微信号")
     private String wechat;
 
     private static final long serialVersionUID = 1L;

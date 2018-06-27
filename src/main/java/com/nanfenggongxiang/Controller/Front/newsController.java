@@ -3,11 +3,11 @@ package com.nanfenggongxiang.Controller.Front;
 import com.nanfenggongxiang.Dao.NewsCommentMapper;
 import com.nanfenggongxiang.Dao.NewsMapper;
 import com.nanfenggongxiang.Domain.News;
-import com.nanfenggongxiang.Domain.NewsComment;
 import com.nanfenggongxiang.Domain.NewsCommentExample;
 import com.nanfenggongxiang.Domain.NewsExample;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +37,9 @@ public class newsController {
      */
     @ApiOperation("按页码数获取资讯，每页10条，page从0开始传。")
     @RequestMapping("/public/news/get-by-page")
-    public List<News> getByPage(int page,int type,int isTop){
+    public List<News> getByPage(@ApiParam("从0开始传，每加1返回10条") int page,
+                                @ApiParam("商品类型，传0则无视类型返回全部") int type,
+                                @ApiParam("是否置顶") int isTop){
         NewsExample e = new NewsExample();
         e.setOffset(page*10);
         e.setLimit(10);
@@ -55,7 +57,7 @@ public class newsController {
         }
     }
 
-    @ApiOperation("添加一条资讯，传实体就好。")
+    @ApiOperation("添加一条资讯，参数里不用填时间。")
     @RequestMapping("/admin/news/add")
     public String add(News news){
         Date date = new Date();

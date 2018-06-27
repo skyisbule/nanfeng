@@ -23,6 +23,7 @@ import java.util.Map;
 
 @Api("收藏功能的接口")
 @RestController
+@RequestMapping(value = "",method = {RequestMethod.GET,RequestMethod.POST})
 public class favoriteController {
 
     @Autowired

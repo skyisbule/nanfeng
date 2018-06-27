@@ -1,37 +1,47 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author 
+ * @author skyisbule
  */
+@ApiModel("资讯的内容")
 public class News implements Serializable {
     /**
      * 资讯id
      */
+    @ApiModelProperty("资讯的id")
     private Integer nid;
 
     /**
      * 标题
      */
+    @ApiModelProperty("资讯的标题")
     private String title;
 
     /**
      * 资讯内容
      */
+    @ApiModelProperty("资讯的内容")
     private String content;
 
     /**
      * 发布时间
      */
+    @ApiModelProperty("资讯发布的时间")
     private Date releaseTime;
 
     /**
      * 所属类别
      */
+    @ApiModelProperty("资讯所属的类别，0123456这样，由前端定义和解析。")
     private Integer classification;
 
+    @ApiModelProperty("是否置顶")
     private Integer isTop;
 
     private static final long serialVersionUID = 1L;

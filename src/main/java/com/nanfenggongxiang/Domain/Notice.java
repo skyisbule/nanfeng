@@ -1,10 +1,13 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.ApiModel;
+
 import java.io.Serializable;
 
 /**
  * @author 
  */
+@ApiModel("公告")
 public class Notice implements Serializable {
     /**
      * 公告id

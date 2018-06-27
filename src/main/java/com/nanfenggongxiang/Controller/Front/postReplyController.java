@@ -26,13 +26,13 @@ public class postReplyController {
     @Autowired
     PostReplyDao    complexDao;
 
-    private final String hasDelete = "该内容已被删除";
+    private final String DELETED_CONTENT = "该内容已被删除";
 
     @ApiOperation("添加一条帖子的留言，传实体。")
     @RequestMapping("/private/postReply/add")
     public String add(PostReply reply,
                       @CookieValue("uid")int uid){
-        //给帖子的回复数加一
+        //先给帖子的回复数加一
         complexDao.addReplyNum(reply.getPostId());
         
         Date date = new Date();
@@ -48,7 +48,7 @@ public class postReplyController {
         List<Map<String, Object>> res = complexDao.getPostReplyByPage(page*10,postId);
         res.forEach((Map<String, Object> map) ->{
             if (map.get("is_delete").toString().equals("1"))
-                map.put("content",this.hasDelete);
+                map.put("content",this.DELETED_CONTENT);
         });
         return res;
     }

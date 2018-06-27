@@ -21,7 +21,7 @@ import java.util.*;
 
 /**
  * Created by skyisbule on 2018/3/26.
- * 控制商品
+ * 商品相关的api
  */
 @Api(description = "商品相关的api")
 @RestController
@@ -112,6 +112,7 @@ public class shopController {
 
     @ApiOperation("搜索商品")
     @RequestMapping("/public/commodity/search")
+    @SuppressWarnings("unchecked")
     public List<Map<String,Object>> getCommodityAndUserInfoByPageAndTypeAndGoodsName(@ApiParam("是否被卖出去了，传1和0")int isSellOut,
                                                                    @ApiParam("是想买还是想卖")int isWantBy,
                                                                    @ApiParam("页码数，从0开始") int page,
@@ -156,7 +157,6 @@ public class shopController {
 
     private void init(Commodity commodity){
         commodity.setGid(null);
-        //commodity.setUid(uid);
         commodity.setPageViews(1);
         commodity.setReleaseTime(new Date());
         commodity.setIsSellOut(0);

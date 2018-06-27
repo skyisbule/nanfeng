@@ -1,24 +1,35 @@
 package com.nanfenggongxiang.Domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author 
+ * @author skyisbule
  */
+@ApiModel("广告")
 public class Advertisement implements Serializable {
+    @ApiModelProperty("广告的id")
     private Integer aid;
 
+    @ApiModelProperty("标题")
     private String title;
 
+    @ApiModelProperty("图片的七牛后缀")
     private String pic;
 
+    @ApiModelProperty("广告的正文")
     private String content;
 
+    @ApiModelProperty("广告发布的时间")
     private Date times;
 
+    @ApiModelProperty("权值，越大代表出现的越前")
     private Integer power;
 
+    @ApiModelProperty("点击后跳转的链接")
     private String links;
 
     private static final long serialVersionUID = 1L;
