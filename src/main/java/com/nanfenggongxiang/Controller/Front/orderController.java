@@ -8,8 +8,6 @@ import com.nanfenggongxiang.Domain.OrderExample;
 import com.nanfenggongxiang.Service.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,20 +18,16 @@ import java.util.Map;
 
 /**
  * Created by skyisbule on 2018/4/12.
- * 用于提供订单相关的api
+ * 用于提供订单相关的api，订单模块。
  */
 @Api("提供订单相关的api")
 @RestController
 public class orderController {
 
-    @Autowired
-    orderDao complexDao;
-    @Autowired
-    OrderMapper dao;
-    @Autowired
-    OrderService service;
-    @Autowired
-    infoDao     infoDao;
+    @Autowired OrderMapper  dao;
+    @Autowired OrderService service;
+    @Autowired infoDao      infoDao;
+    @Autowired orderDao     complexDao;
 
     @ApiOperation("传用户id，返回该id所拍下的商品")
     @RequestMapping("/private/order/get-by-uid")

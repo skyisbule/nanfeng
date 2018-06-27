@@ -42,7 +42,7 @@ public class postReplyController {
         return dao.insert(reply)==1?"success":"error";
     }
 
-    @ApiOperation("")
+    @ApiOperation("根据帖子id和页码号拿到该帖子下边的回复（留言）")
     @RequestMapping("/public/postReply/get-by-page")
     public List<Map<String,Object>> GetByPage(int page, int postId){
         List<Map<String, Object>> res = complexDao.getPostReplyByPage(page*10,postId);
@@ -53,6 +53,7 @@ public class postReplyController {
         return res;
     }
 
+    @ApiOperation("删除一条帖子")
     @RequestMapping("/private/postReply/delete")
     public String setDelete(int isDelete,int rid){
         complexDao.setDelete(isDelete,rid);

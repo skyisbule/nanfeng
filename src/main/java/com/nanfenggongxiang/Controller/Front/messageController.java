@@ -4,6 +4,7 @@ import com.nanfenggongxiang.Dao.MessageDao;
 import com.nanfenggongxiang.Dao.MessageMapper;
 import com.nanfenggongxiang.Domain.Message;
 import com.nanfenggongxiang.Domain.MessageExample;
+import com.nanfenggongxiang.Domain.Post;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -23,6 +24,7 @@ import java.util.Map;
  */
 @Api(description = "商品下边留言相关的api，如无特殊说明则api返回success或error")
 @RestController
+@RequestMapping(value = "",method = {RequestMethod.GET,RequestMethod.POST})
 public class messageController {
 
     @Autowired

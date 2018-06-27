@@ -28,14 +28,10 @@ import java.util.*;
 @RequestMapping(value = "",method = RequestMethod.POST)
 public class shopController {
 
-    @Autowired
-    CommodityMapper dao;
-    @Autowired
-    CommodityDao    complexDao;
-    @Autowired
-    commodityService service;
-    @Autowired
-    countDao        commodity;
+    @Autowired CommodityMapper   dao;
+    @Autowired CommodityDao      complexDao;
+    @Autowired commodityService  service;
+    @Autowired countDao          commodity;
 
     /**
      * 增加一件商品，需要已经登录。
@@ -50,10 +46,7 @@ public class shopController {
             @CookieValue("uid")int uid,
             Commodity commodity){
         commodity.setUid(uid);
-        //初始化
-        init(commodity);
-        Date date = new Date();
-        commodity.setReleaseTime(date);
+        init(commodity);//初始化 将gid设置为空 浏览量设为1 发布时间设为当前系统时间 是否下架设为否
         if(dao.insert(commodity)==1){
             service.addReleaseNum(uid);
             return "success";
@@ -90,7 +83,7 @@ public class shopController {
     public Map<String,Object> getCommodityAndUserInfoByGid(@ApiParam("商品id")int gid){
         Map<String,Object> map = complexDao.getCommodityAndUserByGid(gid);
         if (map == null){
-            return new HashMap<String,Object>();
+            return new HashMap<>();
         }
         String GoodsUid = map.get("uid").toString();
         Integer uid = Integer.parseInt(GoodsUid);

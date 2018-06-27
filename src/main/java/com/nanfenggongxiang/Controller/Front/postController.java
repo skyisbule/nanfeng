@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * Created by skyisbule on 2018/3/28.
- * 发布帖子
+ * 帖子模块。
  */
 @Api(description = "帖子相关的api")
 @RestController
@@ -62,11 +62,13 @@ public class postController {
         return complexDao.getAllPostInfoByPage(page*10);
     }
 
+    @ApiOperation("更新帖子的信息，目前好像还没用到。")
     @RequestMapping("/private/post/update")
     public String updateById(Post post){
         return dao.updateByPrimaryKey(post)==1?"success":"error";
     }
 
+    @ApiOperation("将一个帖子设置成置顶或取消置顶，isTop传0或1,1为置顶")
     @RequestMapping("/private/post/set-top")
     public String updateById(int pid,int isTop){
         Post post = dao.selectByPrimaryKey(pid);
@@ -76,6 +78,7 @@ public class postController {
         return dao.updateByPrimaryKey(post)==1?"success":"error";
     }
 
+    @ApiOperation("通过帖子id，删除一条帖子。")
     @RequestMapping("private/post/delete")
     public String delete(int pid){
         dao.deleteByPrimaryKey(pid);
