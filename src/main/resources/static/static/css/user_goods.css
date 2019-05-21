@@ -1,0 +1,13 @@
+@charset "utf-8";
+#goods {position:absolute;top:12vw;}
+.card {display:block;position:relative;width:94vw;height: 50vw; margin:3vw;background-color:#fff;text-decoration:none;color:#222;border-bottom:0.2vw dotted #aaa;}
+.card div {position:relative;float: left;height:30vw;width: 30vw; margin:2vw;top:12vw;overflow: hidden}
+.card img {position: absolute;top: 50%;left: 50%; display:block;opacity:0;-webkit-transition: opacity 0.5s;transition: opacity 0.5s;}
+h1,h2,h3,h4,h5,h6 {-webkit-margin-before:0!important;-webkit-margin-after:0!important;-webkit-margin-start:0!important;-webkit-margin-end:0!important;}
+.card h1 {position:absolute;left:4vw;top:4vw;font-size:5vw;font-weight:600;color:#333;}
+.card h2 {position:absolute;right:4vw;top:4vw;font-size:4.1vw;font-weight:300;height:6vw;line-height:6vw;color:#bbb;}
+.card h3 {position:relative;width:100%;top:0;color:#888;font-size:4vw;font-weight:500;}
+.card h6 {position:absolute;left: 0; bottom: -2vw;font-size:5vw;font-weight:500;color:rgb(170,0,0);font-family: Impact, Charcoal, sans-serif;}
+.card span{position:relative;display: block;top: 12vw; height: 30vw;right: 0;width: 60vw;}
+.card input{position:absolute;right: 0;bottom: -5vw;border: 0.1vw solid #555;width: 20vw;height: 8vw;font-size: 4vw;background-color: transparent}
+#loading {position:absolute;background-color:transparent;border-bottom: none!important; font-size:5vw;line-height:20vw;text-align:center;bottom:-50vw;height: 50vw}

@@ -1,0 +1,61 @@
+@charset "utf-8";
+    .ui-upload {
+      height: 80px;
+      width: 80px;
+      
+      font-size: 14px;
+      line-height: 30px;
+      cursor: pointer;
+      display: inline-block;
+      text-align: center;
+      color: #fff;
+      border-radius: 3px;
+      border: 0px;
+      background-image: url( //cdn.nanfeng.hejianpeng.cn/information/porf.gif);
+      background-size: 100% 100%;
+      float: left;
+    }
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                background-color: #eee;
+            }
+            ul{
+                list-style-type:none;
+            }
+            
+            .topText{
+                height: 45px;position: relative;top:4px;
+                font-size:13px;
+                padding-bottom: 3px;
+            }
+            .topText img {
+                height: 22px;
+                width: 22px;
+            }
+            
+            
+            .contentText {
+    overflow: visible;
+    letter-spacing: .2px;
+    margin-top: 20px;
+}
+.commonPadding {
+    padding-left: 17px;
+    padding-right: 17px;
+}
+.bjh-p {
+    display: block;
+}
+.mypW img{
+     max-width:100%;
+margin-top: 5px;
+}
+
+.allpic img{
+    max-width:87%;
+    max-height: 65px;
+}
+

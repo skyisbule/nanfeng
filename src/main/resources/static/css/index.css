@@ -1,0 +1,9 @@
+@charset "utf-8";
+#notice {position:absolute;width:100vw;height:8vw;line-height: 8vw;font-size: 4.5vw;color: #f00; top:66vw;left:0;overflow-x:hidden;border-bottom: 0.5vw solid #eee;border-top: 1.5vw solid #eee;z-index: 10000}
+#notice svg {position:absolute;width:4vw;height:6vw;padding: 1vw; fill:#333;z-index: 200;background-color: #fff}
+#notice a{position:absolute;white-space:nowrap;color: #333}
+#notice span{margin: 0 1vw}
+#goods_type {top:85vw;background-color: transparent}
+#goods_type table {width:84vw;margin:5vw;text-align:center;color:#555;font-size:4.5vw}
+#goods_type svg {width:8vw;height:8vw;margin: 2vw; fill:#fff}
+#goods_type b {display:inline-block; width: 12vw;height: 12vw;border-radius: 50%; }
