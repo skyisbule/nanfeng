@@ -17,7 +17,6 @@ hchoose = doc.getElementById("choose").style,
 hgoods = doc.getElementById("goods");
 
 function get_goods(data) {
-		
         var out = "",
         data_arr = JSON.parse(data),
         pic_len = 0,
@@ -26,10 +25,10 @@ function get_goods(data) {
 			if(Math.random()<ad_frequency){
 				if(ad_num>=ad.length){ad_frequency=0;add_ad();}else{
 							 out += '<a name="card" onclick="leave()" class="card ad" style="background-image: url(' + ad[ad_num]["pic"] + ');" href="' + ad[ad_num]["links"] + '"><p>' + pengge.nanfenggx.font_len(ad[ad_num]["content"],32) + '</p><b>广告</b></a>';
-				ad_num++;	
+				ad_num++;
 				}
 
-				
+
 			}
 			index_get_goods.push(data_arr[j]);
 
@@ -72,7 +71,28 @@ if (a.offsetTop < vw * 0.2) {
 }
 
 doc.onscroll = function() {
+
+    //变量scrollTop是滚动条滚动时，距离顶部的距离
+    var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+    //变量windowHeight是可视区的高度
+    var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+    //变量scrollHeight是滚动条的总高度
+    var scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight;
+    //滚动条到底部的条件
+    if(scrollTop+windowHeight==scrollHeight){
+        console.log("底部了")
+        page_num+=1;
+        //写后台加载数据的函数
+        pengge.post("/public/commodity/get-with-info-by-page", "isWantBy=" + isWantBy + "&goodsType=" + goods_type + "&page=" + page_num + "&isSellOut=0",
+            function(data) {
+                get_goods(data);
+            });
+    }
+    return;
+
+
     var top = doc.documentElement.scrollTop || doc.body.scrollTop;
+    console.log("sccroll");
     if (top >= vw * 0.75) {
         if (ty&&!choose_top) {
 			choose_top=true;

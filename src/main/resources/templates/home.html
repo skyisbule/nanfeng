@@ -263,9 +263,13 @@ window.onload = function() {
     f[1].style.WebkitAnimation = b
 });
 }
+
 function get_goods() {
+    if (1===1)
+    return ;
     pengge.post("/public/commodity/get-with-info-by-page", "isWantBy=" + isWantBy + "&goodsType=" + goods_type + "&page=" + page_num * 10 + "&isSellOut=0",
     function(data) {
+        console.log("首页的goods")
 		
         var out = "",
         data_arr = JSON.parse(data),
@@ -316,42 +320,56 @@ function img_onload(a) {
     }
 
 }
-doc.onscroll = function() {
-    var top = doc.documentElement.scrollTop || doc.body.scrollTop;
-    if (top >= vw * 0.65) {
-        if (!choose_top) {
-			choose_top=true;
-            hchoose.cssText = "position: fixed;top: -5vw;"
-        }
-
-        var check = function() {
-            if (((doc.body.scrollHeight) - top - doc.body.clientHeight) <= vw) {
-                get_goods();
-            }
-        }
-
-        if (goods_finish) {
-            return;
-        }
-        if (timer === null) {
-            check();
-            timer = setTimeout(function() {
-                check();
-                timer = null;
-            },
-            1000);
-        }
-
-    }
-
-    else {
-        if (choose_top) {
-			choose_top=false;
-            hchoose.cssText = ""
-        }
-    }
-
-}
+// doc.onscroll = function() {
+//
+//     //变量scrollTop是滚动条滚动时，距离顶部的距离
+//     var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+//     //变量windowHeight是可视区的高度
+//     var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+//     //变量scrollHeight是滚动条的总高度
+//     var scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight;
+//     //滚动条到底部的条件
+//     if(scrollTop+windowHeight==scrollHeight){
+//         //写后台加载数据的函数
+//         //get_goods();
+//         return ;
+//     }
+//
+//     var top = doc.documentElement.scrollTop || doc.body.scrollTop;
+//     if (top >= vw * 0.65) {
+//         if (!choose_top) {
+// 			choose_top=true;
+//             hchoose.cssText = "position: fixed;top: -5vw;"
+//         }
+//
+//         var check = function() {
+//             if (((doc.body.scrollHeight) - top - doc.body.clientHeight) <= vw) {
+//                 get_goods();
+//             }
+//         }
+//
+//         if (goods_finish) {
+//             return;
+//         }
+//         if (timer === null) {
+//             check();
+//             timer = setTimeout(function() {
+//                 check();
+//                 timer = null;
+//             },
+//             1000);
+//         }
+//
+//     }
+//
+//     else {
+//         if (choose_top) {
+// 			choose_top=false;
+//             hchoose.cssText = ""
+//         }
+//     }
+//
+// }
 
 </script>
 </html>
